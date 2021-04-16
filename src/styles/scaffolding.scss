@@ -1,0 +1,21 @@
+body {
+	min-width: 320px;
+	max-width: 1920px;
+	margin: 50px auto;
+  padding: 0 30px;
+	font-family: Arial, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+	font-size: 14px;
+  line-height: 24px;
+}
+
+html {
+	box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+	box-sizing: inherit;
+}
