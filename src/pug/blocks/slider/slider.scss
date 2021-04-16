@@ -1,31 +1,24 @@
 .slider {
-  position: relative;
   max-width: 768px;
   margin: 0 auto;
 }
 
-.slider__scale {
+.slider.ui-widget.ui-widget-content {
   height: 5px;
   background-color: #e5e5e5;
-  border-radius: 3px;
+  border: none;
 }
 
-.slider__bar {
-  height: 5px;
-  margin-top: -1px;
-  margin-right: 25%;
+.slider .ui-widget-header {
   background-color: #4eb7a8;
-  border-radius: 3px;
 }
 
-.slider__toggle {
-  position: absolute;
+.slider .ui-state-default {
   top: -8px;
-  left: 75%;
   width: 21px;
   height: 21px;
-  margin-left: -10px;
   background-color: #4eb7a8;
+  border: none;
   border-radius: 50%;
   cursor: pointer;
 }
