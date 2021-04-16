@@ -1,20 +1,20 @@
-.slider {
+.slider__slider {
   max-width: 768px;
-  margin: 70px auto;
+  margin: 70px 0;
   cursor: pointer;
 }
 
-.slider.ui-widget.ui-widget-content {
+.slider__slider.ui-widget.ui-widget-content {
   height: 5px;
   background-color: #e5e5e5;
   border: none;
 }
 
-.slider .ui-widget-header {
+.slider__slider .ui-widget-header {
   background-color: #4eb7a8;
 }
 
-.slider .ui-state-default {
+.slider__slider .ui-state-default {
   top: -8px;
   width: 21px;
   height: 21px;
@@ -70,6 +70,10 @@
     display: flex;
     justify-content: center;
   }
+}
+
+.slider__form {
+  width: 280px;
 }
 
 .slider__label {
