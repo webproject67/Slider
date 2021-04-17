@@ -1,25 +1,29 @@
 .slider__slider {
-  max-width: 768px;
-  margin: 70px 0;
-  cursor: pointer;
+  position: relative;
 }
 
-.slider__slider.ui-widget.ui-widget-content {
+.slider__scale {
   height: 5px;
   background-color: #e5e5e5;
-  border: none;
+  border-radius: 3px;
 }
 
-.slider__slider .ui-widget-header {
+.slider__bar {
+  height: 5px;
+  margin-top: -1px;
+  margin-right: 25%;
   background-color: #4eb7a8;
+  border-radius: 3px;
 }
 
-.slider__slider .ui-state-default {
+.slider__toggle {
+  position: absolute;
   top: -8px;
+  left: 75%;
   width: 21px;
   height: 21px;
+  margin-left: -10px;
   background-color: #4eb7a8;
-  border: none;
   border-radius: 50%;
   cursor: pointer;
 
@@ -28,7 +32,6 @@
     content: "75";
     top: -25px;
     left: 50%;
-    width: auto;
     height: 30px;
     padding: 10px 15px;
     display: flex;
@@ -55,7 +58,6 @@
 .slider__list {
   margin: 0;
   padding: 0;
-  height: 0;
   display: flex;
   justify-content: space-between;
   list-style: none;
@@ -73,7 +75,9 @@
 }
 
 .slider__form {
-  width: 280px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
 .slider__label {
