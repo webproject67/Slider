@@ -1,10 +1,6 @@
-import {createElement} from '../../scripts/utils';
+import AbstractView from '../../scripts/abstract-view';
 
-export default class SliderView {
-  get element(): HTMLElement {
-    return createElement(this.template)
-  }
-
+export default class SliderView extends AbstractView {
   get template(): string {
     return `
       <div class="slider__slider">

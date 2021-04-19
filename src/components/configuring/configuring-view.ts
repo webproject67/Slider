@@ -1,10 +1,6 @@
-import {createElement} from '../../scripts/utils';
+import AbstractView from '../../scripts/abstract-view';
 
-export default class ConfiguringView {
-  get element(): HTMLElement {
-    return createElement(this.template)
-  }
-
+export default class ConfiguringView extends AbstractView {
   get template(): string {
     return `
       <form class="slider__form">
