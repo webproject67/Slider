@@ -1,38 +1,38 @@
 .slider
-  .slider__slider
-    .slider__scale
-      .slider__bar
-    .slider__toggle
-  ul.slider__list 
-    each val in [0, 25, 50, 75, 100]
-      li.slider__item |
-        span.slider__item--number= val
-  form.slider__form
-    .slider__input
-      label(class="slider__label" for="min") Минимальное значение 
-      input(class="slider__min" type="number" value="0" id="min")
-    .slider__input
-      label(class="slider__label" for="max") Максимальное значение 
-      input(class="slider__max" type="number" value="100" id="max")
-    .slider__input
-      label(class="slider__label" for="current") Текущее значение 
-      input(class="slider__current" type="number" id="current")
-    .slider__input
-      label(class="slider__label" for="step") Шаг
-      input(class="slider__step" type="number" value="1" id="step")
-    .slider__input
-      input(type="radio" name="view" id="horizontal" checked)
-      label(for="horizontal")  Горизонтальный
-      input(type="radio" name="view" id="vertical")
-      label(for="vertical")  Вертикальный
-    .slider__input
-      input(type="radio" name="range" id="one" checked)
-      label(for="one")  Одиночное значение
-      input(type="radio" name="range" id="two")
-      label(for="two")  Интервал
-    .slider__input
-      input(type="checkbox" id="value" checked)
-      label(for="value")  Значение
-    .slider__input
-      input(type="checkbox" id="scale" checked)
-      label(for="scale")  Шкала
+  //- .slider__slider
+  //-   .slider__scale
+  //-     .slider__bar
+  //-   .slider__toggle
+  //- ul.slider__list 
+  //-   each val in [0, 25, 50, 75, 100]
+  //-     li.slider__item |
+  //-       span.slider__item--number= val
+  //- form.slider__form
+  //-   .slider__input
+  //-     label(class="slider__label" for="min") Минимальное значение 
+  //-     input(class="slider__min" type="number" value="0" id="min")
+  //-   .slider__input
+  //-     label(class="slider__label" for="max") Максимальное значение 
+  //-     input(class="slider__max" type="number" value="100" id="max")
+  //-   .slider__input
+  //-     label(class="slider__label" for="current") Текущее значение 
+  //-     input(class="slider__current" type="number" id="current")
+  //-   .slider__input
+  //-     label(class="slider__label" for="step") Шаг
+  //-     input(class="slider__step" type="number" value="1" id="step")
+  //-   .slider__input
+  //-     input(type="radio" name="view" id="horizontal" checked)
+  //-     label(for="horizontal")  Горизонтальный
+  //-     input(type="radio" name="view" id="vertical")
+  //-     label(for="vertical")  Вертикальный
+  //-   .slider__input
+  //-     input(type="radio" name="range" id="one" checked)
+  //-     label(for="one")  Одиночное значение
+  //-     input(type="radio" name="range" id="two")
+  //-     label(for="two")  Интервал
+  //-   .slider__input
+  //-     input(type="checkbox" id="value" checked)
+  //-     label(for="value")  Значение
+  //-   .slider__input
+  //-     input(type="checkbox" id="scale" checked)
+  //-     label(for="scale")  Шкала
