@@ -1,9 +1,12 @@
 import SliderView from '../../../components/slider/slider-view';
+import ConfiguringView from '../../../components/configuring/configuring-view';
 import {showView} from '../../../scripts/utils';
 
 const sliderView = new SliderView();
+const configuringView = new ConfiguringView();
 
 showView(sliderView.element) 
+showView(configuringView.element) 
 
 // const slider: JQuery<HTMLElement> = $('.slider__slider');
 // const sliderToggle: JQuery<HTMLElement> = $('.slider__toggle');
