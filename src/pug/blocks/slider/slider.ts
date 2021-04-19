@@ -1,15 +1,6 @@
-import SliderView from '../../../components/slider/slider-view';
-import ScaleView from '../../../components/scale/scale-view';
-import ConfiguringView from '../../../components/configuring/configuring-view';
-import {showView} from '../../../scripts/utils';
+import slider from '../../../components/presenter/slider-presenter';
 
-const sliderView = new SliderView();
-const scaleView = new ScaleView();
-const configuringView = new ConfiguringView();
-
-showView(sliderView.element) 
-showView(scaleView.element) 
-showView(configuringView.element) 
+slider.showAll();
 
 // const slider: JQuery<HTMLElement> = $('.slider__slider');
 // const sliderToggle: JQuery<HTMLElement> = $('.slider__toggle');
