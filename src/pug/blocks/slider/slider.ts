@@ -1,11 +1,14 @@
 import SliderView from '../../../components/slider/slider-view';
+import ScaleView from '../../../components/scale/scale-view';
 import ConfiguringView from '../../../components/configuring/configuring-view';
 import {showView} from '../../../scripts/utils';
 
 const sliderView = new SliderView();
+const scaleView = new ScaleView();
 const configuringView = new ConfiguringView();
 
 showView(sliderView.element) 
+showView(scaleView.element) 
 showView(configuringView.element) 
 
 // const slider: JQuery<HTMLElement> = $('.slider__slider');
