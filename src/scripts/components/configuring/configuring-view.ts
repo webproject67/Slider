@@ -21,7 +21,7 @@ export default class ConfiguringView extends AbstractView {
       </div>
       <div class="slider__input">
         <label class="slider__label" for="step">Шаг</label>
-        <input class="slider__step" type="number" value=${this.sliderModel.stepValue} id="step" data-name="step">
+        <input class="slider__step" type="number" value=${this.sliderModel.stepValue} id="step" data-name="step" min="1">
       </div>
       <div class="slider__input">
         <input class="slider__view" type="radio" name="view" value="horizontal" id="horizontal" data-name="view" ${this.sliderModel.viewValue === 'horizontal' ? 'checked' : ''}>

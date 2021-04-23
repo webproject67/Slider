@@ -41,9 +41,13 @@ class SliderPresenter {
   private setNewValueInModel(element: HTMLElement): number | string | boolean {
     switch (element.dataset.name) {
       case 'min':
-        return this.sliderModel.minValue = +(<HTMLInputElement>element).value;
+        this.sliderModel.minValue = +(<HTMLInputElement>element).value;
+        this.scaleView.newScaleView();
+        return this.sliderModel.minValue;
       case 'max':
-        return this.sliderModel.maxValue = +(<HTMLInputElement>element).value;
+        this.sliderModel.maxValue = +(<HTMLInputElement>element).value;
+        this.scaleView.newScaleView();
+        return this.sliderModel.maxValue;
       case 'current':
         return this.sliderModel.currentValue = +(<HTMLInputElement>element).value;
       case 'step':
