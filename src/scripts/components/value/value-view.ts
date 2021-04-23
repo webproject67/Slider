@@ -6,14 +6,6 @@ export default class ValueView extends AbstractView {
   }
 
   get template() {
-    return '<span class="slider__value"></span>'
-  }
-
-  bind() {
-    $(this.element).children('.slider__value').on('mousedown', (evt) => this.onToggleMouseDown(evt))
-  }
-
-  public onToggleMouseDown(evt: JQuery.MouseDownEvent<HTMLElement>): void {
-
+    return `<span class="slider__value">${this.sliderModel.currentValue}</span>`
   }
 }

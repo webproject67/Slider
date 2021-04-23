@@ -17,11 +17,11 @@ export default class ConfiguringView extends AbstractView {
       </div>
       <div class="slider__input">
         <label class="slider__label" for="current">Текущее значение</label>
-        <input class="slider__current" type="number" value=${this.sliderModel.currentValue} id="current" data-name="current">
+        <input class="slider__current" type="number" value=${this.sliderModel.currentValue} id="current" data-name="current" min=${this.sliderModel.minValue} max=${this.sliderModel.maxValue}>
       </div>
       <div class="slider__input">
         <label class="slider__label" for="step">Шаг</label>
-        <input class="slider__step" type="number" value=${this.sliderModel.stepValue} id="step" data-name="step" min="1">
+        <input class="slider__step" type="number" value=${this.sliderModel.stepValue} id="step" data-name="step" min="1" max=${this.sliderModel.maxValue}>
       </div>
       <div class="slider__input">
         <input class="slider__view" type="radio" name="view" value="horizontal" id="horizontal" data-name="view" ${this.sliderModel.viewValue === 'horizontal' ? 'checked' : ''}>

@@ -14,7 +14,7 @@ export default class SliderModel {
     this.state = {
       min: 0,
       max: 100,
-      current: 75,
+      current: 0,
       step: 1,
       view: 'horizontal',
       range: 'one',

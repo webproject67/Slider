@@ -25,16 +25,6 @@ export default class ScaleView extends AbstractView {
     return template
   }
 
-  private newElement(): JQuery<HTMLElement> {
-    this.elem = this.render();
-    this.bind();
-    return this.elem;
-  }
-
-  public newScaleView(): void {
-    $('.slider__list').replaceWith(this.newElement());
-  }
-
   bind() {
     $(this.element).on('click', (evt) => this.onStreakClick(evt.target))
   }

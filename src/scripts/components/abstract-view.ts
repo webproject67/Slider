@@ -17,6 +17,16 @@ export default abstract class AbstractView {
     return this.elem;
   }
 
+  protected newElement(): JQuery<HTMLElement> {
+    this.elem = this.render();
+    this.bind();
+    return this.elem;
+  }
+
+  public replaceView(className: string): void {
+    $(`.${className}`).replaceWith(this.newElement());
+  }
+
   protected get className(): string {
     return '';
   }

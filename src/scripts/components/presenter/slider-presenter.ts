@@ -50,9 +50,11 @@ class SliderPresenter {
   private moveToggle(evt: JQuery.MouseDownEvent<HTMLElement>) {
     const sliderViewElement: JQuery<HTMLElement> = $(this.sliderView.element);
     const sliderToggleViewElement: JQuery<HTMLElement> = $(this.sliderView.element).children('.slider__toggle');
+    const sliderValueViewElement: JQuery<HTMLElement> = $(this.sliderView.element).find('.slider__value');
     const maxValue: number = this.sliderModel.maxValue;
     const minValue: number = this.sliderModel.minValue;
     const stepValue: number = this.sliderModel.stepValue;
+    let current: number;
 
     const sliderCoords: {
       left: number;
@@ -77,7 +79,16 @@ class SliderPresenter {
       if (stepLeft < 0) stepLeft = 0;
       if (stepLeft > 100) stepLeft = 100;
       sliderToggleViewElement.css({'left': stepLeft + '%'});
+      sliderValueViewElement.css({'left': stepLeft + '%'});
       $('.slider__bar').css({'marginRight': 100 - stepLeft + '%'});
+
+      let newLeft = evt.pageX - shift - sliderCoords.left;
+      if (newLeft < 0) newLeft = 0;
+      let rightEdge = sliderViewElement.width()! - sliderToggleViewElement.width()!;
+      if (newLeft > rightEdge) newLeft = rightEdge;
+      var stepSize = rightEdge / stepCount;
+      var leftt = Math.round(newLeft / stepSize) * stepSize;
+      current = (leftt / stepSize) * stepValue;
 
       $(document).on('mouseup', function () {
         $(document).off('mousemove')
@@ -97,17 +108,19 @@ class SliderPresenter {
     switch (element.dataset.name) {
       case 'min':
         this.sliderModel.minValue = +(<HTMLInputElement>element).value;
-        this.scaleView.newScaleView();
+        this.scaleView.replaceView('slider__list');
         return this.sliderModel.minValue;
       case 'max':
         this.sliderModel.maxValue = +(<HTMLInputElement>element).value;
-        this.scaleView.newScaleView();
+        this.scaleView.replaceView('slider__list');
         return this.sliderModel.maxValue;
       case 'current':
-        return this.sliderModel.currentValue = +(<HTMLInputElement>element).value;
+        this.sliderModel.currentValue = +(<HTMLInputElement>element).value;
+        this.valueView.replaceView('slider__block-value');
+        return this.sliderModel.currentValue;
       case 'step':
         this.sliderModel.stepValue = +(<HTMLInputElement>element).value;
-        this.scaleView.newScaleView();
+        this.scaleView.replaceView('slider__list');
         return this.sliderModel.stepValue;
       case 'view':
         return this.sliderModel.viewValue = (<HTMLInputElement>element).value;
