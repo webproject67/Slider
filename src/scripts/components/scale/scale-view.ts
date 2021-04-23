@@ -8,8 +8,10 @@ export default class ScaleView extends AbstractView {
   get template() {
     const min: number = this.sliderModel.minValue;
     const max: number = this.sliderModel.maxValue;
+    const step: number = this.sliderModel.stepValue;
+
     let template: string = '';
-    for (let i = min; i <= max; i++) {
+    for (let i = min; i <= max; i+= step) {
       if (i === min || i === max) {
         template += `
           <div class="slider__item" data-step=${i}>|

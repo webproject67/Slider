@@ -1,6 +1,7 @@
 .slider__slider {
   position: relative;
-  height: 60px;
+  height: 60px;   
+  user-select: none;  
 }
 
 .slider__value {
