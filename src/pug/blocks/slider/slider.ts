@@ -1,6 +1,6 @@
-// import slider from '../../../scripts/components/presenter/slider-presenter';
+import slider from '../../../scripts/components/presenter/slider-presenter';
 
-// slider.init();
+slider.init({});
 
 // const slider: JQuery<HTMLElement> = $('.slider__slider');
 // const sliderToggle: JQuery<HTMLElement> = $('.slider__toggle');

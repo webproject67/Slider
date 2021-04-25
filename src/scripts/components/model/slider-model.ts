@@ -1,28 +1,36 @@
 export default class SliderModel {
   state: { 
+    main: string;
     min: number; 
     max: number; 
-    current: number; 
+    from: number; 
+    to: number; 
     step: number; 
     view: string;
     range: string;
-    value: boolean;
+    flag: boolean;
     scale: boolean;
   };
   
   constructor() {
     this.state = {
+      main: '#slider',
       min: 0,
       max: 100,
-      current: 0,
+      from: 0,
+      to: 100,
       step: 1,
       view: 'horizontal',
       range: 'one',
-      value: true,
+      flag: true,
       scale: true
     }
   }
 
+  public get mainValue(): string {
+    return this.state.main
+  }
+  
   public get minValue(): number {
     return this.state.min
   }
@@ -31,8 +39,12 @@ export default class SliderModel {
     return this.state.max
   }
   
-  public get currentValue(): number {
-    return this.state.current
+  public get fromValue(): number {
+    return this.state.from
+  }
+  
+  public get toValue(): number {
+    return this.state.to
   }
   
   public get stepValue(): number {
@@ -46,14 +58,18 @@ export default class SliderModel {
     return this.state.range
   }
   
-  public get valueValue(): boolean {
-    return this.state.value
+  public get flagValue(): boolean {
+    return this.state.flag
   }
   
   public get scaleValue(): boolean {
     return this.state.scale
   }
 
+  public set mainValue(value: string) {
+    this.state.main = value
+  }
+  
   public set minValue(value: number) {
     this.state.min = value
   }
@@ -62,8 +78,12 @@ export default class SliderModel {
     this.state.max = value
   }
   
-  public set currentValue(value: number) {
-    this.state.current = value
+  public set fromValue(value: number) {
+    this.state.from = value
+  }
+  
+  public set toValue(value: number) {
+    this.state.to = value
   }
   
   public set stepValue(value: number) {
@@ -78,8 +98,8 @@ export default class SliderModel {
     this.state.range = value
   }
   
-  public set valueValue(value: boolean) {
-    this.state.value = value
+  public set flagValue(value: boolean) {
+    this.state.flag = value
   }
   
   public set scaleValue(value: boolean) {

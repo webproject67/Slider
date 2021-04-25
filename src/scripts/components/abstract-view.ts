@@ -1,11 +1,15 @@
 import SliderModel from './model/slider-model';
 
 export default abstract class AbstractView {
-  sliderModel: SliderModel;
   elem: JQuery<HTMLElement> | undefined;
+  sliderModel: SliderModel;
 
   constructor(sliderModel: SliderModel) {
     this.sliderModel = sliderModel
+  }
+
+  protected get className(): string {
+    return '';
   }
 
   public get element(): JQuery<HTMLElement> {
@@ -17,26 +21,8 @@ export default abstract class AbstractView {
     return this.elem;
   }
 
-  protected newElement(): JQuery<HTMLElement> {
-    this.elem = this.render();
-    this.bind();
-    return this.elem;
-  }
-
-  public replaceView(className: string): void {
-    $(`.${className}`).replaceWith(this.newElement());
-  }
-
-  protected get className(): string {
-    return '';
-  }
-
   protected get template(): string {
     return '';
-  }
-
-  protected render(): JQuery<HTMLElement> {
-    return this.createElement(this.template, this.className);
   }
 
   protected bind(): void {
@@ -49,4 +35,18 @@ export default abstract class AbstractView {
     newElement.html(template);
     return newElement;
   };
+
+  protected newElement(): JQuery<HTMLElement> {
+    this.elem = this.render();
+    this.bind();
+    return this.elem;
+  }
+
+  protected render(): JQuery<HTMLElement> {
+    return this.createElement(this.template, this.className);
+  }
+
+  public replaceView(className: string): void {
+    $(className).replaceWith(this.newElement());
+  }
 }

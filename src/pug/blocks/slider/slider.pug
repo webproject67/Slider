@@ -1,189 +1,190 @@
-.slider 
-  .slider__wrapper
-    .slider__inner
-      .slider__scale
-        div(class="slider__bar slider__bar--one")
-      div(class="slider__toggle slider__toggle--max")
-      div(class="slider__flags")
-        span(class="slider__flag slider__flag--max") 100
-      div(class="slider__list")
-        each val, i in new Array(101)
-          if i === 0 || i === 100
-            div(class="slider__item") |
-              span(class="slider__item--number")= i
-          else
-            div(class="slider__item") |
-    .slider__inputs
-      .slider__input
-        label(class="slider__label" for="min") Минимальное значение 
-        input(class="slider__min slider__number" type="number" value="0" id="min")
-      .slider__input
-        label(class="slider__label" for="max") Максимальное значение 
-        input(class="slider__max slider__number" type="number" value="100" id="max")
-      .slider__input
-        label(class="slider__label" for="current") Текущее значение 
-        input(class="slider__current slider__number" type="number" value="100" min="0" max="100" id="current")
-      .slider__input
-        label(class="slider__label" for="step") Шаг
-        input(class="slider__step slider__number" type="number" value="1" min="1" max="100" id="step")
-      .slider__input
-        input(class="slider__view" type="radio" name="view" value="horizontal" id="horizontal" checked)
-        label(for="horizontal") Горизонтальный
-        input(class="slider__view" type="radio" name="view" value="vertical" id="vertical")
-        label(for="vertical") Вертикальный
-      .slider__input
-        input(class="slider__range" type="radio" name="range" value="one" id="one" checked)
-        label(for="one") Одиночное значение
-        input(class="slider__range" type="radio" name="range" value="two" id="two")
-        label(for="two") Интервал
-      .slider__input
-        input(class="slider__value-checkbox" type="checkbox" id="value" checked)
-        label(for="value") Значение
-      .slider__input
-        input(class="slider__scale-checkbox" type="checkbox" id="scale" checked)
-        label(for="scale") Шкала
+div(id="slider")
+//- .slider 
+//-   .slider__wrapper
+//-     .slider__inner
+//-       .slider__scale
+//-         div(class="slider__bar slider__bar--one")
+//-       div(class="slider__toggle slider__toggle--max")
+//-       div(class="slider__flags")
+//-         span(class="slider__flag slider__flag--max") 100
+//-       div(class="slider__list")
+//-         each val, i in new Array(101)
+//-           if i === 0 || i === 100
+//-             div(class="slider__item") |
+//-               span(class="slider__item--number")= i
+//-           else
+//-             div(class="slider__item") |
+//-     .slider__inputs
+//-       .slider__input
+//-         label(class="slider__label" for="min") Минимальное значение 
+//-         input(class="slider__min slider__number" type="number" value="0" id="min")
+//-       .slider__input
+//-         label(class="slider__label" for="max") Максимальное значение 
+//-         input(class="slider__max slider__number" type="number" value="100" id="max")
+//-       .slider__input
+//-         label(class="slider__label" for="current") Текущее значение 
+//-         input(class="slider__current slider__number" type="number" value="100" min="0" max="100" id="current")
+//-       .slider__input
+//-         label(class="slider__label" for="step") Шаг
+//-         input(class="slider__step slider__number" type="number" value="1" min="1" max="100" id="step")
+//-       .slider__input
+//-         input(class="slider__view" type="radio" name="view" value="horizontal" id="horizontal" checked)
+//-         label(for="horizontal") Горизонтальный
+//-         input(class="slider__view" type="radio" name="view" value="vertical" id="vertical")
+//-         label(for="vertical") Вертикальный
+//-       .slider__input
+//-         input(class="slider__range" type="radio" name="range" value="one" id="one" checked)
+//-         label(for="one") Одиночное значение
+//-         input(class="slider__range" type="radio" name="range" value="two" id="two")
+//-         label(for="two") Интервал
+//-       .slider__input
+//-         input(class="slider__value-checkbox" type="checkbox" id="value" checked)
+//-         label(for="value") Значение
+//-       .slider__input
+//-         input(class="slider__scale-checkbox" type="checkbox" id="scale" checked)
+//-         label(for="scale") Шкала
 
-.slider 
-  .slider__wrapper
-    .slider__inner
-      .slider__scale
-        div(class="slider__bar slider__bar--range")
-      div(class="slider__toggle slider__toggle--min")
-      div(class="slider__toggle slider__toggle--max")
-      div(class="slider__flags")
-        span(class="slider__flag slider__flag--min") 0
-        span(class="slider__flag slider__flag--max") 100
-      div(class="slider__list")
-        each val, i in new Array(101)
-          if i === 0 || i === 100
-            div(class="slider__item") |
-              span(class="slider__item--number")= i
-          else
-            div(class="slider__item") |
-    .slider__inputs
-      .slider__input
-        label(class="slider__label" for="min") Минимальное значение 
-        input(class="slider__min slider__number" type="number" value="0" id="min")
-      .slider__input
-        label(class="slider__label" for="max") Максимальное значение 
-        input(class="slider__max slider__number" type="number" value="100" id="max")
-      .slider__input
-        label(class="slider__label" for="from") От
-        input(class="slider__from slider__number" type="number" value="0" min="0" max="100" id="from")
-      .slider__input
-        label(class="slider__label" for="to") До 
-        input(class="slider__to slider__number" type="number" value="100" min="0" max="100" id="to")
-      .slider__input
-        label(class="slider__label" for="step") Шаг
-        input(class="slider__step slider__number" type="number" value="1" min="1" max="100" id="step")
-      .slider__input
-        input(class="slider__view" type="radio" name="view" value="horizontal" id="horizontal" checked)
-        label(for="horizontal") Горизонтальный
-        input(class="slider__view" type="radio" name="view" value="vertical" id="vertical")
-        label(for="vertical") Вертикальный
-      .slider__input
-        input(class="slider__range" type="radio" name="range" value="one" id="one" checked)
-        label(for="one") Одиночное значение
-        input(class="slider__range" type="radio" name="range" value="two" id="two")
-        label(for="two") Интервал
-      .slider__input
-        input(class="slider__value-checkbox" type="checkbox" id="value" checked)
-        label(for="value") Значение
-      .slider__input
-        input(class="slider__scale-checkbox" type="checkbox" id="scale" checked)
-        label(for="scale") Шкала
+//- .slider 
+//-   .slider__wrapper
+//-     .slider__inner
+//-       .slider__scale
+//-         div(class="slider__bar slider__bar--range")
+//-       div(class="slider__toggle slider__toggle--min")
+//-       div(class="slider__toggle slider__toggle--max")
+//-       div(class="slider__flags")
+//-         span(class="slider__flag slider__flag--min") 0
+//-         span(class="slider__flag slider__flag--max") 100
+//-       div(class="slider__list")
+//-         each val, i in new Array(101)
+//-           if i === 0 || i === 100
+//-             div(class="slider__item") |
+//-               span(class="slider__item--number")= i
+//-           else
+//-             div(class="slider__item") |
+//-     .slider__inputs
+//-       .slider__input
+//-         label(class="slider__label" for="min") Минимальное значение 
+//-         input(class="slider__min slider__number" type="number" value="0" id="min")
+//-       .slider__input
+//-         label(class="slider__label" for="max") Максимальное значение 
+//-         input(class="slider__max slider__number" type="number" value="100" id="max")
+//-       .slider__input
+//-         label(class="slider__label" for="from") От
+//-         input(class="slider__from slider__number" type="number" value="0" min="0" max="100" id="from")
+//-       .slider__input
+//-         label(class="slider__label" for="to") До 
+//-         input(class="slider__to slider__number" type="number" value="100" min="0" max="100" id="to")
+//-       .slider__input
+//-         label(class="slider__label" for="step") Шаг
+//-         input(class="slider__step slider__number" type="number" value="1" min="1" max="100" id="step")
+//-       .slider__input
+//-         input(class="slider__view" type="radio" name="view" value="horizontal" id="horizontal" checked)
+//-         label(for="horizontal") Горизонтальный
+//-         input(class="slider__view" type="radio" name="view" value="vertical" id="vertical")
+//-         label(for="vertical") Вертикальный
+//-       .slider__input
+//-         input(class="slider__range" type="radio" name="range" value="one" id="one" checked)
+//-         label(for="one") Одиночное значение
+//-         input(class="slider__range" type="radio" name="range" value="two" id="two")
+//-         label(for="two") Интервал
+//-       .slider__input
+//-         input(class="slider__value-checkbox" type="checkbox" id="value" checked)
+//-         label(for="value") Значение
+//-       .slider__input
+//-         input(class="slider__scale-checkbox" type="checkbox" id="scale" checked)
+//-         label(for="scale") Шкала
 
-.slider 
-  .slider__wrapper
-    div(class="slider__inner slider__inner--height")
-      div(class="slider__scale slider__scale--vertical")
-        div(class="slider__bar slider__bar--vertical-one")
-      div(class="slider__toggle slider__toggle--vertical-max")
-      div(class="slider__flags")
-        span(class="slider__flag-vertical slider__flag-vertical--max") 100
-      div(class="slider__list slider__list--transform")
-        each val, i in new Array(101)
-          if i === 0 || i === 100
-            div(class="slider__item") |
-              span(class="slider__item--number")= i
-          else
-            div(class="slider__item") |
-    .slider__inputs
-      .slider__input
-        label(class="slider__label" for="min") Минимальное значение 
-        input(class="slider__min slider__number" type="number" value="0" id="min")
-      .slider__input
-        label(class="slider__label" for="max") Максимальное значение 
-        input(class="slider__max slider__number" type="number" value="100" id="max")
-      .slider__input
-        label(class="slider__label" for="current") Текущее значение 
-        input(class="slider__current slider__number" type="number" value="100" min="0" max="100" id="current")
-      .slider__input
-        label(class="slider__label" for="step") Шаг
-        input(class="slider__step slider__number" type="number" value="1" min="1" max="100" id="step")
-      .slider__input
-        input(class="slider__view" type="radio" name="view" value="horizontal" id="horizontal" checked)
-        label(for="horizontal") Горизонтальный
-        input(class="slider__view" type="radio" name="view" value="vertical" id="vertical")
-        label(for="vertical") Вертикальный
-      .slider__input
-        input(class="slider__range" type="radio" name="range" value="one" id="one" checked)
-        label(for="one") Одиночное значение
-        input(class="slider__range" type="radio" name="range" value="two" id="two")
-        label(for="two") Интервал
-      .slider__input
-        input(class="slider__value-checkbox" type="checkbox" id="value" checked)
-        label(for="value") Значение
-      .slider__input
-        input(class="slider__scale-checkbox" type="checkbox" id="scale" checked)
-        label(for="scale") Шкала
+//- .slider 
+//-   .slider__wrapper
+//-     div(class="slider__inner slider__inner--height")
+//-       div(class="slider__scale slider__scale--vertical")
+//-         div(class="slider__bar slider__bar--vertical-one")
+//-       div(class="slider__toggle slider__toggle--vertical-max")
+//-       div(class="slider__flags")
+//-         span(class="slider__flag-vertical slider__flag-vertical--max") 100
+//-       div(class="slider__list slider__list--transform")
+//-         each val, i in new Array(101)
+//-           if i === 0 || i === 100
+//-             div(class="slider__item") |
+//-               span(class="slider__item--number")= i
+//-           else
+//-             div(class="slider__item") |
+//-     .slider__inputs
+//-       .slider__input
+//-         label(class="slider__label" for="min") Минимальное значение 
+//-         input(class="slider__min slider__number" type="number" value="0" id="min")
+//-       .slider__input
+//-         label(class="slider__label" for="max") Максимальное значение 
+//-         input(class="slider__max slider__number" type="number" value="100" id="max")
+//-       .slider__input
+//-         label(class="slider__label" for="current") Текущее значение 
+//-         input(class="slider__current slider__number" type="number" value="100" min="0" max="100" id="current")
+//-       .slider__input
+//-         label(class="slider__label" for="step") Шаг
+//-         input(class="slider__step slider__number" type="number" value="1" min="1" max="100" id="step")
+//-       .slider__input
+//-         input(class="slider__view" type="radio" name="view" value="horizontal" id="horizontal" checked)
+//-         label(for="horizontal") Горизонтальный
+//-         input(class="slider__view" type="radio" name="view" value="vertical" id="vertical")
+//-         label(for="vertical") Вертикальный
+//-       .slider__input
+//-         input(class="slider__range" type="radio" name="range" value="one" id="one" checked)
+//-         label(for="one") Одиночное значение
+//-         input(class="slider__range" type="radio" name="range" value="two" id="two")
+//-         label(for="two") Интервал
+//-       .slider__input
+//-         input(class="slider__value-checkbox" type="checkbox" id="value" checked)
+//-         label(for="value") Значение
+//-       .slider__input
+//-         input(class="slider__scale-checkbox" type="checkbox" id="scale" checked)
+//-         label(for="scale") Шкала
 
-.slider 
-  .slider__wrapper
-    div(class="slider__inner slider__inner--height")
-      div(class="slider__scale slider__scale--vertical")
-        div(class="slider__bar slider__bar--vertical-range")
-      div(class="slider__toggle slider__toggle--vertical-min")
-      div(class="slider__toggle slider__toggle--vertical-max")
-      div(class="slider__flags")
-        span(class="slider__flag-vertical slider__flag-vertical--min") 0
-        span(class="slider__flag-vertical slider__flag-vertical--max") 100
-      div(class="slider__list slider__list--transform")
-        each val, i in new Array(101)
-          if i === 0 || i === 100
-            div(class="slider__item") |
-              span(class="slider__item--number")= i
-          else
-            div(class="slider__item") |
-    .slider__inputs
-      .slider__input
-        label(class="slider__label" for="min") Минимальное значение 
-        input(class="slider__min slider__number" type="number" value="0" id="min")
-      .slider__input
-        label(class="slider__label" for="max") Максимальное значение 
-        input(class="slider__max slider__number" type="number" value="100" id="max")
-      .slider__input
-        label(class="slider__label" for="from") От
-        input(class="slider__from slider__number" type="number" value="0" min="0" max="100" id="from")
-      .slider__input
-        label(class="slider__label" for="to") До 
-        input(class="slider__to slider__number" type="number" value="100" min="0" max="100" id="to")
-      .slider__input
-        label(class="slider__label" for="step") Шаг
-        input(class="slider__step slider__number" type="number" value="1" min="1" max="100" id="step")
-      .slider__input
-        input(class="slider__view" type="radio" name="view" value="horizontal" id="horizontal" checked)
-        label(for="horizontal") Горизонтальный
-        input(class="slider__view" type="radio" name="view" value="vertical" id="vertical")
-        label(for="vertical") Вертикальный
-      .slider__input
-        input(class="slider__range" type="radio" name="range" value="one" id="one" checked)
-        label(for="one") Одиночное значение
-        input(class="slider__range" type="radio" name="range" value="two" id="two")
-        label(for="two") Интервал
-      .slider__input
-        input(class="slider__value-checkbox" type="checkbox" id="value" checked)
-        label(for="value") Значение
-      .slider__input
-        input(class="slider__scale-checkbox" type="checkbox" id="scale" checked)
-        label(for="scale") Шкала
+//- .slider 
+//-   .slider__wrapper
+//-     div(class="slider__inner slider__inner--height")
+//-       div(class="slider__scale slider__scale--vertical")
+//-         div(class="slider__bar slider__bar--vertical-range")
+//-       div(class="slider__toggle slider__toggle--vertical-min")
+//-       div(class="slider__toggle slider__toggle--vertical-max")
+//-       div(class="slider__flags")
+//-         span(class="slider__flag-vertical slider__flag-vertical--min") 0
+//-         span(class="slider__flag-vertical slider__flag-vertical--max") 100
+//-       div(class="slider__list slider__list--transform")
+//-         each val, i in new Array(101)
+//-           if i === 0 || i === 100
+//-             div(class="slider__item") |
+//-               span(class="slider__item--number")= i
+//-           else
+//-             div(class="slider__item") |
+//-     .slider__inputs
+//-       .slider__input
+//-         label(class="slider__label" for="min") Минимальное значение 
+//-         input(class="slider__min slider__number" type="number" value="0" id="min")
+//-       .slider__input
+//-         label(class="slider__label" for="max") Максимальное значение 
+//-         input(class="slider__max slider__number" type="number" value="100" id="max")
+//-       .slider__input
+//-         label(class="slider__label" for="from") От
+//-         input(class="slider__from slider__number" type="number" value="0" min="0" max="100" id="from")
+//-       .slider__input
+//-         label(class="slider__label" for="to") До 
+//-         input(class="slider__to slider__number" type="number" value="100" min="0" max="100" id="to")
+//-       .slider__input
+//-         label(class="slider__label" for="step") Шаг
+//-         input(class="slider__step slider__number" type="number" value="1" min="1" max="100" id="step")
+//-       .slider__input
+//-         input(class="slider__view" type="radio" name="view" value="horizontal" id="horizontal" checked)
+//-         label(for="horizontal") Горизонтальный
+//-         input(class="slider__view" type="radio" name="view" value="vertical" id="vertical")
+//-         label(for="vertical") Вертикальный
+//-       .slider__input
+//-         input(class="slider__range" type="radio" name="range" value="one" id="one" checked)
+//-         label(for="one") Одиночное значение
+//-         input(class="slider__range" type="radio" name="range" value="two" id="two")
+//-         label(for="two") Интервал
+//-       .slider__input
+//-         input(class="slider__value-checkbox" type="checkbox" id="value" checked)
+//-         label(for="value") Значение
+//-       .slider__input
+//-         input(class="slider__scale-checkbox" type="checkbox" id="scale" checked)
+//-         label(for="scale") Шкала
