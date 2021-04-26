@@ -2,7 +2,7 @@ import AbstractView from '../abstract-view';
 
 export default class ScaleView extends AbstractView {
   get className() {
-    return 'slider__list';
+    return 'slider__list slider__list--transform';
   }
 
   get template() {
@@ -30,7 +30,7 @@ export default class ScaleView extends AbstractView {
           </div>
         `
     }
-
+    
     return template
   }
 }

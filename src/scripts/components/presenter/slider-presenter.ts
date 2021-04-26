@@ -5,9 +5,9 @@ import SliderViewVerticalOne from '../slider-vertical-one/slider-view-vertical-o
 import SliderViewVerticalRange from '../slider-vertical-range/slider-view-vertical-range';
 import ConfiguringViewOne from '../configuring-one/configuring-view-one';
 import ConfiguringViewRange from '../configuring-range/configuring-view-range';
+import ScaleView from '../scale/scale-view';
+import ScaleViewVertical from '../scale-vertical/scale-view-vertical';
 // import ValueView from '../value/value-view';
-// import ScaleView from '../scale/scale-view';
-// import ConfiguringView from '../configuring/configuring-view';
 
 class SliderPresenter {
   sliderModel: SliderModel;
@@ -17,9 +17,9 @@ class SliderPresenter {
   sliderViewVerticalRange: SliderViewVerticalRange;
   configuringViewOne: ConfiguringViewOne;
   configuringViewRange: ConfiguringViewRange;
+  scaleView: ScaleView;
+  scaleViewVertical: ScaleViewVertical;
 //   valueView: ValueView;
-//   scaleView: ScaleView;
-//   configuringView: ConfiguringView;
 
   constructor() {
     this.sliderModel = new SliderModel();
@@ -29,9 +29,9 @@ class SliderPresenter {
     this.sliderViewVerticalRange = new SliderViewVerticalRange(this.sliderModel);
     this.configuringViewOne = new ConfiguringViewOne(this.sliderModel);
     this.configuringViewRange = new ConfiguringViewRange(this.sliderModel);
+    this.scaleView = new ScaleView(this.sliderModel);
+    this.scaleViewVertical = new ScaleViewVertical(this.sliderModel);
 //     this.valueView = new ValueView(this.sliderModel);
-//     this.scaleView = new ScaleView(this.sliderModel);
-//     this.configuringView = new ConfiguringView(this.sliderModel);
 
 //     this.sliderView.onToggleMouseDown = (evt) => {
 //       this.moveToggle(evt)
@@ -72,10 +72,15 @@ class SliderPresenter {
 
     this.showSliderView(this.sliderModel.mainValue);
     this.showConfiguringView('.slider__wrapper');
+    if(this.sliderModel.scaleValue) {
+      if (this.sliderModel.viewValue === 'horizontal') {
+        this.showView('.slider__inner', this.scaleView.element)
+      } else {
+        this.showView('.slider__inner', this.scaleViewVertical.element)
+      }
+    };
     
 //     this.toggleView(this.sliderModel.valueValue, this.valueView.element, 'slider__block-value')
-//     this.toggleView(this.sliderModel.scaleValue, this.scaleView.element, 'slider__list')
-//     this.showView(this.configuringView.element) 
   }
 
   private setInModelValue(key: string, value: number | string | boolean): void {
