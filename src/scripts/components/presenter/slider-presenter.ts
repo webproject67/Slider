@@ -3,6 +3,8 @@ import SliderViewOne from '../slider-one/slider-view-one';
 import SliderViewRange from '../slider-range/slider-view-range';
 import SliderViewVerticalOne from '../slider-vertical-one/slider-view-vertical-one';
 import SliderViewVerticalRange from '../slider-vertical-range/slider-view-vertical-range';
+import ConfiguringViewOne from '../configuring-one/configuring-view-one';
+import ConfiguringViewRange from '../configuring-range/configuring-view-range';
 // import ValueView from '../value/value-view';
 // import ScaleView from '../scale/scale-view';
 // import ConfiguringView from '../configuring/configuring-view';
@@ -13,6 +15,8 @@ class SliderPresenter {
   sliderViewRange: SliderViewRange;
   sliderViewVerticalOne: SliderViewVerticalOne;
   sliderViewVerticalRange: SliderViewVerticalRange;
+  configuringViewOne: ConfiguringViewOne;
+  configuringViewRange: ConfiguringViewRange;
 //   valueView: ValueView;
 //   scaleView: ScaleView;
 //   configuringView: ConfiguringView;
@@ -23,6 +27,8 @@ class SliderPresenter {
     this.sliderViewRange = new SliderViewRange(this.sliderModel);
     this.sliderViewVerticalOne = new SliderViewVerticalOne(this.sliderModel);
     this.sliderViewVerticalRange = new SliderViewVerticalRange(this.sliderModel);
+    this.configuringViewOne = new ConfiguringViewOne(this.sliderModel);
+    this.configuringViewRange = new ConfiguringViewRange(this.sliderModel);
 //     this.valueView = new ValueView(this.sliderModel);
 //     this.scaleView = new ScaleView(this.sliderModel);
 //     this.configuringView = new ConfiguringView(this.sliderModel);
@@ -49,12 +55,23 @@ class SliderPresenter {
 //     };
 //   }
 
+  private showConfiguringView(className: string) {
+    if (this.sliderModel.rangeValue === 'one') {
+      this.showView(className, this.configuringViewOne.element);
+    } else if (this.sliderModel.rangeValue === 'range') {
+      this.showView(className, this.configuringViewRange.element);
+    } else {
+      throw new Error('no value range')
+    }
+  }
+
   public init(obj:any): void {
     for (const key in obj) {
       if(this.sliderModel.state.hasOwnProperty(key)) this.setInModelValue(key, obj[key]);
     }
 
-    this.showSliderView();
+    this.showSliderView(this.sliderModel.mainValue);
+    this.showConfiguringView('.slider__wrapper');
     
 //     this.toggleView(this.sliderModel.valueValue, this.valueView.element, 'slider__block-value')
 //     this.toggleView(this.sliderModel.scaleValue, this.scaleView.element, 'slider__list')
@@ -98,22 +115,22 @@ class SliderPresenter {
     }
   }
 
-  private showSliderView():void {
+  private showSliderView(className: string):void {
     if (this.sliderModel.rangeValue === 'one' && this.sliderModel.viewValue === 'horizontal') {
-      this.showView(this.sliderViewOne.element);
+      this.showView(className, this.sliderViewOne.element);
     } else if (this.sliderModel.rangeValue === 'range' && this.sliderModel.viewValue === 'horizontal') {
-      this.showView(this.sliderViewRange.element);
+      this.showView(className, this.sliderViewRange.element);
     } else if (this.sliderModel.rangeValue === 'one' && this.sliderModel.viewValue === 'vertical') {
-      this.showView(this.sliderViewVerticalOne.element);
+      this.showView(className, this.sliderViewVerticalOne.element);
     } else if (this.sliderModel.rangeValue === 'range' && this.sliderModel.viewValue === 'vertical') {
-      this.showView(this.sliderViewVerticalRange.element);
+      this.showView(className, this.sliderViewVerticalRange.element);
     } else {
       throw new Error('no value range or view')
     }
   } 
 
-  private showView(element: JQuery<HTMLElement>):void {
-    $(this.sliderModel.mainValue).append(element);
+  private showView(className: string, element: JQuery<HTMLElement>):void {
+    $(className).append(element);
   } 
 
 //   private moveToggle(evt: JQuery.MouseDownEvent<HTMLElement>) {
