@@ -17,11 +17,11 @@ export default class ConfiguringViewRange extends AbstractView {
       </div>
       <div class="slider__input">
         <label class="slider__label" for="from">От</label>
-        <input class="slider__from slider__number" type="number" value=${this.sliderModel.fromValue} min=${this.sliderModel.minValue} max=${this.sliderModel.maxValue} id="from">
+        <input class="slider__from slider__number" type="number" value=${this.sliderModel.fromValue === -10000 ? this.sliderModel.minValue : this.sliderModel.fromValue} min=${this.sliderModel.minValue} max=${this.sliderModel.maxValue} id="from">
       </div>
       <div class="slider__input">
         <label class="slider__label" for="to">До</label>
-        <input class="slider__to slider__number" type="number" value=${this.sliderModel.toValue} min=${this.sliderModel.minValue} max=${this.sliderModel.maxValue} id="to">
+        <input class="slider__to slider__number" type="number" value=${this.sliderModel.toValue === -10000 ? this.sliderModel.maxValue : this.sliderModel.toValue} min=${this.sliderModel.minValue} max=${this.sliderModel.maxValue} id="to">
       </div>
       <div class="slider__input">
         <label class="slider__label" for="step">Шаг</label>

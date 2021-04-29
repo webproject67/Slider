@@ -5,7 +5,7 @@
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
                 <mxCell id="3" value="SliderModel" style="swimlane;" parent="1" vertex="1">
-                    <mxGeometry x="10" y="10" width="140" height="460" as="geometry">
+                    <mxGeometry x="10" y="10" width="180" height="540" as="geometry">
                         <mxRectangle x="314" y="80" width="100" height="23" as="alternateBounds"/>
                     </mxGeometry>
                 </mxCell>
@@ -13,70 +13,82 @@
                     <mxGeometry x="10" y="30" width="40" height="20" as="geometry"/>
                 </mxCell>
                 <mxCell id="5" value="" style="line;strokeWidth=2;html=1;" parent="3" vertex="1">
-                    <mxGeometry y="50" width="140" height="10" as="geometry"/>
+                    <mxGeometry y="50" width="180" height="10" as="geometry"/>
                 </mxCell>
                 <mxCell id="8" value="&lt;div style=&quot;line-height: 19px&quot;&gt;&lt;font style=&quot;font-size: 12px&quot; color=&quot;#ffffff&quot;&gt;get&amp;nbsp;maxValue()&lt;/font&gt;&lt;/div&gt;" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;" parent="3" vertex="1">
-                    <mxGeometry x="10" y="120" width="100" height="20" as="geometry"/>
+                    <mxGeometry x="10" y="140" width="100" height="20" as="geometry"/>
                 </mxCell>
                 <mxCell id="9" value="&lt;div style=&quot;line-height: 19px&quot;&gt;&lt;font style=&quot;font-size: 12px&quot; color=&quot;#ffffff&quot;&gt;get fromValue()&lt;/font&gt;&lt;/div&gt;" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;" parent="3" vertex="1">
                     <mxGeometry x="10" y="80" width="100" height="20" as="geometry"/>
                 </mxCell>
                 <mxCell id="12" value="&lt;div style=&quot;line-height: 19px&quot;&gt;&lt;span style=&quot;color: rgb(255 , 255 , 255)&quot;&gt;get rangeValue()&lt;/span&gt;&lt;br&gt;&lt;/div&gt;" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;" parent="3" vertex="1">
-                    <mxGeometry x="10" y="160" width="100" height="20" as="geometry"/>
+                    <mxGeometry x="10" y="180" width="100" height="20" as="geometry"/>
                 </mxCell>
                 <mxCell id="13" value="&lt;div style=&quot;line-height: 19px&quot;&gt;&lt;span style=&quot;color: rgb(255 , 255 , 255)&quot;&gt;get flagValue()&lt;/span&gt;&lt;br&gt;&lt;/div&gt;" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;" parent="3" vertex="1">
                     <mxGeometry x="10" y="60" width="90" height="20" as="geometry"/>
                 </mxCell>
                 <mxCell id="14" value="&lt;div style=&quot;line-height: 19px&quot;&gt;&lt;span style=&quot;color: rgb(255 , 255 , 255)&quot;&gt;get scaleValue()&lt;/span&gt;&lt;br&gt;&lt;/div&gt;" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;" parent="3" vertex="1">
-                    <mxGeometry x="10" y="180" width="100" height="20" as="geometry"/>
-                </mxCell>
-                <mxCell id="17" value="&lt;div style=&quot;line-height: 19px&quot;&gt;&lt;font style=&quot;font-size: 12px&quot; color=&quot;#ffffff&quot;&gt;set&amp;nbsp;maxValue(value)&lt;/font&gt;&lt;/div&gt;" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;" parent="3" vertex="1">
-                    <mxGeometry x="10" y="320" width="120" height="20" as="geometry"/>
-                </mxCell>
-                <mxCell id="18" value="&lt;div style=&quot;line-height: 19px&quot;&gt;&lt;font style=&quot;font-size: 12px&quot; color=&quot;#ffffff&quot;&gt;set fromValue(value)&lt;/font&gt;&lt;/div&gt;" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;" parent="3" vertex="1">
-                    <mxGeometry x="10" y="280" width="130" height="20" as="geometry"/>
-                </mxCell>
-                <mxCell id="21" value="&lt;div style=&quot;line-height: 19px&quot;&gt;&lt;font style=&quot;font-size: 12px&quot; color=&quot;#ffffff&quot;&gt;set rangeValue(value)&lt;/font&gt;&lt;/div&gt;" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;" parent="3" vertex="1">
-                    <mxGeometry x="10" y="360" width="130" height="20" as="geometry"/>
-                </mxCell>
-                <mxCell id="22" value="&lt;div style=&quot;line-height: 19px&quot;&gt;&lt;font style=&quot;font-size: 12px&quot; color=&quot;#ffffff&quot;&gt;set flagValue(value)&lt;/font&gt;&lt;/div&gt;" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;" parent="3" vertex="1">
-                    <mxGeometry x="10" y="260" width="120" height="20" as="geometry"/>
-                </mxCell>
-                <mxCell id="23" value="&lt;div style=&quot;line-height: 19px&quot;&gt;&lt;font style=&quot;font-size: 12px&quot; color=&quot;#ffffff&quot;&gt;set scaleValue(value)&lt;/font&gt;&lt;/div&gt;" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;" parent="3" vertex="1">
-                    <mxGeometry x="10" y="380" width="130" height="20" as="geometry"/>
-                </mxCell>
-                <mxCell id="131" value="&lt;div style=&quot;line-height: 19px&quot;&gt;&lt;font style=&quot;font-size: 12px&quot; color=&quot;#ffffff&quot;&gt;get&amp;nbsp;mainValue()&lt;/font&gt;&lt;/div&gt;" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;" parent="3" vertex="1">
-                    <mxGeometry x="10" y="100" width="100" height="20" as="geometry"/>
-                </mxCell>
-                <mxCell id="6" value="&lt;div style=&quot;line-height: 19px&quot;&gt;&lt;font style=&quot;font-size: 12px&quot; color=&quot;#ffffff&quot;&gt;get&amp;nbsp;minValue()&lt;/font&gt;&lt;/div&gt;" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;" parent="3" vertex="1">
-                    <mxGeometry x="10" y="140" width="90" height="20" as="geometry"/>
-                </mxCell>
-                <mxCell id="10" value="&lt;div style=&quot;line-height: 19px&quot;&gt;&lt;span style=&quot;color: rgb(255 , 255 , 255)&quot;&gt;get stepValue()&lt;/span&gt;&lt;br&gt;&lt;/div&gt;" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;" parent="3" vertex="1">
                     <mxGeometry x="10" y="200" width="100" height="20" as="geometry"/>
                 </mxCell>
-                <mxCell id="129" value="&lt;div style=&quot;line-height: 19px&quot;&gt;&lt;font style=&quot;font-size: 12px&quot; color=&quot;#ffffff&quot;&gt;get toValue()&lt;/font&gt;&lt;/div&gt;" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;" parent="3" vertex="1">
-                    <mxGeometry x="10" y="220" width="80" height="20" as="geometry"/>
+                <mxCell id="17" value="&lt;div style=&quot;line-height: 19px&quot;&gt;&lt;font style=&quot;font-size: 12px&quot; color=&quot;#ffffff&quot;&gt;set&amp;nbsp;maxValue(value)&lt;/font&gt;&lt;/div&gt;" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;" parent="3" vertex="1">
+                    <mxGeometry x="10" y="380" width="120" height="20" as="geometry"/>
                 </mxCell>
-                <mxCell id="11" value="&lt;div style=&quot;line-height: 19px&quot;&gt;&lt;span style=&quot;color: rgb(255 , 255 , 255)&quot;&gt;get viewValue()&lt;/span&gt;&lt;br&gt;&lt;/div&gt;" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;" parent="3" vertex="1">
-                    <mxGeometry x="10" y="240" width="100" height="20" as="geometry"/>
+                <mxCell id="18" value="&lt;div style=&quot;line-height: 19px&quot;&gt;&lt;font style=&quot;font-size: 12px&quot; color=&quot;#ffffff&quot;&gt;set fromValue(value)&lt;/font&gt;&lt;/div&gt;" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;" parent="3" vertex="1">
+                    <mxGeometry x="10" y="320" width="130" height="20" as="geometry"/>
                 </mxCell>
-                <mxCell id="132" value="&lt;div style=&quot;line-height: 19px&quot;&gt;&lt;font style=&quot;font-size: 12px&quot; color=&quot;#ffffff&quot;&gt;set&amp;nbsp;mainValue(value)&lt;/font&gt;&lt;/div&gt;" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;" parent="3" vertex="1">
-                    <mxGeometry x="10" y="300" width="130" height="20" as="geometry"/>
+                <mxCell id="21" value="&lt;div style=&quot;line-height: 19px&quot;&gt;&lt;font style=&quot;font-size: 12px&quot; color=&quot;#ffffff&quot;&gt;set rangeValue(value)&lt;/font&gt;&lt;/div&gt;" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;" parent="3" vertex="1">
+                    <mxGeometry x="10" y="420" width="130" height="20" as="geometry"/>
                 </mxCell>
-                <mxCell id="16" value="&lt;div style=&quot;line-height: 19px&quot;&gt;&lt;font style=&quot;font-size: 12px&quot; color=&quot;#ffffff&quot;&gt;set&amp;nbsp;minValue(value)&lt;/font&gt;&lt;/div&gt;" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;" parent="3" vertex="1">
-                    <mxGeometry x="10" y="340" width="120" height="20" as="geometry"/>
+                <mxCell id="22" value="&lt;div style=&quot;line-height: 19px&quot;&gt;&lt;font style=&quot;font-size: 12px&quot; color=&quot;#ffffff&quot;&gt;set flagValue(value)&lt;/font&gt;&lt;/div&gt;" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;" parent="3" vertex="1">
+                    <mxGeometry x="10" y="300" width="120" height="20" as="geometry"/>
                 </mxCell>
-                <mxCell id="19" value="&lt;div style=&quot;line-height: 19px&quot;&gt;&lt;font style=&quot;font-size: 12px&quot; color=&quot;#ffffff&quot;&gt;set stepValue(value)&lt;/font&gt;&lt;/div&gt;" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;" parent="3" vertex="1">
-                    <mxGeometry x="10" y="400" width="120" height="20" as="geometry"/>
-                </mxCell>
-                <mxCell id="130" value="&lt;div style=&quot;line-height: 19px&quot;&gt;&lt;font style=&quot;font-size: 12px&quot; color=&quot;#ffffff&quot;&gt;set toValue(value)&lt;/font&gt;&lt;/div&gt;" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;" parent="3" vertex="1">
-                    <mxGeometry x="10" y="420" width="110" height="20" as="geometry"/>
-                </mxCell>
-                <mxCell id="20" value="&lt;div style=&quot;line-height: 19px&quot;&gt;&lt;font style=&quot;font-size: 12px&quot; color=&quot;#ffffff&quot;&gt;set viewValue(value)&lt;/font&gt;&lt;/div&gt;" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;" parent="3" vertex="1">
+                <mxCell id="23" value="&lt;div style=&quot;line-height: 19px&quot;&gt;&lt;font style=&quot;font-size: 12px&quot; color=&quot;#ffffff&quot;&gt;set scaleValue(value)&lt;/font&gt;&lt;/div&gt;" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;" parent="3" vertex="1">
                     <mxGeometry x="10" y="440" width="130" height="20" as="geometry"/>
                 </mxCell>
+                <mxCell id="131" value="&lt;div style=&quot;line-height: 19px&quot;&gt;&lt;font style=&quot;font-size: 12px&quot; color=&quot;#ffffff&quot;&gt;get&amp;nbsp;mainValue()&lt;/font&gt;&lt;/div&gt;" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;" parent="3" vertex="1">
+                    <mxGeometry x="10" y="120" width="100" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="6" value="&lt;div style=&quot;line-height: 19px&quot;&gt;&lt;font style=&quot;font-size: 12px&quot; color=&quot;#ffffff&quot;&gt;get&amp;nbsp;minValue()&lt;/font&gt;&lt;/div&gt;" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;" parent="3" vertex="1">
+                    <mxGeometry x="10" y="160" width="90" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="10" value="&lt;div style=&quot;line-height: 19px&quot;&gt;&lt;span style=&quot;color: rgb(255 , 255 , 255)&quot;&gt;get stepValue()&lt;/span&gt;&lt;br&gt;&lt;/div&gt;" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;" parent="3" vertex="1">
+                    <mxGeometry x="10" y="220" width="100" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="129" value="&lt;div style=&quot;line-height: 19px&quot;&gt;&lt;font style=&quot;font-size: 12px&quot; color=&quot;#ffffff&quot;&gt;get toValue()&lt;/font&gt;&lt;/div&gt;" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;" parent="3" vertex="1">
+                    <mxGeometry x="10" y="240" width="80" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="11" value="&lt;div style=&quot;line-height: 19px&quot;&gt;&lt;span style=&quot;color: rgb(255 , 255 , 255)&quot;&gt;get viewValue()&lt;/span&gt;&lt;br&gt;&lt;/div&gt;" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;" parent="3" vertex="1">
+                    <mxGeometry x="10" y="280" width="100" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="132" value="&lt;div style=&quot;line-height: 19px&quot;&gt;&lt;font style=&quot;font-size: 12px&quot; color=&quot;#ffffff&quot;&gt;set&amp;nbsp;mainValue(value)&lt;/font&gt;&lt;/div&gt;" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;" parent="3" vertex="1">
+                    <mxGeometry x="10" y="360" width="130" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="16" value="&lt;div style=&quot;line-height: 19px&quot;&gt;&lt;font style=&quot;font-size: 12px&quot; color=&quot;#ffffff&quot;&gt;set&amp;nbsp;minValue(value)&lt;/font&gt;&lt;/div&gt;" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;" parent="3" vertex="1">
+                    <mxGeometry x="10" y="400" width="120" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="19" value="&lt;div style=&quot;line-height: 19px&quot;&gt;&lt;font style=&quot;font-size: 12px&quot; color=&quot;#ffffff&quot;&gt;set stepValue(value)&lt;/font&gt;&lt;/div&gt;" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;" parent="3" vertex="1">
+                    <mxGeometry x="10" y="460" width="120" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="130" value="&lt;div style=&quot;line-height: 19px&quot;&gt;&lt;font style=&quot;font-size: 12px&quot; color=&quot;#ffffff&quot;&gt;set toValue(value)&lt;/font&gt;&lt;/div&gt;" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;" parent="3" vertex="1">
+                    <mxGeometry x="10" y="480" width="110" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="20" value="&lt;div style=&quot;line-height: 19px&quot;&gt;&lt;font style=&quot;font-size: 12px&quot; color=&quot;#ffffff&quot;&gt;set viewValue(value)&lt;/font&gt;&lt;/div&gt;" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;" parent="3" vertex="1">
+                    <mxGeometry x="10" y="520" width="130" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="239" value="&lt;div style=&quot;line-height: 19px&quot;&gt;&lt;font style=&quot;font-size: 12px&quot; color=&quot;#ffffff&quot;&gt;set fromPercentValue(value)&lt;/font&gt;&lt;/div&gt;" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;" vertex="1" parent="3">
+                    <mxGeometry x="10" y="340" width="170" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="240" value="&lt;div style=&quot;line-height: 19px&quot;&gt;&lt;font style=&quot;font-size: 12px&quot; color=&quot;#ffffff&quot;&gt;get fromPercentValue()&lt;/font&gt;&lt;/div&gt;" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;" vertex="1" parent="3">
+                    <mxGeometry x="10" y="100" width="140" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="241" value="&lt;div style=&quot;line-height: 19px&quot;&gt;&lt;font style=&quot;font-size: 12px&quot; color=&quot;#ffffff&quot;&gt;get toPercentValue()&lt;/font&gt;&lt;/div&gt;" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;" vertex="1" parent="3">
+                    <mxGeometry x="10" y="260" width="120" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="242" value="&lt;div style=&quot;line-height: 19px&quot;&gt;&lt;font style=&quot;font-size: 12px&quot; color=&quot;#ffffff&quot;&gt;set toPercentValue(value)&lt;/font&gt;&lt;/div&gt;" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;" vertex="1" parent="3">
+                    <mxGeometry x="10" y="500" width="150" height="20" as="geometry"/>
+                </mxCell>
                 <mxCell id="24" value="AbstractView" style="swimlane;" parent="1" vertex="1">
-                    <mxGeometry x="190" y="10" width="220" height="220" as="geometry"/>
+                    <mxGeometry x="210" y="10" width="220" height="220" as="geometry"/>
                 </mxCell>
                 <mxCell id="27" value="&lt;div style=&quot;line-height: 19px&quot;&gt;&lt;font style=&quot;font-size: 12px&quot; color=&quot;#ffffff&quot;&gt;get element()&lt;/font&gt;&lt;/div&gt;" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;" parent="24" vertex="1">
                     <mxGeometry x="10" y="100" width="90" height="20" as="geometry"/>

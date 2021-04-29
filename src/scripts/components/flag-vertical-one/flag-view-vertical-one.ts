@@ -7,7 +7,7 @@ export default class FlagViewVerticalOne extends AbstractView {
 
   get template() {
     return `
-      <span class="slider__flag-vertical slider__flag-vertical--max">${this.sliderModel.toValue}</span>
+      <span class="slider__flag-vertical slider__flag-vertical--max">${this.sliderModel.toValue === -10000 ? this.sliderModel.maxValue : this.sliderModel.toValue}</span>
     `
   }
 }

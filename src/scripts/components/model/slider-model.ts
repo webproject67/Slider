@@ -2,6 +2,7 @@ export default class SliderModel {
   state: { 
     flag: boolean;
     from: number; 
+    fromPercent: number; 
     main: string;
     max: number; 
     min: number; 
@@ -9,20 +10,23 @@ export default class SliderModel {
     scale: boolean;
     step: number; 
     to: number; 
+    toPercent: number; 
     view: string;
   };
   
   constructor() {
     this.state = {
       flag: true,
-      from: 0,
+      from: -10000,
+      fromPercent: 0,
       main: '#slider',
       max: 100,
       min: 0,
       range: 'one',
       scale: true,
       step: 1,
-      to: 100,
+      to: -10000,
+      toPercent: 100,
       view: 'horizontal'
     }
   }
@@ -33,6 +37,10 @@ export default class SliderModel {
 
   public get fromValue(): number {
     return this.state.from
+  }
+  
+  public get fromPercentValue(): number {
+    return this.state.fromPercent
   }
 
   public get mainValue(): string {
@@ -63,6 +71,10 @@ export default class SliderModel {
     return this.state.to
   }
   
+  public get toPercentValue(): number {
+    return this.state.toPercent
+  }
+  
   public get viewValue(): string {
     return this.state.view
   }
@@ -73,6 +85,10 @@ export default class SliderModel {
 
   public set fromValue(value: number) {
     this.state.from = value
+  }
+  
+  public set fromPercentValue(value: number) {
+    this.state.fromPercent = value
   }
 
   public set mainValue(value: string) {
@@ -101,6 +117,10 @@ export default class SliderModel {
   
   public set toValue(value: number) {
     this.state.to = value
+  }
+  
+  public set toPercentValue(value: number) {
+    this.state.toPercent = value
   }
   
   public set viewValue(value: string) {

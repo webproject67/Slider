@@ -17,7 +17,7 @@ export default class ConfiguringViewOne extends AbstractView {
       </div>
       <div class="slider__input">
         <label class="slider__label" for="to">Текущее значение</label>
-        <input class="slider__to slider__number" type="number" value=${this.sliderModel.toValue} min=${this.sliderModel.minValue} max=${this.sliderModel.maxValue} id="to">
+        <input class="slider__to slider__number" type="number" value=${this.sliderModel.toValue === -10000 ? this.sliderModel.maxValue : this.sliderModel.toValue} min=${this.sliderModel.minValue} max=${this.sliderModel.maxValue} id="to">
       </div>
       <div class="slider__input">
         <label class="slider__label" for="step">Шаг</label>
