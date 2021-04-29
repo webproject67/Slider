@@ -20,6 +20,12 @@ export default abstract class AbstractView {
     this.bind();
     return this.elem;
   }
+  
+  public get newElement(): JQuery<HTMLElement> {
+    this.elem = this.render();
+    this.bind();
+    return this.elem;
+  }
 
   protected get template(): string {
     return '';
@@ -36,17 +42,7 @@ export default abstract class AbstractView {
     return newElement;
   };
 
-  protected newElement(): JQuery<HTMLElement> {
-    this.elem = this.render();
-    this.bind();
-    return this.elem;
-  }
-
-  protected render(): JQuery<HTMLElement> {
+  private render(): JQuery<HTMLElement> {
     return this.createElement(this.template, this.className);
-  }
-
-  public replaceView(className: string): void {
-    $(className).replaceWith(this.newElement());
   }
 }

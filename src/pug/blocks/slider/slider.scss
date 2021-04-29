@@ -51,30 +51,31 @@
 
 .slider__toggle {
   position: absolute;
-  width: 21px;
-  height: 21px;
+  width: 20px;
+  height: 20px;
+  margin-top: -10px;
   margin-left: -10px;
   background-color: #4eb7a8;
   border-radius: 50%;
   cursor: pointer;
   
   &--min {
-    top: -8px;
+    top: 2px;
     left: 0%;
   }
   
   &--max {
-   top: -8px;
+    top: 2px;
     left: 100%;
   }
   
   &--vertical-min {
-    top: -4%;
+    top: 0%;
     left: 2px;
   }
   
   &--vertical-max {
-    top: 96%;
+    top: 100%;
     left: 2px;
   }
 }

@@ -15,4 +15,12 @@ export default class SliderViewVerticalOne extends AbstractView {
       </div>
     `
   }
+
+  bind() {
+    $(this.element).find('.slider__inner--height').on('mouseover', (evt: JQuery.MouseOverEvent<HTMLElement>):void => this.toggleMouseOver(evt))
+  }
+
+  public toggleMouseOver(evt: JQuery.MouseOverEvent<HTMLElement>):void {
+    
+  }
 }

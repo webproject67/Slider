@@ -41,6 +41,22 @@ class SliderPresenter {
     this.flagViewRange = new FlagViewRange(this.sliderModel);
     this.flagViewVerticalOne = new FlagViewVerticalOne(this.sliderModel);
     this.flagViewVerticalRange = new FlagViewVerticalRange(this.sliderModel);
+
+    this.sliderViewOne.toggleMouseOver = (evt) => {
+      this.toggleMouseOver(evt);
+    }
+    
+    this.sliderViewRange.toggleMouseOver = (evt) => {
+      this.toggleMouseOver(evt);
+    }
+    
+    this.sliderViewVerticalOne.toggleMouseOver = (evt) => {
+      this.toggleMouseOver(evt);
+    }
+    
+    this.sliderViewVerticalRange.toggleMouseOver = (evt) => {
+      this.toggleMouseOver(evt);
+    }
   }
 
   public init(obj:any): void {
@@ -52,32 +68,6 @@ class SliderPresenter {
     this.showConfiguringView('.slider__wrapper');
     this.showScaleView('.slider__inner');
     this.showFlagView('.slider__inner');
-  }
-
-  private showConfiguringView(className: string):void {
-    if (this.sliderModel.rangeValue === 'one') {
-      this.showView(className, this.configuringViewOne.element);
-    } else if (this.sliderModel.rangeValue === 'range') {
-      this.showView(className, this.configuringViewRange.element);
-    } else {
-      throw new Error('incorrect value')
-    }
-  }
-
-  private showFlagView(className: string):void {
-    if(this.sliderModel.flagValue) {
-      if (this.sliderModel.rangeValue === 'one' && this.sliderModel.viewValue === 'horizontal') {
-        this.showView(className, this.flagViewOne.element);
-      } else if (this.sliderModel.rangeValue === 'range' && this.sliderModel.viewValue === 'horizontal') {
-        this.showView(className, this.flagViewRange.element);
-      } else if (this.sliderModel.rangeValue === 'one' && this.sliderModel.viewValue === 'vertical') {
-        this.showView(className, this.flagViewVerticalOne.element);
-      } else if (this.sliderModel.rangeValue === 'range' && this.sliderModel.viewValue === 'vertical') {
-        this.showView(className, this.flagViewVerticalRange.element);
-      } else {
-        throw new Error('incorrect value')
-      }
-    }
   }
 
   private setInModelValue(key: string, value: number | string | boolean): void {
@@ -112,8 +102,32 @@ class SliderPresenter {
       case 'scale':
         this.sliderModel.scaleValue = <boolean>value;
       break;
-      default:
-        throw new Error('incorrect key')
+    }
+  }
+
+  private showConfiguringView(className: string):void {
+    if (this.sliderModel.rangeValue === 'one') {
+      this.showView(className, this.configuringViewOne.element);
+    } else if (this.sliderModel.rangeValue === 'range') {
+      this.showView(className, this.configuringViewRange.element);
+    } else {
+      throw new Error('incorrect value')
+    }
+  }
+
+  private showFlagView(className: string):void {
+    if(this.sliderModel.flagValue) {
+      if (this.sliderModel.rangeValue === 'one' && this.sliderModel.viewValue === 'horizontal') {
+        this.showView(className, this.flagViewOne.element);
+      } else if (this.sliderModel.rangeValue === 'range' && this.sliderModel.viewValue === 'horizontal') {
+        this.showView(className, this.flagViewRange.element);
+      } else if (this.sliderModel.rangeValue === 'one' && this.sliderModel.viewValue === 'vertical') {
+        this.showView(className, this.flagViewVerticalOne.element);
+      } else if (this.sliderModel.rangeValue === 'range' && this.sliderModel.viewValue === 'vertical') {
+        this.showView(className, this.flagViewVerticalRange.element);
+      } else {
+        throw new Error('incorrect value')
+      }
     }
   }
 
@@ -146,6 +160,184 @@ class SliderPresenter {
   private showView(className: string, element: JQuery<HTMLElement>):void {
     $(className).append(element);
   } 
+
+  private toggleMouseOver(evt: JQuery.MouseOverEvent<HTMLElement>):void {
+    const toggle: JQuery<HTMLElement> = $(evt.target);
+    const slider: JQuery<HTMLElement> = $(evt.currentTarget);
+    const min: number = this.sliderModel.minValue;
+    const max: number = this.sliderModel.maxValue;
+    const step: number = this.sliderModel.stepValue;
+
+    const getCoords = (elem: JQuery<HTMLElement>): {
+      left: number;
+      width: number;
+      top: number;
+      height: number;
+    } => {
+      const boxLeft: number = elem.offset()!.left;
+      const boxRight: number = boxLeft + elem.outerWidth()!;
+      const boxTop: number = elem.offset()!.top;
+      const boxBottom: number = boxTop + elem.outerHeight()!;
+    
+      return {
+        left: boxLeft + pageXOffset,
+        width: boxRight - boxLeft,
+        top: boxTop + pageYOffset,
+        height: boxBottom - boxTop
+      };
+    }
+
+    if (toggle.hasClass('slider__toggle')) {
+      toggle.on('mousedown', (evt: JQuery.MouseDownEvent<HTMLElement>): void => {
+        if (slider.hasClass('slider__inner--height')) {
+          const sliderCoords: {
+            top: number;
+            height: number;
+          } = getCoords(slider);
+  
+          const toggleCoords: {
+            top: number;
+            height: number;
+          } = getCoords(toggle);
+  
+          const shift: number = evt.pageY - toggleCoords.top - 10;
+  
+          $(document).on('mousemove', (evt: JQuery.MouseMoveEvent<Document>): void => {
+            let top: number = ((evt.pageY - shift - sliderCoords.top) / sliderCoords.height) * 100;
+            if (top < 0) top = 0;
+            if (top > 100) top = 100;
+
+            if (toggle.hasClass('slider__toggle--vertical-min')) {
+              const maxPercent: number = +slider.find('.slider__toggle--vertical-max').get(0).style.top.slice(0, -1) || 100;
+              if (top > maxPercent) top = maxPercent;
+            }
+            
+            if (toggle.hasClass('slider__toggle--vertical-max')) {
+              let minPercent: number = 0;
+              if(slider.find('.slider__toggle--vertical-min').length) {
+                minPercent = +slider.find('.slider__toggle--vertical-min').get(0).style.top.slice(0, -1) || 0;
+              }
+              if (minPercent > top) top = minPercent;
+            }
+        
+            const stepCount: number = (max - min) / step;
+            const stepPercent: number = 100 / stepCount;
+            let stepTop: number = Math.round(top / stepPercent) * stepPercent;
+            if (stepTop < 0) stepTop = 0;
+            if (stepTop > 100) stepTop = 100;
+
+            toggle.css({'top': stepTop + '%'});
+
+            if (toggle.hasClass('slider__toggle--vertical-min')) {
+              const maxPercent: number = +slider.find('.slider__toggle--vertical-max').get(0).style.top.slice(0, -1) || 100;
+              slider.find('.slider__bar').css({
+                'top': stepTop + '%',
+                'height': maxPercent - stepTop + '%'
+              });
+            }
+
+            if (toggle.hasClass('slider__toggle--vertical-max')) {
+              let minPercent: number = 0;
+              if(slider.find('.slider__toggle--vertical-min').length) {
+                minPercent = +slider.find('.slider__toggle--vertical-min').get(0).style.top.slice(0, -1) || 0;
+              }
+              slider.find('.slider__bar').css({'height': stepTop - minPercent + '%'});
+            }
+        
+            const result: string = (((stepTop / stepPercent) * step).toFixed());
+            const value: number = <number><unknown>+result + min;
+
+            if (this.sliderModel.rangeValue === 'one') {
+              this.setInModelValue('to', value);
+              $(this.configuringViewOne.element).replaceWith(this.configuringViewOne.newElement);
+            }
+            
+            if (this.sliderModel.rangeValue === 'range') {
+              if (toggle.hasClass('slider__toggle--vertical-min')) {
+                this.setInModelValue('from', value);
+              }
+  
+              if (toggle.hasClass('slider__toggle--vertical-max')) {
+                this.setInModelValue('to', value);
+              } 
+              $(this.configuringViewRange.element).replaceWith(this.configuringViewRange.newElement);
+            }
+          })
+        } else {
+          const sliderCoords: {
+            left: number;
+            width: number;
+          } = getCoords(slider);
+  
+          const toggleCoords: {
+            left: number;
+            width: number;
+          } = getCoords(toggle);
+  
+          const shift: number = evt.pageX - toggleCoords.left - 10;
+  
+          $(document).on('mousemove', (evt: JQuery.MouseMoveEvent<Document>): void => {
+            let left: number = ((evt.pageX - shift - sliderCoords.left) / sliderCoords.width) * 100;
+            if (left < 0) left = 0;
+            if (left > 100) left = 100;
+
+            if (toggle.hasClass('slider__toggle--min')) {
+              const maxPercent: number = +slider.find('.slider__toggle--max').get(0).style.left.slice(0, -1) || 100;
+              if (left > maxPercent) left = maxPercent;
+            }
+            
+            if (toggle.hasClass('slider__toggle--max')) {
+              let minPercent: number = 0;
+              if(slider.find('.slider__toggle--min').length) {
+                minPercent = +slider.find('.slider__toggle--min').get(0).style.left.slice(0, -1) || 0;
+              }
+              if (minPercent > left) left = minPercent;
+            }
+        
+            const stepCount: number = (max - min) / step;
+            const stepPercent: number = 100 / stepCount;
+            let stepLeft: number = Math.round(left / stepPercent) * stepPercent;
+            if (stepLeft < 0) stepLeft = 0;
+            if (stepLeft > 100) stepLeft = 100;
+
+            toggle.css({'left': stepLeft + '%'});
+
+            if (toggle.hasClass('slider__toggle--min')) {
+              slider.find('.slider__bar').css({'marginLeft': stepLeft + '%'});
+            }
+
+            if (toggle.hasClass('slider__toggle--max')) {
+              slider.find('.slider__bar').css({'marginRight': 100 - stepLeft + '%'});
+            } 
+        
+            const result: string = (((stepLeft / stepPercent) * step).toFixed());
+            const value: number = <number><unknown>+result + min;
+
+            if (this.sliderModel.rangeValue === 'one') {
+              this.setInModelValue('to', value);
+              $(this.configuringViewOne.element).replaceWith(this.configuringViewOne.newElement);
+            }
+            
+            if (this.sliderModel.rangeValue === 'range') {
+              if (toggle.hasClass('slider__toggle--min')) {
+                this.setInModelValue('from', value);
+              }
+  
+              if (toggle.hasClass('slider__toggle--max')) {
+                this.setInModelValue('to', value);
+              } 
+              $(this.configuringViewRange.element).replaceWith(this.configuringViewRange.newElement);
+            }
+          })
+        }
+      
+        $(document).on('mouseup', (): void => {
+          $(document).off('mousemove');
+          $(document).off('mouseup');
+        })
+      })
+    }
+  }
 }
 
 export default new SliderPresenter();

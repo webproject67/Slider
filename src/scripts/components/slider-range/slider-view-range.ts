@@ -16,4 +16,12 @@ export default class SliderViewRange extends AbstractView {
       </div>
     `
   }
+
+  bind() {
+    $(this.element).find('.slider__inner').on('mouseover', (evt: JQuery.MouseOverEvent<HTMLElement>):void => this.toggleMouseOver(evt))
+  }
+
+  public toggleMouseOver(evt: JQuery.MouseOverEvent<HTMLElement>):void {
+    
+  }
 }
