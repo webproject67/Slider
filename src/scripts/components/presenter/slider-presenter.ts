@@ -42,6 +42,14 @@ class SliderPresenter {
     this.flagViewVerticalOne = new FlagViewVerticalOne(this.sliderModel);
     this.flagViewVerticalRange = new FlagViewVerticalRange(this.sliderModel);
 
+    this.configuringViewOne.inputChange = (evt) => {
+      this.inputChange(evt);
+    }
+    
+    this.configuringViewRange.inputChange = (evt) => {
+      this.inputChange(evt);
+    }
+
     this.sliderViewOne.toggleMouseOver = (evt) => {
       this.toggleMouseOver(evt);
     }
@@ -68,6 +76,64 @@ class SliderPresenter {
     this.showConfiguringView('.slider__wrapper');
     this.showScaleView('.slider__inner');
     this.showFlagView('.slider__inner');
+  }
+
+  private inputChange(evt: JQuery.ChangeEvent<HTMLElement>):void {
+    const input: JQuery<HTMLElement> = $(evt.target);
+
+    if (input.data('name') === 'min' || input.data('name') === 'max') {
+      this.setInModelValue(input.data('name'), +input.val()!);
+      $(this.flagViewOne.element).replaceWith(this.flagViewOne.newElement);
+      $(this.flagViewRange.element).replaceWith(this.flagViewRange.newElement);
+      $(this.flagViewVerticalOne.element).replaceWith(this.flagViewVerticalOne.newElement);
+      $(this.flagViewVerticalRange.element).replaceWith(this.flagViewVerticalRange.newElement);
+      $(this.scaleView.element).replaceWith(this.scaleView.newElement);
+      $(this.scaleViewVertical.element).replaceWith(this.scaleViewVertical.newElement);
+      $(this.configuringViewOne.element).replaceWith(this.configuringViewOne.newElement);
+      $(this.configuringViewRange.element).replaceWith(this.configuringViewRange.newElement);
+      $('.slider__flag--min').css({'left': this.sliderModel.fromPercentValue + '%'});
+      $('.slider__flag-vertical--min').css({'top': this.sliderModel.fromPercentValue - 5 + '%'});
+      $('.slider__flag--max').css({'left': this.sliderModel.toPercentValue + '%'});
+      $('.slider__flag-vertical--max').css({'top': this.sliderModel.toPercentValue - 5 + '%'});
+    }
+
+    if (input.data('name') === 'step') {
+      this.setInModelValue('step', +input.val()!);
+      $(this.scaleView.element).replaceWith(this.scaleView.newElement);
+      $(this.scaleViewVertical.element).replaceWith(this.scaleViewVertical.newElement);
+    }
+
+    if (input.data('name') === 'view' || input.data('name') === 'range') {
+      this.setInModelValue(input.data('name'), <string>input.val());
+      $('.slider__inner').remove();
+      if (this.sliderModel.rangeValue === 'one' && this.sliderModel.viewValue === 'horizontal') {
+        $('.slider__inputs').before(this.sliderViewOne.newElement.find('.slider__inner'));
+        $('.slider__inputs').replaceWith(this.configuringViewOne.newElement);
+      } else if (this.sliderModel.rangeValue === 'range' && this.sliderModel.viewValue === 'horizontal') {
+        $('.slider__inputs').before(this.sliderViewRange.newElement.find('.slider__inner'));
+        $('.slider__inputs').replaceWith(this.configuringViewRange.newElement);
+      } else if (this.sliderModel.rangeValue === 'one' && this.sliderModel.viewValue === 'vertical') {
+        $('.slider__inputs').before(this.sliderViewVerticalOne.newElement.find('.slider__inner'));
+        $('.slider__inputs').replaceWith(this.configuringViewOne.newElement);
+      } else if (this.sliderModel.rangeValue === 'range' && this.sliderModel.viewValue === 'vertical') {
+        $('.slider__inputs').before(this.sliderViewVerticalRange.newElement.find('.slider__inner'));
+        $('.slider__inputs').replaceWith(this.configuringViewRange.newElement);
+      } 
+      this.showScaleView('.slider__inner');
+      this.showFlagView('.slider__inner');
+    }
+
+    if (input.data('name') === 'flag') {
+      this.setInModelValue('flag', input.is(':checked'));
+      $('.slider__flags').remove();
+      this.showFlagView('.slider__inner');
+    }
+    
+    if (input.data('name') === 'scale') {
+      this.setInModelValue('scale', input.is(':checked'));
+      $('.slider__list').remove();
+      this.showScaleView('.slider__inner');
+    }
   }
 
   private setInModelValue(key: string, value: number | string | boolean): void {
@@ -251,6 +317,7 @@ class SliderPresenter {
               this.setInModelValue('to', value);
               $(this.configuringViewOne.element).replaceWith(this.configuringViewOne.newElement);
               $(this.flagViewVerticalOne.element).replaceWith(this.flagViewVerticalOne.newElement);
+              this.setInModelValue('toPercent', stepTop);
               slider.find('.slider__flag-vertical').css({'top': stepTop - 5 + '%'});
             }
             
@@ -325,6 +392,7 @@ class SliderPresenter {
               this.setInModelValue('to', value);
               $(this.configuringViewOne.element).replaceWith(this.configuringViewOne.newElement);
               $(this.flagViewOne.element).replaceWith(this.flagViewOne.newElement);
+              this.setInModelValue('toPercent', stepLeft);
               slider.find('.slider__flag').css({'left': stepLeft + '%'});
             }
             
