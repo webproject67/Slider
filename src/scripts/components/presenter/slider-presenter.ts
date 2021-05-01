@@ -12,7 +12,7 @@ import FlagViewRange from '../flag-range/flag-view-range';
 import FlagViewVerticalOne from '../flag-vertical-one/flag-view-vertical-one';
 import FlagViewVerticalRange from '../flag-vertical-range/flag-view-vertical-range';
 
-class SliderPresenter {
+export default class SliderPresenter {
   sliderModel: SliderModel;
   sliderViewOne: SliderViewOne;
   sliderViewRange: SliderViewRange;
@@ -67,15 +67,27 @@ class SliderPresenter {
     }
   }
 
+  private getClassName(main: JQuery<HTMLElement>): string {
+    let classNameOrId: string = '';
+
+    if (main.attr('id')) {
+      classNameOrId = '#' + <string>main.attr('id');
+    } else {
+      classNameOrId = '.' + <string>main.attr('class');
+    } 
+
+    return classNameOrId;
+  }
+
   public init(obj:any): void {
     for (const key in obj) {
       if(this.sliderModel.state.hasOwnProperty(key)) this.setInModelValue(key, obj[key]);
     }
 
     this.showSliderView(this.sliderModel.mainValue);
-    this.showConfiguringView('.slider__wrapper');
-    this.showScaleView('.slider__inner');
-    this.showFlagView('.slider__inner');
+    this.showConfiguringView(this.sliderModel.mainValue);
+    this.showScaleView(this.sliderModel.mainValue);
+    this.showFlagView(this.sliderModel.mainValue);
   }
 
   private inputChange(evt: JQuery.ChangeEvent<HTMLElement>):void {
@@ -83,6 +95,9 @@ class SliderPresenter {
 
     if (input.data('name') === 'min' || input.data('name') === 'max') {
       this.setInModelValue(input.data('name'), +input.val()!);
+
+      const main: JQuery<HTMLElement> = input.parents('div:last()');
+
       $(this.flagViewOne.element).replaceWith(this.flagViewOne.newElement);
       $(this.flagViewRange.element).replaceWith(this.flagViewRange.newElement);
       $(this.flagViewVerticalOne.element).replaceWith(this.flagViewVerticalOne.newElement);
@@ -91,48 +106,63 @@ class SliderPresenter {
       $(this.scaleViewVertical.element).replaceWith(this.scaleViewVertical.newElement);
       $(this.configuringViewOne.element).replaceWith(this.configuringViewOne.newElement);
       $(this.configuringViewRange.element).replaceWith(this.configuringViewRange.newElement);
-      $('.slider__flag--min').css({'left': this.sliderModel.fromPercentValue + '%'});
-      $('.slider__flag-vertical--min').css({'top': this.sliderModel.fromPercentValue - 5 + '%'});
-      $('.slider__flag--max').css({'left': this.sliderModel.toPercentValue + '%'});
-      $('.slider__flag-vertical--max').css({'top': this.sliderModel.toPercentValue - 5 + '%'});
+
+      main.find('.slider__flag--min').css({'left': this.sliderModel.fromPercentValue + '%'});
+      main.find('.slider__flag-vertical--min').css({'top': this.sliderModel.fromPercentValue - 5 + '%'});
+      main.find('.slider__flag--max').css({'left': this.sliderModel.toPercentValue + '%'});
+      main.find('.slider__flag-vertical--max').css({'top': this.sliderModel.toPercentValue - 5 + '%'});
     }
 
     if (input.data('name') === 'step') {
       this.setInModelValue('step', +input.val()!);
+
       $(this.scaleView.element).replaceWith(this.scaleView.newElement);
       $(this.scaleViewVertical.element).replaceWith(this.scaleViewVertical.newElement);
     }
 
     if (input.data('name') === 'view' || input.data('name') === 'range') {
       this.setInModelValue(input.data('name'), <string>input.val());
-      $('.slider__inner').remove();
+
+      const main: JQuery<HTMLElement> = input.parents('div:last()');
+
+      main.find('.slider__inner').remove();
+
       if (this.sliderModel.rangeValue === 'one' && this.sliderModel.viewValue === 'horizontal') {
-        $('.slider__inputs').before(this.sliderViewOne.newElement.find('.slider__inner'));
-        $('.slider__inputs').replaceWith(this.configuringViewOne.newElement);
+        main.find('.slider__inputs').before(this.sliderViewOne.newElement.find('.slider__inner'));
+        main.find('.slider__inputs').replaceWith(this.configuringViewOne.newElement);
       } else if (this.sliderModel.rangeValue === 'range' && this.sliderModel.viewValue === 'horizontal') {
-        $('.slider__inputs').before(this.sliderViewRange.newElement.find('.slider__inner'));
-        $('.slider__inputs').replaceWith(this.configuringViewRange.newElement);
+        main.find('.slider__inputs').before(this.sliderViewRange.newElement.find('.slider__inner'));
+        main.find('.slider__inputs').replaceWith(this.configuringViewRange.newElement);
       } else if (this.sliderModel.rangeValue === 'one' && this.sliderModel.viewValue === 'vertical') {
-        $('.slider__inputs').before(this.sliderViewVerticalOne.newElement.find('.slider__inner'));
-        $('.slider__inputs').replaceWith(this.configuringViewOne.newElement);
+        main.find('.slider__inputs').before(this.sliderViewVerticalOne.newElement.find('.slider__inner'));
+        main.find('.slider__inputs').replaceWith(this.configuringViewOne.newElement);
       } else if (this.sliderModel.rangeValue === 'range' && this.sliderModel.viewValue === 'vertical') {
-        $('.slider__inputs').before(this.sliderViewVerticalRange.newElement.find('.slider__inner'));
-        $('.slider__inputs').replaceWith(this.configuringViewRange.newElement);
-      } 
-      this.showScaleView('.slider__inner');
-      this.showFlagView('.slider__inner');
+        main.find('.slider__inputs').before(this.sliderViewVerticalRange.newElement.find('.slider__inner'));
+        main.find('.slider__inputs').replaceWith(this.configuringViewRange.newElement);
+      }
+
+      this.showScaleView(this.getClassName(main));
+      this.showFlagView(this.getClassName(main));
     }
 
     if (input.data('name') === 'flag') {
       this.setInModelValue('flag', input.is(':checked'));
-      $('.slider__flags').remove();
-      this.showFlagView('.slider__inner');
+
+      const main: JQuery<HTMLElement> = input.parents('div:last()');
+
+      main.find('.slider__flags').remove();
+      
+      this.showFlagView(this.getClassName(main));
     }
     
     if (input.data('name') === 'scale') {
       this.setInModelValue('scale', input.is(':checked'));
-      $('.slider__list').remove();
-      this.showScaleView('.slider__inner');
+
+      const main: JQuery<HTMLElement> = input.parents('div:last()');
+
+      main.find('.slider__list').remove();
+      
+      this.showScaleView(this.getClassName(main));
     }
   }
 
@@ -179,9 +209,9 @@ class SliderPresenter {
 
   private showConfiguringView(className: string):void {
     if (this.sliderModel.rangeValue === 'one') {
-      this.showView(className, this.configuringViewOne.element);
+      $(className).find('.slider__wrapper').append(this.configuringViewOne.element);
     } else if (this.sliderModel.rangeValue === 'range') {
-      this.showView(className, this.configuringViewRange.element);
+      $(className).find('.slider__wrapper').append(this.configuringViewRange.element);
     } else {
       throw new Error('incorrect value')
     }
@@ -190,13 +220,13 @@ class SliderPresenter {
   private showFlagView(className: string):void {
     if(this.sliderModel.flagValue) {
       if (this.sliderModel.rangeValue === 'one' && this.sliderModel.viewValue === 'horizontal') {
-        this.showView(className, this.flagViewOne.element);
+        $(className).find('.slider__inner').append(this.flagViewOne.element);
       } else if (this.sliderModel.rangeValue === 'range' && this.sliderModel.viewValue === 'horizontal') {
-        this.showView(className, this.flagViewRange.element);
+        $(className).find('.slider__inner').append(this.flagViewRange.element);
       } else if (this.sliderModel.rangeValue === 'one' && this.sliderModel.viewValue === 'vertical') {
-        this.showView(className, this.flagViewVerticalOne.element);
+        $(className).find('.slider__inner').append(this.flagViewVerticalOne.element);
       } else if (this.sliderModel.rangeValue === 'range' && this.sliderModel.viewValue === 'vertical') {
-        this.showView(className, this.flagViewVerticalRange.element);
+        $(className).find('.slider__inner').append(this.flagViewVerticalRange.element);
       } else {
         throw new Error('incorrect value')
       }
@@ -206,9 +236,9 @@ class SliderPresenter {
   private showScaleView(className: string): void {
     if(this.sliderModel.scaleValue) {
       if (this.sliderModel.viewValue === 'horizontal') {
-        this.showView(className, this.scaleView.element)
+        $(className).find('.slider__inner').append(this.scaleView.element);
       } else if (this.sliderModel.viewValue === 'vertical') {
-        this.showView(className, this.scaleViewVertical.element)
+        $(className).find('.slider__inner').append(this.scaleViewVertical.element);
       } else {
         throw new Error('incorrect value')
       }
@@ -217,20 +247,16 @@ class SliderPresenter {
 
   private showSliderView(className: string):void {
     if (this.sliderModel.rangeValue === 'one' && this.sliderModel.viewValue === 'horizontal') {
-      this.showView(className, this.sliderViewOne.element);
+      $(className).append(this.sliderViewOne.element);
     } else if (this.sliderModel.rangeValue === 'range' && this.sliderModel.viewValue === 'horizontal') {
-      this.showView(className, this.sliderViewRange.element);
+      $(className).append(this.sliderViewRange.element);
     } else if (this.sliderModel.rangeValue === 'one' && this.sliderModel.viewValue === 'vertical') {
-      this.showView(className, this.sliderViewVerticalOne.element);
+      $(className).append(this.sliderViewVerticalOne.element);
     } else if (this.sliderModel.rangeValue === 'range' && this.sliderModel.viewValue === 'vertical') {
-      this.showView(className, this.sliderViewVerticalRange.element);
+      $(className).append(this.sliderViewVerticalRange.element);
     } else {
       throw new Error('incorrect value')
     }
-  } 
-
-  private showView(className: string, element: JQuery<HTMLElement>):void {
-    $(className).append(element);
   } 
 
   private toggleMouseOver(evt: JQuery.MouseOverEvent<HTMLElement>):void {
@@ -426,5 +452,3 @@ class SliderPresenter {
     }
   }
 }
-
-export default new SliderPresenter();

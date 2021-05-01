@@ -28,24 +28,24 @@ export default class ConfiguringViewRange extends AbstractView {
         <input class="slider__step slider__number" type="number" value=${this.sliderModel.stepValue} min="1" max=${this.sliderModel.maxValue} id="step" data-name="step">
       </div>
       <div class="slider__input">
-        <input class="slider__view" type="radio" name="view" value="horizontal" id="horizontal" ${this.sliderModel.viewValue === 'horizontal' ? 'checked' : ''} data-name="view">
-        <label for="horizontal">Горизонтальный</label>
-        <input class="slider__view" type="radio" name="view" value="vertical" id="vertical" ${this.sliderModel.viewValue === 'vertical' ? 'checked' : ''} data-name="view">
-        <label for="vertical">Вертикальный</label>
+        <input class="slider__view" type="radio" name="view${this.sliderModel.mainValue}" value="horizontal" id="horizontal${this.sliderModel.mainValue}" ${this.sliderModel.viewValue === 'horizontal' ? 'checked' : ''} data-name="view">
+        <label for="horizontal${this.sliderModel.mainValue}">Горизонтальный</label>
+        <input class="slider__view" type="radio" name="view${this.sliderModel.mainValue}" value="vertical" id="vertical${this.sliderModel.mainValue}" ${this.sliderModel.viewValue === 'vertical' ? 'checked' : ''} data-name="view">
+        <label for="vertical${this.sliderModel.mainValue}">Вертикальный</label>
       </div>
       <div class="slider__input">
-        <input class="slider__range" type="radio" name="range" value="one" id="one" ${this.sliderModel.rangeValue === 'one' ? 'checked' : ''} data-name="range">
-        <label for="one">Одиночное значение</label>
-        <input class="slider__range" type="radio" name="range" value="range" id="range" ${this.sliderModel.rangeValue === 'range' ? 'checked' : ''} data-name="range">
-        <label for="range">Интервал</label>
+        <input class="slider__range" type="radio" name="range${this.sliderModel.mainValue}" value="one" id="one${this.sliderModel.mainValue}" ${this.sliderModel.rangeValue === 'one' ? 'checked' : ''} data-name="range">
+        <label for="one${this.sliderModel.mainValue}">Одиночное значение</label>
+        <input class="slider__range" type="radio" name="range${this.sliderModel.mainValue}" value="range" id="range${this.sliderModel.mainValue}" ${this.sliderModel.rangeValue === 'range' ? 'checked' : ''} data-name="range">
+        <label for="range${this.sliderModel.mainValue}">Интервал</label>
       </div>
       <div class="slider__input">
-        <input class="slider__flag-checkbox" type="checkbox" id="flag" ${this.sliderModel.flagValue ? 'checked' : ''} data-name="flag">
-        <label for="flag">Значение</label>
+        <input class="slider__flag-checkbox" type="checkbox" id="flag${this.sliderModel.mainValue}" ${this.sliderModel.flagValue ? 'checked' : ''} data-name="flag">
+        <label for="flag${this.sliderModel.mainValue}">Значение</label>
       </div>
       <div class="slider__input">
-        <input class="slider__scale-checkbox" type="checkbox" id="scale" ${this.sliderModel.scaleValue ? 'checked' : ''} data-name="scale">
-        <label for="scale">Шкала</label>
+        <input class="slider__scale-checkbox" type="checkbox" id="scale${this.sliderModel.mainValue}" ${this.sliderModel.scaleValue ? 'checked' : ''} data-name="scale">
+        <label for="scale${this.sliderModel.mainValue}">Шкала</label>
       </div>
     `
   }
