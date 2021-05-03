@@ -89,19 +89,16 @@
     width: 300px;
     transform: translateX(-120px) translateY(-172px) rotate(-90deg);
 
-    & .slider__item:first-child .slider__item--number {
-      transform: translateX(300px) rotate(90deg);
-    }
-    
-    & .slider__item:last-child .slider__item--number {
-      transform: translateX(-300px) rotate(90deg);
+    & .slider__item .slider__item--number {
+      transform: rotate(90deg);
     }
   }
 }
 
 .slider__item {
-  width: 0;
+  width: 1px;
   color: #4eb7a8;
+  cursor: pointer;
 
   &--number {
     display: flex;

@@ -11,7 +11,7 @@ export default class ScaleViewVertical extends AbstractView {
     const step: number = this.sliderModel.stepValue;
     let template: string = '';
 
-    for (let i = min; i <= max; i+= step) {
+    for (let i = max; i >= min; i-= step) {
       if (i === min || i === max) {
         template += `
           <div class="slider__item">|
@@ -23,10 +23,10 @@ export default class ScaleViewVertical extends AbstractView {
       }
     }
 
-    if(template.lastIndexOf(<string><unknown>max) === -1) {
+    if(template.indexOf(<string><unknown>min, max - 1) === -1) {
       template += `
           <div class="slider__item">|
-            <span class="slider__item--number">${max}</span>
+            <span class="slider__item--number">${min}</span>
           </div>
         `
     }

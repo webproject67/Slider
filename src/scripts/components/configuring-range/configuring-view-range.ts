@@ -25,7 +25,7 @@ export default class ConfiguringViewRange extends AbstractView {
       </div>
       <div class="slider__input">
         <label class="slider__label" for="step">Шаг</label>
-        <input class="slider__step slider__number" type="number" value=${this.sliderModel.stepValue} min="1" max=${this.sliderModel.maxValue} id="step" data-name="step">
+        <input class="slider__step slider__number" type="number" value=${this.sliderModel.stepValue} id="step" data-name="step">
       </div>
       <div class="slider__input">
         <input class="slider__view" type="radio" name="view${this.sliderModel.mainValue}" value="horizontal" id="horizontal${this.sliderModel.mainValue}" ${this.sliderModel.viewValue === 'horizontal' ? 'checked' : ''} data-name="view">
