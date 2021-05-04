@@ -297,182 +297,183 @@ export default class SliderPresenter {
       height: number;
     } = getCoords(slider);
 
+    const toggleCoords: {
+      top: number;
+      height: number;
+      left: number;
+      width: number;
+    } = getCoords(toggle);
+
     if (toggle.hasClass('slider__toggle')) {
-      toggle.on('mousedown', (evt: JQuery.MouseDownEvent<HTMLElement>): void => {
-        if (slider.hasClass('slider__inner--height')) {
-          const toggleCoords: {
-            top: number;
-            height: number;
-          } = getCoords(toggle);
-  
-          const shift: number = evt.pageY - toggleCoords.top - 10;
-  
-          $(document).on('mousemove', (evt: JQuery.MouseMoveEvent<Document>): void => {
-            let top: number = ((evt.pageY - shift - sliderCoords.top) / sliderCoords.height) * 100;
-            if (top < 0) top = 0;
-            if (top > 100) top = 100;
-
-            if (toggle.hasClass('slider__toggle--vertical-min')) {
-              const maxPercent: number = this.sliderModel.toPercentValue;
-              if (top > maxPercent) top = maxPercent;
-            }
-            
-            if (toggle.hasClass('slider__toggle--vertical-max')) {
-              const minPercent: number = this.sliderModel.fromPercentValue;
-              if (minPercent > top) top = minPercent;
-            }
-        
-            const stepCount: number = (max - min) / step;
-            const stepPercent: number = 100 / stepCount;
-            let stepTop: number = Math.round(top / stepPercent) * stepPercent;
-            if (stepTop < 0) stepTop = 0;
-            if (stepTop > 100) stepTop = 100;
-
-            toggle.css({'top': stepTop + '%'});
-
-            if (toggle.hasClass('slider__toggle--vertical-min')) {
-              const maxPercent: number = this.sliderModel.toPercentValue;
-              slider.find('.slider__bar').css({
-                'top': stepTop + '%',
-                'height': maxPercent - stepTop + '%'
-              });
-            }
-
-            if (toggle.hasClass('slider__toggle--vertical-max')) {
-              const minPercent: number = this.sliderModel.fromPercentValue;
-              slider.find('.slider__bar').css({'height': stepTop - minPercent + '%'});
-            }
-        
-            const result: string = (((stepTop / stepPercent) * step).toFixed());
-            const value: number = <number><unknown>+result + min;
-
-            if (this.sliderModel.rangeValue === 'one') {
-              this.setInModelValue('to', value);
-              $(this.configuringViewOne.element).replaceWith(this.configuringViewOne.newElement);
-              $(this.flagViewVerticalOne.element).replaceWith(this.flagViewVerticalOne.newElement);
-              this.setInModelValue('toPercent', stepTop);
-              slider.find('.slider__flag-vertical').css({'top': stepTop - 5 + '%'});
-            }
-            
-            if (this.sliderModel.rangeValue === 'range') {
-              if (toggle.hasClass('slider__toggle--vertical-min')) {
-                this.setInModelValue('from', value);
-                $(this.configuringViewRange.element).replaceWith(this.configuringViewRange.newElement);
-                $(this.flagViewVerticalRange.element).replaceWith(this.flagViewVerticalRange.newElement);
-                this.setInModelValue('fromPercent', stepTop);
-                slider.find('.slider__flag-vertical--min').css({'top': stepTop - 5 + '%'});
-                slider.find('.slider__flag-vertical--max').css({'top': this.sliderModel.toPercentValue - 5 + '%'});
-              }
-              
-              if (toggle.hasClass('slider__toggle--vertical-max')) {
-                this.setInModelValue('to', value);
-                $(this.configuringViewRange.element).replaceWith(this.configuringViewRange.newElement);
-                $(this.flagViewVerticalRange.element).replaceWith(this.flagViewVerticalRange.newElement);
-                this.setInModelValue('toPercent', stepTop);
-                slider.find('.slider__flag-vertical--min').css({'top': this.sliderModel.fromPercentValue - 5 + '%'});
-                slider.find('.slider__flag-vertical--max').css({'top': stepTop - 5 + '%'});
-              } 
-            }
-          })
-        } else {
-          const toggleCoords: {
-            left: number;
-            width: number;
-          } = getCoords(toggle);
-  
-          const shift: number = evt.pageX - toggleCoords.left - 10;
-  
-          $(document).on('mousemove', (evt: JQuery.MouseMoveEvent<Document>): void => {
-            let left: number = ((evt.pageX - shift - sliderCoords.left) / sliderCoords.width) * 100;
-            if (left < 0) left = 0;
-            if (left > 100) left = 100;
-
-            if (toggle.hasClass('slider__toggle--min')) {
-              const maxPercent: number = this.sliderModel.toPercentValue;
-              if (left > maxPercent) left = maxPercent;
-            }
-            
-            if (toggle.hasClass('slider__toggle--max')) {
-              const minPercent: number = this.sliderModel.fromPercentValue;
-              if (minPercent > left) left = minPercent;
-            }
-        
-            const stepCount: number = (max - min) / step;
-            const stepPercent: number = 100 / stepCount;
-            let stepLeft: number = Math.round(left / stepPercent) * stepPercent;
-            if (stepLeft < 0) stepLeft = 0;
-            if (stepLeft > 100) stepLeft = 100;
-
-            toggle.css({'left': stepLeft + '%'});
-
-            if (toggle.hasClass('slider__toggle--min')) {
-              slider.find('.slider__bar').css({'marginLeft': stepLeft + '%'});
-            }
-
-            if (toggle.hasClass('slider__toggle--max')) {
-              slider.find('.slider__bar').css({'marginRight': 100 - stepLeft + '%'});
-            } 
-        
-            const result: string = (((stepLeft / stepPercent) * step).toFixed());
-            const value: number = <number><unknown>+result + min;
-
-            if (this.sliderModel.rangeValue === 'one') {
-              this.setInModelValue('to', value);
-              $(this.configuringViewOne.element).replaceWith(this.configuringViewOne.newElement);
-              $(this.flagViewOne.element).replaceWith(this.flagViewOne.newElement);
-              this.setInModelValue('toPercent', stepLeft);
-              slider.find('.slider__flag').css({'left': stepLeft + '%'});
-            }
-            
-            if (this.sliderModel.rangeValue === 'range') {
-              if (toggle.hasClass('slider__toggle--min')) {
-                this.setInModelValue('from', value);
-                $(this.configuringViewRange.element).replaceWith(this.configuringViewRange.newElement);
-                $(this.flagViewRange.element).replaceWith(this.flagViewRange.newElement);
-                this.setInModelValue('fromPercent', stepLeft);
-                slider.find('.slider__flag--min').css({'left': stepLeft + '%'});
-                slider.find('.slider__flag--max').css({'left': this.sliderModel.toPercentValue + '%'});
-              }
-  
-              if (toggle.hasClass('slider__toggle--max')) {
-                this.setInModelValue('to', value);
-                $(this.configuringViewRange.element).replaceWith(this.configuringViewRange.newElement);
-                $(this.flagViewRange.element).replaceWith(this.flagViewRange.newElement);
-                this.setInModelValue('toPercent', stepLeft);
-                slider.find('.slider__flag--min').css({'left': this.sliderModel.fromPercentValue + '%'});
-                slider.find('.slider__flag--max').css({'left': stepLeft + '%'});
-              } 
-            }
-          })
-        }
-      
-        $(document).on('mouseup', (): void => {
-          $(document).off('mousemove');
-          $(document).off('mouseup');
-        })
-      })
+      this.toggleMouseDown(toggle, slider, min, max, step, toggleCoords, sliderCoords);      
     }
     
     if (toggle.hasClass('slider__item')) {
-      toggle.on('click', (evt: JQuery.ClickEvent<HTMLElement>): void => {
-        if (slider.hasClass('slider__inner--height')) {
-          const toggleCoords: {
-            top: number;
-            height: number;
-          } = getCoords(toggle);
-  
-          const shift: number = evt.pageY - toggleCoords.top;
-  
+      this.scaleClick(toggle, slider, min, max, step, toggleCoords, sliderCoords);  
+    }
+  }
+
+  private scaleClick(
+    toggle: JQuery<HTMLElement>, 
+    slider: JQuery<HTMLElement>, 
+    min: number, 
+    max: number, 
+    step: number, 
+    toggleCoords: {top: number; height: number; left: number; width: number;}, 
+    sliderCoords: {top: number; height: number; left: number; width: number;}
+  ): void {
+    toggle.on('click', (evt: JQuery.ClickEvent<HTMLElement>): void => {
+      if (slider.hasClass('slider__inner--height')) {
+        const shift: number = evt.pageY - toggleCoords.top;
+
+        let top: number = ((evt.pageY - shift - sliderCoords.top) / sliderCoords.height) * 100;
+        if (top < 0) top = 0;
+        if (top > 100) top = 100;
+
+        const stepCount: number = (max - min) / step;
+        const stepPercent: number = 100 / stepCount;
+        let stepTop: number = Math.round(top / stepPercent) * stepPercent;
+        if (stepTop < 0) stepTop = 0;
+        if (stepTop > 100) stepTop = 100;
+
+        const result: string = (((stepTop / stepPercent) * step).toFixed());
+        const value: number = <number><unknown>+result + min;
+
+        if (this.sliderModel.rangeValue === 'one') {
+          this.setInModelValue('to', value);
+          $(this.configuringViewOne.element).replaceWith(this.configuringViewOne.newElement);
+          $(this.flagViewVerticalOne.element).replaceWith(this.flagViewVerticalOne.newElement);
+          this.setInModelValue('toPercent', stepTop);
+          slider.find('.slider__flag-vertical--max').css({'top': stepTop - 5 + '%'});
+          slider.find('.slider__toggle--vertical-max').css({'top': stepTop + '%'});
+          slider.find('.slider__bar').css({'height': stepTop + '%'});
+        }
+
+        if (this.sliderModel.rangeValue === 'range') {
+          if(this.sliderModel.fromPercentValue > stepTop) {
+            this.setInModelValue('from', value);
+            $(this.configuringViewRange.element).replaceWith(this.configuringViewRange.newElement);
+            $(this.flagViewVerticalRange.element).replaceWith(this.flagViewVerticalRange.newElement);
+            this.setInModelValue('fromPercent', stepTop);
+            slider.find('.slider__flag-vertical--min').css({'top': stepTop - 5 + '%'});
+            slider.find('.slider__flag-vertical--max').css({'top': this.sliderModel.toPercentValue - 5 + '%'});
+            slider.find('.slider__toggle--vertical-min').css({'top': stepTop + '%'});
+            slider.find('.slider__bar').css({
+              'top': stepTop + '%',
+              'height': this.sliderModel.toPercentValue - stepTop + '%'
+            });
+          } else {
+            this.setInModelValue('to', value);
+            $(this.configuringViewRange.element).replaceWith(this.configuringViewRange.newElement);
+            $(this.flagViewVerticalRange.element).replaceWith(this.flagViewVerticalRange.newElement);
+            this.setInModelValue('toPercent', stepTop);
+            slider.find('.slider__bar').css({'height': stepTop - this.sliderModel.fromPercentValue + '%'});
+            slider.find('.slider__toggle--vertical-max').css({'top': stepTop + '%'});
+            slider.find('.slider__flag-vertical--min').css({'top': this.sliderModel.fromPercentValue - 5 + '%'});
+            slider.find('.slider__flag-vertical--max').css({'top': stepTop - 5 + '%'});
+          } 
+        }
+      } else {
+        const shift: number = evt.pageX - toggleCoords.left;
+
+        let left: number = ((evt.pageX - shift - sliderCoords.left) / sliderCoords.width) * 100;
+        if (left < 0) left = 0;
+        if (left > 100) left = 100;
+
+        const stepCount: number = (max - min) / step;
+        const stepPercent: number = 100 / stepCount;
+        let stepLeft: number = Math.round(left / stepPercent) * stepPercent;
+        if (stepLeft < 0) stepLeft = 0;
+        if (stepLeft > 100) stepLeft = 100;
+    
+        const result: string = (((stepLeft / stepPercent) * step).toFixed());
+        const value: number = <number><unknown>+result + min;
+
+        if (this.sliderModel.rangeValue === 'one') {
+          this.setInModelValue('to', value);
+          $(this.configuringViewOne.element).replaceWith(this.configuringViewOne.newElement);
+          $(this.flagViewOne.element).replaceWith(this.flagViewOne.newElement);
+          this.setInModelValue('toPercent', stepLeft);
+          slider.find('.slider__flag--max').css({'left': stepLeft + '%'});
+          slider.find('.slider__toggle--max').css({'left': stepLeft + '%'});
+          slider.find('.slider__bar').css({'marginRight': 100 - stepLeft + '%'});
+        }
+
+        if (this.sliderModel.rangeValue === 'range') {
+          if(this.sliderModel.fromPercentValue > stepLeft) {
+            this.setInModelValue('from', value);
+            $(this.configuringViewRange.element).replaceWith(this.configuringViewRange.newElement);
+            $(this.flagViewRange.element).replaceWith(this.flagViewRange.newElement);
+            this.setInModelValue('fromPercent', stepLeft);
+            slider.find('.slider__flag--min').css({'left': stepLeft + '%'});
+            slider.find('.slider__flag--max').css({'left': this.sliderModel.toPercentValue + '%'});
+            slider.find('.slider__toggle--min').css({'left': stepLeft + '%'});
+            slider.find('.slider__bar').css({'marginLeft': stepLeft + '%'});
+          } else {
+            this.setInModelValue('to', value);
+            $(this.configuringViewRange.element).replaceWith(this.configuringViewRange.newElement);
+            $(this.flagViewRange.element).replaceWith(this.flagViewRange.newElement);
+            this.setInModelValue('toPercent', stepLeft);
+            slider.find('.slider__flag--min').css({'left': this.sliderModel.fromPercentValue + '%'});
+            slider.find('.slider__flag--max').css({'left': stepLeft + '%'});
+            slider.find('.slider__bar').css({'marginLeft': this.sliderModel.fromPercentValue + '%'});
+            slider.find('.slider__bar').css({'marginRight': 100 - stepLeft + '%'});
+            slider.find('.slider__toggle--max').css({'left': stepLeft + '%'});
+          } 
+        }
+      }
+    })
+  }
+
+  private toggleMouseDown(
+    toggle: JQuery<HTMLElement>, 
+    slider: JQuery<HTMLElement>, 
+    min: number, 
+    max: number, 
+    step: number, 
+    toggleCoords: {top: number; height: number; left: number; width: number;}, 
+    sliderCoords: {top: number; height: number; left: number; width: number;}
+  ): void {
+    toggle.on('mousedown', (evt: JQuery.MouseDownEvent<HTMLElement>): void => {
+      if (slider.hasClass('slider__inner--height')) {
+        const shift: number = evt.pageY - toggleCoords.top - 10;
+
+        $(document).on('mousemove', (evt: JQuery.MouseMoveEvent<Document>): void => {
           let top: number = ((evt.pageY - shift - sliderCoords.top) / sliderCoords.height) * 100;
           if (top < 0) top = 0;
           if (top > 100) top = 100;
 
+          if (toggle.hasClass('slider__toggle--vertical-min')) {
+            const maxPercent: number = this.sliderModel.toPercentValue;
+            if (top > maxPercent) top = maxPercent;
+          }
+          
+          if (toggle.hasClass('slider__toggle--vertical-max')) {
+            const minPercent: number = this.sliderModel.fromPercentValue;
+            if (minPercent > top) top = minPercent;
+          }
+      
           const stepCount: number = (max - min) / step;
           const stepPercent: number = 100 / stepCount;
           let stepTop: number = Math.round(top / stepPercent) * stepPercent;
           if (stepTop < 0) stepTop = 0;
           if (stepTop > 100) stepTop = 100;
 
+          toggle.css({'top': stepTop + '%'});
+
+          if (toggle.hasClass('slider__toggle--vertical-min')) {
+            const maxPercent: number = this.sliderModel.toPercentValue;
+            slider.find('.slider__bar').css({
+              'top': stepTop + '%',
+              'height': maxPercent - stepTop + '%'
+            });
+          }
+
+          if (toggle.hasClass('slider__toggle--vertical-max')) {
+            const minPercent: number = this.sliderModel.fromPercentValue;
+            slider.find('.slider__bar').css({'height': stepTop - minPercent + '%'});
+          }
+      
           const result: string = (((stepTop / stepPercent) * step).toFixed());
           const value: number = <number><unknown>+result + min;
 
@@ -481,52 +482,62 @@ export default class SliderPresenter {
             $(this.configuringViewOne.element).replaceWith(this.configuringViewOne.newElement);
             $(this.flagViewVerticalOne.element).replaceWith(this.flagViewVerticalOne.newElement);
             this.setInModelValue('toPercent', stepTop);
-            slider.find('.slider__flag-vertical--max').css({'top': stepTop - 5 + '%'});
-            slider.find('.slider__toggle--vertical-max').css({'top': stepTop + '%'});
-            slider.find('.slider__bar').css({'height': stepTop + '%'});
+            slider.find('.slider__flag-vertical').css({'top': stepTop - 5 + '%'});
           }
-
+          
           if (this.sliderModel.rangeValue === 'range') {
-            if(this.sliderModel.fromPercentValue > stepTop) {
+            if (toggle.hasClass('slider__toggle--vertical-min')) {
               this.setInModelValue('from', value);
               $(this.configuringViewRange.element).replaceWith(this.configuringViewRange.newElement);
               $(this.flagViewVerticalRange.element).replaceWith(this.flagViewVerticalRange.newElement);
               this.setInModelValue('fromPercent', stepTop);
               slider.find('.slider__flag-vertical--min').css({'top': stepTop - 5 + '%'});
               slider.find('.slider__flag-vertical--max').css({'top': this.sliderModel.toPercentValue - 5 + '%'});
-              slider.find('.slider__toggle--vertical-min').css({'top': stepTop + '%'});
-              slider.find('.slider__bar').css({
-                'top': stepTop + '%',
-                'height': this.sliderModel.toPercentValue - stepTop + '%'
-              });
-            } else {
+            }
+            
+            if (toggle.hasClass('slider__toggle--vertical-max')) {
               this.setInModelValue('to', value);
               $(this.configuringViewRange.element).replaceWith(this.configuringViewRange.newElement);
               $(this.flagViewVerticalRange.element).replaceWith(this.flagViewVerticalRange.newElement);
               this.setInModelValue('toPercent', stepTop);
-              slider.find('.slider__bar').css({'height': stepTop - this.sliderModel.fromPercentValue + '%'});
-              slider.find('.slider__toggle--vertical-max').css({'top': stepTop + '%'});
               slider.find('.slider__flag-vertical--min').css({'top': this.sliderModel.fromPercentValue - 5 + '%'});
               slider.find('.slider__flag-vertical--max').css({'top': stepTop - 5 + '%'});
             } 
           }
-        } else {
-          const toggleCoords: {
-            left: number;
-            width: number;
-          } = getCoords(toggle);
-  
-          const shift: number = evt.pageX - toggleCoords.left;
-  
+        })
+      } else {
+        const shift: number = evt.pageX - toggleCoords.left - 10;
+
+        $(document).on('mousemove', (evt: JQuery.MouseMoveEvent<Document>): void => {
           let left: number = ((evt.pageX - shift - sliderCoords.left) / sliderCoords.width) * 100;
           if (left < 0) left = 0;
           if (left > 100) left = 100;
 
+          if (toggle.hasClass('slider__toggle--min')) {
+            const maxPercent: number = this.sliderModel.toPercentValue;
+            if (left > maxPercent) left = maxPercent;
+          }
+          
+          if (toggle.hasClass('slider__toggle--max')) {
+            const minPercent: number = this.sliderModel.fromPercentValue;
+            if (minPercent > left) left = minPercent;
+          }
+      
           const stepCount: number = (max - min) / step;
           const stepPercent: number = 100 / stepCount;
           let stepLeft: number = Math.round(left / stepPercent) * stepPercent;
           if (stepLeft < 0) stepLeft = 0;
           if (stepLeft > 100) stepLeft = 100;
+
+          toggle.css({'left': stepLeft + '%'});
+
+          if (toggle.hasClass('slider__toggle--min')) {
+            slider.find('.slider__bar').css({'marginLeft': stepLeft + '%'});
+          }
+
+          if (toggle.hasClass('slider__toggle--max')) {
+            slider.find('.slider__bar').css({'marginRight': 100 - stepLeft + '%'});
+          } 
       
           const result: string = (((stepLeft / stepPercent) * step).toFixed());
           const value: number = <number><unknown>+result + min;
@@ -536,35 +547,35 @@ export default class SliderPresenter {
             $(this.configuringViewOne.element).replaceWith(this.configuringViewOne.newElement);
             $(this.flagViewOne.element).replaceWith(this.flagViewOne.newElement);
             this.setInModelValue('toPercent', stepLeft);
-            slider.find('.slider__flag--max').css({'left': stepLeft + '%'});
-            slider.find('.slider__toggle--max').css({'left': stepLeft + '%'});
-            slider.find('.slider__bar').css({'marginRight': 100 - stepLeft + '%'});
+            slider.find('.slider__flag').css({'left': stepLeft + '%'});
           }
-
+          
           if (this.sliderModel.rangeValue === 'range') {
-            if(this.sliderModel.fromPercentValue > stepLeft) {
+            if (toggle.hasClass('slider__toggle--min')) {
               this.setInModelValue('from', value);
               $(this.configuringViewRange.element).replaceWith(this.configuringViewRange.newElement);
               $(this.flagViewRange.element).replaceWith(this.flagViewRange.newElement);
               this.setInModelValue('fromPercent', stepLeft);
               slider.find('.slider__flag--min').css({'left': stepLeft + '%'});
               slider.find('.slider__flag--max').css({'left': this.sliderModel.toPercentValue + '%'});
-              slider.find('.slider__toggle--min').css({'left': stepLeft + '%'});
-              slider.find('.slider__bar').css({'marginLeft': stepLeft + '%'});
-            } else {
+            }
+
+            if (toggle.hasClass('slider__toggle--max')) {
               this.setInModelValue('to', value);
               $(this.configuringViewRange.element).replaceWith(this.configuringViewRange.newElement);
               $(this.flagViewRange.element).replaceWith(this.flagViewRange.newElement);
               this.setInModelValue('toPercent', stepLeft);
               slider.find('.slider__flag--min').css({'left': this.sliderModel.fromPercentValue + '%'});
               slider.find('.slider__flag--max').css({'left': stepLeft + '%'});
-              slider.find('.slider__bar').css({'marginLeft': this.sliderModel.fromPercentValue + '%'});
-              slider.find('.slider__bar').css({'marginRight': 100 - stepLeft + '%'});
-              slider.find('.slider__toggle--max').css({'left': stepLeft + '%'});
             } 
           }
-        }
+        })
+      }
+    
+      $(document).on('mouseup', (): void => {
+        $(document).off('mousemove');
+        $(document).off('mouseup');
       })
-    }
+    })
   }
 }
