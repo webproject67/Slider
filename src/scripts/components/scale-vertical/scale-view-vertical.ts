@@ -33,4 +33,12 @@ export default class ScaleViewVertical extends AbstractView {
 
     return template
   }
+  
+  bind() {
+    $(this.element).find('.slider__item').on('click', (evt: JQuery.ClickEvent<HTMLElement>):void => this.scaleClick(evt))
+  }
+
+  public scaleClick(evt: JQuery.ClickEvent<HTMLElement>):void {
+    
+  }
 }

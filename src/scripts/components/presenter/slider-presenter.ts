@@ -50,20 +50,44 @@ export default class SliderPresenter {
       this.inputChange(evt);
     }
 
-    this.sliderViewOne.sliderMouseOver = (evt) => {
-      this.sliderMouseOver(evt);
+    this.flagViewOne.flagMouseDown = (evt) => {
+      this.flagMouseDown(evt);
     }
     
-    this.sliderViewRange.sliderMouseOver = (evt) => {
-      this.sliderMouseOver(evt);
+    this.flagViewRange.flagMouseDown = (evt) => {
+      this.flagMouseDown(evt);
     }
     
-    this.sliderViewVerticalOne.sliderMouseOver = (evt) => {
-      this.sliderMouseOver(evt);
+    this.flagViewVerticalOne.flagMouseDown = (evt) => {
+      this.flagMouseDown(evt);
     }
     
-    this.sliderViewVerticalRange.sliderMouseOver = (evt) => {
-      this.sliderMouseOver(evt);
+    this.flagViewVerticalRange.flagMouseDown = (evt) => {
+      this.flagMouseDown(evt);
+    }
+
+    this.scaleView.scaleClick = (evt) => {
+      this.scaleClick(evt);
+    }
+    
+    this.scaleViewVertical.scaleClick = (evt) => {
+      this.scaleClick(evt);
+    }
+
+    this.sliderViewOne.toggleMouseDown = (evt) => {
+      this.toggleMouseDown(evt);
+    }
+    
+    this.sliderViewRange.toggleMouseDown = (evt) => {
+      this.toggleMouseDown(evt);
+    }
+    
+    this.sliderViewVerticalOne.toggleMouseDown = (evt) => {
+      this.toggleMouseDown(evt);
+    }
+    
+    this.sliderViewVerticalRange.toggleMouseDown = (evt) => {
+      this.toggleMouseDown(evt);
     }
   }
 
@@ -264,53 +288,54 @@ export default class SliderPresenter {
     }
   } 
 
-  private sliderMouseOver(evt: JQuery.MouseOverEvent<HTMLElement>):void {
-    const toggle: JQuery<HTMLElement> = $(evt.target);
-    const slider: JQuery<HTMLElement> = $(evt.currentTarget);
-    const min: number = this.sliderModel.minValue;
-    const max: number = this.sliderModel.maxValue;
-    const step: number = this.sliderModel.stepValue;
+  private toggleMouseDown(evt: JQuery.MouseDownEvent<HTMLElement>):void {
+   
+    // const toggle: JQuery<HTMLElement> = $(evt.target);
+    // const slider: JQuery<HTMLElement> = $(evt.currentTarget);
+    // const min: number = this.sliderModel.minValue;
+    // const max: number = this.sliderModel.maxValue;
+    // const step: number = this.sliderModel.stepValue;
 
-    const getCoords = (elem: JQuery<HTMLElement>): {
-      left: number;
-      width: number;
-      top: number;
-      height: number;
-    } => {
-      const boxLeft: number = elem.offset()!.left;
-      const boxRight: number = boxLeft + elem.outerWidth()!;
-      const boxTop: number = elem.offset()!.top;
-      const boxBottom: number = boxTop + elem.outerHeight()!;
+    // const getCoords = (elem: JQuery<HTMLElement>): {
+    //   left: number;
+    //   width: number;
+    //   top: number;
+    //   height: number;
+    // } => {
+    //   const boxLeft: number = elem.offset()!.left;
+    //   const boxRight: number = boxLeft + elem.outerWidth()!;
+    //   const boxTop: number = elem.offset()!.top;
+    //   const boxBottom: number = boxTop + elem.outerHeight()!;
     
-      return {
-        left: boxLeft + pageXOffset,
-        width: boxRight - boxLeft,
-        top: boxTop + pageYOffset,
-        height: boxBottom - boxTop
-      };
-    }
+    //   return {
+    //     left: boxLeft + pageXOffset,
+    //     width: boxRight - boxLeft,
+    //     top: boxTop + pageYOffset,
+    //     height: boxBottom - boxTop
+    //   };
+    // }
 
-    const sliderCoords: {
-      left: number;
-      width: number;
-      top: number;
-      height: number;
-    } = getCoords(slider);
+    // const sliderCoords: {
+    //   left: number;
+    //   width: number;
+    //   top: number;
+    //   height: number;
+    // } = getCoords(slider);
 
-    const toggleCoords: {
-      top: number;
-      height: number;
-      left: number;
-      width: number;
-    } = getCoords(toggle);
+    // const toggleCoords: {
+    //   top: number;
+    //   height: number;
+    //   left: number;
+    //   width: number;
+    // } = getCoords(toggle);
 
-    if (toggle.hasClass('slider__toggle')) {
-      this.toggleMouseDown(toggle, slider, min, max, step, toggleCoords, sliderCoords);      
-    }
+    // if (toggle.hasClass('slider__toggle')) {
+    //   this.toggleMouseDown(toggle, slider, min, max, step, toggleCoords, sliderCoords);      
+    // }
     
-    if (toggle.hasClass('slider__item')) {
-      this.scaleClick(toggle, slider, min, max, step, toggleCoords, sliderCoords);  
-    }
+    // if (toggle.hasClass('slider__item')) {
+    //   this.scaleClick(toggle, slider, min, max, step, toggleCoords, sliderCoords);  
+    // }
   }
 
   private scaleClick(
@@ -425,157 +450,157 @@ export default class SliderPresenter {
     })
   }
 
-  private toggleMouseDown(
-    toggle: JQuery<HTMLElement>, 
-    slider: JQuery<HTMLElement>, 
-    min: number, 
-    max: number, 
-    step: number, 
-    toggleCoords: {top: number; height: number; left: number; width: number;}, 
-    sliderCoords: {top: number; height: number; left: number; width: number;}
-  ): void {
-    toggle.on('mousedown', (evt: JQuery.MouseDownEvent<HTMLElement>): void => {
-      if (slider.hasClass('slider__inner--height')) {
-        const shift: number = evt.pageY - toggleCoords.top - 10;
+  // private toggleMouseDown(
+  //   toggle: JQuery<HTMLElement>, 
+  //   slider: JQuery<HTMLElement>, 
+  //   min: number, 
+  //   max: number, 
+  //   step: number, 
+  //   toggleCoords: {top: number; height: number; left: number; width: number;}, 
+  //   sliderCoords: {top: number; height: number; left: number; width: number;}
+  // ): void {
+  //   toggle.on('mousedown', (evt: JQuery.MouseDownEvent<HTMLElement>): void => {
+  //     if (slider.hasClass('slider__inner--height')) {
+  //       const shift: number = evt.pageY - toggleCoords.top - 10;
 
-        $(document).on('mousemove', (evt: JQuery.MouseMoveEvent<Document>): void => {
-          let top: number = ((evt.pageY - shift - sliderCoords.top) / sliderCoords.height) * 100;
-          if (top < 0) top = 0;
-          if (top > 100) top = 100;
+  //       $(document).on('mousemove', (evt: JQuery.MouseMoveEvent<Document>): void => {
+  //         let top: number = ((evt.pageY - shift - sliderCoords.top) / sliderCoords.height) * 100;
+  //         if (top < 0) top = 0;
+  //         if (top > 100) top = 100;
 
-          if (toggle.hasClass('slider__toggle--vertical-min')) {
-            const maxPercent: number = this.sliderModel.toPercentValue;
-            if (top > maxPercent) top = maxPercent;
-          }
+  //         if (toggle.hasClass('slider__toggle--vertical-min')) {
+  //           const maxPercent: number = this.sliderModel.toPercentValue;
+  //           if (top > maxPercent) top = maxPercent;
+  //         }
           
-          if (toggle.hasClass('slider__toggle--vertical-max')) {
-            const minPercent: number = this.sliderModel.fromPercentValue;
-            if (minPercent > top) top = minPercent;
-          }
+  //         if (toggle.hasClass('slider__toggle--vertical-max')) {
+  //           const minPercent: number = this.sliderModel.fromPercentValue;
+  //           if (minPercent > top) top = minPercent;
+  //         }
       
-          const stepCount: number = (max - min) / step;
-          const stepPercent: number = 100 / stepCount;
-          let stepTop: number = Math.round(top / stepPercent) * stepPercent;
-          if (stepTop < 0) stepTop = 0;
-          if (stepTop > 100) stepTop = 100;
+  //         const stepCount: number = (max - min) / step;
+  //         const stepPercent: number = 100 / stepCount;
+  //         let stepTop: number = Math.round(top / stepPercent) * stepPercent;
+  //         if (stepTop < 0) stepTop = 0;
+  //         if (stepTop > 100) stepTop = 100;
 
-          toggle.css({'top': stepTop + '%'});
+  //         toggle.css({'top': stepTop + '%'});
 
-          if (toggle.hasClass('slider__toggle--vertical-min')) {
-            const maxPercent: number = this.sliderModel.toPercentValue;
-            slider.find('.slider__bar').css({
-              'top': stepTop + '%',
-              'height': maxPercent - stepTop + '%'
-            });
-          }
+  //         if (toggle.hasClass('slider__toggle--vertical-min')) {
+  //           const maxPercent: number = this.sliderModel.toPercentValue;
+  //           slider.find('.slider__bar').css({
+  //             'top': stepTop + '%',
+  //             'height': maxPercent - stepTop + '%'
+  //           });
+  //         }
 
-          if (toggle.hasClass('slider__toggle--vertical-max')) {
-            const minPercent: number = this.sliderModel.fromPercentValue;
-            slider.find('.slider__bar').css({'height': stepTop - minPercent + '%'});
-          }
+  //         if (toggle.hasClass('slider__toggle--vertical-max')) {
+  //           const minPercent: number = this.sliderModel.fromPercentValue;
+  //           slider.find('.slider__bar').css({'height': stepTop - minPercent + '%'});
+  //         }
       
-          const result: string = (((stepTop / stepPercent) * step).toFixed());
-          const value: number = <number><unknown>+result + min;
+  //         const result: string = (((stepTop / stepPercent) * step).toFixed());
+  //         const value: number = <number><unknown>+result + min;
 
-          if (this.sliderModel.rangeValue === 'one') {
-            this.setInModelValue('to', value);
-            $(this.configuringViewOne.element).replaceWith(this.configuringViewOne.newElement);
-            $(this.flagViewVerticalOne.element).replaceWith(this.flagViewVerticalOne.newElement);
-            this.setInModelValue('toPercent', stepTop);
-            slider.find('.slider__flag-vertical').css({'top': stepTop - 5 + '%'});
-          }
+  //         if (this.sliderModel.rangeValue === 'one') {
+  //           this.setInModelValue('to', value);
+  //           $(this.configuringViewOne.element).replaceWith(this.configuringViewOne.newElement);
+  //           $(this.flagViewVerticalOne.element).replaceWith(this.flagViewVerticalOne.newElement);
+  //           this.setInModelValue('toPercent', stepTop);
+  //           slider.find('.slider__flag-vertical').css({'top': stepTop - 5 + '%'});
+  //         }
           
-          if (this.sliderModel.rangeValue === 'range') {
-            if (toggle.hasClass('slider__toggle--vertical-min')) {
-              this.setInModelValue('from', value);
-              $(this.configuringViewRange.element).replaceWith(this.configuringViewRange.newElement);
-              $(this.flagViewVerticalRange.element).replaceWith(this.flagViewVerticalRange.newElement);
-              this.setInModelValue('fromPercent', stepTop);
-              slider.find('.slider__flag-vertical--min').css({'top': stepTop - 5 + '%'});
-              slider.find('.slider__flag-vertical--max').css({'top': this.sliderModel.toPercentValue - 5 + '%'});
-            }
+  //         if (this.sliderModel.rangeValue === 'range') {
+  //           if (toggle.hasClass('slider__toggle--vertical-min')) {
+  //             this.setInModelValue('from', value);
+  //             $(this.configuringViewRange.element).replaceWith(this.configuringViewRange.newElement);
+  //             $(this.flagViewVerticalRange.element).replaceWith(this.flagViewVerticalRange.newElement);
+  //             this.setInModelValue('fromPercent', stepTop);
+  //             slider.find('.slider__flag-vertical--min').css({'top': stepTop - 5 + '%'});
+  //             slider.find('.slider__flag-vertical--max').css({'top': this.sliderModel.toPercentValue - 5 + '%'});
+  //           }
             
-            if (toggle.hasClass('slider__toggle--vertical-max')) {
-              this.setInModelValue('to', value);
-              $(this.configuringViewRange.element).replaceWith(this.configuringViewRange.newElement);
-              $(this.flagViewVerticalRange.element).replaceWith(this.flagViewVerticalRange.newElement);
-              this.setInModelValue('toPercent', stepTop);
-              slider.find('.slider__flag-vertical--min').css({'top': this.sliderModel.fromPercentValue - 5 + '%'});
-              slider.find('.slider__flag-vertical--max').css({'top': stepTop - 5 + '%'});
-            } 
-          }
-        })
-      } else {
-        const shift: number = evt.pageX - toggleCoords.left - 10;
+  //           if (toggle.hasClass('slider__toggle--vertical-max')) {
+  //             this.setInModelValue('to', value);
+  //             $(this.configuringViewRange.element).replaceWith(this.configuringViewRange.newElement);
+  //             $(this.flagViewVerticalRange.element).replaceWith(this.flagViewVerticalRange.newElement);
+  //             this.setInModelValue('toPercent', stepTop);
+  //             slider.find('.slider__flag-vertical--min').css({'top': this.sliderModel.fromPercentValue - 5 + '%'});
+  //             slider.find('.slider__flag-vertical--max').css({'top': stepTop - 5 + '%'});
+  //           } 
+  //         }
+  //       })
+  //     } else {
+  //       const shift: number = evt.pageX - toggleCoords.left - 10;
 
-        $(document).on('mousemove', (evt: JQuery.MouseMoveEvent<Document>): void => {
-          let left: number = ((evt.pageX - shift - sliderCoords.left) / sliderCoords.width) * 100;
-          if (left < 0) left = 0;
-          if (left > 100) left = 100;
+  //       $(document).on('mousemove', (evt: JQuery.MouseMoveEvent<Document>): void => {
+  //         let left: number = ((evt.pageX - shift - sliderCoords.left) / sliderCoords.width) * 100;
+  //         if (left < 0) left = 0;
+  //         if (left > 100) left = 100;
 
-          if (toggle.hasClass('slider__toggle--min')) {
-            const maxPercent: number = this.sliderModel.toPercentValue;
-            if (left > maxPercent) left = maxPercent;
-          }
+  //         if (toggle.hasClass('slider__toggle--min')) {
+  //           const maxPercent: number = this.sliderModel.toPercentValue;
+  //           if (left > maxPercent) left = maxPercent;
+  //         }
           
-          if (toggle.hasClass('slider__toggle--max')) {
-            const minPercent: number = this.sliderModel.fromPercentValue;
-            if (minPercent > left) left = minPercent;
-          }
+  //         if (toggle.hasClass('slider__toggle--max')) {
+  //           const minPercent: number = this.sliderModel.fromPercentValue;
+  //           if (minPercent > left) left = minPercent;
+  //         }
       
-          const stepCount: number = (max - min) / step;
-          const stepPercent: number = 100 / stepCount;
-          let stepLeft: number = Math.round(left / stepPercent) * stepPercent;
-          if (stepLeft < 0) stepLeft = 0;
-          if (stepLeft > 100) stepLeft = 100;
+  //         const stepCount: number = (max - min) / step;
+  //         const stepPercent: number = 100 / stepCount;
+  //         let stepLeft: number = Math.round(left / stepPercent) * stepPercent;
+  //         if (stepLeft < 0) stepLeft = 0;
+  //         if (stepLeft > 100) stepLeft = 100;
 
-          toggle.css({'left': stepLeft + '%'});
+  //         toggle.css({'left': stepLeft + '%'});
 
-          if (toggle.hasClass('slider__toggle--min')) {
-            slider.find('.slider__bar').css({'marginLeft': stepLeft + '%'});
-          }
+  //         if (toggle.hasClass('slider__toggle--min')) {
+  //           slider.find('.slider__bar').css({'marginLeft': stepLeft + '%'});
+  //         }
 
-          if (toggle.hasClass('slider__toggle--max')) {
-            slider.find('.slider__bar').css({'marginRight': 100 - stepLeft + '%'});
-          } 
+  //         if (toggle.hasClass('slider__toggle--max')) {
+  //           slider.find('.slider__bar').css({'marginRight': 100 - stepLeft + '%'});
+  //         } 
       
-          const result: string = (((stepLeft / stepPercent) * step).toFixed());
-          const value: number = <number><unknown>+result + min;
+  //         const result: string = (((stepLeft / stepPercent) * step).toFixed());
+  //         const value: number = <number><unknown>+result + min;
 
-          if (this.sliderModel.rangeValue === 'one') {
-            this.setInModelValue('to', value);
-            $(this.configuringViewOne.element).replaceWith(this.configuringViewOne.newElement);
-            $(this.flagViewOne.element).replaceWith(this.flagViewOne.newElement);
-            this.setInModelValue('toPercent', stepLeft);
-            slider.find('.slider__flag').css({'left': stepLeft + '%'});
-          }
+  //         if (this.sliderModel.rangeValue === 'one') {
+  //           this.setInModelValue('to', value);
+  //           $(this.configuringViewOne.element).replaceWith(this.configuringViewOne.newElement);
+  //           $(this.flagViewOne.element).replaceWith(this.flagViewOne.newElement);
+  //           this.setInModelValue('toPercent', stepLeft);
+  //           slider.find('.slider__flag').css({'left': stepLeft + '%'});
+  //         }
           
-          if (this.sliderModel.rangeValue === 'range') {
-            if (toggle.hasClass('slider__toggle--min')) {
-              this.setInModelValue('from', value);
-              $(this.configuringViewRange.element).replaceWith(this.configuringViewRange.newElement);
-              $(this.flagViewRange.element).replaceWith(this.flagViewRange.newElement);
-              this.setInModelValue('fromPercent', stepLeft);
-              slider.find('.slider__flag--min').css({'left': stepLeft + '%'});
-              slider.find('.slider__flag--max').css({'left': this.sliderModel.toPercentValue + '%'});
-            }
+  //         if (this.sliderModel.rangeValue === 'range') {
+  //           if (toggle.hasClass('slider__toggle--min')) {
+  //             this.setInModelValue('from', value);
+  //             $(this.configuringViewRange.element).replaceWith(this.configuringViewRange.newElement);
+  //             $(this.flagViewRange.element).replaceWith(this.flagViewRange.newElement);
+  //             this.setInModelValue('fromPercent', stepLeft);
+  //             slider.find('.slider__flag--min').css({'left': stepLeft + '%'});
+  //             slider.find('.slider__flag--max').css({'left': this.sliderModel.toPercentValue + '%'});
+  //           }
 
-            if (toggle.hasClass('slider__toggle--max')) {
-              this.setInModelValue('to', value);
-              $(this.configuringViewRange.element).replaceWith(this.configuringViewRange.newElement);
-              $(this.flagViewRange.element).replaceWith(this.flagViewRange.newElement);
-              this.setInModelValue('toPercent', stepLeft);
-              slider.find('.slider__flag--min').css({'left': this.sliderModel.fromPercentValue + '%'});
-              slider.find('.slider__flag--max').css({'left': stepLeft + '%'});
-            } 
-          }
-        })
-      }
+  //           if (toggle.hasClass('slider__toggle--max')) {
+  //             this.setInModelValue('to', value);
+  //             $(this.configuringViewRange.element).replaceWith(this.configuringViewRange.newElement);
+  //             $(this.flagViewRange.element).replaceWith(this.flagViewRange.newElement);
+  //             this.setInModelValue('toPercent', stepLeft);
+  //             slider.find('.slider__flag--min').css({'left': this.sliderModel.fromPercentValue + '%'});
+  //             slider.find('.slider__flag--max').css({'left': stepLeft + '%'});
+  //           } 
+  //         }
+  //       })
+  //     }
     
-      $(document).on('mouseup', (): void => {
-        $(document).off('mousemove');
-        $(document).off('mouseup');
-      })
-    })
-  }
+  //     $(document).on('mouseup', (): void => {
+  //       $(document).off('mousemove');
+  //       $(document).off('mouseup');
+  //     })
+  //   })
+  // }
 }

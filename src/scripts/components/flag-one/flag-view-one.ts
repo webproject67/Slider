@@ -10,4 +10,12 @@ export default class FlagViewOne extends AbstractView {
       <span class="slider__flag slider__flag--max">${this.sliderModel.toValue === -10000 ? this.sliderModel.maxValue : this.sliderModel.toValue}</span>
     `
   }
+
+  bind() {
+    $(this.element).find('.slider__flag').on('mousedown', (evt: JQuery.MouseDownEvent<HTMLElement>):void => this.flagMouseDown(evt))
+  }
+
+  public flagMouseDown(evt: JQuery.MouseDownEvent<HTMLElement>):void {
+    
+  }
 }
