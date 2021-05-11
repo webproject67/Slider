@@ -5,7 +5,8 @@ const model = new SliderModel();
 const flag = new FlagViewVerticalRange(model);
 
 test('spyOn mouseDown flag vertical range', () => {
-  const somethingSpy = jest.spyOn(flag, 'bind').mockImplementation();
-  flag.bind();
+  const somethingSpy = jest.spyOn(flag, 'flagMouseDown');
+  let evt: any;
+  flag.flagMouseDown(evt);
   expect(somethingSpy).toHaveBeenCalledTimes(1)
 });

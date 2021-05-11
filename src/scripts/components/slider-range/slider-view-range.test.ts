@@ -5,7 +5,8 @@ const model = new SliderModel();
 const slider = new SliderViewRange(model);
 
 test('spyOn mouseDown toggle range', () => {
-  const somethingSpy = jest.spyOn(slider, 'bind').mockImplementation();
-  slider.bind();
+  const somethingSpy = jest.spyOn(slider, 'toggleMouseDown');
+  let evt: any;
+  slider.toggleMouseDown(evt);
   expect(somethingSpy).toHaveBeenCalledTimes(1)
 });

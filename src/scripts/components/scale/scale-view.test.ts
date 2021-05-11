@@ -5,7 +5,8 @@ const model = new SliderModel();
 const scale = new ScaleView(model);
 
 test('spyOn click scale', () => {
-  const somethingSpy = jest.spyOn(scale, 'bind').mockImplementation();
-  scale.bind();
+  const somethingSpy = jest.spyOn(scale, 'scaleClick');
+  let evt: any;
+  scale.scaleClick(evt);
   expect(somethingSpy).toHaveBeenCalledTimes(1)
 });
