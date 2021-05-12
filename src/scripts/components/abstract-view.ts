@@ -1,7 +1,7 @@
 import SliderModel from './model/slider-model';
 
 export default abstract class AbstractView {
-  elem: JQuery<HTMLElement> | undefined;
+  elem: HTMLElement | undefined;
   sliderModel: SliderModel;
 
   constructor(sliderModel: SliderModel) {
@@ -12,7 +12,7 @@ export default abstract class AbstractView {
     return '';
   }
 
-  public get element(): JQuery<HTMLElement> {
+  public get element(): HTMLElement {
     if (this.elem) {
       return this.elem;
     }
@@ -21,7 +21,7 @@ export default abstract class AbstractView {
     return this.elem;
   }
   
-  public get newElement(): JQuery<HTMLElement> {
+  public get newElement(): HTMLElement {
     this.elem = this.render();
     this.bind();
     return this.elem;
@@ -35,14 +35,14 @@ export default abstract class AbstractView {
   
   }
 
-  private createElement(template: string, className: string): JQuery<HTMLElement> {
-    const newElement: JQuery<HTMLElement> = $('<div></div>');
-    newElement.addClass(className)
-    newElement.html(template);
+  private createElement(template: string, className: string): HTMLElement {
+    const newElement: HTMLElement = document.createElement('div');
+    newElement.classList.add(className);
+    newElement.textContent = template;
     return newElement;
   };
 
-  private render(): JQuery<HTMLElement> {
+  private render(): HTMLElement {
     return this.createElement(this.template, this.className);
   }
 }

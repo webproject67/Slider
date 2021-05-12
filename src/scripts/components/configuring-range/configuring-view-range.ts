@@ -51,10 +51,10 @@ export default class ConfiguringViewRange extends AbstractView {
   }
   
   bind() {
-    $(this.element).on('change', (evt: JQuery.ChangeEvent<HTMLElement>):void => this.inputChange(evt))
+    this.element.addEventListener('change', (evt: Event):void => this.inputChange(evt))
   }
 
-  public inputChange(evt: JQuery.ChangeEvent<HTMLElement>):void {
+  public inputChange(evt: Event):void {
     
   }
 }

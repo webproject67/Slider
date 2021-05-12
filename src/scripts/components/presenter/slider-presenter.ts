@@ -3,14 +3,14 @@ import SliderViewOne from '../slider-one/slider-view-one';
 import SliderViewRange from '../slider-range/slider-view-range';
 import SliderViewVerticalOne from '../slider-vertical-one/slider-view-vertical-one';
 import SliderViewVerticalRange from '../slider-vertical-range/slider-view-vertical-range';
-import ConfiguringViewOne from '../configuring-one/configuring-view-one';
-import ConfiguringViewRange from '../configuring-range/configuring-view-range';
-import ScaleView from '../scale/scale-view';
-import ScaleViewVertical from '../scale-vertical/scale-view-vertical';
-import FlagViewOne from '../flag-one/flag-view-one';
-import FlagViewRange from '../flag-range/flag-view-range';
-import FlagViewVerticalOne from '../flag-vertical-one/flag-view-vertical-one';
-import FlagViewVerticalRange from '../flag-vertical-range/flag-view-vertical-range';
+// import ConfiguringViewOne from '../configuring-one/configuring-view-one';
+// import ConfiguringViewRange from '../configuring-range/configuring-view-range';
+// import ScaleView from '../scale/scale-view';
+// import ScaleViewVertical from '../scale-vertical/scale-view-vertical';
+// import FlagViewOne from '../flag-one/flag-view-one';
+// import FlagViewRange from '../flag-range/flag-view-range';
+// import FlagViewVerticalOne from '../flag-vertical-one/flag-view-vertical-one';
+// import FlagViewVerticalRange from '../flag-vertical-range/flag-view-vertical-range';
 
 export default class SliderPresenter {
   sliderModel: SliderModel;
@@ -18,14 +18,14 @@ export default class SliderPresenter {
   sliderViewRange: SliderViewRange;
   sliderViewVerticalOne: SliderViewVerticalOne;
   sliderViewVerticalRange: SliderViewVerticalRange;
-  configuringViewOne: ConfiguringViewOne;
-  configuringViewRange: ConfiguringViewRange;
-  scaleView: ScaleView;
-  scaleViewVertical: ScaleViewVertical;
-  flagViewOne: FlagViewOne;
-  flagViewRange: FlagViewRange;
-  flagViewVerticalOne: FlagViewVerticalOne;
-  flagViewVerticalRange: FlagViewVerticalRange;
+  // configuringViewOne: ConfiguringViewOne;
+  // configuringViewRange: ConfiguringViewRange;
+  // scaleView: ScaleView;
+  // scaleViewVertical: ScaleViewVertical;
+  // flagViewOne: FlagViewOne;
+  // flagViewRange: FlagViewRange;
+  // flagViewVerticalOne: FlagViewVerticalOne;
+  // flagViewVerticalRange: FlagViewVerticalRange;
 
   constructor() {
     this.sliderModel = new SliderModel();
@@ -33,62 +33,62 @@ export default class SliderPresenter {
     this.sliderViewRange = new SliderViewRange(this.sliderModel);
     this.sliderViewVerticalOne = new SliderViewVerticalOne(this.sliderModel);
     this.sliderViewVerticalRange = new SliderViewVerticalRange(this.sliderModel);
-    this.configuringViewOne = new ConfiguringViewOne(this.sliderModel);
-    this.configuringViewRange = new ConfiguringViewRange(this.sliderModel);
-    this.scaleView = new ScaleView(this.sliderModel);
-    this.scaleViewVertical = new ScaleViewVertical(this.sliderModel);
-    this.flagViewOne = new FlagViewOne(this.sliderModel);
-    this.flagViewRange = new FlagViewRange(this.sliderModel);
-    this.flagViewVerticalOne = new FlagViewVerticalOne(this.sliderModel);
-    this.flagViewVerticalRange = new FlagViewVerticalRange(this.sliderModel);
+    // this.configuringViewOne = new ConfiguringViewOne(this.sliderModel);
+    // this.configuringViewRange = new ConfiguringViewRange(this.sliderModel);
+    // this.scaleView = new ScaleView(this.sliderModel);
+    // this.scaleViewVertical = new ScaleViewVertical(this.sliderModel);
+    // this.flagViewOne = new FlagViewOne(this.sliderModel);
+    // this.flagViewRange = new FlagViewRange(this.sliderModel);
+    // this.flagViewVerticalOne = new FlagViewVerticalOne(this.sliderModel);
+    // this.flagViewVerticalRange = new FlagViewVerticalRange(this.sliderModel);
 
-    this.configuringViewOne.inputChange = (evt) => {
+    // this.configuringViewOne.inputChange = (evt) => {
       // this.inputChange(evt);
-    }
+    // }
     
-    this.configuringViewRange.inputChange = (evt) => {
+    // this.configuringViewRange.inputChange = (evt) => {
       // this.inputChange(evt);
-    }
+    // }
 
-    this.flagViewOne.flagMouseDown = (evt) => {
+    // this.flagViewOne.flagMouseDown = (evt) => {
       // this.flagMouseDown(evt);
-    }
+    // }
     
-    this.flagViewRange.flagMouseDown = (evt) => {
+    // this.flagViewRange.flagMouseDown = (evt) => {
       // this.flagMouseDown(evt);
-    }
+    // }
     
-    this.flagViewVerticalOne.flagMouseDown = (evt) => {
+    // this.flagViewVerticalOne.flagMouseDown = (evt) => {
       // this.flagMouseDown(evt);
-    }
+    // }
     
-    this.flagViewVerticalRange.flagMouseDown = (evt) => {
+    // this.flagViewVerticalRange.flagMouseDown = (evt) => {
       // this.flagMouseDown(evt);
-    }
+    // }
 
-    this.scaleView.scaleClick = (evt) => {
+    // this.scaleView.scaleClick = (evt) => {
       // this.scaleClick(evt);
-    }
+    // }
     
-    this.scaleViewVertical.scaleClick = (evt) => {
+    // this.scaleViewVertical.scaleClick = (evt) => {
       // this.scaleClick(evt);
-    }
+    // }
 
-    this.sliderViewOne.toggleMouseDown = (evt) => {
+    // this.sliderViewOne.toggleMouseDown = (evt) => {
       // this.toggleMouseDown(evt);
-    }
+    // }
     
-    this.sliderViewRange.toggleMouseDown = (evt) => {
+    // this.sliderViewRange.toggleMouseDown = (evt) => {
       // this.toggleMouseDown(evt);
-    }
+    // }
     
-    this.sliderViewVerticalOne.toggleMouseDown = (evt) => {
+    // this.sliderViewVerticalOne.toggleMouseDown = (evt) => {
       // this.toggleMouseDown(evt);
-    }
+    // }
     
-    this.sliderViewVerticalRange.toggleMouseDown = (evt) => {
+    // this.sliderViewVerticalRange.toggleMouseDown = (evt) => {
       // this.toggleMouseDown(evt);
-    }
+    // }
   }
 
   // private getClassName(main: JQuery<HTMLElement>): string {
@@ -107,16 +107,16 @@ export default class SliderPresenter {
 
   // }
 
-  // public init(obj:any): void {
-  //   for (const key in obj) {
-  //     if(this.sliderModel.state.hasOwnProperty(key)) this.setInModelValue(key, obj[key]);
-  //   }
+  public init(obj:any): void {
+    for (const key in obj) {
+      if(this.sliderModel.state.hasOwnProperty(key)) this.setInModelValue(key, obj[key]);
+    }
 
-  //   this.showSliderView(this.sliderModel.mainValue);
+    this.showSliderView(this.sliderModel.mainValue);
   //   this.showConfiguringView(this.sliderModel.mainValue);
   //   this.showScaleView(this.sliderModel.mainValue);
   //   this.showFlagView(this.sliderModel.mainValue);
-  // }
+  }
 
   // private inputChange(evt: JQuery.ChangeEvent<HTMLElement>):void {
   //   const input: JQuery<HTMLElement> = $(evt.target);
@@ -203,46 +203,46 @@ export default class SliderPresenter {
 
   // }
 
-  // private setInModelValue(key: string, value: number | string | boolean): void {
-  //   switch (key) {
-  //     case 'main':
-  //       this.sliderModel.mainValue = <string>value;
-  //     break;
-  //     case 'min':
-  //       this.sliderModel.minValue = <number>value;
-  //     break;
-  //     case 'max':
-  //       this.sliderModel.maxValue = <number>value;
-  //     break;
-  //     case 'from':
-  //       this.sliderModel.fromValue = <number>value;
-  //     break;
-  //     case 'fromPercent':
-  //       this.sliderModel.fromPercentValue = <number>value;
-  //     break;
-  //     case 'to':
-  //       this.sliderModel.toValue = <number>value;
-  //     break;
-  //     case 'toPercent':
-  //       this.sliderModel.toPercentValue = <number>value;
-  //     break;
-  //     case 'step':
-  //       this.sliderModel.stepValue = <number>value;
-  //     break;
-  //     case 'view':
-  //       this.sliderModel.viewValue = <string>value;
-  //     break;
-  //     case 'range':
-  //       this.sliderModel.rangeValue = <string>value;
-  //     break;
-  //     case 'flag':
-  //       this.sliderModel.flagValue = <boolean>value;
-  //     break;
-  //     case 'scale':
-  //       this.sliderModel.scaleValue = <boolean>value;
-  //     break;
-  //   }
-  // }
+  private setInModelValue(key: string, value: number | string | boolean): void {
+    switch (key) {
+      case 'main':
+        this.sliderModel.mainValue = <string>value;
+      break;
+      case 'min':
+        this.sliderModel.minValue = <number>value;
+      break;
+      case 'max':
+        this.sliderModel.maxValue = <number>value;
+      break;
+      case 'from':
+        this.sliderModel.fromValue = <number>value;
+      break;
+      case 'fromPercent':
+        this.sliderModel.fromPercentValue = <number>value;
+      break;
+      case 'to':
+        this.sliderModel.toValue = <number>value;
+      break;
+      case 'toPercent':
+        this.sliderModel.toPercentValue = <number>value;
+      break;
+      case 'step':
+        this.sliderModel.stepValue = <number>value;
+      break;
+      case 'view':
+        this.sliderModel.viewValue = <string>value;
+      break;
+      case 'range':
+        this.sliderModel.rangeValue = <string>value;
+      break;
+      case 'flag':
+        this.sliderModel.flagValue = <boolean>value;
+      break;
+      case 'scale':
+        this.sliderModel.scaleValue = <boolean>value;
+      break;
+    }
+  }
 
   // private showConfiguringView(className: string):void {
   //   if (this.sliderModel.rangeValue === 'one') {
@@ -282,19 +282,19 @@ export default class SliderPresenter {
   //   };
   // }
 
-  // private showSliderView(className: string):void {
-  //   if (this.sliderModel.rangeValue === 'one' && this.sliderModel.viewValue === 'horizontal') {
-  //     $(className).append(this.sliderViewOne.element);
-  //   } else if (this.sliderModel.rangeValue === 'range' && this.sliderModel.viewValue === 'horizontal') {
-  //     $(className).append(this.sliderViewRange.element);
-  //   } else if (this.sliderModel.rangeValue === 'one' && this.sliderModel.viewValue === 'vertical') {
-  //     $(className).append(this.sliderViewVerticalOne.element);
-  //   } else if (this.sliderModel.rangeValue === 'range' && this.sliderModel.viewValue === 'vertical') {
-  //     $(className).append(this.sliderViewVerticalRange.element);
-  //   } else {
-  //     throw new Error('incorrect value')
-  //   }
-  // } 
+  private showSliderView(className: string):void {
+    if (this.sliderModel.rangeValue === 'one' && this.sliderModel.viewValue === 'horizontal') {
+      document.querySelector(className)?.appendChild(this.sliderViewOne.element);
+    } else if (this.sliderModel.rangeValue === 'range' && this.sliderModel.viewValue === 'horizontal') {
+      document.querySelector(className)?.appendChild(this.sliderViewRange.element);
+    } else if (this.sliderModel.rangeValue === 'one' && this.sliderModel.viewValue === 'vertical') {
+      document.querySelector(className)?.appendChild(this.sliderViewVerticalOne.element);
+    } else if (this.sliderModel.rangeValue === 'range' && this.sliderModel.viewValue === 'vertical') {
+      document.querySelector(className)?.appendChild(this.sliderViewVerticalRange.element);
+    } else {
+      throw new Error('incorrect value')
+    }
+  } 
 
   // private toggleMouseDown(evt: JQuery.MouseDownEvent<HTMLElement>):void {
    

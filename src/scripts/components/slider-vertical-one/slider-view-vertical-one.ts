@@ -17,10 +17,10 @@ export default class SliderViewVerticalOne extends AbstractView {
   }
 
   bind() {
-    $(this.element).find('.slider__toggle').on('mousedown', (evt: JQuery.MouseDownEvent<HTMLElement>):void => this.toggleMouseDown(evt))
+    this.element.querySelectorAll('.slider__toggle').forEach((elem) => elem.addEventListener('mousedown', (evt: Event):void => this.toggleMouseDown(evt)))
   }
 
-  public toggleMouseDown(evt: JQuery.MouseDownEvent<HTMLElement>):void {
+  public toggleMouseDown(evt: Event):void {
     
   }
 }

@@ -12,10 +12,10 @@ export default class FlagViewVerticalOne extends AbstractView {
   }
   
   bind() {
-    $(this.element).find('.slider__flag-vertical').on('mousedown', (evt: JQuery.MouseDownEvent<HTMLElement>):void => this.flagMouseDown(evt))
+    this.element.querySelectorAll('.slider__flag-vertical').forEach((elem) => elem.addEventListener('mousedown', (evt: Event):void => this.flagMouseDown(evt)))
   }
 
-  public flagMouseDown(evt: JQuery.MouseDownEvent<HTMLElement>):void {
+  public flagMouseDown(evt: Event):void {
     
   }
 }

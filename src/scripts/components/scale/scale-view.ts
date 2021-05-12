@@ -35,10 +35,10 @@ export default class ScaleView extends AbstractView {
   }
 
   bind() {
-    $(this.element).find('.slider__item').on('click', (evt: JQuery.ClickEvent<HTMLElement>):void => this.scaleClick(evt))
+    this.element.querySelectorAll('.slider__item').forEach((elem) => elem.addEventListener('click', (evt: Event):void => this.scaleClick(evt)))
   }
 
-  public scaleClick(evt: JQuery.ClickEvent<HTMLElement>):void {
+  public scaleClick(evt: Event):void {
     
   }
 }

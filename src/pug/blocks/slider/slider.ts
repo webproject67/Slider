@@ -12,7 +12,13 @@ new Slider().init({
 
 new Slider().init({
   main: '.sabakA',
+  view: 'vertical'
+});
+
+new Slider().init({
+  main: '.cat',
   view: 'vertical',
+  range: 'range',
   flag: false,
   scale: false
 });

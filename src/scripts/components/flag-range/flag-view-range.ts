@@ -13,10 +13,10 @@ export default class FlagViewRange extends AbstractView {
   }
 
   bind() {
-    $(this.element).find('.slider__flag').on('mousedown', (evt: JQuery.MouseDownEvent<HTMLElement>):void => this.flagMouseDown(evt))
+    this.element.querySelectorAll('.slider__flag').forEach((elem) => elem.addEventListener('mousedown', (evt: Event):void => this.flagMouseDown(evt)))
   }
 
-  public flagMouseDown(evt: JQuery.MouseDownEvent<HTMLElement>):void {
+  public flagMouseDown(evt: Event):void {
     
   }
 }
