@@ -7,11 +7,11 @@ export default class SliderViewVerticalOne extends AbstractView {
 
   get template() {
     return `
-      <div class="slider__inner slider__inner--height">
+      <div data-testid="sliderVerticalOne" class="slider__inner slider__inner--height">
         <div class="slider__scale slider__scale--vertical">
-          <div class="slider__bar slider__bar--vertical-one"></div>
+          <div class="slider__bar slider__bar--vertical-one" style="height:${this.sliderModel.toPercentValue}%"></div>
         </div>
-        <div class="slider__toggle slider__toggle--vertical-max"></div>
+        <div class="slider__toggle slider__toggle--vertical-max" style="top:${this.sliderModel.toPercentValue}%"></div>
       </div>
     `
   }

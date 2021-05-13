@@ -3,14 +3,14 @@ import SliderViewOne from '../slider-one/slider-view-one';
 import SliderViewRange from '../slider-range/slider-view-range';
 import SliderViewVerticalOne from '../slider-vertical-one/slider-view-vertical-one';
 import SliderViewVerticalRange from '../slider-vertical-range/slider-view-vertical-range';
-// import ConfiguringViewOne from '../configuring-one/configuring-view-one';
-// import ConfiguringViewRange from '../configuring-range/configuring-view-range';
-// import ScaleView from '../scale/scale-view';
-// import ScaleViewVertical from '../scale-vertical/scale-view-vertical';
-// import FlagViewOne from '../flag-one/flag-view-one';
-// import FlagViewRange from '../flag-range/flag-view-range';
-// import FlagViewVerticalOne from '../flag-vertical-one/flag-view-vertical-one';
-// import FlagViewVerticalRange from '../flag-vertical-range/flag-view-vertical-range';
+import ConfiguringViewOne from '../configuring-one/configuring-view-one';
+import ConfiguringViewRange from '../configuring-range/configuring-view-range';
+import ScaleView from '../scale/scale-view';
+import ScaleViewVertical from '../scale-vertical/scale-view-vertical';
+import FlagViewOne from '../flag-one/flag-view-one';
+import FlagViewRange from '../flag-range/flag-view-range';
+import FlagViewVerticalOne from '../flag-vertical-one/flag-view-vertical-one';
+import FlagViewVerticalRange from '../flag-vertical-range/flag-view-vertical-range';
 
 export default class SliderPresenter {
   sliderModel: SliderModel;
@@ -18,14 +18,14 @@ export default class SliderPresenter {
   sliderViewRange: SliderViewRange;
   sliderViewVerticalOne: SliderViewVerticalOne;
   sliderViewVerticalRange: SliderViewVerticalRange;
-  // configuringViewOne: ConfiguringViewOne;
-  // configuringViewRange: ConfiguringViewRange;
-  // scaleView: ScaleView;
-  // scaleViewVertical: ScaleViewVertical;
-  // flagViewOne: FlagViewOne;
-  // flagViewRange: FlagViewRange;
-  // flagViewVerticalOne: FlagViewVerticalOne;
-  // flagViewVerticalRange: FlagViewVerticalRange;
+  configuringViewOne: ConfiguringViewOne;
+  configuringViewRange: ConfiguringViewRange;
+  scaleView: ScaleView;
+  scaleViewVertical: ScaleViewVertical;
+  flagViewOne: FlagViewOne;
+  flagViewRange: FlagViewRange;
+  flagViewVerticalOne: FlagViewVerticalOne;
+  flagViewVerticalRange: FlagViewVerticalRange;
 
   constructor() {
     this.sliderModel = new SliderModel();
@@ -33,14 +33,14 @@ export default class SliderPresenter {
     this.sliderViewRange = new SliderViewRange(this.sliderModel);
     this.sliderViewVerticalOne = new SliderViewVerticalOne(this.sliderModel);
     this.sliderViewVerticalRange = new SliderViewVerticalRange(this.sliderModel);
-    // this.configuringViewOne = new ConfiguringViewOne(this.sliderModel);
-    // this.configuringViewRange = new ConfiguringViewRange(this.sliderModel);
-    // this.scaleView = new ScaleView(this.sliderModel);
-    // this.scaleViewVertical = new ScaleViewVertical(this.sliderModel);
-    // this.flagViewOne = new FlagViewOne(this.sliderModel);
-    // this.flagViewRange = new FlagViewRange(this.sliderModel);
-    // this.flagViewVerticalOne = new FlagViewVerticalOne(this.sliderModel);
-    // this.flagViewVerticalRange = new FlagViewVerticalRange(this.sliderModel);
+    this.configuringViewOne = new ConfiguringViewOne(this.sliderModel);
+    this.configuringViewRange = new ConfiguringViewRange(this.sliderModel);
+    this.scaleView = new ScaleView(this.sliderModel);
+    this.scaleViewVertical = new ScaleViewVertical(this.sliderModel);
+    this.flagViewOne = new FlagViewOne(this.sliderModel);
+    this.flagViewRange = new FlagViewRange(this.sliderModel);
+    this.flagViewVerticalOne = new FlagViewVerticalOne(this.sliderModel);
+    this.flagViewVerticalRange = new FlagViewVerticalRange(this.sliderModel);
 
     // this.configuringViewOne.inputChange = (evt) => {
       // this.inputChange(evt);
@@ -113,9 +113,9 @@ export default class SliderPresenter {
     }
 
     this.showSliderView(this.sliderModel.mainValue);
-  //   this.showConfiguringView(this.sliderModel.mainValue);
-  //   this.showScaleView(this.sliderModel.mainValue);
-  //   this.showFlagView(this.sliderModel.mainValue);
+    this.showConfiguringView(this.sliderModel.mainValue);
+    this.showScaleView(this.sliderModel.mainValue);
+    this.showFlagView(this.sliderModel.mainValue);
   }
 
   // private inputChange(evt: JQuery.ChangeEvent<HTMLElement>):void {
@@ -244,43 +244,43 @@ export default class SliderPresenter {
     }
   }
 
-  // private showConfiguringView(className: string):void {
-  //   if (this.sliderModel.rangeValue === 'one') {
-  //     $(className).find('.slider__wrapper').append(this.configuringViewOne.element);
-  //   } else if (this.sliderModel.rangeValue === 'range') {
-  //     $(className).find('.slider__wrapper').append(this.configuringViewRange.element);
-  //   } else {
-  //     throw new Error('incorrect value')
-  //   }
-  // }
+  private showConfiguringView(className: string):void {
+    if (this.sliderModel.rangeValue === 'one') {
+      document.querySelector(className)!.querySelector('.slider__wrapper')?.appendChild(this.configuringViewOne.element);
+    } else if (this.sliderModel.rangeValue === 'range') {
+      document.querySelector(className)!.querySelector('.slider__wrapper')?.appendChild(this.configuringViewRange.element);
+    } else {
+      throw new Error('incorrect value')
+    }
+  }
 
-  // private showFlagView(className: string):void {
-  //   if(this.sliderModel.flagValue) {
-  //     if (this.sliderModel.rangeValue === 'one' && this.sliderModel.viewValue === 'horizontal') {
-  //       $(className).find('.slider__inner').append(this.flagViewOne.element);
-  //     } else if (this.sliderModel.rangeValue === 'range' && this.sliderModel.viewValue === 'horizontal') {
-  //       $(className).find('.slider__inner').append(this.flagViewRange.element);
-  //     } else if (this.sliderModel.rangeValue === 'one' && this.sliderModel.viewValue === 'vertical') {
-  //       $(className).find('.slider__inner').append(this.flagViewVerticalOne.element);
-  //     } else if (this.sliderModel.rangeValue === 'range' && this.sliderModel.viewValue === 'vertical') {
-  //       $(className).find('.slider__inner').append(this.flagViewVerticalRange.element);
-  //     } else {
-  //       throw new Error('incorrect value')
-  //     }
-  //   }
-  // }
+  private showFlagView(className: string):void {
+    if(this.sliderModel.flagValue) {
+      if (this.sliderModel.rangeValue === 'one' && this.sliderModel.viewValue === 'horizontal') {
+        document.querySelector(className)!.querySelector('.slider__inner')?.appendChild(this.flagViewOne.element);
+      } else if (this.sliderModel.rangeValue === 'range' && this.sliderModel.viewValue === 'horizontal') {
+        document.querySelector(className)!.querySelector('.slider__inner')?.appendChild(this.flagViewRange.element);
+      } else if (this.sliderModel.rangeValue === 'one' && this.sliderModel.viewValue === 'vertical') {
+        document.querySelector(className)!.querySelector('.slider__inner')?.appendChild(this.flagViewVerticalOne.element);
+      } else if (this.sliderModel.rangeValue === 'range' && this.sliderModel.viewValue === 'vertical') {
+        document.querySelector(className)!.querySelector('.slider__inner')?.appendChild(this.flagViewVerticalRange.element);
+      } else {
+        throw new Error('incorrect value')
+      }
+    }
+  }
 
-  // private showScaleView(className: string): void {
-  //   if(this.sliderModel.scaleValue) {
-  //     if (this.sliderModel.viewValue === 'horizontal') {
-  //       $(className).find('.slider__inner').append(this.scaleView.element);
-  //     } else if (this.sliderModel.viewValue === 'vertical') {
-  //       $(className).find('.slider__inner').append(this.scaleViewVertical.element);
-  //     } else {
-  //       throw new Error('incorrect value')
-  //     }
-  //   };
-  // }
+  private showScaleView(className: string): void {
+    if(this.sliderModel.scaleValue) {
+      if (this.sliderModel.viewValue === 'horizontal') {
+        document.querySelector(className)!.querySelector('.slider__inner')?.appendChild(this.scaleView.element);
+      } else if (this.sliderModel.viewValue === 'vertical') {
+        document.querySelector(className)!.querySelector('.slider__inner')?.appendChild(this.scaleViewVertical.element);
+      } else {
+        throw new Error('incorrect value')
+      }
+    };
+  }
 
   private showSliderView(className: string):void {
     if (this.sliderModel.rangeValue === 'one' && this.sliderModel.viewValue === 'horizontal') {

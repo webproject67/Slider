@@ -4,10 +4,10 @@ new Slider().init({});
 
 new Slider().init({
   main: '#slider2',
+  range: 'range',
   min: 10,
   max: 50,
-  step: 10,
-  range: 'range'
+  step: 10
 });
 
 new Slider().init({

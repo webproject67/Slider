@@ -37,8 +37,8 @@ export default abstract class AbstractView {
 
   private createElement(template: string, className: string): HTMLElement {
     const newElement: HTMLElement = document.createElement('div');
-    newElement.classList.add(className);
-    newElement.textContent = template;
+    newElement.className = className;
+    newElement.innerHTML = template;
     return newElement;
   };
 

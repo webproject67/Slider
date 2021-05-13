@@ -28,25 +28,10 @@
   background-color: #4eb7a8;
   border-radius: 3px;
 
-  &--one {
-    margin-right: 0%;
-  }
-  
-  &--range {
-    margin-left: 0%;
-    margin-right: 0%;
-  }
-
-  &--vertical-one {
-    width: 5px;
-    height: 100%;
-  }
-  
+  &--vertical-one,
   &--vertical-range {
     position: absolute;
-    top: 0%;
     width: 5px;
-    height: 100%;
   }
 }
 
@@ -60,23 +45,13 @@
   border-radius: 50%;
   cursor: pointer;
   
-  &--min {
-    top: 2px;
-    left: 0%;
-  }
-  
+  &--min,
   &--max {
     top: 2px;
-    left: 100%;
   }
   
-  &--vertical-min {
-    top: 0%;
-    left: 2px;
-  }
-  
+  &--vertical-min,
   &--vertical-max {
-    top: 100%;
     left: 2px;
   }
 }
@@ -118,14 +93,6 @@
   border-radius: 5px;
   transform: translate(-50%, -50%);
 
-  &--min {
-    left: 0%;
-  }
-  
-  &--max {
-    left: 100%;
-  }
-
   &::before {
     position: absolute;
     content: "";
@@ -145,18 +112,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-top: -15px;
   padding: 3px 15px;
   color: #ffffff;
   background-color: #4eb7a8;
   border-radius: 5px;
-
-  &--min {
-    top: -5%;
-  }
-  
-  &--max {
-    top: 95%;
-  }
 
   &::before {
     position: absolute;

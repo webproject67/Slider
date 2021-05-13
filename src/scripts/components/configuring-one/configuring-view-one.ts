@@ -7,7 +7,7 @@ export default class ConfiguringViewOne extends AbstractView {
 
   get template() {
     return `
-      <div class="slider__input">
+      <div data-testid="configuringOne" class="slider__input">
         <label class="slider__label" for="min">Минимальное значение</label>
         <input class="slider__min slider__number" type="number" value=${this.sliderModel.minValue} id="min" data-name="min">
       </div>

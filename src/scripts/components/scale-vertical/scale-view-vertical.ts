@@ -12,7 +12,13 @@ export default class ScaleViewVertical extends AbstractView {
     let template: string = '';
 
     for (let i = max; i >= min; i-= step) {
-      if (i === min || i === max) {
+      if (i === min) {
+        template += `
+          <div data-testid="scaleVertical" class="slider__item">|
+            <span class="slider__item--number">${i}</span>
+          </div>
+        `
+      } else if (i === max) {
         template += `
           <div class="slider__item">|
             <span class="slider__item--number">${i}</span>

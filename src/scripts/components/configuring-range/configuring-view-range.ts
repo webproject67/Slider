@@ -7,7 +7,7 @@ export default class ConfiguringViewRange extends AbstractView {
 
   get template() {
     return `
-      <div class="slider__input">
+      <div data-testid="configuringRange" class="slider__input">
         <label class="slider__label" for="min">Минимальное значение</label>
         <input class="slider__min slider__number" type="number" value=${this.sliderModel.minValue} id="min" data-name="min">
       </div>
