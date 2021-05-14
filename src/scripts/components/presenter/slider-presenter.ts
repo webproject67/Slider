@@ -50,21 +50,21 @@ export default class SliderPresenter {
       // this.inputChange(evt);
     // }
 
-    // this.flagViewOne.flagMouseDown = (evt) => {
-      // this.flagMouseDown(evt);
-    // }
+    this.flagViewOne.flagMouseDown = (evt) => {
+      this.flagMouseDown(evt);
+    }
     
-    // this.flagViewRange.flagMouseDown = (evt) => {
-      // this.flagMouseDown(evt);
-    // }
+    this.flagViewRange.flagMouseDown = (evt) => {
+      this.flagMouseDown(evt);
+    }
     
-    // this.flagViewVerticalOne.flagMouseDown = (evt) => {
-      // this.flagMouseDown(evt);
-    // }
+    this.flagViewVerticalOne.flagMouseDown = (evt) => {
+      this.flagMouseDown(evt);
+    }
     
-    // this.flagViewVerticalRange.flagMouseDown = (evt) => {
-      // this.flagMouseDown(evt);
-    // }
+    this.flagViewVerticalRange.flagMouseDown = (evt) => {
+      this.flagMouseDown(evt);
+    }
 
     // this.scaleView.scaleClick = (evt) => {
       // this.scaleClick(evt);
@@ -91,6 +91,29 @@ export default class SliderPresenter {
     }
   }
 
+  private flagMouseDown(evt: any):void  {
+    const flag: HTMLElement = evt.target;
+    const slider: HTMLElement = flag.parentElement!.parentElement!;
+    let toggle: HTMLElement;
+
+    switch (flag.className.split(' ')[1]) {
+      case 'slider__flag--min':
+        toggle = slider.querySelector('.slider__toggle--min')!;
+      break;
+      case 'slider__flag--max':
+        toggle = slider.querySelector('.slider__toggle--max')!;
+      break;
+      case 'slider__flag-vertical--min':
+        toggle = slider.querySelector('.slider__toggle-vertical--v-min')!;
+      break;
+      case 'slider__flag-vertical--max':
+        toggle = slider.querySelector('.slider__toggle-vertical--v-max')!;
+      break;
+    }
+
+    this.replaceToggle(evt, toggle!);
+  }
+
   // private getClassName(main: JQuery<HTMLElement>): string {
   //   let classNameOrId: string = '';
 
@@ -101,10 +124,6 @@ export default class SliderPresenter {
   //   } 
 
   //   return classNameOrId;
-  // }
-
-  // private flagMouseDown(evt: JQuery.MouseDownEvent<HTMLElement>):void  {
-
   // }
 
   public init(obj:any): void {
@@ -214,6 +233,100 @@ export default class SliderPresenter {
     this.flagViewVerticalOne.element.replaceWith(this.flagViewVerticalOne.newElement);
     this.flagViewVerticalRange.element.replaceWith(this.flagViewVerticalRange.newElement);
   }
+  
+  private replaceToggle(evt: any, toggle: HTMLElement): void {
+    const min: number = this.sliderModel.minValue;
+    const max: number = this.sliderModel.maxValue;
+    const step: number = this.sliderModel.stepValue;
+    const slider: HTMLElement = toggle.parentElement!;
+    const boxLeft: number = slider.offsetLeft;
+    const boxRight: number = boxLeft + slider.clientWidth;
+    const boxTop: number = slider.offsetTop;
+    const boxBottom: number = boxTop + slider.clientHeight;
+    const sliderLeft: number = boxLeft + pageXOffset;
+    const sliderWidth: number = boxRight - boxLeft;
+    const sliderTop: number = boxTop + pageYOffset;
+    const sliderHeight: number = boxBottom - boxTop;
+
+    let onMouseMove: {(evt: MouseEvent): void};
+
+    if (toggle.className.split(' ')[0] === 'slider__toggle') {
+      const shift: number = evt.pageX - toggle.getBoundingClientRect().left - 10;
+
+      onMouseMove = (evt: MouseEvent): void => {
+        const left: number = ((evt.pageX - shift - sliderLeft) / sliderWidth) * 100;
+        const stepCount: number = (max - min) / step;
+        const stepPercent: number = 100 / stepCount;
+        let stepLeft: number = Math.round(left / stepPercent) * stepPercent;
+        if (stepLeft < 0) stepLeft = 0;
+        if (stepLeft > 100) stepLeft = 100;
+        
+        if (toggle.className.split(' ')[1] === 'slider__toggle--min') {
+          const toPercentValue: number = this.sliderModel.toPercentValue;
+          if (stepLeft > toPercentValue) stepLeft = toPercentValue;
+          this.sliderModel.fromPercentValue = <number>stepLeft;
+          const value: number = <number><unknown>+(stepLeft / stepPercent * step).toFixed() + min;
+          this.sliderModel.fromValue = <number>value;
+          (<HTMLElement>slider.querySelector('.slider__bar')!).style.marginLeft = stepLeft + '%';
+        }
+        
+        if (toggle.className.split(' ')[1] === 'slider__toggle--max') {
+          const fromPercentValue: number = this.sliderModel.fromPercentValue;
+          if (fromPercentValue > stepLeft) stepLeft = fromPercentValue;
+          this.sliderModel.toPercentValue = <number>stepLeft;
+          const value: number = <number><unknown>+(stepLeft / stepPercent * step).toFixed() + min;
+          this.sliderModel.toValue = <number>value;
+          (<HTMLElement>slider.querySelector('.slider__bar')!).style.marginRight = 100 - stepLeft + '%';
+        }
+  
+        toggle.style.left = <string><unknown>stepLeft + '%';
+        this.replaceScreenFlag()
+        this.replaceScreenConfiguring()
+      }
+    } else {
+      const shift: number = evt.pageY - (toggle.getBoundingClientRect().top + (window.pageYOffset * 2)) - 10;
+      
+      onMouseMove = (evt: MouseEvent): void => {
+        const top: number = ((evt.pageY - shift - sliderTop) / sliderHeight) * 100;
+        const stepCount: number = (max - min) / step;
+        const stepPercent: number = 100 / stepCount;
+        let stepTop: number = Math.round(top / stepPercent) * stepPercent;
+        if (stepTop < 0) stepTop = 0;
+        if (stepTop > 100) stepTop = 100;
+        
+        if (toggle.className.split(' ')[1] === 'slider__toggle-vertical--v-min') {
+          const toPercentValue: number = this.sliderModel.toPercentValue;
+          if (stepTop > toPercentValue) stepTop = toPercentValue;
+          this.sliderModel.fromPercentValue = <number>stepTop;
+          const value: number = <number><unknown>+(stepTop / stepPercent * step).toFixed() + min;
+          this.sliderModel.fromValue = <number>value;
+          (<HTMLElement>slider.querySelector('.slider__bar')!).style.top = stepTop + '%';
+          (<HTMLElement>slider.querySelector('.slider__bar')!).style.height = this.sliderModel.toPercentValue - stepTop + '%';
+        }
+        
+        if (toggle.className.split(' ')[1] === 'slider__toggle-vertical--v-max') {
+          const fromPercentValue: number = this.sliderModel.fromPercentValue;
+          if (fromPercentValue > stepTop) stepTop = fromPercentValue;
+          this.sliderModel.toPercentValue = <number>stepTop;
+          const value: number = <number><unknown>+(stepTop / stepPercent * step).toFixed() + min;
+          this.sliderModel.toValue = <number>value;
+          (<HTMLElement>slider.querySelector('.slider__bar')!).style.height = stepTop - this.sliderModel.fromPercentValue + '%';
+        }
+  
+        toggle.style.top = <string><unknown>stepTop + '%';
+        this.replaceScreenFlag()
+        this.replaceScreenConfiguring()
+      }
+    }
+
+    const onMouseUp = () => {
+      document.removeEventListener('mousemove', onMouseMove);
+      document.removeEventListener('mouseup', onMouseUp);
+    }
+    
+    document.addEventListener('mousemove', onMouseMove);
+    document.addEventListener('mouseup', onMouseUp);
+  }
 
   private setInModelValue(key: string, value: number | string | boolean): void {
     switch (key) {
@@ -310,115 +423,7 @@ export default class SliderPresenter {
 
   private toggleMouseDown(evt: any):void {
     const toggle: HTMLElement = evt.target;
-    const slider: HTMLElement = toggle.parentElement!;
-    const min: number = this.sliderModel.minValue;
-    const max: number = this.sliderModel.maxValue;
-    const step: number = this.sliderModel.stepValue;
-
-    const getCoords = (elem: HTMLElement): {
-      left: number;
-      width: number;
-      top: number;
-      height: number;
-    } => {
-      const boxLeft: number = elem.offsetLeft;
-      const boxRight: number = boxLeft + elem.clientWidth;
-      const boxTop: number = elem.offsetTop;
-      const boxBottom: number = boxTop + elem.clientHeight;
-    
-      return {
-        left: boxLeft + pageXOffset,
-        width: boxRight - boxLeft,
-        top: boxTop + pageYOffset,
-        height: boxBottom - boxTop
-      };
-    }
-
-    const sliderCoords: {
-      left: number;
-      width: number;
-      top: number;
-      height: number;
-    } = getCoords(slider);
-
-    let onMouseMove: {(evt: MouseEvent): void};
-
-    if (toggle.className.split(' ')[0] === 'slider__toggle') {
-      const shift: number = evt.pageX - toggle.getBoundingClientRect().left - 10;
-
-      onMouseMove = (evt: MouseEvent): void => {
-        const left: number = ((evt.pageX - shift - sliderCoords.left) / sliderCoords.width) * 100;
-        const stepCount: number = (max - min) / step;
-        const stepPercent: number = 100 / stepCount;
-        let stepLeft: number = Math.round(left / stepPercent) * stepPercent;
-        if (stepLeft < 0) stepLeft = 0;
-        if (stepLeft > 100) stepLeft = 100;
-        
-        if (toggle.className.split(' ')[1] === 'slider__toggle--min') {
-          const toPercentValue: number = this.sliderModel.toPercentValue;
-          if (stepLeft > toPercentValue) stepLeft = toPercentValue;
-          this.sliderModel.fromPercentValue = <number>stepLeft;
-          const value: number = <number><unknown>+(stepLeft / stepPercent * step).toFixed() + min;
-          this.sliderModel.fromValue = <number>value;
-          (<HTMLElement>slider.querySelector('.slider__bar')!).style.marginLeft = stepLeft + '%';
-        }
-        
-        if (toggle.className.split(' ')[1] === 'slider__toggle--max') {
-          const fromPercentValue: number = this.sliderModel.fromPercentValue;
-          if (fromPercentValue > stepLeft) stepLeft = fromPercentValue;
-          this.sliderModel.toPercentValue = <number>stepLeft;
-          const value: number = <number><unknown>+(stepLeft / stepPercent * step).toFixed() + min;
-          this.sliderModel.toValue = <number>value;
-          (<HTMLElement>slider.querySelector('.slider__bar')!).style.marginRight = 100 - stepLeft + '%';
-        }
-  
-        toggle.style.left = <string><unknown>stepLeft + '%';
-        this.replaceScreenFlag()
-        this.replaceScreenConfiguring()
-      }
-    } else {
-      const shift: number = evt.pageY - (toggle.getBoundingClientRect().top + (window.pageYOffset * 2)) - 10;
-      
-      onMouseMove = (evt: MouseEvent): void => {
-        const top: number = ((evt.pageY - shift - sliderCoords.top) / sliderCoords.height) * 100;
-        const stepCount: number = (max - min) / step;
-        const stepPercent: number = 100 / stepCount;
-        let stepTop: number = Math.round(top / stepPercent) * stepPercent;
-        if (stepTop < 0) stepTop = 0;
-        if (stepTop > 100) stepTop = 100;
-        
-        if (toggle.className.split(' ')[1] === 'slider__toggle-vertical--v-min') {
-          const toPercentValue: number = this.sliderModel.toPercentValue;
-          if (stepTop > toPercentValue) stepTop = toPercentValue;
-          this.sliderModel.fromPercentValue = <number>stepTop;
-          const value: number = <number><unknown>+(stepTop / stepPercent * step).toFixed() + min;
-          this.sliderModel.fromValue = <number>value;
-          (<HTMLElement>slider.querySelector('.slider__bar')!).style.top = stepTop + '%';
-          (<HTMLElement>slider.querySelector('.slider__bar')!).style.height = this.sliderModel.toPercentValue - stepTop + '%';
-        }
-        
-        if (toggle.className.split(' ')[1] === 'slider__toggle-vertical--v-max') {
-          const fromPercentValue: number = this.sliderModel.fromPercentValue;
-          if (fromPercentValue > stepTop) stepTop = fromPercentValue;
-          this.sliderModel.toPercentValue = <number>stepTop;
-          const value: number = <number><unknown>+(stepTop / stepPercent * step).toFixed() + min;
-          this.sliderModel.toValue = <number>value;
-          (<HTMLElement>slider.querySelector('.slider__bar')!).style.height = stepTop - this.sliderModel.fromPercentValue + '%';
-        }
-  
-        toggle.style.top = <string><unknown>stepTop + '%';
-        this.replaceScreenFlag()
-        this.replaceScreenConfiguring()
-      }
-    }
-
-    const onMouseUp = () => {
-      document.removeEventListener('mousemove', onMouseMove);
-      document.removeEventListener('mouseup', onMouseUp);
-    }
-    
-    document.addEventListener('mousemove', onMouseMove);
-    document.addEventListener('mouseup', onMouseUp);
+    this.replaceToggle(evt, toggle);
   }
   
   // if (toggle.hasClass('slider__item')) {

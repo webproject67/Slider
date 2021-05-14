@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`jest snapshots 1`] = `
+<div
+  class="slider__flags"
+>
+  
+      
+  <span
+    class="slider__flag slider__flag--max"
+    data-testid="flagHorizontal"
+    style="left:100%"
+  >
+    100
+  </span>
+  
+    
+</div>
+`;

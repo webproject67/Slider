@@ -93,6 +93,7 @@
   background-color: #4eb7a8;
   border-radius: 5px;
   transform: translate(-50%, -50%);
+  cursor: pointer;
 
   &::before {
     position: absolute;
@@ -118,6 +119,7 @@
   color: #ffffff;
   background-color: #4eb7a8;
   border-radius: 5px;
+  cursor: pointer;
 
   &::before {
     position: absolute;

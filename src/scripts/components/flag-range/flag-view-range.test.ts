@@ -10,3 +10,7 @@ test('spyOn mouseDown flag range', () => {
   flag.flagMouseDown(evt);
   expect(somethingSpy).toHaveBeenCalledTimes(1)
 });
+
+it('jest snapshots', () => {
+  expect(flag.element).toMatchSnapshot()
+})
