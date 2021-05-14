@@ -319,3 +319,7 @@ describe('slider #4', () => {
     expect(getByTestId(container.querySelector(slider.sliderModel.mainValue)!, 'configuringRange')).toHaveClass('slider__input');
   })
 });
+
+it('jest snapshots', () => {
+  expect(container).toMatchSnapshot()
+})

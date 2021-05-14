@@ -35,7 +35,8 @@
   }
 }
 
-.slider__toggle {
+.slider__toggle,
+.slider__toggle-vertical {
   position: absolute;
   width: 20px;
   height: 20px;
@@ -50,8 +51,8 @@
     top: 2px;
   }
   
-  &--vertical-min,
-  &--vertical-max {
+  &--v-min,
+  &--v-max {
     left: 2px;
   }
 }

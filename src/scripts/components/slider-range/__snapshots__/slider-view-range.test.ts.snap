@@ -1,0 +1,45 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`jest snapshots 1`] = `
+<div
+  class="slider__wrapper"
+>
+  
+      
+  <div
+    class="slider__inner"
+    data-testid="sliderRange"
+  >
+    
+        
+    <div
+      class="slider__scale"
+    >
+      
+          
+      <div
+        class="slider__bar slider__bar--range"
+        style="margin-left:0%;margin-right:0%"
+      />
+      
+        
+    </div>
+    
+        
+    <div
+      class="slider__toggle slider__toggle--min"
+      style="left:0%"
+    />
+    
+        
+    <div
+      class="slider__toggle slider__toggle--max"
+      style="left:100%"
+    />
+    
+      
+  </div>
+  
+    
+</div>
+`;

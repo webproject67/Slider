@@ -10,3 +10,7 @@ test('spyOn mouseDown toggle range', () => {
   slider.toggleMouseDown(evt);
   expect(somethingSpy).toHaveBeenCalledTimes(1)
 });
+
+it('jest snapshots', () => {
+  expect(slider.element).toMatchSnapshot()
+})

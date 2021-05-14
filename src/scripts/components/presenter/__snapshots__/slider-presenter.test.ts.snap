@@ -1,0 +1,2421 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`jest snapshots 1`] = `
+<div>
+  
+    
+      
+        
+  <div
+    id="slider"
+  >
+    <div
+      class="slider__wrapper"
+    >
+      
+      
+      <div
+        class="slider__inner"
+        data-testid="sliderOne"
+      >
+        
+        
+        <div
+          class="slider__scale"
+        >
+          
+          
+          <div
+            class="slider__bar slider__bar--one"
+            style="margin-right:0%"
+          />
+          
+        
+        </div>
+        
+        
+        <div
+          class="slider__toggle slider__toggle--max"
+          style="left:100%"
+        />
+        
+      
+        <div
+          class="slider__list"
+        >
+          
+          
+          <div
+            class="slider__item"
+            data-testid="scaleHorizontal"
+          >
+            |
+            
+            <span
+              class="slider__item--number"
+            >
+              0
+            </span>
+            
+          
+          </div>
+          
+        
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          
+          
+          <div
+            class="slider__item"
+          >
+            |
+            
+            <span
+              class="slider__item--number"
+            >
+              100
+            </span>
+            
+          
+          </div>
+          
+        
+        </div>
+        <div
+          class="slider__flags"
+        >
+          
+      
+          <span
+            class="slider__flag slider__flag--max"
+            data-testid="flagHorizontal"
+            style="left:100%"
+          >
+            100
+          </span>
+          
+    
+        </div>
+      </div>
+      
+    
+      <div
+        class="slider__inputs"
+      >
+        
+      
+        <div
+          class="slider__input"
+          data-testid="configuringOne"
+        >
+          
+        
+          <label
+            class="slider__label"
+            for="min"
+          >
+            Минимальное значение
+          </label>
+          
+        
+          <input
+            class="slider__min slider__number"
+            data-name="min"
+            id="min"
+            type="number"
+            value="0"
+          />
+          
+      
+        </div>
+        
+      
+        <div
+          class="slider__input"
+        >
+          
+        
+          <label
+            class="slider__label"
+            for="max"
+          >
+            Максимальное значение
+          </label>
+          
+        
+          <input
+            class="slider__max slider__number"
+            data-name="max"
+            id="max"
+            type="number"
+            value="100"
+          />
+          
+      
+        </div>
+        
+      
+        <div
+          class="slider__input"
+        >
+          
+        
+          <label
+            class="slider__label"
+            for="to"
+          >
+            Текущее значение
+          </label>
+          
+        
+          <input
+            class="slider__to slider__number"
+            data-name="to"
+            id="to"
+            readonly=""
+            type="number"
+            value="100"
+          />
+          
+      
+        </div>
+        
+      
+        <div
+          class="slider__input"
+        >
+          
+        
+          <label
+            class="slider__label"
+            for="step"
+          >
+            Шаг
+          </label>
+          
+        
+          <input
+            class="slider__step slider__number"
+            data-name="step"
+            id="step"
+            type="number"
+            value="1"
+          />
+          
+      
+        </div>
+        
+      
+        <div
+          class="slider__input"
+        >
+          
+        
+          <input
+            checked=""
+            class="slider__view"
+            data-name="view"
+            id="horizontal#slider"
+            name="view#slider"
+            type="radio"
+            value="horizontal"
+          />
+          
+        
+          <label
+            for="horizontal#slider"
+          >
+            Горизонтальный
+          </label>
+          
+        
+          <input
+            class="slider__view"
+            data-name="view"
+            id="vertical#slider"
+            name="view#slider"
+            type="radio"
+            value="vertical"
+          />
+          
+        
+          <label
+            for="vertical#slider"
+          >
+            Вертикальный
+          </label>
+          
+      
+        </div>
+        
+      
+        <div
+          class="slider__input"
+        >
+          
+        
+          <input
+            checked=""
+            class="slider__range"
+            data-name="range"
+            id="one#slider"
+            name="range#slider"
+            type="radio"
+            value="one"
+          />
+          
+        
+          <label
+            for="one#slider"
+          >
+            Одиночное значение
+          </label>
+          
+        
+          <input
+            class="slider__range"
+            data-name="range"
+            id="range#slider"
+            name="range#slider"
+            type="radio"
+            value="range"
+          />
+          
+        
+          <label
+            for="range#slider"
+          >
+            Интервал
+          </label>
+          
+      
+        </div>
+        
+      
+        <div
+          class="slider__input"
+        >
+          
+        
+          <input
+            checked=""
+            class="slider__flag-checkbox"
+            data-name="flag"
+            id="flag#slider"
+            type="checkbox"
+          />
+          
+        
+          <label
+            for="flag#slider"
+          >
+            Значение
+          </label>
+          
+      
+        </div>
+        
+      
+        <div
+          class="slider__input"
+        >
+          
+        
+          <input
+            checked=""
+            class="slider__scale-checkbox"
+            data-name="scale"
+            id="scale#slider"
+            type="checkbox"
+          />
+          
+        
+          <label
+            for="scale#slider"
+          >
+            Шкала
+          </label>
+          
+      
+        </div>
+        
+    
+      </div>
+    </div>
+  </div>
+  
+        
+  <div
+    id="slider11"
+  >
+    <div
+      class="slider__wrapper"
+    >
+      
+      
+      <div
+        class="slider__inner"
+        data-testid="sliderRange"
+      >
+        
+        
+        <div
+          class="slider__scale"
+        >
+          
+          
+          <div
+            class="slider__bar slider__bar--range"
+            style="margin-left:0%;margin-right:0%"
+          />
+          
+        
+        </div>
+        
+        
+        <div
+          class="slider__toggle slider__toggle--min"
+          style="left:0%"
+        />
+        
+        
+        <div
+          class="slider__toggle slider__toggle--max"
+          style="left:100%"
+        />
+        
+      
+        <div
+          class="slider__list"
+        >
+          
+          
+          <div
+            class="slider__item"
+            data-testid="scaleHorizontal"
+          >
+            |
+            
+            <span
+              class="slider__item--number"
+            >
+              28
+            </span>
+            
+          
+          </div>
+          
+        
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          
+          
+          <div
+            class="slider__item"
+          >
+            |
+            
+            <span
+              class="slider__item--number"
+            >
+              148
+            </span>
+            
+          
+          </div>
+          
+        
+        </div>
+        <div
+          class="slider__flags"
+        >
+          
+    
+          <span
+            class="slider__flag slider__flag--min"
+            style="left:0%"
+          >
+            28
+          </span>
+          
+    
+          <span
+            class="slider__flag slider__flag--max"
+            data-testid="flagHorizontalRange"
+            style="left:100%"
+          >
+            148
+          </span>
+          
+    
+        </div>
+      </div>
+      
+    
+      <div
+        class="slider__inputs"
+      >
+        
+      
+        <div
+          class="slider__input"
+          data-testid="configuringRange"
+        >
+          
+        
+          <label
+            class="slider__label"
+            for="min"
+          >
+            Минимальное значение
+          </label>
+          
+        
+          <input
+            class="slider__min slider__number"
+            data-name="min"
+            id="min"
+            type="number"
+            value="28"
+          />
+          
+      
+        </div>
+        
+      
+        <div
+          class="slider__input"
+        >
+          
+        
+          <label
+            class="slider__label"
+            for="max"
+          >
+            Максимальное значение
+          </label>
+          
+        
+          <input
+            class="slider__max slider__number"
+            data-name="max"
+            id="max"
+            type="number"
+            value="148"
+          />
+          
+      
+        </div>
+        
+      
+        <div
+          class="slider__input"
+        >
+          
+        
+          <label
+            class="slider__label"
+            for="from"
+          >
+            От
+          </label>
+          
+        
+          <input
+            class="slider__from slider__number"
+            data-name="from"
+            id="from"
+            readonly=""
+            type="number"
+            value="28"
+          />
+          
+      
+        </div>
+        
+      
+        <div
+          class="slider__input"
+        >
+          
+        
+          <label
+            class="slider__label"
+            for="to"
+          >
+            До
+          </label>
+          
+        
+          <input
+            class="slider__to slider__number"
+            data-name="to"
+            id="to"
+            readonly=""
+            type="number"
+            value="148"
+          />
+          
+      
+        </div>
+        
+      
+        <div
+          class="slider__input"
+        >
+          
+        
+          <label
+            class="slider__label"
+            for="step"
+          >
+            Шаг
+          </label>
+          
+        
+          <input
+            class="slider__step slider__number"
+            data-name="step"
+            id="step"
+            type="number"
+            value="10"
+          />
+          
+      
+        </div>
+        
+      
+        <div
+          class="slider__input"
+        >
+          
+        
+          <input
+            checked=""
+            class="slider__view"
+            data-name="view"
+            id="horizontal#slider11"
+            name="view#slider11"
+            type="radio"
+            value="horizontal"
+          />
+          
+        
+          <label
+            for="horizontal#slider11"
+          >
+            Горизонтальный
+          </label>
+          
+        
+          <input
+            class="slider__view"
+            data-name="view"
+            id="vertical#slider11"
+            name="view#slider11"
+            type="radio"
+            value="vertical"
+          />
+          
+        
+          <label
+            for="vertical#slider11"
+          >
+            Вертикальный
+          </label>
+          
+      
+        </div>
+        
+      
+        <div
+          class="slider__input"
+        >
+          
+        
+          <input
+            class="slider__range"
+            data-name="range"
+            id="one#slider11"
+            name="range#slider11"
+            type="radio"
+            value="one"
+          />
+          
+        
+          <label
+            for="one#slider11"
+          >
+            Одиночное значение
+          </label>
+          
+        
+          <input
+            checked=""
+            class="slider__range"
+            data-name="range"
+            id="range#slider11"
+            name="range#slider11"
+            type="radio"
+            value="range"
+          />
+          
+        
+          <label
+            for="range#slider11"
+          >
+            Интервал
+          </label>
+          
+      
+        </div>
+        
+      
+        <div
+          class="slider__input"
+        >
+          
+        
+          <input
+            checked=""
+            class="slider__flag-checkbox"
+            data-name="flag"
+            id="flag#slider11"
+            type="checkbox"
+          />
+          
+        
+          <label
+            for="flag#slider11"
+          >
+            Значение
+          </label>
+          
+      
+        </div>
+        
+      
+        <div
+          class="slider__input"
+        >
+          
+        
+          <input
+            checked=""
+            class="slider__scale-checkbox"
+            data-name="scale"
+            id="scale#slider11"
+            type="checkbox"
+          />
+          
+        
+          <label
+            for="scale#slider11"
+          >
+            Шкала
+          </label>
+          
+      
+        </div>
+        
+    
+      </div>
+    </div>
+  </div>
+  
+        
+  <div
+    class="sim"
+  >
+    <div
+      class="slider__wrapper"
+    >
+      
+      
+      <div
+        class="slider__inner slider__inner--height"
+        data-testid="sliderVerticalOne"
+      >
+        
+        
+        <div
+          class="slider__scale slider__scale--vertical"
+        >
+          
+          
+          <div
+            class="slider__bar slider__bar--vertical-one"
+            style="height:100%"
+          />
+          
+        
+        </div>
+        
+        
+        <div
+          class="slider__toggle-vertical slider__toggle-vertical--v-max"
+          style="top:100%"
+        />
+        
+      
+        <div
+          class="slider__list slider__list--transform"
+        >
+          
+          
+          <div
+            class="slider__item"
+          >
+            |
+            
+            <span
+              class="slider__item--number"
+            >
+              100
+            </span>
+            
+          
+          </div>
+          
+        
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          <div
+            class="slider__item"
+          >
+            |
+          </div>
+          
+          
+          <div
+            class="slider__item"
+            data-testid="scaleVertical"
+          >
+            |
+            
+            <span
+              class="slider__item--number"
+            >
+              0
+            </span>
+            
+          
+          </div>
+          
+        
+        </div>
+        <div
+          class="slider__flags"
+        >
+          
+      
+          <span
+            class="slider__flag-vertical slider__flag-vertical--max"
+            data-testid="flagVertical"
+            style="top:100%"
+          >
+            100
+          </span>
+          
+    
+        </div>
+      </div>
+      
+    
+      <div
+        class="slider__inputs"
+      >
+        
+      
+        <div
+          class="slider__input"
+          data-testid="configuringOne"
+        >
+          
+        
+          <label
+            class="slider__label"
+            for="min"
+          >
+            Минимальное значение
+          </label>
+          
+        
+          <input
+            class="slider__min slider__number"
+            data-name="min"
+            id="min"
+            type="number"
+            value="0"
+          />
+          
+      
+        </div>
+        
+      
+        <div
+          class="slider__input"
+        >
+          
+        
+          <label
+            class="slider__label"
+            for="max"
+          >
+            Максимальное значение
+          </label>
+          
+        
+          <input
+            class="slider__max slider__number"
+            data-name="max"
+            id="max"
+            type="number"
+            value="100"
+          />
+          
+      
+        </div>
+        
+      
+        <div
+          class="slider__input"
+        >
+          
+        
+          <label
+            class="slider__label"
+            for="to"
+          >
+            Текущее значение
+          </label>
+          
+        
+          <input
+            class="slider__to slider__number"
+            data-name="to"
+            id="to"
+            readonly=""
+            type="number"
+            value="100"
+          />
+          
+      
+        </div>
+        
+      
+        <div
+          class="slider__input"
+        >
+          
+        
+          <label
+            class="slider__label"
+            for="step"
+          >
+            Шаг
+          </label>
+          
+        
+          <input
+            class="slider__step slider__number"
+            data-name="step"
+            id="step"
+            type="number"
+            value="1"
+          />
+          
+      
+        </div>
+        
+      
+        <div
+          class="slider__input"
+        >
+          
+        
+          <input
+            class="slider__view"
+            data-name="view"
+            id="horizontal.sim"
+            name="view.sim"
+            type="radio"
+            value="horizontal"
+          />
+          
+        
+          <label
+            for="horizontal.sim"
+          >
+            Горизонтальный
+          </label>
+          
+        
+          <input
+            checked=""
+            class="slider__view"
+            data-name="view"
+            id="vertical.sim"
+            name="view.sim"
+            type="radio"
+            value="vertical"
+          />
+          
+        
+          <label
+            for="vertical.sim"
+          >
+            Вертикальный
+          </label>
+          
+      
+        </div>
+        
+      
+        <div
+          class="slider__input"
+        >
+          
+        
+          <input
+            checked=""
+            class="slider__range"
+            data-name="range"
+            id="one.sim"
+            name="range.sim"
+            type="radio"
+            value="one"
+          />
+          
+        
+          <label
+            for="one.sim"
+          >
+            Одиночное значение
+          </label>
+          
+        
+          <input
+            class="slider__range"
+            data-name="range"
+            id="range.sim"
+            name="range.sim"
+            type="radio"
+            value="range"
+          />
+          
+        
+          <label
+            for="range.sim"
+          >
+            Интервал
+          </label>
+          
+      
+        </div>
+        
+      
+        <div
+          class="slider__input"
+        >
+          
+        
+          <input
+            checked=""
+            class="slider__flag-checkbox"
+            data-name="flag"
+            id="flag.sim"
+            type="checkbox"
+          />
+          
+        
+          <label
+            for="flag.sim"
+          >
+            Значение
+          </label>
+          
+      
+        </div>
+        
+      
+        <div
+          class="slider__input"
+        >
+          
+        
+          <input
+            checked=""
+            class="slider__scale-checkbox"
+            data-name="scale"
+            id="scale.sim"
+            type="checkbox"
+          />
+          
+        
+          <label
+            for="scale.sim"
+          >
+            Шкала
+          </label>
+          
+      
+        </div>
+        
+    
+      </div>
+    </div>
+  </div>
+  
+        
+  <div
+    class="milk"
+  >
+    <div
+      class="slider__wrapper"
+    >
+      
+      
+      <div
+        class="slider__inner slider__inner--height"
+        data-testid="sliderVerticalRange"
+      >
+        
+        
+        <div
+          class="slider__scale slider__scale--vertical"
+        >
+          
+          
+          <div
+            class="slider__bar slider__bar--vertical-range"
+            style="top:0%;height:100%"
+          />
+          
+        
+        </div>
+        
+        
+        <div
+          class="slider__toggle-vertical slider__toggle-vertical--v-min"
+          style="top:0%"
+        />
+        
+        
+        <div
+          class="slider__toggle-vertical slider__toggle-vertical--v-max"
+          style="top:100%"
+        />
+        
+      
+      </div>
+      
+    
+      <div
+        class="slider__inputs"
+      >
+        
+      
+        <div
+          class="slider__input"
+          data-testid="configuringRange"
+        >
+          
+        
+          <label
+            class="slider__label"
+            for="min"
+          >
+            Минимальное значение
+          </label>
+          
+        
+          <input
+            class="slider__min slider__number"
+            data-name="min"
+            id="min"
+            type="number"
+            value="0"
+          />
+          
+      
+        </div>
+        
+      
+        <div
+          class="slider__input"
+        >
+          
+        
+          <label
+            class="slider__label"
+            for="max"
+          >
+            Максимальное значение
+          </label>
+          
+        
+          <input
+            class="slider__max slider__number"
+            data-name="max"
+            id="max"
+            type="number"
+            value="100"
+          />
+          
+      
+        </div>
+        
+      
+        <div
+          class="slider__input"
+        >
+          
+        
+          <label
+            class="slider__label"
+            for="from"
+          >
+            От
+          </label>
+          
+        
+          <input
+            class="slider__from slider__number"
+            data-name="from"
+            id="from"
+            readonly=""
+            type="number"
+            value="0"
+          />
+          
+      
+        </div>
+        
+      
+        <div
+          class="slider__input"
+        >
+          
+        
+          <label
+            class="slider__label"
+            for="to"
+          >
+            До
+          </label>
+          
+        
+          <input
+            class="slider__to slider__number"
+            data-name="to"
+            id="to"
+            readonly=""
+            type="number"
+            value="100"
+          />
+          
+      
+        </div>
+        
+      
+        <div
+          class="slider__input"
+        >
+          
+        
+          <label
+            class="slider__label"
+            for="step"
+          >
+            Шаг
+          </label>
+          
+        
+          <input
+            class="slider__step slider__number"
+            data-name="step"
+            id="step"
+            type="number"
+            value="1"
+          />
+          
+      
+        </div>
+        
+      
+        <div
+          class="slider__input"
+        >
+          
+        
+          <input
+            class="slider__view"
+            data-name="view"
+            id="horizontal.milk"
+            name="view.milk"
+            type="radio"
+            value="horizontal"
+          />
+          
+        
+          <label
+            for="horizontal.milk"
+          >
+            Горизонтальный
+          </label>
+          
+        
+          <input
+            checked=""
+            class="slider__view"
+            data-name="view"
+            id="vertical.milk"
+            name="view.milk"
+            type="radio"
+            value="vertical"
+          />
+          
+        
+          <label
+            for="vertical.milk"
+          >
+            Вертикальный
+          </label>
+          
+      
+        </div>
+        
+      
+        <div
+          class="slider__input"
+        >
+          
+        
+          <input
+            class="slider__range"
+            data-name="range"
+            id="one.milk"
+            name="range.milk"
+            type="radio"
+            value="one"
+          />
+          
+        
+          <label
+            for="one.milk"
+          >
+            Одиночное значение
+          </label>
+          
+        
+          <input
+            checked=""
+            class="slider__range"
+            data-name="range"
+            id="range.milk"
+            name="range.milk"
+            type="radio"
+            value="range"
+          />
+          
+        
+          <label
+            for="range.milk"
+          >
+            Интервал
+          </label>
+          
+      
+        </div>
+        
+      
+        <div
+          class="slider__input"
+        >
+          
+        
+          <input
+            class="slider__flag-checkbox"
+            data-name="flag"
+            id="flag.milk"
+            type="checkbox"
+          />
+          
+        
+          <label
+            for="flag.milk"
+          >
+            Значение
+          </label>
+          
+      
+        </div>
+        
+      
+        <div
+          class="slider__input"
+        >
+          
+        
+          <input
+            class="slider__scale-checkbox"
+            data-name="scale"
+            id="scale.milk"
+            type="checkbox"
+          />
+          
+        
+          <label
+            for="scale.milk"
+          >
+            Шкала
+          </label>
+          
+      
+        </div>
+        
+    
+      </div>
+    </div>
+  </div>
+  
+      
+    
+  
+</div>
+`;

@@ -74,21 +74,21 @@ export default class SliderPresenter {
       // this.scaleClick(evt);
     // }
 
-    // this.sliderViewOne.toggleMouseDown = (evt) => {
-      // this.toggleMouseDown(evt);
-    // }
+    this.sliderViewOne.toggleMouseDown = (evt) => {
+      this.toggleMouseDown(evt);
+    }
     
-    // this.sliderViewRange.toggleMouseDown = (evt) => {
-      // this.toggleMouseDown(evt);
-    // }
+    this.sliderViewRange.toggleMouseDown = (evt) => {
+      this.toggleMouseDown(evt);
+    }
     
-    // this.sliderViewVerticalOne.toggleMouseDown = (evt) => {
-      // this.toggleMouseDown(evt);
-    // }
+    this.sliderViewVerticalOne.toggleMouseDown = (evt) => {
+      this.toggleMouseDown(evt);
+    }
     
-    // this.sliderViewVerticalRange.toggleMouseDown = (evt) => {
-      // this.toggleMouseDown(evt);
-    // }
+    this.sliderViewVerticalRange.toggleMouseDown = (evt) => {
+      this.toggleMouseDown(evt);
+    }
   }
 
   // private getClassName(main: JQuery<HTMLElement>): string {
@@ -203,6 +203,18 @@ export default class SliderPresenter {
 
   // }
 
+  private replaceScreenConfiguring(): void {
+    this.configuringViewOne.element.replaceWith(this.configuringViewOne.newElement);
+    this.configuringViewRange.element.replaceWith(this.configuringViewRange.newElement);
+  }
+
+  private replaceScreenFlag(): void {
+    this.flagViewOne.element.replaceWith(this.flagViewOne.newElement);
+    this.flagViewRange.element.replaceWith(this.flagViewRange.newElement);
+    this.flagViewVerticalOne.element.replaceWith(this.flagViewVerticalOne.newElement);
+    this.flagViewVerticalRange.element.replaceWith(this.flagViewVerticalRange.newElement);
+  }
+
   private setInModelValue(key: string, value: number | string | boolean): void {
     switch (key) {
       case 'main':
@@ -296,56 +308,122 @@ export default class SliderPresenter {
     }
   } 
 
-  // private toggleMouseDown(evt: JQuery.MouseDownEvent<HTMLElement>):void {
-   
-  //   // const toggle: JQuery<HTMLElement> = $(evt.target);
-  //   // const slider: JQuery<HTMLElement> = $(evt.currentTarget);
-  //   // const min: number = this.sliderModel.minValue;
-  //   // const max: number = this.sliderModel.maxValue;
-  //   // const step: number = this.sliderModel.stepValue;
+  private toggleMouseDown(evt: any):void {
+    const toggle: HTMLElement = evt.target;
+    const slider: HTMLElement = toggle.parentElement!;
+    const min: number = this.sliderModel.minValue;
+    const max: number = this.sliderModel.maxValue;
+    const step: number = this.sliderModel.stepValue;
 
-  //   // const getCoords = (elem: JQuery<HTMLElement>): {
-  //   //   left: number;
-  //   //   width: number;
-  //   //   top: number;
-  //   //   height: number;
-  //   // } => {
-  //   //   const boxLeft: number = elem.offset()!.left;
-  //   //   const boxRight: number = boxLeft + elem.outerWidth()!;
-  //   //   const boxTop: number = elem.offset()!.top;
-  //   //   const boxBottom: number = boxTop + elem.outerHeight()!;
+    const getCoords = (elem: HTMLElement): {
+      left: number;
+      width: number;
+      top: number;
+      height: number;
+    } => {
+      const boxLeft: number = elem.offsetLeft;
+      const boxRight: number = boxLeft + elem.clientWidth;
+      const boxTop: number = elem.offsetTop;
+      const boxBottom: number = boxTop + elem.clientHeight;
     
-  //   //   return {
-  //   //     left: boxLeft + pageXOffset,
-  //   //     width: boxRight - boxLeft,
-  //   //     top: boxTop + pageYOffset,
-  //   //     height: boxBottom - boxTop
-  //   //   };
-  //   // }
+      return {
+        left: boxLeft + pageXOffset,
+        width: boxRight - boxLeft,
+        top: boxTop + pageYOffset,
+        height: boxBottom - boxTop
+      };
+    }
 
-  //   // const sliderCoords: {
-  //   //   left: number;
-  //   //   width: number;
-  //   //   top: number;
-  //   //   height: number;
-  //   // } = getCoords(slider);
+    const sliderCoords: {
+      left: number;
+      width: number;
+      top: number;
+      height: number;
+    } = getCoords(slider);
 
-  //   // const toggleCoords: {
-  //   //   top: number;
-  //   //   height: number;
-  //   //   left: number;
-  //   //   width: number;
-  //   // } = getCoords(toggle);
+    let onMouseMove: {(evt: MouseEvent): void};
 
-  //   // if (toggle.hasClass('slider__toggle')) {
-  //   //   this.toggleMouseDown(toggle, slider, min, max, step, toggleCoords, sliderCoords);      
-  //   // }
+    if (toggle.className.split(' ')[0] === 'slider__toggle') {
+      const shift: number = evt.pageX - toggle.getBoundingClientRect().left - 10;
+
+      onMouseMove = (evt: MouseEvent): void => {
+        const left: number = ((evt.pageX - shift - sliderCoords.left) / sliderCoords.width) * 100;
+        const stepCount: number = (max - min) / step;
+        const stepPercent: number = 100 / stepCount;
+        let stepLeft: number = Math.round(left / stepPercent) * stepPercent;
+        if (stepLeft < 0) stepLeft = 0;
+        if (stepLeft > 100) stepLeft = 100;
+        
+        if (toggle.className.split(' ')[1] === 'slider__toggle--min') {
+          const toPercentValue: number = this.sliderModel.toPercentValue;
+          if (stepLeft > toPercentValue) stepLeft = toPercentValue;
+          this.sliderModel.fromPercentValue = <number>stepLeft;
+          const value: number = <number><unknown>+(stepLeft / stepPercent * step).toFixed() + min;
+          this.sliderModel.fromValue = <number>value;
+          (<HTMLElement>slider.querySelector('.slider__bar')!).style.marginLeft = stepLeft + '%';
+        }
+        
+        if (toggle.className.split(' ')[1] === 'slider__toggle--max') {
+          const fromPercentValue: number = this.sliderModel.fromPercentValue;
+          if (fromPercentValue > stepLeft) stepLeft = fromPercentValue;
+          this.sliderModel.toPercentValue = <number>stepLeft;
+          const value: number = <number><unknown>+(stepLeft / stepPercent * step).toFixed() + min;
+          this.sliderModel.toValue = <number>value;
+          (<HTMLElement>slider.querySelector('.slider__bar')!).style.marginRight = 100 - stepLeft + '%';
+        }
+  
+        toggle.style.left = <string><unknown>stepLeft + '%';
+        this.replaceScreenFlag()
+        this.replaceScreenConfiguring()
+      }
+    } else {
+      const shift: number = evt.pageY - (toggle.getBoundingClientRect().top + (window.pageYOffset * 2)) - 10;
+      
+      onMouseMove = (evt: MouseEvent): void => {
+        const top: number = ((evt.pageY - shift - sliderCoords.top) / sliderCoords.height) * 100;
+        const stepCount: number = (max - min) / step;
+        const stepPercent: number = 100 / stepCount;
+        let stepTop: number = Math.round(top / stepPercent) * stepPercent;
+        if (stepTop < 0) stepTop = 0;
+        if (stepTop > 100) stepTop = 100;
+        
+        if (toggle.className.split(' ')[1] === 'slider__toggle-vertical--v-min') {
+          const toPercentValue: number = this.sliderModel.toPercentValue;
+          if (stepTop > toPercentValue) stepTop = toPercentValue;
+          this.sliderModel.fromPercentValue = <number>stepTop;
+          const value: number = <number><unknown>+(stepTop / stepPercent * step).toFixed() + min;
+          this.sliderModel.fromValue = <number>value;
+          (<HTMLElement>slider.querySelector('.slider__bar')!).style.top = stepTop + '%';
+          (<HTMLElement>slider.querySelector('.slider__bar')!).style.height = this.sliderModel.toPercentValue - stepTop + '%';
+        }
+        
+        if (toggle.className.split(' ')[1] === 'slider__toggle-vertical--v-max') {
+          const fromPercentValue: number = this.sliderModel.fromPercentValue;
+          if (fromPercentValue > stepTop) stepTop = fromPercentValue;
+          this.sliderModel.toPercentValue = <number>stepTop;
+          const value: number = <number><unknown>+(stepTop / stepPercent * step).toFixed() + min;
+          this.sliderModel.toValue = <number>value;
+          (<HTMLElement>slider.querySelector('.slider__bar')!).style.height = stepTop - this.sliderModel.fromPercentValue + '%';
+        }
+  
+        toggle.style.top = <string><unknown>stepTop + '%';
+        this.replaceScreenFlag()
+        this.replaceScreenConfiguring()
+      }
+    }
+
+    const onMouseUp = () => {
+      document.removeEventListener('mousemove', onMouseMove);
+      document.removeEventListener('mouseup', onMouseUp);
+    }
     
-  //   // if (toggle.hasClass('slider__item')) {
-  //   //   this.scaleClick(toggle, slider, min, max, step, toggleCoords, sliderCoords);  
-  //   // }
+    document.addEventListener('mousemove', onMouseMove);
+    document.addEventListener('mouseup', onMouseUp);
+  }
+  
+  // if (toggle.hasClass('slider__item')) {
+  //   this.scaleClick(toggle, slider, min, max, step, toggleCoords, sliderCoords);  
   // }
-
   // private scaleClick(
   //   toggle: JQuery<HTMLElement>, 
   //   slider: JQuery<HTMLElement>, 
