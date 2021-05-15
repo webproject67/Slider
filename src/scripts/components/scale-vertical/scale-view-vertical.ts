@@ -41,10 +41,10 @@ export default class ScaleViewVertical extends AbstractView {
   }
   
   bind() {
-    this.element.querySelectorAll('.slider__item').forEach((elem) => elem.addEventListener('click', (evt: Event):void => this.scaleClick(evt)))
+    this.element.querySelectorAll('.slider__item').forEach((elem) => elem.addEventListener('click', (evt: MouseEventInit):void => this.scaleClick(evt)))
   }
 
-  public scaleClick(evt: Event):void {
+  public scaleClick(evt: MouseEventInit):void {
     
   }
 }

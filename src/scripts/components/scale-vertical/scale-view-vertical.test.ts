@@ -10,3 +10,7 @@ test('spyOn click scale vertical', () => {
   scale.scaleClick(evt);
   expect(somethingSpy).toHaveBeenCalledTimes(1)
 });
+
+it('jest snapshots', () => {
+  expect(scale.element).toMatchSnapshot()
+})
