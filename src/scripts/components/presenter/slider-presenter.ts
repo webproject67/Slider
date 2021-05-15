@@ -13,6 +13,7 @@ import FlagViewVerticalOne from '../flag-vertical-one/flag-view-vertical-one';
 import FlagViewVerticalRange from '../flag-vertical-range/flag-view-vertical-range';
 
 export default class SliderPresenter {
+  main: HTMLElement;
   sliderModel: SliderModel;
   sliderViewOne: SliderViewOne;
   sliderViewRange: SliderViewRange;
@@ -27,8 +28,24 @@ export default class SliderPresenter {
   flagViewVerticalOne: FlagViewVerticalOne;
   flagViewVerticalRange: FlagViewVerticalRange;
 
-  constructor() {
-    this.sliderModel = new SliderModel();
+  constructor(
+    main: HTMLElement, 
+    state: { 
+      flag: boolean;
+      from: number; 
+      fromPercent: number; 
+      max: number; 
+      min: number; 
+      range: string;
+      scale: boolean;
+      step: number; 
+      to: number; 
+      toPercent: number; 
+      view: string;
+    }
+  ) {
+    this.main = main;
+    this.sliderModel = new SliderModel(main, state);
     this.sliderViewOne = new SliderViewOne(this.sliderModel);
     this.sliderViewRange = new SliderViewRange(this.sliderModel);
     this.sliderViewVerticalOne = new SliderViewVerticalOne(this.sliderModel);
@@ -114,15 +131,11 @@ export default class SliderPresenter {
     this.replaceToggle(evt, toggle!);
   }
 
-  public init(obj:any): void {
-    for (const key in obj) {
-      if(this.sliderModel.state.hasOwnProperty(key)) this.setInModelValue(key, obj[key]);
-    }
-
-    this.showSliderView(this.sliderModel.mainValue);
-    this.showConfiguringView(this.sliderModel.mainValue);
-    this.showScaleView(this.sliderModel.mainValue);
-    this.showFlagView(this.sliderModel.mainValue);
+  public init(): void {
+    this.showSliderView();
+    this.showConfiguringView();
+    this.showScaleView();
+    this.showFlagView();
   }
 
   private inputChange(evt: any):void {
@@ -149,9 +162,8 @@ export default class SliderPresenter {
 
     if (input.dataset.name === 'view' || input.dataset.name === 'range') {
       this.setInModelValue(input.dataset.name, (<HTMLInputElement>input).value);
-      const main = document.querySelector(this.sliderModel.mainValue);
-      main!.removeChild(main!.children[0]);
-      this.showSliderView(this.sliderModel.mainValue);
+      this.main.removeChild(this.main.children[0]);
+      this.showSliderView();
     }
 
     if (input.dataset.name === 'flag' || input.dataset.name === 'scale') {
@@ -162,9 +174,9 @@ export default class SliderPresenter {
     this.replaceScreenFlag();
     this.replaceScreenConfiguring();
     this.replaceScreenSlider();
-    this.showScaleView(this.sliderModel.mainValue);
-    this.showFlagView(this.sliderModel.mainValue);
-    this.showConfiguringView(this.sliderModel.mainValue);
+    this.showScaleView();
+    this.showFlagView();
+    this.showConfiguringView();
   }
 
   private replaceScreenConfiguring(): void {
@@ -329,16 +341,13 @@ export default class SliderPresenter {
     this.replaceScreenFlag();
     this.replaceScreenConfiguring();
     this.replaceScreenSlider();
-    this.showScaleView(this.sliderModel.mainValue);
-    this.showFlagView(this.sliderModel.mainValue);
-    this.showConfiguringView(this.sliderModel.mainValue);
+    this.showScaleView();
+    this.showFlagView();
+    this.showConfiguringView();
   }
 
   private setInModelValue(key: string, value: number | string | boolean): void {
     switch (key) {
-      case 'main':
-        this.sliderModel.mainValue = <string>value;
-      break;
       case 'min':
         this.sliderModel.minValue = <number>value;
       break;
@@ -375,53 +384,53 @@ export default class SliderPresenter {
     }
   }
 
-  private showConfiguringView(className: string):void {
+  private showConfiguringView():void {
     if (this.sliderModel.rangeValue === 'one') {
-      document.querySelector(className)!.querySelector('.slider__wrapper')?.appendChild(this.configuringViewOne.element);
+      this.main.querySelector('.slider__wrapper')?.appendChild(this.configuringViewOne.element);
     } else if (this.sliderModel.rangeValue === 'range') {
-      document.querySelector(className)!.querySelector('.slider__wrapper')?.appendChild(this.configuringViewRange.element);
+      this.main.querySelector('.slider__wrapper')?.appendChild(this.configuringViewRange.element);
     } else {
       throw new Error('incorrect value')
     }
   }
 
-  private showFlagView(className: string):void {
+  private showFlagView():void {
     if(this.sliderModel.flagValue) {
       if (this.sliderModel.rangeValue === 'one' && this.sliderModel.viewValue === 'horizontal') {
-        document.querySelector(className)!.querySelector('.slider__inner')?.appendChild(this.flagViewOne.element);
+        this.main.querySelector('.slider__inner')?.appendChild(this.flagViewOne.element);
       } else if (this.sliderModel.rangeValue === 'range' && this.sliderModel.viewValue === 'horizontal') {
-        document.querySelector(className)!.querySelector('.slider__inner')?.appendChild(this.flagViewRange.element);
+        this.main.querySelector('.slider__inner')?.appendChild(this.flagViewRange.element);
       } else if (this.sliderModel.rangeValue === 'one' && this.sliderModel.viewValue === 'vertical') {
-        document.querySelector(className)!.querySelector('.slider__inner')?.appendChild(this.flagViewVerticalOne.element);
+        this.main.querySelector('.slider__inner')?.appendChild(this.flagViewVerticalOne.element);
       } else if (this.sliderModel.rangeValue === 'range' && this.sliderModel.viewValue === 'vertical') {
-        document.querySelector(className)!.querySelector('.slider__inner')?.appendChild(this.flagViewVerticalRange.element);
+        this.main.querySelector('.slider__inner')?.appendChild(this.flagViewVerticalRange.element);
       } else {
         throw new Error('incorrect value')
       }
     }
   }
 
-  private showScaleView(className: string): void {
+  private showScaleView(): void {
     if(this.sliderModel.scaleValue) {
       if (this.sliderModel.viewValue === 'horizontal') {
-        document.querySelector(className)!.querySelector('.slider__inner')?.appendChild(this.scaleView.element);
+        this.main.querySelector('.slider__inner')?.appendChild(this.scaleView.element);
       } else if (this.sliderModel.viewValue === 'vertical') {
-        document.querySelector(className)!.querySelector('.slider__inner')?.appendChild(this.scaleViewVertical.element);
+        this.main.querySelector('.slider__inner')?.appendChild(this.scaleViewVertical.element);
       } else {
         throw new Error('incorrect value')
       }
     };
   }
 
-  private showSliderView(className: string):void {
+  private showSliderView():void {
     if (this.sliderModel.rangeValue === 'one' && this.sliderModel.viewValue === 'horizontal') {
-      document.querySelector(className)?.appendChild(this.sliderViewOne.element);
+      this.main.appendChild(this.sliderViewOne.element);
     } else if (this.sliderModel.rangeValue === 'range' && this.sliderModel.viewValue === 'horizontal') {
-      document.querySelector(className)?.appendChild(this.sliderViewRange.element);
+      this.main.appendChild(this.sliderViewRange.element);
     } else if (this.sliderModel.rangeValue === 'one' && this.sliderModel.viewValue === 'vertical') {
-      document.querySelector(className)?.appendChild(this.sliderViewVerticalOne.element);
+      this.main.appendChild(this.sliderViewVerticalOne.element);
     } else if (this.sliderModel.rangeValue === 'range' && this.sliderModel.viewValue === 'vertical') {
-      document.querySelector(className)?.appendChild(this.sliderViewVerticalRange.element);
+      this.main.appendChild(this.sliderViewVerticalRange.element);
     } else {
       throw new Error('incorrect value')
     }

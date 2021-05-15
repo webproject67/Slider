@@ -1,22 +1,21 @@
-import Slider from '../../../scripts/components/presenter/slider-presenter';
+interface JQuery {
+  slider({}): JQuery
+}
 
-new Slider().init({});
+$('#slider').slider({});
 
-new Slider().init({
-  main: '#slider2',
+$('#slider2').slider({
   range: 'range',
   min: 10,
   max: 50,
   step: 10
 });
 
-new Slider().init({
-  main: '.sabakA',
+$('.sabakA').slider({
   view: 'vertical'
 });
 
-new Slider().init({
-  main: '.cat',
+$('.cat').slider({
   view: 'vertical',
   range: 'range',
   flag: false,

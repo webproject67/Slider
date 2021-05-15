@@ -1,11 +1,25 @@
 import SliderModel from './slider-model';
 
-const model = new SliderModel();
+const main = document.createElement('div');
+const state = {
+  flag: true,
+  from: -10000,
+  fromPercent: 0,
+  max: 100,
+  min: 0,
+  range: 'one',
+  scale: true,
+  step: 1,
+  to: -10000,
+  toPercent: 100,
+  view: 'horizontal'
+};
+
+const model = new SliderModel(main, state);
 
 test('get value flag true', () => expect(model.flagValue).toBe(true));
 test('get value from -10000', () => expect(model.fromValue).toBe(-10000));
 test('get value fromPercent 0', () => expect(model.fromPercentValue).toBe(0));
-test('get value main #slider', () => expect(model.mainValue).toBe('#slider'));
 test('get value max 100', () => expect(model.maxValue).toBe(100));
 test('get value min 0', () => expect(model.minValue).toBe(0));
 test('get value range one', () => expect(model.rangeValue).toBe('one'));
@@ -26,10 +40,6 @@ test('set value from on 10', () => {
 test('set value fromPercent on 5', () => {
   model.fromPercentValue = 5;
   expect(model.fromPercentValue).toBe(5);
-});
-test('set value main on .slider', () => {
-  model.mainValue = '.slider';
-  expect(model.mainValue).toBe('.slider');
 });
 test('set value max on 85', () => {
   model.maxValue = 85;

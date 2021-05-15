@@ -1,7 +1,22 @@
 import SliderModel from '../model/slider-model';
 import FlagViewVerticalRange from './flag-view-vertical-range';
 
-const model = new SliderModel();
+const main = document.createElement('div');
+const state = {
+  flag: true,
+  from: -10000,
+  fromPercent: 0,
+  max: 100,
+  min: 0,
+  range: 'one',
+  scale: true,
+  step: 1,
+  to: -10000,
+  toPercent: 100,
+  view: 'horizontal'
+};
+
+const model = new SliderModel(main, state);
 const flag = new FlagViewVerticalRange(model);
 
 test('spyOn mouseDown flag vertical range', () => {
