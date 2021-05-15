@@ -10,3 +10,7 @@ test('spyOn change input', () => {
   configuring.inputChange(evt);
   expect(somethingSpy).toHaveBeenCalledTimes(1)
 });
+
+it('jest snapshots', () => {
+  expect(configuring.element).toMatchSnapshot()
+})

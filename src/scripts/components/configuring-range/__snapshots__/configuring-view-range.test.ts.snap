@@ -1,0 +1,272 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`jest snapshots 1`] = `
+<div
+  class="slider__inputs"
+>
+  
+      
+  <div
+    class="slider__input"
+    data-testid="configuringRange"
+  >
+    
+        
+    <label
+      class="slider__label"
+      for="min"
+    >
+      Минимальное значение
+    </label>
+    
+        
+    <input
+      class="slider__min slider__number"
+      data-name="min"
+      id="min"
+      type="number"
+      value="0"
+    />
+    
+      
+  </div>
+  
+      
+  <div
+    class="slider__input"
+  >
+    
+        
+    <label
+      class="slider__label"
+      for="max"
+    >
+      Максимальное значение
+    </label>
+    
+        
+    <input
+      class="slider__max slider__number"
+      data-name="max"
+      id="max"
+      type="number"
+      value="100"
+    />
+    
+      
+  </div>
+  
+      
+  <div
+    class="slider__input"
+  >
+    
+        
+    <label
+      class="slider__label"
+      for="from"
+    >
+      От
+    </label>
+    
+        
+    <input
+      class="slider__from slider__number"
+      data-name="from"
+      id="from"
+      readonly=""
+      type="number"
+      value="0"
+    />
+    
+      
+  </div>
+  
+      
+  <div
+    class="slider__input"
+  >
+    
+        
+    <label
+      class="slider__label"
+      for="to"
+    >
+      До
+    </label>
+    
+        
+    <input
+      class="slider__to slider__number"
+      data-name="to"
+      id="to"
+      readonly=""
+      type="number"
+      value="100"
+    />
+    
+      
+  </div>
+  
+      
+  <div
+    class="slider__input"
+  >
+    
+        
+    <label
+      class="slider__label"
+      for="step"
+    >
+      Шаг
+    </label>
+    
+        
+    <input
+      class="slider__step slider__number"
+      data-name="step"
+      id="step"
+      type="number"
+      value="1"
+    />
+    
+      
+  </div>
+  
+      
+  <div
+    class="slider__input"
+  >
+    
+        
+    <input
+      checked=""
+      class="slider__view"
+      data-name="view"
+      id="horizontal#slider"
+      name="view#slider"
+      type="radio"
+      value="horizontal"
+    />
+    
+        
+    <label
+      for="horizontal#slider"
+    >
+      Горизонтальный
+    </label>
+    
+        
+    <input
+      class="slider__view"
+      data-name="view"
+      id="vertical#slider"
+      name="view#slider"
+      type="radio"
+      value="vertical"
+    />
+    
+        
+    <label
+      for="vertical#slider"
+    >
+      Вертикальный
+    </label>
+    
+      
+  </div>
+  
+      
+  <div
+    class="slider__input"
+  >
+    
+        
+    <input
+      checked=""
+      class="slider__range"
+      data-name="range"
+      id="one#slider"
+      name="range#slider"
+      type="radio"
+      value="one"
+    />
+    
+        
+    <label
+      for="one#slider"
+    >
+      Одиночное значение
+    </label>
+    
+        
+    <input
+      class="slider__range"
+      data-name="range"
+      id="range#slider"
+      name="range#slider"
+      type="radio"
+      value="range"
+    />
+    
+        
+    <label
+      for="range#slider"
+    >
+      Интервал
+    </label>
+    
+      
+  </div>
+  
+      
+  <div
+    class="slider__input"
+  >
+    
+        
+    <input
+      checked=""
+      class="slider__flag-checkbox"
+      data-name="flag"
+      id="flag#slider"
+      type="checkbox"
+    />
+    
+        
+    <label
+      for="flag#slider"
+    >
+      Значение
+    </label>
+    
+      
+  </div>
+  
+      
+  <div
+    class="slider__input"
+  >
+    
+        
+    <input
+      checked=""
+      class="slider__scale-checkbox"
+      data-name="scale"
+      id="scale#slider"
+      type="checkbox"
+    />
+    
+        
+    <label
+      for="scale#slider"
+    >
+      Шкала
+    </label>
+    
+      
+  </div>
+  
+    
+</div>
+`;

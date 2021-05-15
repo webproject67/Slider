@@ -18,10 +18,10 @@ export default class SliderViewVerticalRange extends AbstractView {
   }
 
   bind() {
-    this.element.querySelectorAll('.slider__toggle-vertical').forEach((elem) => elem.addEventListener('mousedown', (evt: MouseEventInit):void => this.toggleMouseDown(evt)))
+    this.element.querySelectorAll('.slider__toggle-vertical').forEach((elem) => elem.addEventListener('mousedown', (evt: Event):void => this.toggleMouseDown(evt)))
   }
 
-  public toggleMouseDown(evt: MouseEventInit):void {
+  public toggleMouseDown(evt: Event):void {
     
   }
 }
