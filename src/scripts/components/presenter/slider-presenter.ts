@@ -13,7 +13,6 @@ import FlagViewVerticalOne from '../flag-vertical-one/flag-view-vertical-one';
 import FlagViewVerticalRange from '../flag-vertical-range/flag-view-vertical-range';
 
 export default class SliderPresenter {
-  main: HTMLElement;
   sliderModel: SliderModel;
   sliderViewOne: SliderViewOne;
   sliderViewRange: SliderViewRange;
@@ -44,7 +43,6 @@ export default class SliderPresenter {
       view: string;
     }
   ) {
-    this.main = main;
     this.sliderModel = new SliderModel(main, state);
     this.sliderViewOne = new SliderViewOne(this.sliderModel);
     this.sliderViewRange = new SliderViewRange(this.sliderModel);
@@ -162,7 +160,7 @@ export default class SliderPresenter {
 
     if (input.dataset.name === 'view' || input.dataset.name === 'range') {
       this.setInModelValue(input.dataset.name, (<HTMLInputElement>input).value);
-      this.main.removeChild(this.main.children[0]);
+      this.sliderModel.main.removeChild(this.sliderModel.main.children[0]);
       this.showSliderView();
     }
 
@@ -325,8 +323,8 @@ export default class SliderPresenter {
     const stepCount: number = (max - min) / step;
     const stepPercent: number = 100 / stepCount;
     let stepPercentResult: number = Math.round(corner / stepPercent) * stepPercent;
-    if (stepPercentResult < 0) stepPercentResult = 0;
-    if (stepPercentResult > 100) stepPercentResult = 100;
+    if (stepPercentResult < 0 || scale.className.split(' ')[1] === 'slider__item--min') stepPercentResult = 0;
+    if (stepPercentResult > 100 || scale.className.split(' ')[1] === 'slider__item--max') stepPercentResult = 100;
 
     if (stepPercentResult >= this.sliderModel.fromPercentValue) {
       this.sliderModel.toPercentValue = <number>stepPercentResult;
@@ -386,9 +384,9 @@ export default class SliderPresenter {
 
   private showConfiguringView():void {
     if (this.sliderModel.rangeValue === 'one') {
-      this.main.querySelector('.slider__wrapper')?.appendChild(this.configuringViewOne.element);
+      this.sliderModel.main.querySelector('.slider__wrapper')?.appendChild(this.configuringViewOne.element);
     } else if (this.sliderModel.rangeValue === 'range') {
-      this.main.querySelector('.slider__wrapper')?.appendChild(this.configuringViewRange.element);
+      this.sliderModel.main.querySelector('.slider__wrapper')?.appendChild(this.configuringViewRange.element);
     } else {
       throw new Error('incorrect value')
     }
@@ -397,13 +395,13 @@ export default class SliderPresenter {
   private showFlagView():void {
     if(this.sliderModel.flagValue) {
       if (this.sliderModel.rangeValue === 'one' && this.sliderModel.viewValue === 'horizontal') {
-        this.main.querySelector('.slider__inner')?.appendChild(this.flagViewOne.element);
+        this.sliderModel.main.querySelector('.slider__inner')?.appendChild(this.flagViewOne.element);
       } else if (this.sliderModel.rangeValue === 'range' && this.sliderModel.viewValue === 'horizontal') {
-        this.main.querySelector('.slider__inner')?.appendChild(this.flagViewRange.element);
+        this.sliderModel.main.querySelector('.slider__inner')?.appendChild(this.flagViewRange.element);
       } else if (this.sliderModel.rangeValue === 'one' && this.sliderModel.viewValue === 'vertical') {
-        this.main.querySelector('.slider__inner')?.appendChild(this.flagViewVerticalOne.element);
+        this.sliderModel.main.querySelector('.slider__inner')?.appendChild(this.flagViewVerticalOne.element);
       } else if (this.sliderModel.rangeValue === 'range' && this.sliderModel.viewValue === 'vertical') {
-        this.main.querySelector('.slider__inner')?.appendChild(this.flagViewVerticalRange.element);
+        this.sliderModel.main.querySelector('.slider__inner')?.appendChild(this.flagViewVerticalRange.element);
       } else {
         throw new Error('incorrect value')
       }
@@ -413,9 +411,9 @@ export default class SliderPresenter {
   private showScaleView(): void {
     if(this.sliderModel.scaleValue) {
       if (this.sliderModel.viewValue === 'horizontal') {
-        this.main.querySelector('.slider__inner')?.appendChild(this.scaleView.element);
+        this.sliderModel.main.querySelector('.slider__inner')?.appendChild(this.scaleView.element);
       } else if (this.sliderModel.viewValue === 'vertical') {
-        this.main.querySelector('.slider__inner')?.appendChild(this.scaleViewVertical.element);
+        this.sliderModel.main.querySelector('.slider__inner')?.appendChild(this.scaleViewVertical.element);
       } else {
         throw new Error('incorrect value')
       }
@@ -424,13 +422,13 @@ export default class SliderPresenter {
 
   private showSliderView():void {
     if (this.sliderModel.rangeValue === 'one' && this.sliderModel.viewValue === 'horizontal') {
-      this.main.appendChild(this.sliderViewOne.element);
+      this.sliderModel.main.appendChild(this.sliderViewOne.element);
     } else if (this.sliderModel.rangeValue === 'range' && this.sliderModel.viewValue === 'horizontal') {
-      this.main.appendChild(this.sliderViewRange.element);
+      this.sliderModel.main.appendChild(this.sliderViewRange.element);
     } else if (this.sliderModel.rangeValue === 'one' && this.sliderModel.viewValue === 'vertical') {
-      this.main.appendChild(this.sliderViewVerticalOne.element);
+      this.sliderModel.main.appendChild(this.sliderViewVerticalOne.element);
     } else if (this.sliderModel.rangeValue === 'range' && this.sliderModel.viewValue === 'vertical') {
-      this.main.appendChild(this.sliderViewVerticalRange.element);
+      this.sliderModel.main.appendChild(this.sliderViewVerticalRange.element);
     } else {
       throw new Error('incorrect value')
     }

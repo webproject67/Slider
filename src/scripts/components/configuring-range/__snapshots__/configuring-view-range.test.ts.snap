@@ -183,7 +183,6 @@ exports[`jest snapshots 1`] = `
     
         
     <input
-      checked=""
       class="slider__range"
       data-name="range"
       id="one#slider"
@@ -201,6 +200,7 @@ exports[`jest snapshots 1`] = `
     
         
     <input
+      checked=""
       class="slider__range"
       data-name="range"
       id="range#slider"

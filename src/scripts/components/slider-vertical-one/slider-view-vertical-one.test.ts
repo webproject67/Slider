@@ -13,7 +13,7 @@ const state = {
   step: 1,
   to: -10000,
   toPercent: 100,
-  view: 'horizontal'
+  view: 'vertical'
 };
 
 const model = new SliderModel(main, state);

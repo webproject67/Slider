@@ -52,11 +52,11 @@
     "webpack-cli": "^3.3.11",
     "webpack-dev-server": "^3.10.3"
   },
+  "dependencies": {
+    "jquery": "^3.6.0"
+  },
   "browserslist": [
     ">0.25%",
     "last 4 version"
-  ],
-  "dependencies": {
-    "jquery": "^3.6.0"
-  }
+  ]
 }

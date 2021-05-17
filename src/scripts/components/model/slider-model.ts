@@ -1,5 +1,6 @@
 export default class SliderModel {
-  main: string;
+  main: HTMLElement;
+  mainName: string;
   state: { 
     flag: boolean;
     from: number; 
@@ -30,7 +31,8 @@ export default class SliderModel {
       view: string;
     }
   ) {
-    this.main = main.className ? `.${main.className}` : `#${main.id}`;
+    this.main = main;
+    this.mainName = main.className ? `.${main.className}` : `#${main.id}`;
     this.state = state;
   }
 

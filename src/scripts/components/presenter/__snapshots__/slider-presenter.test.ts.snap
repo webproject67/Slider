@@ -52,7 +52,7 @@ exports[`jest snapshots 1`] = `
             |
             
             <span
-              class="slider__item--number"
+              class="slider__item--number slider__item--min"
             >
               0
             </span>
@@ -564,7 +564,7 @@ exports[`jest snapshots 1`] = `
             |
             
             <span
-              class="slider__item--number"
+              class="slider__item--number slider__item--max"
             >
               100
             </span>
@@ -890,7 +890,7 @@ exports[`jest snapshots 1`] = `
             |
             
             <span
-              class="slider__item--number"
+              class="slider__item--number slider__item--min"
             >
               28
             </span>
@@ -962,7 +962,7 @@ exports[`jest snapshots 1`] = `
             |
             
             <span
-              class="slider__item--number"
+              class="slider__item--number slider__item--max"
             >
               148
             </span>
@@ -1315,7 +1315,7 @@ exports[`jest snapshots 1`] = `
             |
             
             <span
-              class="slider__item--number"
+              class="slider__item--number slider__item--max"
             >
               100
             </span>
@@ -1828,7 +1828,7 @@ exports[`jest snapshots 1`] = `
             |
             
             <span
-              class="slider__item--number"
+              class="slider__item--number slider__item--min"
             >
               0
             </span>

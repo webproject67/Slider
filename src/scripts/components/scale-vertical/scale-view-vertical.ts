@@ -15,13 +15,13 @@ export default class ScaleViewVertical extends AbstractView {
       if (i === min) {
         template += `
           <div data-testid="scaleVertical" class="slider__item">|
-            <span class="slider__item--number">${i}</span>
+            <span class="slider__item--number slider__item--min">${i}</span>
           </div>
         `
       } else if (i === max) {
         template += `
           <div class="slider__item">|
-            <span class="slider__item--number">${i}</span>
+            <span class="slider__item--number slider__item--max">${i}</span>
           </div>
         `
       } else {

@@ -8,12 +8,12 @@ const state = {
   fromPercent: 0,
   max: 100,
   min: 0,
-  range: 'one',
+  range: 'range',
   scale: true,
   step: 1,
   to: -10000,
   toPercent: 100,
-  view: 'horizontal'
+  view: 'vertical'
 };
 
 const model = new SliderModel(main, state);
