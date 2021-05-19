@@ -21,9 +21,9 @@ const model = new SliderModel(main, state);
 const configuring = new ConfiguringViewOne(model);
 
 test('spyOn change input', () => {
-  const somethingSpy = jest.spyOn(configuring, 'inputChange');
+  const somethingSpy = jest.spyOn(configuring, 'onInputChange');
   let evt: any;
-  configuring.inputChange(evt);
+  configuring.onInputChange(evt);
   expect(somethingSpy).toHaveBeenCalledTimes(1)
 });
 

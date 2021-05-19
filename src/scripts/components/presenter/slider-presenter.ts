@@ -57,56 +57,56 @@ export default class SliderPresenter {
     this.flagViewVerticalOne = new FlagViewVerticalOne(this.sliderModel);
     this.flagViewVerticalRange = new FlagViewVerticalRange(this.sliderModel);
 
-    this.configuringViewOne.inputChange = (evt) => {
-      this.inputChange(evt);
+    this.configuringViewOne.onInputChange = (evt) => {
+      this.onInputChange(evt);
     }
     
-    this.configuringViewRange.inputChange = (evt) => {
-      this.inputChange(evt);
+    this.configuringViewRange.onInputChange = (evt) => {
+      this.onInputChange(evt);
     }
 
-    this.flagViewOne.flagMouseDown = (evt) => {
-      this.flagMouseDown(evt);
+    this.flagViewOne.onFlagMouseDown = (evt) => {
+      this.onFlagMouseDown(evt);
     }
     
-    this.flagViewRange.flagMouseDown = (evt) => {
-      this.flagMouseDown(evt);
+    this.flagViewRange.onFlagMouseDown = (evt) => {
+      this.onFlagMouseDown(evt);
     }
     
-    this.flagViewVerticalOne.flagMouseDown = (evt) => {
-      this.flagMouseDown(evt);
+    this.flagViewVerticalOne.onFlagMouseDown = (evt) => {
+      this.onFlagMouseDown(evt);
     }
     
-    this.flagViewVerticalRange.flagMouseDown = (evt) => {
-      this.flagMouseDown(evt);
+    this.flagViewVerticalRange.onFlagMouseDown = (evt) => {
+      this.onFlagMouseDown(evt);
     }
 
-    this.scaleView.scaleClick = (evt) => {
-      this.scaleClick(evt);
+    this.scaleView.onScaleClick = (evt) => {
+      this.onScaleClick(evt);
     }
     
-    this.scaleViewVertical.scaleClick = (evt) => {
-      this.scaleClick(evt);
+    this.scaleViewVertical.onScaleClick = (evt) => {
+      this.onScaleClick(evt);
     }
 
-    this.sliderViewOne.toggleMouseDown = (evt) => {
-      this.toggleMouseDown(evt);
+    this.sliderViewOne.onToggleMouseDown = (evt) => {
+      this.onToggleMouseDown(evt);
     }
     
-    this.sliderViewRange.toggleMouseDown = (evt) => {
-      this.toggleMouseDown(evt);
+    this.sliderViewRange.onToggleMouseDown = (evt) => {
+      this.onToggleMouseDown(evt);
     }
     
-    this.sliderViewVerticalOne.toggleMouseDown = (evt) => {
-      this.toggleMouseDown(evt);
+    this.sliderViewVerticalOne.onToggleMouseDown = (evt) => {
+      this.onToggleMouseDown(evt);
     }
     
-    this.sliderViewVerticalRange.toggleMouseDown = (evt) => {
-      this.toggleMouseDown(evt);
+    this.sliderViewVerticalRange.onToggleMouseDown = (evt) => {
+      this.onToggleMouseDown(evt);
     }
   }
 
-  private flagMouseDown(evt: any):void  {
+  private onFlagMouseDown(evt: any):void  {
     const flag: HTMLElement = evt.target;
     const slider: HTMLElement = flag.parentElement!.parentElement!;
     let toggle: HTMLElement;
@@ -136,7 +136,7 @@ export default class SliderPresenter {
     this.showFlagView();
   }
 
-  private inputChange(evt: any):void {
+  private onInputChange(evt: any):void {
     const input: HTMLElement = evt.target;
 
     if (input.dataset.name === 'min') {
@@ -295,7 +295,7 @@ export default class SliderPresenter {
     document.addEventListener('mouseup', onMouseUp);
   }
 
-  private scaleClick(evt: any):void  {
+  private onScaleClick(evt: any):void  {
     const scale: HTMLElement = evt.target;
     const min: number = this.sliderModel.minValue;
     const max: number = this.sliderModel.maxValue;
@@ -434,7 +434,7 @@ export default class SliderPresenter {
     }
   } 
 
-  private toggleMouseDown(evt: any):void {
+  private onToggleMouseDown(evt: any):void {
     const toggle: HTMLElement = evt.target;
     this.replaceToggle(evt, toggle);
   }

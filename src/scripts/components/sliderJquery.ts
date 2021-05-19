@@ -2,7 +2,7 @@ import Slider from '../components/presenter/slider-presenter';
 
 (function($) {
 	$.fn.slider = function(options) {
-		var state = $.extend({
+		const state = $.extend({
 			flag: true,
       from: -10000,
       fromPercent: 0,

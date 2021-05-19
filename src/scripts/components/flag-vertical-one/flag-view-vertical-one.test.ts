@@ -20,9 +20,9 @@ const model = new SliderModel(main, state);
 const flag = new FlagViewVerticalOne(model);
 
 test('spyOn mouseDown flag vertical one', () => {
-  const somethingSpy = jest.spyOn(flag, 'flagMouseDown');
+  const somethingSpy = jest.spyOn(flag, 'onFlagMouseDown');
   let evt: any;
-  flag.flagMouseDown(evt);
+  flag.onFlagMouseDown(evt);
   expect(somethingSpy).toHaveBeenCalledTimes(1)
 });
 

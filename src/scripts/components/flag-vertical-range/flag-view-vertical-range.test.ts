@@ -20,9 +20,9 @@ const model = new SliderModel(main, state);
 const flag = new FlagViewVerticalRange(model);
 
 test('spyOn mouseDown flag vertical range', () => {
-  const somethingSpy = jest.spyOn(flag, 'flagMouseDown');
+  const somethingSpy = jest.spyOn(flag, 'onFlagMouseDown');
   let evt: any;
-  flag.flagMouseDown(evt);
+  flag.onFlagMouseDown(evt);
   expect(somethingSpy).toHaveBeenCalledTimes(1)
 });
 

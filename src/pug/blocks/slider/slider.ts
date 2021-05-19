@@ -11,11 +11,11 @@ $('#slider2').slider({
   step: 10
 });
 
-$('.sabakA').slider({
+$('.js-sabakA').slider({
   view: 'vertical'
 });
 
-$('.cat').slider({
+$('.js-cat').slider({
   view: 'vertical',
   range: 'range',
   flag: false,

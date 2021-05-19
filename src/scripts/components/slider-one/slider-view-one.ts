@@ -17,10 +17,10 @@ export default class SliderViewOne extends AbstractView {
   }
 
   bind() {
-    this.element.querySelectorAll('.slider__toggle').forEach((elem) => elem.addEventListener('mousedown', (evt: Event):void => this.toggleMouseDown(evt)))
+    this.element.querySelectorAll('.slider__toggle').forEach((elem) => elem.addEventListener('mousedown', this.onToggleMouseDown))
   }
 
-  public toggleMouseDown(evt: Event):void {
+  public onToggleMouseDown(evt: Event):void {
     
   }
 }
