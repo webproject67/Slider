@@ -7,7 +7,7 @@ export default class SliderViewVerticalRange extends AbstractView {
 
   get template() {
     return `
-      <div data-testid="sliderVerticalRange" class="slider__inner slider__inner--height">
+      <div data-testid="slider-vertical-range" class="slider__inner slider__inner--height">
         <div class="slider__scale slider__scale--vertical">
           <div class="slider__bar slider__bar--vertical-range" style="top:${this.sliderModel.fromPercentValue}%;height:${this.sliderModel.toPercentValue - this.sliderModel.fromPercentValue}%"></div>
         </div>
