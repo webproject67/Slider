@@ -6,6 +6,8 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const TerserJSPlugin = require('terser-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
+const ImageminPlugin = require('imagemin-webpack-plugin').default;
 
 module.exports = {
   entry: './src/scripts/index.ts',
@@ -41,6 +43,19 @@ module.exports = {
       }),
     new MiniCssExtractPlugin({
       filename: 'style.css'
+    }),
+    new CopyPlugin([
+      {
+        from: path.resolve(__dirname, 'src/assets/favicon/*.{png,svg}'),
+        to: path.resolve(__dirname, 'public/img/favicon/[name].[ext]')
+      },
+      {
+        from: path.resolve(__dirname, 'src/assets/favicon/*.{xml,webmanifest,ico}'),
+        to: path.resolve(__dirname, 'public/[name].[ext]')
+      }
+    ]),
+    new ImageminPlugin({ 
+      test: /\.svg$/i 
     })
   ],
   module: {
