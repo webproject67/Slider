@@ -8,7 +8,7 @@ exports[`jest snapshots 1`] = `
       
   <div
     class="slider__input"
-    data-testid="configuringRange"
+    data-testid="configuring-range"
   >
     
         

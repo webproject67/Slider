@@ -14,7 +14,7 @@ export default class ScaleView extends AbstractView {
     for (let i = min; i <= max; i+= step) {
       if (i === min) {
         template += `
-          <div data-testid="scaleHorizontal" class="slider__item">|
+          <div data-testid="scale-horizontal" class="slider__item">|
             <span class="slider__item--number slider__item--min">${i}</span>
           </div>
         `

@@ -37,19 +37,19 @@ describe('slider #1', () => {
   slider.init();
 
   it('show slider horizontal one', () => {
-    expect(getByTestId(main, 'sliderOne')).toHaveClass('slider__inner');
+    expect(getByTestId(main, 'slider-one')).toHaveClass('slider__inner');
   })
   
   it('show configuring one', () => {
-    expect(getByTestId(main, 'configuringOne')).toHaveClass('slider__input');
+    expect(getByTestId(main, 'configuring-one')).toHaveClass('slider__input');
   })
   
   it('show scale horizontal', () => {
-    expect(getByTestId(main, 'scaleHorizontal')).toHaveClass('slider__item');
+    expect(getByTestId(main, 'scale-horizontal')).toHaveClass('slider__item');
   })
   
   it('show flag horizontal one', () => {
-    expect(getByTestId(main, 'flagHorizontal')).toHaveClass('slider__flag');
+    expect(getByTestId(main, 'flag-horizontal')).toHaveClass('slider__flag');
   })
 });
 
@@ -72,19 +72,19 @@ describe('slider #2', () => {
   slider.init();
   
   it('show slider horizontal range', () => {
-    expect(getByTestId(main, 'sliderRange')).toHaveClass('slider__inner');
+    expect(getByTestId(main, 'slider-range')).toHaveClass('slider__inner');
   })
 
   it('show configuring range', () => {
-    expect(getByTestId(main, 'configuringRange')).toHaveClass('slider__input');
+    expect(getByTestId(main, 'configuring-range')).toHaveClass('slider__input');
   })
 
   it('show scale horizontal', () => {
-    expect(getByTestId(main, 'scaleHorizontal')).toHaveClass('slider__item');
+    expect(getByTestId(main, 'scale-horizontal')).toHaveClass('slider__item');
   })
 
   it('show flag horizontal range', () => {
-    expect(getByTestId(main, 'flagHorizontalRange')).toHaveClass('slider__flag');
+    expect(getByTestId(main, 'flag-horizontal-range')).toHaveClass('slider__flag');
   })
 });
 
@@ -107,19 +107,19 @@ describe('slider #3', () => {
   slider.init();
   
   it('show slider vertical one', () => {
-    expect(getByTestId(main, 'sliderVerticalOne')).toHaveClass('slider__inner');
+    expect(getByTestId(main, 'slider-vertical-one')).toHaveClass('slider__inner');
   })
 
   it('show configuring one', () => {
-    expect(getByTestId(main, 'configuringOne')).toHaveClass('slider__input');
+    expect(getByTestId(main, 'configuring-one')).toHaveClass('slider__input');
   })
 
   it('show scale vertical', () => {
-    expect(getByTestId(main, 'scaleVertical')).toHaveClass('slider__item');
+    expect(getByTestId(main, 'scale-vertical')).toHaveClass('slider__item');
   })
 
   it('show flag vertical one', () => {
-    expect(getByTestId(main, 'flagVertical')).toHaveClass('slider__flag-vertical');
+    expect(getByTestId(main, 'flag-vertical')).toHaveClass('slider__flag-vertical');
   })
 });
 
@@ -142,11 +142,11 @@ describe('slider #4', () => {
   slider.init();
 
   it('show slider vertical range', () => {
-    expect(getByTestId(main, 'sliderVerticalRange')).toHaveClass('slider__inner');
+    expect(getByTestId(main, 'slider-vertical-range')).toHaveClass('slider__inner');
   })
 
   it('show configuring range', () => {
-    expect(getByTestId(main, 'configuringRange')).toHaveClass('slider__input');
+    expect(getByTestId(main, 'configuring-range')).toHaveClass('slider__input');
   })
 });
 

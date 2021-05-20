@@ -8,7 +8,7 @@ exports[`jest snapshots 1`] = `
       
   <div
     class="slider__inner"
-    data-testid="sliderOne"
+    data-testid="slider-one"
   >
     
         

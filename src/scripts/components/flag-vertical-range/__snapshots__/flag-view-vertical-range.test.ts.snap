@@ -16,7 +16,7 @@ exports[`jest snapshots 1`] = `
       
   <span
     class="slider__flag-vertical slider__flag-vertical--max"
-    data-testid="flagVerticalRange"
+    data-testid="flag-vertical-range"
     style="top:100%"
   >
     100

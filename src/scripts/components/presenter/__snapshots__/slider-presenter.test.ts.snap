@@ -16,7 +16,7 @@ exports[`jest snapshots 1`] = `
       
       <div
         class="slider__inner"
-        data-testid="sliderOne"
+        data-testid="slider-one"
       >
         
         
@@ -47,7 +47,7 @@ exports[`jest snapshots 1`] = `
           
           <div
             class="slider__item"
-            data-testid="scaleHorizontal"
+            data-testid="scale-horizontal"
           >
             |
             
@@ -581,7 +581,7 @@ exports[`jest snapshots 1`] = `
       
           <span
             class="slider__flag slider__flag--max"
-            data-testid="flagHorizontal"
+            data-testid="flag-horizontal"
             style="left:100%"
           >
             100
@@ -599,7 +599,7 @@ exports[`jest snapshots 1`] = `
       
         <div
           class="slider__input"
-          data-testid="configuringOne"
+          data-testid="configuring-one"
         >
           
         
@@ -848,7 +848,7 @@ exports[`jest snapshots 1`] = `
       
       <div
         class="slider__inner"
-        data-testid="sliderRange"
+        data-testid="slider-range"
       >
         
         
@@ -885,7 +885,7 @@ exports[`jest snapshots 1`] = `
           
           <div
             class="slider__item"
-            data-testid="scaleHorizontal"
+            data-testid="scale-horizontal"
           >
             |
             
@@ -987,7 +987,7 @@ exports[`jest snapshots 1`] = `
     
           <span
             class="slider__flag slider__flag--max"
-            data-testid="flagHorizontalRange"
+            data-testid="flag-horizontal-range"
             style="left:100%"
           >
             148
@@ -1005,7 +1005,7 @@ exports[`jest snapshots 1`] = `
       
         <div
           class="slider__input"
-          data-testid="configuringRange"
+          data-testid="configuring-range"
         >
           
         
@@ -1280,7 +1280,7 @@ exports[`jest snapshots 1`] = `
       
       <div
         class="slider__inner slider__inner--height"
-        data-testid="sliderVerticalOne"
+        data-testid="slider-vertical-one"
       >
         
         
@@ -1823,7 +1823,7 @@ exports[`jest snapshots 1`] = `
           
           <div
             class="slider__item"
-            data-testid="scaleVertical"
+            data-testid="scale-vertical"
           >
             |
             
@@ -1845,7 +1845,7 @@ exports[`jest snapshots 1`] = `
       
           <span
             class="slider__flag-vertical slider__flag-vertical--max"
-            data-testid="flagVertical"
+            data-testid="flag-vertical"
             style="top:100%"
           >
             100
@@ -1863,7 +1863,7 @@ exports[`jest snapshots 1`] = `
       
         <div
           class="slider__input"
-          data-testid="configuringOne"
+          data-testid="configuring-one"
         >
           
         
@@ -2112,7 +2112,7 @@ exports[`jest snapshots 1`] = `
       
       <div
         class="slider__inner slider__inner--height"
-        data-testid="sliderVerticalRange"
+        data-testid="slider-vertical-range"
       >
         
         
@@ -2152,7 +2152,7 @@ exports[`jest snapshots 1`] = `
       
         <div
           class="slider__input"
-          data-testid="configuringRange"
+          data-testid="configuring-range"
         >
           
         
