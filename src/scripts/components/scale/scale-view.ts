@@ -15,13 +15,13 @@ export default class ScaleView extends AbstractView {
       if (i === min) {
         template += `
           <div data-testid="scale-horizontal" class="slider__item">|
-            <span class="slider__item--number slider__item--min">${i}</span>
+            <span class="slider__item_centered slider__item_minimum">${i}</span>
           </div>
         `
       } else if (i === max) {
         template += `
           <div class="slider__item">|
-            <span class="slider__item--number slider__item--max">${i}</span>
+            <span class="slider__item_centered slider__item_maximum">${i}</span>
           </div>
         `
       } else {
@@ -32,7 +32,7 @@ export default class ScaleView extends AbstractView {
     if(template.lastIndexOf(<string><unknown>max) === -1) {
       template += `
           <div class="slider__item">|
-            <span class="slider__item--number">${max}</span>
+            <span class="slider__item_centered">${max}</span>
           </div>
         `
     }

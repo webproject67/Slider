@@ -7,7 +7,7 @@
   height: 60px;
   user-select: none;  
 
-  &--height {
+  &_with-height {
     height: 300px;
   }
 }
@@ -17,7 +17,7 @@
   background-color: #e5e5e5;
   border-radius: 3px;
 
-  &--vertical {
+  &_with-height {
     width: 5px;
     height: 300px;
   }
@@ -28,15 +28,13 @@
   background-color: #4eb7a8;
   border-radius: 3px;
 
-  &--vertical-one,
-  &--vertical-range {
+  &_with-width {
     position: absolute;
     width: 5px;
   }
 }
 
-.slider__toggle,
-.slider__toggle-vertical {
+.slider__toggle {
   position: absolute;
   width: 20px;
   height: 20px;
@@ -46,13 +44,13 @@
   border-radius: 50%;
   cursor: pointer;
   
-  &--min,
-  &--max {
+  &_minimum,
+  &_maximum {
     top: 2px;
   }
   
-  &--v-min,
-  &--v-max {
+  &_vertical-minimum,
+  &_vertical-maximum {
     left: 2px;
   }
 }
@@ -61,13 +59,9 @@
   display: flex;
   justify-content: space-between;
 
-  &--transform {
+  &_transformed {
     width: 300px;
     transform: translateX(-120px) translateY(-174px) rotate(-90deg);
-
-    & .slider__item .slider__item--number {
-      transform: rotate(90deg);
-    }
   }
 }
 
@@ -76,9 +70,13 @@
   color: #4eb7a8;
   cursor: pointer;
 
-  &--number {
+  &_centered {
     display: flex;
     justify-content: center;
+  }
+
+  &_transformed {
+    transform: rotate(90deg);
   }
 }
 

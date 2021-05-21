@@ -9,9 +9,9 @@ export default class SliderViewOne extends AbstractView {
     return `
       <div data-testid="slider-one" class="slider__inner">
         <div class="slider__scale">
-          <div class="slider__bar slider__bar--one" style="margin-right:${100 - this.sliderModel.toPercentValue}%"></div>
+          <div class="slider__bar" style="margin-right:${100 - this.sliderModel.toPercentValue}%"></div>
         </div>
-        <div class="slider__toggle slider__toggle--max" style="left:${this.sliderModel.toPercentValue}%"></div>
+        <div class="slider__toggle slider__toggle_maximum" style="left:${this.sliderModel.toPercentValue}%"></div>
       </div>
     `
   }
