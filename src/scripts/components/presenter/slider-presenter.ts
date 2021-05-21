@@ -107,7 +107,7 @@ export default class SliderPresenter {
   }
 
   private onFlagMouseDown(evt: any):void  {
-    const flag: HTMLElement = evt.target;
+    const flag: HTMLElement = evt.currentTarget;
     const slider: HTMLElement = flag.parentElement!.parentElement!;
     let toggle: HTMLElement;
 
@@ -137,7 +137,7 @@ export default class SliderPresenter {
   }
 
   private onInputChange(evt: any):void {
-    const input: HTMLElement = evt.target;
+    const input: HTMLElement = evt.currentTarget;
 
     if (input.dataset.name === 'min') {
       this.setInModelValue('min', +(<HTMLInputElement>input).value);
@@ -296,7 +296,7 @@ export default class SliderPresenter {
   }
 
   private onScaleClick(evt: any):void  {
-    const scale: HTMLElement = evt.target;
+    const scale: HTMLElement = evt.currentTarget;
     const min: number = this.sliderModel.minValue;
     const max: number = this.sliderModel.maxValue;
     const step: number = this.sliderModel.stepValue;
@@ -435,7 +435,7 @@ export default class SliderPresenter {
   } 
 
   private onToggleMouseDown(evt: any):void {
-    const toggle: HTMLElement = evt.target;
+    const toggle: HTMLElement = evt.currentTarget;
     this.replaceToggle(evt, toggle);
   }
 }
