@@ -112,17 +112,17 @@ export default class SliderPresenter {
     let toggle: HTMLElement;
 
     switch (flag.className.split(' ')[1]) {
-      case 'slider__flag--min':
-        toggle = slider.querySelector('.slider__toggle--min')!;
+      case 'slider__flag_minimum':
+        toggle = slider.querySelector('.slider__toggle_minimum')!;
       break;
-      case 'slider__flag--max':
-        toggle = slider.querySelector('.slider__toggle--max')!;
+      case 'slider__flag_maximum':
+        toggle = slider.querySelector('.slider__toggle_maximum')!;
       break;
-      case 'slider__flag-vertical--min':
-        toggle = slider.querySelector('.slider__toggle-vertical--v-min')!;
+      case 'slider__flag-vertical_minimum':
+        toggle = slider.querySelector('.slider__toggle_vertical-minimum')!;
       break;
-      case 'slider__flag-vertical--max':
-        toggle = slider.querySelector('.slider__toggle-vertical--v-max')!;
+      case 'slider__flag-vertical_maximum':
+        toggle = slider.querySelector('.slider__toggle_vertical-maximum')!;
       break;
     }
 
@@ -217,7 +217,7 @@ export default class SliderPresenter {
 
     let onMouseMove: {(evt: MouseEvent): void};
 
-    if (toggle.className.split(' ')[0] === 'slider__toggle') {
+    if (toggle.className.split(' ')[1] === 'slider__toggle_minimum' || toggle.className.split(' ')[1] === 'slider__toggle_maximum') {
       const shift: number = evt.pageX - toggle.getBoundingClientRect().left - 10;
 
       onMouseMove = (evt: MouseEvent): void => {
@@ -228,7 +228,7 @@ export default class SliderPresenter {
         if (stepLeft < 0) stepLeft = 0;
         if (stepLeft > 100) stepLeft = 100;
         
-        if (toggle.className.split(' ')[1] === 'slider__toggle--min') {
+        if (toggle.className.split(' ')[1] === 'slider__toggle_minimum') {
           const toPercentValue: number = this.sliderModel.toPercentValue;
           if (stepLeft > toPercentValue) stepLeft = toPercentValue;
           this.sliderModel.fromPercentValue = <number>stepLeft;
@@ -237,7 +237,7 @@ export default class SliderPresenter {
           (<HTMLElement>slider.querySelector('.slider__bar')!).style.marginLeft = stepLeft + '%';
         }
         
-        if (toggle.className.split(' ')[1] === 'slider__toggle--max') {
+        if (toggle.className.split(' ')[1] === 'slider__toggle_maximum') {
           const fromPercentValue: number = this.sliderModel.fromPercentValue;
           if (fromPercentValue > stepLeft) stepLeft = fromPercentValue;
           this.sliderModel.toPercentValue = <number>stepLeft;
@@ -261,7 +261,7 @@ export default class SliderPresenter {
         if (stepTop < 0) stepTop = 0;
         if (stepTop > 100) stepTop = 100;
         
-        if (toggle.className.split(' ')[1] === 'slider__toggle-vertical--v-min') {
+        if (toggle.className.split(' ')[1] === 'slider__toggle_vertical-minimum') {
           const toPercentValue: number = this.sliderModel.toPercentValue;
           if (stepTop > toPercentValue) stepTop = toPercentValue;
           this.sliderModel.fromPercentValue = <number>stepTop;
@@ -271,7 +271,7 @@ export default class SliderPresenter {
           (<HTMLElement>slider.querySelector('.slider__bar')!).style.height = this.sliderModel.toPercentValue - stepTop + '%';
         }
         
-        if (toggle.className.split(' ')[1] === 'slider__toggle-vertical--v-max') {
+        if (toggle.className.split(' ')[1] === 'slider__toggle_vertical-maximum') {
           const fromPercentValue: number = this.sliderModel.fromPercentValue;
           if (fromPercentValue > stepTop) stepTop = fromPercentValue;
           this.sliderModel.toPercentValue = <number>stepTop;
@@ -323,8 +323,8 @@ export default class SliderPresenter {
     const stepCount: number = (max - min) / step;
     const stepPercent: number = 100 / stepCount;
     let stepPercentResult: number = Math.round(corner / stepPercent) * stepPercent;
-    if (stepPercentResult < 0 || scale.className.split(' ')[1] === 'slider__item--min') stepPercentResult = 0;
-    if (stepPercentResult > 100 || scale.className.split(' ')[1] === 'slider__item--max') stepPercentResult = 100;
+    if (stepPercentResult < 0 || scale.className.split(' ')[1] === 'slider__item_minimum') stepPercentResult = 0;
+    if (stepPercentResult > 100 || scale.className.split(' ')[1] === 'slider__item_maximum') stepPercentResult = 100;
 
     if (stepPercentResult >= this.sliderModel.fromPercentValue) {
       this.sliderModel.toPercentValue = <number>stepPercentResult;

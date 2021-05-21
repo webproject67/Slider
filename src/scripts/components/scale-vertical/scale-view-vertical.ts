@@ -2,7 +2,7 @@ import AbstractView from '../abstract-view';
 
 export default class ScaleViewVertical extends AbstractView {
   get className() {
-    return 'slider__list slider__list--transform';
+    return 'slider__list slider__list_transformed';
   }
 
   get template() {
@@ -15,13 +15,13 @@ export default class ScaleViewVertical extends AbstractView {
       if (i === min) {
         template += `
           <div data-testid="scale-vertical" class="slider__item">|
-            <span class="slider__item--number slider__item--min">${i}</span>
+            <span class="slider__item_centered slider__item_minimum slider__item_transformed">${i}</span>
           </div>
         `
       } else if (i === max) {
         template += `
           <div class="slider__item">|
-            <span class="slider__item--number slider__item--max">${i}</span>
+            <span class="slider__item_centered slider__item_maximum slider__item_transformed">${i}</span>
           </div>
         `
       } else {
@@ -32,7 +32,7 @@ export default class ScaleViewVertical extends AbstractView {
     if(template.indexOf(<string><unknown>min, max - 1) === -1) {
       template += `
           <div class="slider__item">|
-            <span class="slider__item--number">${min}</span>
+            <span class="slider__item_centered">${min}</span>
           </div>
         `
     }
