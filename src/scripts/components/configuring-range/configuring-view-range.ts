@@ -51,7 +51,7 @@ export default class ConfiguringViewRange extends AbstractView {
   }
   
   bind() {
-    this.element.addEventListener('change', this.onInputChange)
+    this.element.querySelectorAll('input').forEach((elem) => elem.addEventListener('change', this.onInputChange))
   }
 
   public onInputChange(evt: Event):void {
