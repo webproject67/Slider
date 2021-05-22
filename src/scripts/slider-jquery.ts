@@ -1,4 +1,4 @@
-import Slider from './presenter/slider-presenter';
+import Slider from './components/presenter/slider-presenter';
 
 (function($) {
 	$.fn.slider = function(options) {

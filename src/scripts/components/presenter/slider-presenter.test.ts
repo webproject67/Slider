@@ -1,6 +1,6 @@
+import SliderPresenter from './slider-presenter';
 import {getByTestId} from '@testing-library/dom';
 import '@testing-library/jest-dom';
-import SliderPresenter from './slider-presenter';
 
 function getExampleDOM() {
   const div = document.createElement('div');

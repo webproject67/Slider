@@ -1,5 +1,5 @@
 import AbstractView from '../abstract-view';
-import {NULL_VALUE} from '../../../const';
+import {NULL_VALUE} from '../../const';
 
 export default class FlagViewVerticalOne extends AbstractView {
   get className() {
