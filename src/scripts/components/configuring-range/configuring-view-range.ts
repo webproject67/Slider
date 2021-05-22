@@ -1,5 +1,5 @@
 import AbstractView from '../abstract-view';
-import {NULL_VALUE, View, Range} from '../../../const';
+import {NULL_VALUE, View, Range} from '../../const';
 
 export default class ConfiguringViewRange extends AbstractView {
   get className() {

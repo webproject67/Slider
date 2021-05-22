@@ -11,7 +11,7 @@ import FlagViewOne from '../flag-one/flag-view-one';
 import FlagViewRange from '../flag-range/flag-view-range';
 import FlagViewVerticalOne from '../flag-vertical-one/flag-view-vertical-one';
 import FlagViewVerticalRange from '../flag-vertical-range/flag-view-vertical-range';
-import {State, Const, Range, View} from '../../../const';
+import {State, Const, Range, View} from '../../const';
 
 export default class SliderPresenter {
   sliderModel: SliderModel;
