@@ -11,6 +11,7 @@ import FlagViewOne from '../flag-one/flag-view-one';
 import FlagViewRange from '../flag-range/flag-view-range';
 import FlagViewVerticalOne from '../flag-vertical-one/flag-view-vertical-one';
 import FlagViewVerticalRange from '../flag-vertical-range/flag-view-vertical-range';
+import {State, Const, Range, View} from '../../../const';
 
 export default class SliderPresenter {
   sliderModel: SliderModel;
@@ -139,32 +140,32 @@ export default class SliderPresenter {
   private onInputChange(evt: any):void {
     const input: HTMLElement = evt.currentTarget;
 
-    if (input.dataset.name === 'min') {
+    if (input.dataset.name === State.MIN) {
       this.setInModelValue('min', +(<HTMLInputElement>input).value);
       this.setInModelValue('from', +(<HTMLInputElement>input).value);
       this.setInModelValue('fromPercent', 0);
     }
 
-    if (input.dataset.name === 'max') {
+    if (input.dataset.name === State.MAX) {
       this.setInModelValue('max', +(<HTMLInputElement>input).value);
       this.setInModelValue('to', +(<HTMLInputElement>input).value);
       this.setInModelValue('toPercent', 100);
     }
 
-    if (input.dataset.name === 'step') {
+    if (input.dataset.name === State.STEP) {
       let value: number = +(<HTMLInputElement>input).value;
       if(value === 0) value = 1;
       if(value < 0) value = Math.abs(value);
       this.setInModelValue('step', value);
     }
 
-    if (input.dataset.name === 'view' || input.dataset.name === 'range') {
+    if (input.dataset.name === State.VIEW || input.dataset.name === State.RANGE) {
       this.setInModelValue(input.dataset.name, (<HTMLInputElement>input).value);
       this.sliderModel.main.removeChild(this.sliderModel.main.children[0]);
       this.showSliderView();
     }
 
-    if (input.dataset.name === 'flag' || input.dataset.name === 'scale') {
+    if (input.dataset.name === State.FLAG || input.dataset.name === State.SCALE) {
       this.setInModelValue(input.dataset.name, (<HTMLInputElement>input).checked);
     }
 
@@ -217,7 +218,7 @@ export default class SliderPresenter {
 
     let onMouseMove: {(evt: MouseEvent): void};
 
-    if (toggle.className.split(' ')[1] === 'slider__toggle_minimum' || toggle.className.split(' ')[1] === 'slider__toggle_maximum') {
+    if (toggle.className.split(' ')[1] === Const.SLIDER_TOGGLE_MINIMUM || toggle.className.split(' ')[1] === Const.SLIDER_TOGGLE_MAXIMUM) {
       const shift: number = evt.pageX - toggle.getBoundingClientRect().left - 10;
 
       onMouseMove = (evt: MouseEvent): void => {
@@ -228,7 +229,7 @@ export default class SliderPresenter {
         if (stepLeft < 0) stepLeft = 0;
         if (stepLeft > 100) stepLeft = 100;
         
-        if (toggle.className.split(' ')[1] === 'slider__toggle_minimum') {
+        if (toggle.className.split(' ')[1] === Const.SLIDER_TOGGLE_MINIMUM) {
           const toPercentValue: number = this.sliderModel.toPercentValue;
           if (stepLeft > toPercentValue) stepLeft = toPercentValue;
           this.sliderModel.fromPercentValue = <number>stepLeft;
@@ -237,7 +238,7 @@ export default class SliderPresenter {
           (<HTMLElement>slider.querySelector('.slider__bar')!).style.marginLeft = stepLeft + '%';
         }
         
-        if (toggle.className.split(' ')[1] === 'slider__toggle_maximum') {
+        if (toggle.className.split(' ')[1] === Const.SLIDER_TOGGLE_MAXIMUM) {
           const fromPercentValue: number = this.sliderModel.fromPercentValue;
           if (fromPercentValue > stepLeft) stepLeft = fromPercentValue;
           this.sliderModel.toPercentValue = <number>stepLeft;
@@ -261,7 +262,7 @@ export default class SliderPresenter {
         if (stepTop < 0) stepTop = 0;
         if (stepTop > 100) stepTop = 100;
         
-        if (toggle.className.split(' ')[1] === 'slider__toggle_vertical-minimum') {
+        if (toggle.className.split(' ')[1] === Const.SLIDER_TOGGLE_VERTICAL_MINIMUM) {
           const toPercentValue: number = this.sliderModel.toPercentValue;
           if (stepTop > toPercentValue) stepTop = toPercentValue;
           this.sliderModel.fromPercentValue = <number>stepTop;
@@ -271,7 +272,7 @@ export default class SliderPresenter {
           (<HTMLElement>slider.querySelector('.slider__bar')!).style.height = this.sliderModel.toPercentValue - stepTop + '%';
         }
         
-        if (toggle.className.split(' ')[1] === 'slider__toggle_vertical-maximum') {
+        if (toggle.className.split(' ')[1] === Const.SLIDER_TOGGLE_VERTICAL_MAXIMUM) {
           const fromPercentValue: number = this.sliderModel.fromPercentValue;
           if (fromPercentValue > stepTop) stepTop = fromPercentValue;
           this.sliderModel.toPercentValue = <number>stepTop;
@@ -323,8 +324,8 @@ export default class SliderPresenter {
     const stepCount: number = (max - min) / step;
     const stepPercent: number = 100 / stepCount;
     let stepPercentResult: number = Math.round(corner / stepPercent) * stepPercent;
-    if (stepPercentResult < 0 || scale.className.split(' ')[1] === 'slider__item_minimum') stepPercentResult = 0;
-    if (stepPercentResult > 100 || scale.className.split(' ')[1] === 'slider__item_maximum') stepPercentResult = 100;
+    if (stepPercentResult < 0 || scale.className.split(' ')[1] === Const.SLIDER_ITEM_MINIMUM) stepPercentResult = 0;
+    if (stepPercentResult > 100 || scale.className.split(' ')[1] === Const.SLIDER_ITEM_MAXIMUM) stepPercentResult = 100;
 
     if (stepPercentResult >= this.sliderModel.fromPercentValue) {
       this.sliderModel.toPercentValue = <number>stepPercentResult;
@@ -383,9 +384,9 @@ export default class SliderPresenter {
   }
 
   private showConfiguringView():void {
-    if (this.sliderModel.rangeValue === 'one') {
+    if (this.sliderModel.rangeValue === Range.ONE) {
       this.sliderModel.main.querySelector('.slider__wrapper')?.appendChild(this.configuringViewOne.element);
-    } else if (this.sliderModel.rangeValue === 'range') {
+    } else if (this.sliderModel.rangeValue === Range.RANGE) {
       this.sliderModel.main.querySelector('.slider__wrapper')?.appendChild(this.configuringViewRange.element);
     } else {
       throw new Error('incorrect value')
@@ -394,13 +395,13 @@ export default class SliderPresenter {
 
   private showFlagView():void {
     if(this.sliderModel.flagValue) {
-      if (this.sliderModel.rangeValue === 'one' && this.sliderModel.viewValue === 'horizontal') {
+      if (this.sliderModel.rangeValue === Range.ONE && this.sliderModel.viewValue === View.HORIZONTAL) {
         this.sliderModel.main.querySelector('.slider__inner')?.appendChild(this.flagViewOne.element);
-      } else if (this.sliderModel.rangeValue === 'range' && this.sliderModel.viewValue === 'horizontal') {
+      } else if (this.sliderModel.rangeValue === Range.RANGE && this.sliderModel.viewValue === View.HORIZONTAL) {
         this.sliderModel.main.querySelector('.slider__inner')?.appendChild(this.flagViewRange.element);
-      } else if (this.sliderModel.rangeValue === 'one' && this.sliderModel.viewValue === 'vertical') {
+      } else if (this.sliderModel.rangeValue === Range.ONE && this.sliderModel.viewValue === View.VERTICAL) {
         this.sliderModel.main.querySelector('.slider__inner')?.appendChild(this.flagViewVerticalOne.element);
-      } else if (this.sliderModel.rangeValue === 'range' && this.sliderModel.viewValue === 'vertical') {
+      } else if (this.sliderModel.rangeValue === Range.RANGE && this.sliderModel.viewValue === View.VERTICAL) {
         this.sliderModel.main.querySelector('.slider__inner')?.appendChild(this.flagViewVerticalRange.element);
       } else {
         throw new Error('incorrect value')
@@ -410,9 +411,9 @@ export default class SliderPresenter {
 
   private showScaleView(): void {
     if(this.sliderModel.scaleValue) {
-      if (this.sliderModel.viewValue === 'horizontal') {
+      if (this.sliderModel.viewValue === View.HORIZONTAL) {
         this.sliderModel.main.querySelector('.slider__inner')?.appendChild(this.scaleView.element);
-      } else if (this.sliderModel.viewValue === 'vertical') {
+      } else if (this.sliderModel.viewValue === View.VERTICAL) {
         this.sliderModel.main.querySelector('.slider__inner')?.appendChild(this.scaleViewVertical.element);
       } else {
         throw new Error('incorrect value')
@@ -421,13 +422,13 @@ export default class SliderPresenter {
   }
 
   private showSliderView():void {
-    if (this.sliderModel.rangeValue === 'one' && this.sliderModel.viewValue === 'horizontal') {
+    if (this.sliderModel.rangeValue === Range.ONE && this.sliderModel.viewValue === View.HORIZONTAL) {
       this.sliderModel.main.appendChild(this.sliderViewOne.element);
-    } else if (this.sliderModel.rangeValue === 'range' && this.sliderModel.viewValue === 'horizontal') {
+    } else if (this.sliderModel.rangeValue === Range.RANGE && this.sliderModel.viewValue === View.HORIZONTAL) {
       this.sliderModel.main.appendChild(this.sliderViewRange.element);
-    } else if (this.sliderModel.rangeValue === 'one' && this.sliderModel.viewValue === 'vertical') {
+    } else if (this.sliderModel.rangeValue === Range.ONE && this.sliderModel.viewValue === View.VERTICAL) {
       this.sliderModel.main.appendChild(this.sliderViewVerticalOne.element);
-    } else if (this.sliderModel.rangeValue === 'range' && this.sliderModel.viewValue === 'vertical') {
+    } else if (this.sliderModel.rangeValue === Range.RANGE && this.sliderModel.viewValue === View.VERTICAL) {
       this.sliderModel.main.appendChild(this.sliderViewVerticalRange.element);
     } else {
       throw new Error('incorrect value')
