@@ -8,23 +8,23 @@ export default abstract class AbstractView {
     this.sliderModel = sliderModel
   }
 
-  protected get className(): string {
-    return '';
-  }
-
   public get element(): HTMLElement {
     if (this.elem) {
       return this.elem;
     }
-    this.elem = this.render();
+    this.elem = this._render();
     this.bind();
     return this.elem;
   }
   
   public get newElement(): HTMLElement {
-    this.elem = this.render();
+    this.elem = this._render();
     this.bind();
     return this.elem;
+  }
+
+  protected get className(): string {
+    return '';
   }
 
   protected get template(): string {
@@ -35,14 +35,14 @@ export default abstract class AbstractView {
   
   }
 
-  private createElement(template: string, className: string): HTMLElement {
+  private _createElement(template: string, className: string): HTMLElement {
     const newElement: HTMLElement = document.createElement('div');
     newElement.className = className;
     newElement.innerHTML = template;
     return newElement;
   };
 
-  private render(): HTMLElement {
-    return this.createElement(this.template, this.className);
+  private _render(): HTMLElement {
+    return this._createElement(this.template, this.className);
   }
 }
