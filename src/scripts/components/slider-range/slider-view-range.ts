@@ -18,10 +18,10 @@ export default class SliderViewRange extends AbstractView {
   }
 
   bind() {
-    this.element.querySelectorAll('.slider__toggle').forEach((elem) => elem.addEventListener('mousedown', this.onToggleMouseDown))
+    this.element.querySelectorAll('.slider__toggle').forEach((elem) => elem.addEventListener('mousedown', this.handleToggleMouseDown))
   }
 
-  public onToggleMouseDown(evt: Event):void {
+  public handleToggleMouseDown(evt: Event):void {
     
   }
 }

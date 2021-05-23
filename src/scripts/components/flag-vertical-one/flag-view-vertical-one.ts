@@ -13,10 +13,10 @@ export default class FlagViewVerticalOne extends AbstractView {
   }
   
   bind() {
-    this.element.querySelectorAll('.slider__flag-vertical').forEach((elem) => elem.addEventListener('mousedown', this.onFlagMouseDown))
+    this.element.querySelectorAll('.slider__flag-vertical').forEach((elem) => elem.addEventListener('mousedown', this.handleFlagMouseDown))
   }
 
-  public onFlagMouseDown(evt: Event):void {
+  public handleFlagMouseDown(evt: Event):void {
     
   }
 }

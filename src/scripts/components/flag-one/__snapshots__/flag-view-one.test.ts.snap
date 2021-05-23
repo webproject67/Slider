@@ -7,7 +7,7 @@ exports[`jest snapshots 1`] = `
   
       
   <span
-    class="slider__flag slider__flag--max"
+    class="slider__flag slider__flag_maximum"
     data-testid="flag-horizontal"
     style="left:100%"
   >

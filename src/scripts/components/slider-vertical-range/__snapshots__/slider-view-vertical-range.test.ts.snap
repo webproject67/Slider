@@ -7,18 +7,18 @@ exports[`jest snapshots 1`] = `
   
       
   <div
-    class="slider__inner slider__inner--height"
+    class="slider__inner slider__inner_with-height"
     data-testid="slider-vertical-range"
   >
     
         
     <div
-      class="slider__scale slider__scale--vertical"
+      class="slider__scale slider__scale_with-height"
     >
       
           
       <div
-        class="slider__bar slider__bar--vertical-range"
+        class="slider__bar slider__bar_with-width"
         style="top:0%;height:100%"
       />
       
@@ -27,13 +27,13 @@ exports[`jest snapshots 1`] = `
     
         
     <div
-      class="slider__toggle-vertical slider__toggle-vertical--v-min"
+      class="slider__toggle slider__toggle_vertical-minimum"
       style="top:0%"
     />
     
         
     <div
-      class="slider__toggle-vertical slider__toggle-vertical--v-max"
+      class="slider__toggle slider__toggle_vertical-maximum"
       style="top:100%"
     />
     

@@ -48,10 +48,10 @@ export default class ConfiguringViewOne extends AbstractView {
   }
 
   bind() {
-    this.element.querySelectorAll('input').forEach((elem) => elem.addEventListener('change', this.onInputChange))
+    this.element.querySelectorAll('input').forEach((elem) => elem.addEventListener('change', this.handleInputChange))
   }
 
-  public onInputChange(evt: Event):void {
+  public handleInputChange(evt: Event):void {
     
   }
 }

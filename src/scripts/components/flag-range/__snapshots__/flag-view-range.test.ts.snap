@@ -7,7 +7,7 @@ exports[`jest snapshots 1`] = `
   
     
   <span
-    class="slider__flag slider__flag--min"
+    class="slider__flag slider__flag_minimum"
     style="left:0%"
   >
     0
@@ -15,7 +15,7 @@ exports[`jest snapshots 1`] = `
   
     
   <span
-    class="slider__flag slider__flag--max"
+    class="slider__flag slider__flag_maximum"
     data-testid="flag-horizontal-range"
     style="left:100%"
   >
