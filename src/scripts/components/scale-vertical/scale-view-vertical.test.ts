@@ -20,9 +20,9 @@ const model = new SliderModel(main, state);
 const scale = new ScaleViewVertical(model);
 
 test('spyOn click scale vertical', () => {
-  const somethingSpy = jest.spyOn(scale, 'onScaleClick');
+  const somethingSpy = jest.spyOn(scale, 'handleItemClick');
   let evt: any;
-  scale.onScaleClick(evt);
+  scale.handleItemClick(evt);
   expect(somethingSpy).toHaveBeenCalledTimes(1)
 });
 

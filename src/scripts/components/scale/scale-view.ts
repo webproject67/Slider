@@ -41,10 +41,10 @@ export default class ScaleView extends AbstractView {
   }
 
   bind() {
-    this.element.querySelectorAll('.slider__item').forEach((elem) => elem.addEventListener('click', this.onScaleClick))
+    this.element.querySelectorAll('.slider__item').forEach((elem) => elem.addEventListener('click', this.handleItemClick))
   }
 
-  public onScaleClick(evt: Event):void {
+  public handleItemClick(evt: Event):void {
     
   }
 }

@@ -20,9 +20,9 @@ const model = new SliderModel(main, state);
 const slider = new SliderViewVerticalOne(model);
 
 test('spyOn mouseDown toggle vertical one', () => {
-  const somethingSpy = jest.spyOn(slider, 'onToggleMouseDown');
+  const somethingSpy = jest.spyOn(slider, 'handleToggleMouseDown');
   let evt: any;
-  slider.onToggleMouseDown(evt);
+  slider.handleToggleMouseDown(evt);
   expect(somethingSpy).toHaveBeenCalledTimes(1)
 });
 

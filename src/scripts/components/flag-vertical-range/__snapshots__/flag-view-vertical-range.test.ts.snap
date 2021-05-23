@@ -7,7 +7,7 @@ exports[`jest snapshots 1`] = `
   
       
   <span
-    class="slider__flag-vertical slider__flag-vertical--min"
+    class="slider__flag-vertical slider__flag-vertical_minimum"
     style="top:0%"
   >
     0
@@ -15,7 +15,7 @@ exports[`jest snapshots 1`] = `
   
       
   <span
-    class="slider__flag-vertical slider__flag-vertical--max"
+    class="slider__flag-vertical slider__flag-vertical_maximum"
     data-testid="flag-vertical-range"
     style="top:100%"
   >

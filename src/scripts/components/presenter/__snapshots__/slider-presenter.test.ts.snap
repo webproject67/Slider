@@ -26,7 +26,7 @@ exports[`jest snapshots 1`] = `
           
           
           <div
-            class="slider__bar slider__bar--one"
+            class="slider__bar"
             style="margin-right:0%"
           />
           
@@ -35,7 +35,7 @@ exports[`jest snapshots 1`] = `
         
         
         <div
-          class="slider__toggle slider__toggle--max"
+          class="slider__toggle slider__toggle_maximum"
           style="left:100%"
         />
         
@@ -52,7 +52,7 @@ exports[`jest snapshots 1`] = `
             |
             
             <span
-              class="slider__item--number slider__item--min"
+              class="slider__item_centered slider__item_minimum"
             >
               0
             </span>
@@ -564,7 +564,7 @@ exports[`jest snapshots 1`] = `
             |
             
             <span
-              class="slider__item--number slider__item--max"
+              class="slider__item_centered slider__item_maximum"
             >
               100
             </span>
@@ -580,7 +580,7 @@ exports[`jest snapshots 1`] = `
           
       
           <span
-            class="slider__flag slider__flag--max"
+            class="slider__flag slider__flag_maximum"
             data-testid="flag-horizontal"
             style="left:100%"
           >
@@ -858,7 +858,7 @@ exports[`jest snapshots 1`] = `
           
           
           <div
-            class="slider__bar slider__bar--range"
+            class="slider__bar"
             style="margin-left:0%;margin-right:0%"
           />
           
@@ -867,13 +867,13 @@ exports[`jest snapshots 1`] = `
         
         
         <div
-          class="slider__toggle slider__toggle--min"
+          class="slider__toggle slider__toggle_minimum"
           style="left:0%"
         />
         
         
         <div
-          class="slider__toggle slider__toggle--max"
+          class="slider__toggle slider__toggle_maximum"
           style="left:100%"
         />
         
@@ -890,7 +890,7 @@ exports[`jest snapshots 1`] = `
             |
             
             <span
-              class="slider__item--number slider__item--min"
+              class="slider__item_centered slider__item_minimum"
             >
               28
             </span>
@@ -962,7 +962,7 @@ exports[`jest snapshots 1`] = `
             |
             
             <span
-              class="slider__item--number slider__item--max"
+              class="slider__item_centered slider__item_maximum"
             >
               148
             </span>
@@ -978,7 +978,7 @@ exports[`jest snapshots 1`] = `
           
     
           <span
-            class="slider__flag slider__flag--min"
+            class="slider__flag slider__flag_minimum"
             style="left:0%"
           >
             28
@@ -986,7 +986,7 @@ exports[`jest snapshots 1`] = `
           
     
           <span
-            class="slider__flag slider__flag--max"
+            class="slider__flag slider__flag_maximum"
             data-testid="flag-horizontal-range"
             style="left:100%"
           >
@@ -1279,18 +1279,18 @@ exports[`jest snapshots 1`] = `
       
       
       <div
-        class="slider__inner slider__inner--height"
+        class="slider__inner slider__inner_with-height"
         data-testid="slider-vertical-one"
       >
         
         
         <div
-          class="slider__scale slider__scale--vertical"
+          class="slider__scale slider__scale_with-height"
         >
           
           
           <div
-            class="slider__bar slider__bar--vertical-one"
+            class="slider__bar slider__bar_with-width"
             style="height:100%"
           />
           
@@ -1299,13 +1299,13 @@ exports[`jest snapshots 1`] = `
         
         
         <div
-          class="slider__toggle-vertical slider__toggle-vertical--v-max"
+          class="slider__toggle slider__toggle_vertical-maximum"
           style="top:100%"
         />
         
       
         <div
-          class="slider__list slider__list--transform"
+          class="slider__list slider__list_transformed"
         >
           
           
@@ -1315,7 +1315,7 @@ exports[`jest snapshots 1`] = `
             |
             
             <span
-              class="slider__item--number slider__item--max"
+              class="slider__item_centered slider__item_maximum slider__item_transformed"
             >
               100
             </span>
@@ -1828,7 +1828,7 @@ exports[`jest snapshots 1`] = `
             |
             
             <span
-              class="slider__item--number slider__item--min"
+              class="slider__item_centered slider__item_minimum slider__item_transformed"
             >
               0
             </span>
@@ -1844,7 +1844,7 @@ exports[`jest snapshots 1`] = `
           
       
           <span
-            class="slider__flag-vertical slider__flag-vertical--max"
+            class="slider__flag-vertical slider__flag-vertical_maximum"
             data-testid="flag-vertical"
             style="top:100%"
           >
@@ -2111,18 +2111,18 @@ exports[`jest snapshots 1`] = `
       
       
       <div
-        class="slider__inner slider__inner--height"
+        class="slider__inner slider__inner_with-height"
         data-testid="slider-vertical-range"
       >
         
         
         <div
-          class="slider__scale slider__scale--vertical"
+          class="slider__scale slider__scale_with-height"
         >
           
           
           <div
-            class="slider__bar slider__bar--vertical-range"
+            class="slider__bar slider__bar_with-width"
             style="top:0%;height:100%"
           />
           
@@ -2131,13 +2131,13 @@ exports[`jest snapshots 1`] = `
         
         
         <div
-          class="slider__toggle-vertical slider__toggle-vertical--v-min"
+          class="slider__toggle slider__toggle_vertical-minimum"
           style="top:0%"
         />
         
         
         <div
-          class="slider__toggle-vertical slider__toggle-vertical--v-max"
+          class="slider__toggle slider__toggle_vertical-maximum"
           style="top:100%"
         />
         

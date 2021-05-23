@@ -58,56 +58,56 @@ export default class SliderPresenter {
     this.flagViewVerticalOne = new FlagViewVerticalOne(this.sliderModel);
     this.flagViewVerticalRange = new FlagViewVerticalRange(this.sliderModel);
 
-    this.configuringViewOne.onInputChange = (evt) => {
-      this.onInputChange(evt);
+    this.configuringViewOne.handleInputChange = (evt) => {
+      this.handleInputChange(evt);
     }
     
-    this.configuringViewRange.onInputChange = (evt) => {
-      this.onInputChange(evt);
+    this.configuringViewRange.handleInputChange = (evt) => {
+      this.handleInputChange(evt);
     }
 
-    this.flagViewOne.onFlagMouseDown = (evt) => {
-      this.onFlagMouseDown(evt);
+    this.flagViewOne.handleFlagMouseDown = (evt) => {
+      this.handleFlagMouseDown(evt);
     }
     
-    this.flagViewRange.onFlagMouseDown = (evt) => {
-      this.onFlagMouseDown(evt);
+    this.flagViewRange.handleFlagMouseDown = (evt) => {
+      this.handleFlagMouseDown(evt);
     }
     
-    this.flagViewVerticalOne.onFlagMouseDown = (evt) => {
-      this.onFlagMouseDown(evt);
+    this.flagViewVerticalOne.handleFlagMouseDown = (evt) => {
+      this.handleFlagMouseDown(evt);
     }
     
-    this.flagViewVerticalRange.onFlagMouseDown = (evt) => {
-      this.onFlagMouseDown(evt);
+    this.flagViewVerticalRange.handleFlagMouseDown = (evt) => {
+      this.handleFlagMouseDown(evt);
     }
 
-    this.scaleView.onScaleClick = (evt) => {
-      this.onScaleClick(evt);
+    this.scaleView.handleItemClick = (evt) => {
+      this.handleItemClick(evt);
     }
     
-    this.scaleViewVertical.onScaleClick = (evt) => {
-      this.onScaleClick(evt);
+    this.scaleViewVertical.handleItemClick = (evt) => {
+      this.handleItemClick(evt);
     }
 
-    this.sliderViewOne.onToggleMouseDown = (evt) => {
-      this.onToggleMouseDown(evt);
+    this.sliderViewOne.handleToggleMouseDown = (evt) => {
+      this.handleToggleMouseDown(evt);
     }
     
-    this.sliderViewRange.onToggleMouseDown = (evt) => {
-      this.onToggleMouseDown(evt);
+    this.sliderViewRange.handleToggleMouseDown = (evt) => {
+      this.handleToggleMouseDown(evt);
     }
     
-    this.sliderViewVerticalOne.onToggleMouseDown = (evt) => {
-      this.onToggleMouseDown(evt);
+    this.sliderViewVerticalOne.handleToggleMouseDown = (evt) => {
+      this.handleToggleMouseDown(evt);
     }
     
-    this.sliderViewVerticalRange.onToggleMouseDown = (evt) => {
-      this.onToggleMouseDown(evt);
+    this.sliderViewVerticalRange.handleToggleMouseDown = (evt) => {
+      this.handleToggleMouseDown(evt);
     }
   }
 
-  private onFlagMouseDown(evt: any):void  {
+  private handleFlagMouseDown(evt: any):void  {
     const flag: HTMLElement = evt.currentTarget;
     const slider: HTMLElement = flag.parentElement!.parentElement!;
     let toggle: HTMLElement;
@@ -130,14 +130,7 @@ export default class SliderPresenter {
     this.replaceToggle(evt, toggle!);
   }
 
-  public init(): void {
-    this.showSliderView();
-    this.showConfiguringView();
-    this.showScaleView();
-    this.showFlagView();
-  }
-
-  private onInputChange(evt: any):void {
+  private handleInputChange(evt: any):void {
     const input: HTMLElement = evt.currentTarget;
 
     if (input.dataset.name === State.MIN) {
@@ -176,6 +169,60 @@ export default class SliderPresenter {
     this.showScaleView();
     this.showFlagView();
     this.showConfiguringView();
+  }
+
+  private handleItemClick(evt: any):void  {
+    const scale: HTMLElement = evt.currentTarget;
+    const min: number = this.sliderModel.minValue;
+    const max: number = this.sliderModel.maxValue;
+    const step: number = this.sliderModel.stepValue;
+    const stepList: HTMLElement = scale.parentElement!;
+    const slider: HTMLElement = stepList.parentElement!;
+    const boxLeft: number = slider.offsetLeft;
+    const boxRight: number = boxLeft + slider.clientWidth;
+    const boxTop: number = slider.offsetTop;
+    const boxBottom: number = boxTop + slider.clientHeight;
+    const sliderLeft: number = boxLeft + pageXOffset;
+    const sliderWidth: number = boxRight - boxLeft;
+    const sliderTop: number = boxTop + pageYOffset;
+    const sliderHeight: number = boxBottom - boxTop;
+    let corner: number;
+
+    if (!stepList.className.split(' ')[1]) {
+      const shift: number = evt.pageX - scale.getBoundingClientRect().left;
+      corner = ((evt.pageX - shift - sliderLeft) / sliderWidth) * 100;
+    } else {
+      const shift: number = evt.pageY - (scale.getBoundingClientRect().top + (window.pageYOffset * 2));
+      corner = ((evt.pageY - shift - sliderTop) / sliderHeight) * 100;
+    }
+
+    const stepCount: number = (max - min) / step;
+    const stepPercent: number = 100 / stepCount;
+    let stepPercentResult: number = Math.round(corner / stepPercent) * stepPercent;
+    if (stepPercentResult < 0 || scale.className.split(' ')[1] === Const.SLIDER_ITEM_MINIMUM) stepPercentResult = 0;
+    if (stepPercentResult > 100 || scale.className.split(' ')[1] === Const.SLIDER_ITEM_MAXIMUM) stepPercentResult = 100;
+
+    if (stepPercentResult >= this.sliderModel.fromPercentValue) {
+      this.sliderModel.toPercentValue = <number>stepPercentResult;
+      const value: number = <number>+(stepPercentResult / stepPercent * step).toFixed() + min;
+      this.sliderModel.toValue = <number>value;
+    } else {
+      this.sliderModel.fromPercentValue = <number>stepPercentResult;
+      const value: number = <number>+(stepPercentResult / stepPercent * step).toFixed() + min;
+      this.sliderModel.fromValue = <number>value;
+    }
+
+    this.replaceScreenFlag();
+    this.replaceScreenConfiguring();
+    this.replaceScreenSlider();
+    this.showScaleView();
+    this.showFlagView();
+    this.showConfiguringView();
+  }
+
+  private handleToggleMouseDown(evt: any):void {
+    const toggle: HTMLElement = evt.currentTarget;
+    this.replaceToggle(evt, toggle);
   }
 
   private replaceScreenConfiguring(): void {
@@ -296,55 +343,6 @@ export default class SliderPresenter {
     document.addEventListener('mouseup', onMouseUp);
   }
 
-  private onScaleClick(evt: any):void  {
-    const scale: HTMLElement = evt.currentTarget;
-    const min: number = this.sliderModel.minValue;
-    const max: number = this.sliderModel.maxValue;
-    const step: number = this.sliderModel.stepValue;
-    const stepList: HTMLElement = scale.parentElement!;
-    const slider: HTMLElement = stepList.parentElement!;
-    const boxLeft: number = slider.offsetLeft;
-    const boxRight: number = boxLeft + slider.clientWidth;
-    const boxTop: number = slider.offsetTop;
-    const boxBottom: number = boxTop + slider.clientHeight;
-    const sliderLeft: number = boxLeft + pageXOffset;
-    const sliderWidth: number = boxRight - boxLeft;
-    const sliderTop: number = boxTop + pageYOffset;
-    const sliderHeight: number = boxBottom - boxTop;
-    let corner: number;
-
-    if (!stepList.className.split(' ')[1]) {
-      const shift: number = evt.pageX - scale.getBoundingClientRect().left;
-      corner = ((evt.pageX - shift - sliderLeft) / sliderWidth) * 100;
-    } else {
-      const shift: number = evt.pageY - (scale.getBoundingClientRect().top + (window.pageYOffset * 2));
-      corner = ((evt.pageY - shift - sliderTop) / sliderHeight) * 100;
-    }
-
-    const stepCount: number = (max - min) / step;
-    const stepPercent: number = 100 / stepCount;
-    let stepPercentResult: number = Math.round(corner / stepPercent) * stepPercent;
-    if (stepPercentResult < 0 || scale.className.split(' ')[1] === Const.SLIDER_ITEM_MINIMUM) stepPercentResult = 0;
-    if (stepPercentResult > 100 || scale.className.split(' ')[1] === Const.SLIDER_ITEM_MAXIMUM) stepPercentResult = 100;
-
-    if (stepPercentResult >= this.sliderModel.fromPercentValue) {
-      this.sliderModel.toPercentValue = <number>stepPercentResult;
-      const value: number = <number>+(stepPercentResult / stepPercent * step).toFixed() + min;
-      this.sliderModel.toValue = <number>value;
-    } else {
-      this.sliderModel.fromPercentValue = <number>stepPercentResult;
-      const value: number = <number>+(stepPercentResult / stepPercent * step).toFixed() + min;
-      this.sliderModel.fromValue = <number>value;
-    }
-
-    this.replaceScreenFlag();
-    this.replaceScreenConfiguring();
-    this.replaceScreenSlider();
-    this.showScaleView();
-    this.showFlagView();
-    this.showConfiguringView();
-  }
-
   private setInModelValue(key: string, value: number | string | boolean): void {
     switch (key) {
       case 'min':
@@ -435,8 +433,10 @@ export default class SliderPresenter {
     }
   } 
 
-  private onToggleMouseDown(evt: any):void {
-    const toggle: HTMLElement = evt.currentTarget;
-    this.replaceToggle(evt, toggle);
+  public init(): void {
+    this.showSliderView();
+    this.showConfiguringView();
+    this.showScaleView();
+    this.showFlagView();
   }
 }

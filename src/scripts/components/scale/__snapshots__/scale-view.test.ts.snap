@@ -13,7 +13,7 @@ exports[`jest snapshots 1`] = `
     |
             
     <span
-      class="slider__item--number slider__item--min"
+      class="slider__item_centered slider__item_minimum"
     >
       0
     </span>
@@ -525,7 +525,7 @@ exports[`jest snapshots 1`] = `
     |
             
     <span
-      class="slider__item--number slider__item--max"
+      class="slider__item_centered slider__item_maximum"
     >
       100
     </span>
