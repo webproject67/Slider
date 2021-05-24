@@ -73,3 +73,23 @@ test('set value view on vertical', () => {
   model.viewValue = 'vertical';
   expect(model.viewValue).toBe('vertical');
 });
+
+const otherMain = document.createElement('div');
+otherMain.className = '.banana'
+const otherState = {
+  flag: false,
+  from: -10000,
+  fromPercent: 0,
+  max: 100,
+  min: 0,
+  range: 'one',
+  scale: true,
+  step: 1,
+  to: -10000,
+  toPercent: 100,
+  view: 'horizontal'
+};
+
+const otherModel = new SliderModel(otherMain, otherState);
+
+test('get value flag false', () => expect(otherModel.flagValue).toBe(false));

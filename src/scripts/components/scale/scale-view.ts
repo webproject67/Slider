@@ -29,10 +29,10 @@ export default class ScaleView extends AbstractView {
       }
     }
 
-    if(template.lastIndexOf(<string><unknown>max) === -1) {
+    if(template.indexOf(<string><unknown>max, template.length - 50) === -1) {
       template += `
           <div class="slider__item">|
-            <span class="slider__item_centered">${max}</span>
+            <span class="slider__item_centered slider__item_maximum">${max}</span>
           </div>
         `
     }

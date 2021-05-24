@@ -26,6 +26,32 @@ test('spyOn click scale', () => {
   expect(somethingSpy).toHaveBeenCalledTimes(1)
 });
 
-it('jest snapshots', () => {
+it('jest snapshots from element', () => {
   expect(scale.element).toMatchSnapshot()
+})
+
+it('jest snapshots from new element', () => {
+  expect(scale.newElement).toMatchSnapshot()
+})
+
+const otherMain = document.createElement('div');
+const otherState = {
+  flag: true,
+  from: -10000,
+  fromPercent: 0,
+  max: 100,
+  min: 1,
+  range: 'one',
+  scale: true,
+  step: 2,
+  to: -10000,
+  toPercent: 100,
+  view: 'horizontal'
+};
+
+const otherModel = new SliderModel(otherMain, otherState);
+const otherScale = new ScaleView(otherModel);
+
+it('jest snapshots from other element', () => {
+  expect(otherScale.element).toMatchSnapshot()
 })

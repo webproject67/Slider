@@ -11,6 +11,7 @@ function getExampleDOM() {
         <div id="slider11"></div>
         <div class="sim"></div>
         <div class="milk"></div>
+        <div class="two"></div>
       </body>
     </html>
   `;
@@ -125,6 +126,41 @@ describe('slider #3', () => {
 
 describe('slider #4', () => {
   const main: HTMLElement = container.querySelector('.milk')!;
+  const state = {
+    flag: true,
+    from: -10000,
+    fromPercent: 0,
+    max: 100,
+    min: 0,
+    range: 'range',
+    scale: true,
+    step: 1,
+    to: -10000,
+    toPercent: 100,
+    view: 'vertical'
+  };
+  const slider = new SliderPresenter(main, state);
+  slider.init();
+
+  it('show slider vertical range', () => {
+    expect(getByTestId(main, 'slider-vertical-range')).toHaveClass('slider__inner');
+  })
+  
+  it('show configuring range', () => {
+    expect(getByTestId(main, 'configuring-range')).toHaveClass('slider__input');
+  })
+  
+  it('show scale vertical', () => {
+    expect(getByTestId(main, 'scale-vertical')).toHaveClass('slider__item');
+  })
+  
+  it('show flag vertical range', () => {
+    expect(getByTestId(main, 'flag-vertical-range')).toHaveClass('slider__flag-vertical');
+  })
+});
+
+describe('slider #5', () => {
+  const main: HTMLElement = container.querySelector('.two')!;
   const state = {
     flag: false,
     from: -10000,
