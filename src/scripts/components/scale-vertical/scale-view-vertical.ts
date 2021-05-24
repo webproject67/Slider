@@ -12,16 +12,16 @@ export default class ScaleViewVertical extends AbstractView {
     let template: string = '';
 
     for (let i = max; i >= min; i-= step) {
-      if (i === min) {
-        template += `
-          <div data-testid="scale-vertical" class="slider__item">|
-            <span class="slider__item_centered slider__item_minimum slider__item_transformed">${i}</span>
-          </div>
-        `
-      } else if (i === max) {
+      if (i === max) {
         template += `
           <div class="slider__item">|
             <span class="slider__item_centered slider__item_maximum slider__item_transformed">${i}</span>
+          </div>
+        `
+      } else if (i === min) {
+        template += `
+          <div data-testid="scale-vertical" class="slider__item">|
+            <span class="slider__item_centered slider__item_minimum slider__item_transformed">${i}</span>
           </div>
         `
       } else {
@@ -29,10 +29,10 @@ export default class ScaleViewVertical extends AbstractView {
       }
     }
 
-    if(template.indexOf(<string><unknown>min, max - 1) === -1) {
+    if(template.indexOf(<string><unknown>min, template.length - 50) === -1) {
       template += `
-          <div class="slider__item">|
-            <span class="slider__item_centered">${min}</span>
+          <div data-testid="scale-vertical" class="slider__item">|
+            <span class="slider__item_centered slider__item_minimum slider__item_transformed">${min}</span>
           </div>
         `
     }

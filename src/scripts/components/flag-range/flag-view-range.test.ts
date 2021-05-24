@@ -26,6 +26,32 @@ test('spyOn mouseDown flag range', () => {
   expect(somethingSpy).toHaveBeenCalledTimes(1)
 });
 
-it('jest snapshots', () => {
+it('jest snapshots from element', () => {
   expect(flag.element).toMatchSnapshot()
+})
+
+it('jest snapshots from new element', () => {
+  expect(flag.newElement).toMatchSnapshot()
+})
+
+const otherMain = document.createElement('div');
+const otherState = {
+  flag: true,
+  from: 1,
+  fromPercent: 0,
+  max: 100,
+  min: 1,
+  range: 'one',
+  scale: true,
+  step: 1,
+  to: 100,
+  toPercent: 100,
+  view: 'horizontal'
+};
+
+const otherModel = new SliderModel(otherMain, otherState);
+const otherFlag = new FlagViewRange(otherModel);
+
+it('jest snapshots from other element', () => {
+  expect(otherFlag.element).toMatchSnapshot()
 })

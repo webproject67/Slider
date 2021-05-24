@@ -26,6 +26,32 @@ test('spyOn mouseDown flag vertical one', () => {
   expect(somethingSpy).toHaveBeenCalledTimes(1)
 });
 
-it('jest snapshots', () => {
+it('jest snapshots from element', () => {
   expect(flag.element).toMatchSnapshot()
+})
+
+it('jest snapshots from new element', () => {
+  expect(flag.newElement).toMatchSnapshot()
+})
+
+const otherMain = document.createElement('div');
+const otherState = {
+  flag: true,
+  from: -10000,
+  fromPercent: 0,
+  max: 100,
+  min: 0,
+  range: 'one',
+  scale: true,
+  step: 1,
+  to: 100,
+  toPercent: 100,
+  view: 'vertical'
+};
+
+const otherModel = new SliderModel(otherMain, otherState);
+const otherFlag = new FlagViewVerticalOne(otherModel);
+
+it('jest snapshots from other element', () => {
+  expect(otherFlag.element).toMatchSnapshot()
 })

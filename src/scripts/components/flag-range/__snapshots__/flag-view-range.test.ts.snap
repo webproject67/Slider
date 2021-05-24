@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`jest snapshots 1`] = `
+exports[`jest snapshots from element 1`] = `
 <div
   class="slider__flags"
 >
@@ -11,6 +11,58 @@ exports[`jest snapshots 1`] = `
     style="left:0%"
   >
     0
+  </span>
+  
+    
+  <span
+    class="slider__flag slider__flag_maximum"
+    data-testid="flag-horizontal-range"
+    style="left:100%"
+  >
+    100
+  </span>
+  
+    
+</div>
+`;
+
+exports[`jest snapshots from new element 1`] = `
+<div
+  class="slider__flags"
+>
+  
+    
+  <span
+    class="slider__flag slider__flag_minimum"
+    style="left:0%"
+  >
+    0
+  </span>
+  
+    
+  <span
+    class="slider__flag slider__flag_maximum"
+    data-testid="flag-horizontal-range"
+    style="left:100%"
+  >
+    100
+  </span>
+  
+    
+</div>
+`;
+
+exports[`jest snapshots from other element 1`] = `
+<div
+  class="slider__flags"
+>
+  
+    
+  <span
+    class="slider__flag slider__flag_minimum"
+    style="left:0%"
+  >
+    1
   </span>
   
     

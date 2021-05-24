@@ -26,6 +26,10 @@ test('spyOn mouseDown toggle vertical range', () => {
   expect(somethingSpy).toHaveBeenCalledTimes(1)
 });
 
-it('jest snapshots', () => {
+it('jest snapshots from element', () => {
   expect(slider.element).toMatchSnapshot()
+})
+
+it('jest snapshots from new element', () => {
+  expect(slider.newElement).toMatchSnapshot()
 })

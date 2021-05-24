@@ -1,6 +1,44 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`jest snapshots 1`] = `
+exports[`jest snapshots from element 1`] = `
+<div
+  class="slider__wrapper"
+>
+  
+      
+  <div
+    class="slider__inner slider__inner_with-height"
+    data-testid="slider-vertical-one"
+  >
+    
+        
+    <div
+      class="slider__scale slider__scale_with-height"
+    >
+      
+          
+      <div
+        class="slider__bar slider__bar_with-width"
+        style="height:100%"
+      />
+      
+        
+    </div>
+    
+        
+    <div
+      class="slider__toggle slider__toggle_vertical-maximum"
+      style="top:100%"
+    />
+    
+      
+  </div>
+  
+    
+</div>
+`;
+
+exports[`jest snapshots from new element 1`] = `
 <div
   class="slider__wrapper"
 >
