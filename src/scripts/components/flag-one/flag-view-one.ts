@@ -13,7 +13,8 @@ export default class FlagViewOne extends AbstractView {
   }
 
   bind() {
-    this.element.querySelectorAll('.slider__flag').forEach((elem) => elem.addEventListener('mousedown', this.handleFlagMouseDown))
+    this.element.querySelectorAll('.slider__flag').forEach((elem) => elem.addEventListener('touchstart', this.handleFlagMouseDown));
+    this.element.querySelectorAll('.slider__flag').forEach((elem) => elem.addEventListener('mousedown', this.handleFlagMouseDown));
   }
 
   public handleFlagMouseDown(evt: Event):void {

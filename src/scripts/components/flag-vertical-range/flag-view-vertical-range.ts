@@ -14,7 +14,8 @@ export default class FlagViewVerticalRange extends AbstractView {
   }
   
   bind() {
-    this.element.querySelectorAll('.slider__flag-vertical').forEach((elem) => elem.addEventListener('mousedown', this.handleFlagMouseDown))
+    this.element.querySelectorAll('.slider__flag-vertical').forEach((elem) => elem.addEventListener('touchstart', this.handleFlagMouseDown));
+    this.element.querySelectorAll('.slider__flag-vertical').forEach((elem) => elem.addEventListener('mousedown', this.handleFlagMouseDown));
   }
 
   public handleFlagMouseDown(evt: Event):void {
