@@ -343,9 +343,8 @@ export default class SliderPresenter {
           this.sliderModel.toPercentValue = <number>stepTop;
           const value: number = <number>+(stepTop / stepPercent * step).toFixed() + min;
           this.sliderModel.toValue = <number>value;
-          const flagMin: HTMLElement = <HTMLElement>slider.querySelector('.slider__flag-vertical_minimum');
           let fromPercent: number;
-          flagMin ? fromPercent = fromPercentValue : fromPercent = 0;
+          toggle.previousElementSibling?.className.split(' ')[0] === 'slider__toggle' ? fromPercent = fromPercentValue : fromPercent = 0;
           (<HTMLElement>slider.querySelector('.slider__bar')!).style.height = stepTop - fromPercent + '%';
           const flag: HTMLElement = <HTMLElement>slider.querySelector('.slider__flag-vertical_maximum');
           if(flag) {
