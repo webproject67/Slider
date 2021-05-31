@@ -287,8 +287,11 @@ export default class SliderPresenter {
           const value: number = <number>+(stepLeft / stepPercent * step).toFixed() + min;
           this.sliderModel.fromValue = <number>value;
           (<HTMLElement>slider.querySelector('.slider__bar')!).style.marginLeft = stepLeft + '%';
-          (<HTMLElement>slider.querySelector('.slider__flag_minimum')!).style.left = stepLeft + '%';
-          (<HTMLElement>slider.querySelector('.slider__flag_minimum')!).textContent = <string><unknown>value;
+          const flag: HTMLElement = <HTMLElement>slider.querySelector('.slider__flag_minimum');
+          if(flag) {
+            flag.style.left = stepLeft + '%';
+            flag.textContent = <string><unknown>value;
+          }
         }
         
         if (toggle.className.split(' ')[1] === Const.SLIDER_TOGGLE_MAXIMUM) {
@@ -298,8 +301,11 @@ export default class SliderPresenter {
           const value: number = <number>+(stepLeft / stepPercent * step).toFixed() + min;
           this.sliderModel.toValue = <number>value;
           (<HTMLElement>slider.querySelector('.slider__bar')!).style.marginRight = 100 - stepLeft + '%';
-          (<HTMLElement>slider.querySelector('.slider__flag_maximum')!).style.left = stepLeft + '%';
-          (<HTMLElement>slider.querySelector('.slider__flag_maximum')!).textContent = <string><unknown>value;
+          const flag: HTMLElement = <HTMLElement>slider.querySelector('.slider__flag_maximum');
+          if(flag) {
+            flag.style.left = stepLeft + '%';
+            flag.textContent = <string><unknown>value;
+          }
         }
   
         toggle.style.left = <string><unknown>stepLeft + '%';
@@ -323,9 +329,12 @@ export default class SliderPresenter {
           const value: number = <number>+(stepTop / stepPercent * step).toFixed() + min;
           this.sliderModel.fromValue = <number>value;
           (<HTMLElement>slider.querySelector('.slider__bar')!).style.top = stepTop + '%';
-          (<HTMLElement>slider.querySelector('.slider__bar')!).style.height = this.sliderModel.toPercentValue - stepTop + '%';
-          (<HTMLElement>slider.querySelector('.slider__flag-vertical_minimum')!).style.top = stepTop + '%';
-          (<HTMLElement>slider.querySelector('.slider__flag-vertical_minimum')!).textContent = <string><unknown>value;
+          (<HTMLElement>slider.querySelector('.slider__bar')!).style.height = toPercentValue - stepTop + '%';
+          const flag: HTMLElement = <HTMLElement>slider.querySelector('.slider__flag-vertical_minimum');
+          if(flag) {
+            flag.style.top = stepTop + '%';
+            flag.textContent = <string><unknown>value;
+          }
         }
         
         if (toggle.className.split(' ')[1] === Const.SLIDER_TOGGLE_VERTICAL_MAXIMUM) {
@@ -334,9 +343,15 @@ export default class SliderPresenter {
           this.sliderModel.toPercentValue = <number>stepTop;
           const value: number = <number>+(stepTop / stepPercent * step).toFixed() + min;
           this.sliderModel.toValue = <number>value;
-          (<HTMLElement>slider.querySelector('.slider__bar')!).style.height = stepTop - this.sliderModel.fromPercentValue + '%';
-          (<HTMLElement>slider.querySelector('.slider__flag-vertical_maximum')!).style.top = stepTop + '%';
-          (<HTMLElement>slider.querySelector('.slider__flag-vertical_maximum')!).textContent = <string><unknown>value;
+          const flagMin: HTMLElement = <HTMLElement>slider.querySelector('.slider__flag-vertical_minimum');
+          let fromPercent: number;
+          flagMin ? fromPercent = fromPercentValue : fromPercent = 0;
+          (<HTMLElement>slider.querySelector('.slider__bar')!).style.height = stepTop - fromPercent + '%';
+          const flag: HTMLElement = <HTMLElement>slider.querySelector('.slider__flag-vertical_maximum');
+          if(flag) {
+            flag.style.top = stepTop + '%';
+            flag.textContent = <string><unknown>value;
+          }
         }
   
         toggle.style.top = <string><unknown>stepTop + '%';
