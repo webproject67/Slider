@@ -11,7 +11,8 @@
     "eslint": "eslint --ext .ts src/",
     "jest": "jest",
     "jest:watch": "jest --watch",
-    "test": "npm run eslint && npm run jest"
+    "test": "npm run eslint && npm run jest",
+    "prettier": "prettier --write src/pug/blocks/**/*.{scss,ts}"
   },
   "repository": {
     "type": "git",
@@ -28,6 +29,7 @@
     "@babel/core": "^7.14.0",
     "@babel/preset-env": "^7.14.1",
     "@babel/preset-typescript": "^7.13.0",
+    "@prettier/plugin-pug": "^1.15.3",
     "@testing-library/dom": "^7.31.0",
     "@testing-library/jest-dom": "^5.12.0",
     "@types/jest": "^26.0.23",
@@ -40,8 +42,10 @@
     "clean-webpack-plugin": "^3.0.0",
     "copy-webpack-plugin": "^5.1.1",
     "css-loader": "^3.4.2",
-    "eslint": "^7.26.0",
+    "eslint": "^7.2.0",
+    "eslint-config-airbnb-base": "^14.2.1",
     "eslint-plugin-fsd": "^1.0.1",
+    "eslint-plugin-import": "^2.22.1",
     "file-loader": "^6.2.0",
     "glob": "^7.1.6",
     "html-loader": "^1.3.2",
@@ -52,6 +56,7 @@
     "node-sass": "^4.13.1",
     "optimize-css-assets-webpack-plugin": "^5.0.3",
     "postcss-loader": "^3.0.0",
+    "prettier": "^2.3.1",
     "pug-html-loader": "^1.1.5",
     "sass-loader": "^8.0.2",
     "ts-loader": "^8.0.18",

@@ -1,11 +1,11 @@
 .slider__wrapper {
-	margin: 70px 30px;
+  margin: 70px 30px;
 }
 
 .slider__inner {
   position: relative;
   height: 60px;
-  user-select: none;  
+  user-select: none;
 
   &_with-height {
     height: 300px;
@@ -43,12 +43,12 @@
   background-color: #4eb7a8;
   border-radius: 50%;
   cursor: pointer;
-  
+
   &_minimum,
   &_maximum {
     top: 2px;
   }
-  
+
   &_vertical-minimum,
   &_vertical-maximum {
     left: 2px;

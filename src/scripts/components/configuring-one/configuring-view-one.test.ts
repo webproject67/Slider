@@ -2,7 +2,7 @@ import SliderModel from '../model/slider-model';
 import ConfiguringViewOne from './configuring-view-one';
 
 const main = document.createElement('div');
-main.id = 'slider'
+main.id = 'slider';
 const state = {
   flag: true,
   from: -10000,
@@ -14,7 +14,7 @@ const state = {
   step: 1,
   to: -10000,
   toPercent: 100,
-  view: 'horizontal'
+  view: 'horizontal',
 };
 
 const model = new SliderModel(main, state);
@@ -24,19 +24,19 @@ test('spyOn change input', () => {
   const somethingSpy = jest.spyOn(configuring, 'handleInputChange');
   let evt: any;
   configuring.handleInputChange(evt);
-  expect(somethingSpy).toHaveBeenCalledTimes(1)
+  expect(somethingSpy).toHaveBeenCalledTimes(1);
 });
 
 it('jest snapshots from element', () => {
-  expect(configuring.element).toMatchSnapshot()
-})
+  expect(configuring.element).toMatchSnapshot();
+});
 
 it('jest snapshots from new element', () => {
-  expect(configuring.newElement).toMatchSnapshot()
-})
+  expect(configuring.newElement).toMatchSnapshot();
+});
 
 const otherMain = document.createElement('div');
-otherMain.id = 'slider'
+otherMain.id = 'slider';
 const otherState = {
   flag: false,
   from: -10000,
@@ -48,12 +48,12 @@ const otherState = {
   step: 1,
   to: 100,
   toPercent: 100,
-  view: 'vertical'
+  view: 'vertical',
 };
 
 const otherModel = new SliderModel(otherMain, otherState);
 const otherConfiguring = new ConfiguringViewOne(otherModel);
 
 it('jest snapshots from other element', () => {
-  expect(otherConfiguring.element).toMatchSnapshot()
-})
+  expect(otherConfiguring.element).toMatchSnapshot();
+});

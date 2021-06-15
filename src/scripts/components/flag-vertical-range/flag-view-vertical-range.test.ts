@@ -13,7 +13,7 @@ const state = {
   step: 1,
   to: -10000,
   toPercent: 100,
-  view: 'vertical'
+  view: 'vertical',
 };
 
 const model = new SliderModel(main, state);
@@ -23,16 +23,16 @@ test('spyOn mouseDown flag vertical range', () => {
   const somethingSpy = jest.spyOn(flag, 'handleFlagMouseDown');
   let evt: any;
   flag.handleFlagMouseDown(evt);
-  expect(somethingSpy).toHaveBeenCalledTimes(1)
+  expect(somethingSpy).toHaveBeenCalledTimes(1);
 });
 
 it('jest snapshots from element', () => {
-  expect(flag.element).toMatchSnapshot()
-})
+  expect(flag.element).toMatchSnapshot();
+});
 
 it('jest snapshots from new element', () => {
-  expect(flag.newElement).toMatchSnapshot()
-})
+  expect(flag.newElement).toMatchSnapshot();
+});
 
 const otherMain = document.createElement('div');
 const otherState = {
@@ -46,12 +46,12 @@ const otherState = {
   step: 1,
   to: 100,
   toPercent: 100,
-  view: 'vertical'
+  view: 'vertical',
 };
 
 const otherModel = new SliderModel(otherMain, otherState);
 const otherFlag = new FlagViewVerticalRange(otherModel);
 
 it('jest snapshots from other element', () => {
-  expect(otherFlag.element).toMatchSnapshot()
-})
+  expect(otherFlag.element).toMatchSnapshot();
+});

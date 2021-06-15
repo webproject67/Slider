@@ -13,7 +13,7 @@ const state = {
   step: 1,
   to: -10000,
   toPercent: 100,
-  view: 'horizontal'
+  view: 'horizontal',
 };
 
 const model = new SliderModel(main, state);
@@ -23,13 +23,13 @@ test('spyOn mouseDown toggle one', () => {
   const somethingSpy = jest.spyOn(slider, 'handleToggleMouseDown');
   let evt: any;
   slider.handleToggleMouseDown(evt);
-  expect(somethingSpy).toHaveBeenCalledTimes(1)
+  expect(somethingSpy).toHaveBeenCalledTimes(1);
 });
 
 it('jest snapshots from element', () => {
-  expect(slider.element).toMatchSnapshot()
-})
+  expect(slider.element).toMatchSnapshot();
+});
 
 it('jest snapshots from new element', () => {
-  expect(slider.newElement).toMatchSnapshot()
-})
+  expect(slider.newElement).toMatchSnapshot();
+});

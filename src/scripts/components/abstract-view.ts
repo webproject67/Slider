@@ -5,7 +5,7 @@ export default abstract class AbstractView {
   sliderModel: SliderModel;
 
   constructor(sliderModel: SliderModel) {
-    this.sliderModel = sliderModel
+    this.sliderModel = sliderModel;
   }
 
   public get element(): HTMLElement {
@@ -16,7 +16,7 @@ export default abstract class AbstractView {
     this.bind();
     return this.elem;
   }
-  
+
   public get newElement(): HTMLElement {
     this.elem = this._render();
     this.bind();
@@ -31,16 +31,14 @@ export default abstract class AbstractView {
     return '';
   }
 
-  protected bind(): void {
-  
-  }
+  protected bind(): void {}
 
   private _createElement(template: string, className: string): HTMLElement {
     const newElement: HTMLElement = document.createElement('div');
     newElement.className = className;
     newElement.innerHTML = template;
     return newElement;
-  };
+  }
 
   private _render(): HTMLElement {
     return this._createElement(this.template, this.className);

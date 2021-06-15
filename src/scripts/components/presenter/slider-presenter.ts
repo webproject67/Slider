@@ -11,7 +11,7 @@ import FlagViewOne from '../flag-one/flag-view-one';
 import FlagViewRange from '../flag-range/flag-view-range';
 import FlagViewVerticalOne from '../flag-vertical-one/flag-view-vertical-one';
 import FlagViewVerticalRange from '../flag-vertical-range/flag-view-vertical-range';
-import {State, Const, Range, View} from '../../const';
+import { State, Const, Range, View } from '../../const';
 
 export default class SliderPresenter {
   sliderModel: SliderModel;
@@ -29,18 +29,18 @@ export default class SliderPresenter {
   flagViewVerticalRange: FlagViewVerticalRange;
 
   constructor(
-    main: HTMLElement, 
-    state: { 
+    main: HTMLElement,
+    state: {
       flag: boolean;
-      from: number; 
-      fromPercent: number; 
-      max: number; 
-      min: number; 
+      from: number;
+      fromPercent: number;
+      max: number;
+      min: number;
       range: string;
       scale: boolean;
-      step: number; 
-      to: number; 
-      toPercent: number; 
+      step: number;
+      to: number;
+      toPercent: number;
       view: string;
     }
   ) {
@@ -48,7 +48,9 @@ export default class SliderPresenter {
     this.sliderViewOne = new SliderViewOne(this.sliderModel);
     this.sliderViewRange = new SliderViewRange(this.sliderModel);
     this.sliderViewVerticalOne = new SliderViewVerticalOne(this.sliderModel);
-    this.sliderViewVerticalRange = new SliderViewVerticalRange(this.sliderModel);
+    this.sliderViewVerticalRange = new SliderViewVerticalRange(
+      this.sliderModel
+    );
     this.configuringViewOne = new ConfiguringViewOne(this.sliderModel);
     this.configuringViewRange = new ConfiguringViewRange(this.sliderModel);
     this.scaleView = new ScaleView(this.sliderModel);
@@ -60,51 +62,51 @@ export default class SliderPresenter {
 
     this.configuringViewOne.handleInputChange = (evt) => {
       this._handleInputChange(evt);
-    }
-    
+    };
+
     this.configuringViewRange.handleInputChange = (evt) => {
       this._handleInputChange(evt);
-    }
+    };
 
     this.flagViewOne.handleFlagMouseDown = (evt) => {
       this._handleFlagMouseDown(evt);
-    }
-    
+    };
+
     this.flagViewRange.handleFlagMouseDown = (evt) => {
       this._handleFlagMouseDown(evt);
-    }
-    
+    };
+
     this.flagViewVerticalOne.handleFlagMouseDown = (evt) => {
       this._handleFlagMouseDown(evt);
-    }
-    
+    };
+
     this.flagViewVerticalRange.handleFlagMouseDown = (evt) => {
       this._handleFlagMouseDown(evt);
-    }
+    };
 
     this.scaleView.handleItemClick = (evt) => {
       this._handleItemClick(evt);
-    }
-    
+    };
+
     this.scaleViewVertical.handleItemClick = (evt) => {
       this._handleItemClick(evt);
-    }
+    };
 
     this.sliderViewOne.handleToggleMouseDown = (evt) => {
       this._handleToggleMouseDown(evt);
-    }
-    
+    };
+
     this.sliderViewRange.handleToggleMouseDown = (evt) => {
       this._handleToggleMouseDown(evt);
-    }
-    
+    };
+
     this.sliderViewVerticalOne.handleToggleMouseDown = (evt) => {
       this._handleToggleMouseDown(evt);
-    }
-    
+    };
+
     this.sliderViewVerticalRange.handleToggleMouseDown = (evt) => {
       this._handleToggleMouseDown(evt);
-    }
+    };
   }
 
   public init(): void {
@@ -114,7 +116,7 @@ export default class SliderPresenter {
     this._showFlagView();
   }
 
-  private _handleFlagMouseDown(evt: any):void  {
+  private _handleFlagMouseDown(evt: any): void {
     const flag: HTMLElement = evt.currentTarget;
     const slider: HTMLElement = flag.parentElement!.parentElement!;
     let toggle: HTMLElement;
@@ -122,22 +124,22 @@ export default class SliderPresenter {
     switch (flag.className.split(' ')[1]) {
       case 'slider__flag_minimum':
         toggle = slider.querySelector('.slider__toggle_minimum')!;
-      break;
+        break;
       case 'slider__flag_maximum':
         toggle = slider.querySelector('.slider__toggle_maximum')!;
-      break;
+        break;
       case 'slider__flag-vertical_minimum':
         toggle = slider.querySelector('.slider__toggle_vertical-minimum')!;
-      break;
+        break;
       case 'slider__flag-vertical_maximum':
         toggle = slider.querySelector('.slider__toggle_vertical-maximum')!;
-      break;
+        break;
     }
 
     this._replaceToggle(evt, toggle!);
   }
 
-  private _handleInputChange(evt: any):void {
+  private _handleInputChange(evt: any): void {
     const input: HTMLElement = evt.currentTarget;
 
     if (input.dataset.name === State.MIN) {
@@ -154,19 +156,31 @@ export default class SliderPresenter {
 
     if (input.dataset.name === State.STEP) {
       let value: number = +(<HTMLInputElement>input).value;
-      if(value === 0) value = 1;
-      if(value < 0) value = Math.abs(value);
+      if (value === 0) value = 1;
+      if (value < 0) value = Math.abs(value);
       this._setInModelValue('step', value);
     }
 
-    if (input.dataset.name === State.VIEW || input.dataset.name === State.RANGE) {
-      this._setInModelValue(input.dataset.name, (<HTMLInputElement>input).value);
+    if (
+      input.dataset.name === State.VIEW ||
+      input.dataset.name === State.RANGE
+    ) {
+      this._setInModelValue(
+        input.dataset.name,
+        (<HTMLInputElement>input).value
+      );
       this.sliderModel.main.removeChild(this.sliderModel.main.children[0]);
       this._showSliderView();
     }
 
-    if (input.dataset.name === State.FLAG || input.dataset.name === State.SCALE) {
-      this._setInModelValue(input.dataset.name, (<HTMLInputElement>input).checked);
+    if (
+      input.dataset.name === State.FLAG ||
+      input.dataset.name === State.SCALE
+    ) {
+      this._setInModelValue(
+        input.dataset.name,
+        (<HTMLInputElement>input).checked
+      );
     }
 
     this._replaceScreenScale();
@@ -178,7 +192,7 @@ export default class SliderPresenter {
     this._showConfiguringView();
   }
 
-  private _handleItemClick(evt: any):void  {
+  private _handleItemClick(evt: any): void {
     const scale: HTMLElement = evt.currentTarget;
     const min: number = this.sliderModel.minValue;
     const max: number = this.sliderModel.maxValue;
@@ -202,17 +216,28 @@ export default class SliderPresenter {
 
     const stepCount: number = (max - min) / step;
     const stepPercent: number = 100 / stepCount;
-    let stepPercentResult: number = Math.round(corner / stepPercent) * stepPercent;
-    if (stepPercentResult < 0 || scale.className.split(' ')[1] === Const.SLIDER_ITEM_MINIMUM) stepPercentResult = 0;
-    if (stepPercentResult > 100 || scale.className.split(' ')[1] === Const.SLIDER_ITEM_MAXIMUM) stepPercentResult = 100;
+    let stepPercentResult: number =
+      Math.round(corner / stepPercent) * stepPercent;
+    if (
+      stepPercentResult < 0 ||
+      scale.className.split(' ')[1] === Const.SLIDER_ITEM_MINIMUM
+    )
+      stepPercentResult = 0;
+    if (
+      stepPercentResult > 100 ||
+      scale.className.split(' ')[1] === Const.SLIDER_ITEM_MAXIMUM
+    )
+      stepPercentResult = 100;
 
     if (stepPercentResult >= this.sliderModel.fromPercentValue) {
       this.sliderModel.toPercentValue = <number>stepPercentResult;
-      const value: number = <number>+(stepPercentResult / stepPercent * step).toFixed() + min;
+      const value: number =
+        <number>+((stepPercentResult / stepPercent) * step).toFixed() + min;
       this.sliderModel.toValue = <number>value;
     } else {
       this.sliderModel.fromPercentValue = <number>stepPercentResult;
-      const value: number = <number>+(stepPercentResult / stepPercent * step).toFixed() + min;
+      const value: number =
+        <number>+((stepPercentResult / stepPercent) * step).toFixed() + min;
       this.sliderModel.fromValue = <number>value;
     }
 
@@ -224,35 +249,49 @@ export default class SliderPresenter {
     this._showConfiguringView();
   }
 
-  private _handleToggleMouseDown(evt: any):void {
+  private _handleToggleMouseDown(evt: any): void {
     const toggle: HTMLElement = evt.currentTarget;
     this._replaceToggle(evt, toggle);
   }
 
   private _replaceScreenConfiguring(): void {
-    this.configuringViewOne.element.replaceWith(this.configuringViewOne.newElement);
-    this.configuringViewRange.element.replaceWith(this.configuringViewRange.newElement);
+    this.configuringViewOne.element.replaceWith(
+      this.configuringViewOne.newElement
+    );
+    this.configuringViewRange.element.replaceWith(
+      this.configuringViewRange.newElement
+    );
   }
 
   private _replaceScreenFlag(): void {
     this.flagViewOne.element.replaceWith(this.flagViewOne.newElement);
     this.flagViewRange.element.replaceWith(this.flagViewRange.newElement);
-    this.flagViewVerticalOne.element.replaceWith(this.flagViewVerticalOne.newElement);
-    this.flagViewVerticalRange.element.replaceWith(this.flagViewVerticalRange.newElement);
+    this.flagViewVerticalOne.element.replaceWith(
+      this.flagViewVerticalOne.newElement
+    );
+    this.flagViewVerticalRange.element.replaceWith(
+      this.flagViewVerticalRange.newElement
+    );
   }
 
   private _replaceScreenScale(): void {
     this.scaleView.element.replaceWith(this.scaleView.newElement);
-    this.scaleViewVertical.element.replaceWith(this.scaleViewVertical.newElement);
+    this.scaleViewVertical.element.replaceWith(
+      this.scaleViewVertical.newElement
+    );
   }
- 
+
   private _replaceScreenSlider(): void {
     this.sliderViewOne.element.replaceWith(this.sliderViewOne.newElement);
     this.sliderViewRange.element.replaceWith(this.sliderViewRange.newElement);
-    this.sliderViewVerticalOne.element.replaceWith(this.sliderViewVerticalOne.newElement);
-    this.sliderViewVerticalRange.element.replaceWith(this.sliderViewVerticalRange.newElement);
+    this.sliderViewVerticalOne.element.replaceWith(
+      this.sliderViewVerticalOne.newElement
+    );
+    this.sliderViewVerticalRange.element.replaceWith(
+      this.sliderViewVerticalRange.newElement
+    );
   }
-  
+
   private _replaceToggle(evt: any, toggle: HTMLElement): void {
     const min: number = this.sliderModel.minValue;
     const max: number = this.sliderModel.maxValue;
@@ -266,12 +305,16 @@ export default class SliderPresenter {
     const sliderWidth: number = boxRight - boxLeft;
     const sliderHeight: number = boxBottom - boxTop;
 
-    let onMouseMove: {(evt: any): void};
+    let onMouseMove: { (evt: any): void };
     evt.preventDefault();
-    
-    if (toggle.className.split(' ')[1] === Const.SLIDER_TOGGLE_MINIMUM || toggle.className.split(' ')[1] === Const.SLIDER_TOGGLE_MAXIMUM) {
+
+    if (
+      toggle.className.split(' ')[1] === Const.SLIDER_TOGGLE_MINIMUM ||
+      toggle.className.split(' ')[1] === Const.SLIDER_TOGGLE_MAXIMUM
+    ) {
       onMouseMove = (evt: any): void => {
-        const getEvent = () => evt.type.search('touch') !== -1 ? evt.touches[0] : evt;
+        const getEvent = () =>
+          evt.type.search('touch') !== -1 ? evt.touches[0] : evt;
         const event = getEvent();
         const left: number = ((event.pageX - sliderLeft) / sliderWidth) * 100;
         const stepCount: number = (max - min) / step;
@@ -279,41 +322,52 @@ export default class SliderPresenter {
         let stepLeft: number = Math.round(left / stepPercent) * stepPercent;
         if (stepLeft < 0) stepLeft = 0;
         if (stepLeft > 100) stepLeft = 100;
-        
+
         if (toggle.className.split(' ')[1] === Const.SLIDER_TOGGLE_MINIMUM) {
           const toPercentValue: number = this.sliderModel.toPercentValue;
           if (stepLeft > toPercentValue) stepLeft = toPercentValue;
           this.sliderModel.fromPercentValue = <number>stepLeft;
-          const value: number = <number>+(stepLeft / stepPercent * step).toFixed() + min;
+          const value: number =
+            <number>+((stepLeft / stepPercent) * step).toFixed() + min;
           this.sliderModel.fromValue = <number>value;
-          (<HTMLElement>slider.querySelector('.slider__bar')!).style.marginLeft = stepLeft + '%';
-          const flag: HTMLElement = <HTMLElement>slider.querySelector('.slider__flag_minimum');
-          if(flag) {
+          (<HTMLElement>(
+            slider.querySelector('.slider__bar')!
+          )).style.marginLeft = stepLeft + '%';
+          const flag: HTMLElement = <HTMLElement>(
+            slider.querySelector('.slider__flag_minimum')
+          );
+          if (flag) {
             flag.style.left = stepLeft + '%';
-            flag.textContent = <string><unknown>value;
+            flag.textContent = <string>(<unknown>value);
           }
         }
-        
+
         if (toggle.className.split(' ')[1] === Const.SLIDER_TOGGLE_MAXIMUM) {
           const fromPercentValue: number = this.sliderModel.fromPercentValue;
           if (fromPercentValue > stepLeft) stepLeft = fromPercentValue;
           this.sliderModel.toPercentValue = <number>stepLeft;
-          const value: number = <number>+(stepLeft / stepPercent * step).toFixed() + min;
+          const value: number =
+            <number>+((stepLeft / stepPercent) * step).toFixed() + min;
           this.sliderModel.toValue = <number>value;
-          (<HTMLElement>slider.querySelector('.slider__bar')!).style.marginRight = 100 - stepLeft + '%';
-          const flag: HTMLElement = <HTMLElement>slider.querySelector('.slider__flag_maximum');
-          if(flag) {
+          (<HTMLElement>(
+            slider.querySelector('.slider__bar')!
+          )).style.marginRight = 100 - stepLeft + '%';
+          const flag: HTMLElement = <HTMLElement>(
+            slider.querySelector('.slider__flag_maximum')
+          );
+          if (flag) {
             flag.style.left = stepLeft + '%';
-            flag.textContent = <string><unknown>value;
+            flag.textContent = <string>(<unknown>value);
           }
         }
-  
-        toggle.style.left = <string><unknown>stepLeft + '%';
+
+        toggle.style.left = <string>(<unknown>stepLeft) + '%';
         this._replaceScreenConfiguring();
-      }
+      };
     } else {
       onMouseMove = (evt: any): void => {
-        const getEvent = () => evt.type.search('touch') !== -1 ? evt.touches[0] : evt;
+        const getEvent = () =>
+          evt.type.search('touch') !== -1 ? evt.touches[0] : evt;
         const event = getEvent();
         const top: number = ((event.pageY - boxTop) / sliderHeight) * 100;
         const stepCount: number = (max - min) / step;
@@ -321,41 +375,59 @@ export default class SliderPresenter {
         let stepTop: number = Math.round(top / stepPercent) * stepPercent;
         if (stepTop < 0) stepTop = 0;
         if (stepTop > 100) stepTop = 100;
-        
-        if (toggle.className.split(' ')[1] === Const.SLIDER_TOGGLE_VERTICAL_MINIMUM) {
+
+        if (
+          toggle.className.split(' ')[1] ===
+          Const.SLIDER_TOGGLE_VERTICAL_MINIMUM
+        ) {
           const toPercentValue: number = this.sliderModel.toPercentValue;
           if (stepTop > toPercentValue) stepTop = toPercentValue;
           this.sliderModel.fromPercentValue = <number>stepTop;
-          const value: number = <number>+(stepTop / stepPercent * step).toFixed() + min;
+          const value: number =
+            <number>+((stepTop / stepPercent) * step).toFixed() + min;
           this.sliderModel.fromValue = <number>value;
-          (<HTMLElement>slider.querySelector('.slider__bar')!).style.top = stepTop + '%';
-          (<HTMLElement>slider.querySelector('.slider__bar')!).style.height = toPercentValue - stepTop + '%';
-          const flag: HTMLElement = <HTMLElement>slider.querySelector('.slider__flag-vertical_minimum');
-          if(flag) {
+          (<HTMLElement>slider.querySelector('.slider__bar')!).style.top =
+            stepTop + '%';
+          (<HTMLElement>slider.querySelector('.slider__bar')!).style.height =
+            toPercentValue - stepTop + '%';
+          const flag: HTMLElement = <HTMLElement>(
+            slider.querySelector('.slider__flag-vertical_minimum')
+          );
+          if (flag) {
             flag.style.top = stepTop + '%';
-            flag.textContent = <string><unknown>value;
+            flag.textContent = <string>(<unknown>value);
           }
         }
-        
-        if (toggle.className.split(' ')[1] === Const.SLIDER_TOGGLE_VERTICAL_MAXIMUM) {
+
+        if (
+          toggle.className.split(' ')[1] ===
+          Const.SLIDER_TOGGLE_VERTICAL_MAXIMUM
+        ) {
           const fromPercentValue: number = this.sliderModel.fromPercentValue;
           if (fromPercentValue > stepTop) stepTop = fromPercentValue;
           this.sliderModel.toPercentValue = <number>stepTop;
-          const value: number = <number>+(stepTop / stepPercent * step).toFixed() + min;
+          const value: number =
+            <number>+((stepTop / stepPercent) * step).toFixed() + min;
           this.sliderModel.toValue = <number>value;
           let fromPercent: number;
-          toggle.previousElementSibling?.className.split(' ')[0] === 'slider__toggle' ? fromPercent = fromPercentValue : fromPercent = 0;
-          (<HTMLElement>slider.querySelector('.slider__bar')!).style.height = stepTop - fromPercent + '%';
-          const flag: HTMLElement = <HTMLElement>slider.querySelector('.slider__flag-vertical_maximum');
-          if(flag) {
+          toggle.previousElementSibling?.className.split(' ')[0] ===
+          'slider__toggle'
+            ? (fromPercent = fromPercentValue)
+            : (fromPercent = 0);
+          (<HTMLElement>slider.querySelector('.slider__bar')!).style.height =
+            stepTop - fromPercent + '%';
+          const flag: HTMLElement = <HTMLElement>(
+            slider.querySelector('.slider__flag-vertical_maximum')
+          );
+          if (flag) {
             flag.style.top = stepTop + '%';
-            flag.textContent = <string><unknown>value;
+            flag.textContent = <string>(<unknown>value);
           }
         }
-  
-        toggle.style.top = <string><unknown>stepTop + '%';
+
+        toggle.style.top = <string>(<unknown>stepTop) + '%';
         this._replaceScreenConfiguring();
-      }
+      };
     }
 
     const onMouseUp = () => {
@@ -363,101 +435,144 @@ export default class SliderPresenter {
       document.removeEventListener('mousemove', onMouseMove);
       document.removeEventListener('touchend', onMouseUp);
       document.removeEventListener('mouseup', onMouseUp);
-    }
-    
+    };
+
     document.addEventListener('touchmove', onMouseMove);
     document.addEventListener('mousemove', onMouseMove);
     document.addEventListener('touchend', onMouseUp);
     document.addEventListener('mouseup', onMouseUp);
   }
 
-  private _setInModelValue(key: string, value: number | string | boolean): void {
+  private _setInModelValue(
+    key: string,
+    value: number | string | boolean
+  ): void {
     switch (key) {
       case 'min':
         this.sliderModel.minValue = <number>value;
-      break;
+        break;
       case 'max':
         this.sliderModel.maxValue = <number>value;
-      break;
+        break;
       case 'from':
         this.sliderModel.fromValue = <number>value;
-      break;
+        break;
       case 'fromPercent':
         this.sliderModel.fromPercentValue = <number>value;
-      break;
+        break;
       case 'to':
         this.sliderModel.toValue = <number>value;
-      break;
+        break;
       case 'toPercent':
         this.sliderModel.toPercentValue = <number>value;
-      break;
+        break;
       case 'step':
         this.sliderModel.stepValue = <number>value;
-      break;
+        break;
       case 'view':
         this.sliderModel.viewValue = <string>value;
-      break;
+        break;
       case 'range':
         this.sliderModel.rangeValue = <string>value;
-      break;
+        break;
       case 'flag':
         this.sliderModel.flagValue = <boolean>value;
-      break;
+        break;
       case 'scale':
         this.sliderModel.scaleValue = <boolean>value;
-      break;
+        break;
     }
   }
 
-  private _showConfiguringView():void {
+  private _showConfiguringView(): void {
     if (this.sliderModel.rangeValue === Range.ONE) {
-      this.sliderModel.main.querySelector('.slider__wrapper')?.appendChild(this.configuringViewOne.element);
+      this.sliderModel.main
+        .querySelector('.slider__wrapper')
+        ?.appendChild(this.configuringViewOne.element);
     } else if (this.sliderModel.rangeValue === Range.RANGE) {
-      this.sliderModel.main.querySelector('.slider__wrapper')?.appendChild(this.configuringViewRange.element);
+      this.sliderModel.main
+        .querySelector('.slider__wrapper')
+        ?.appendChild(this.configuringViewRange.element);
     } else {
-      throw new Error('incorrect value')
+      throw new Error('incorrect value');
     }
   }
 
-  private _showFlagView():void {
-    if(this.sliderModel.flagValue) {
-      if (this.sliderModel.rangeValue === Range.ONE && this.sliderModel.viewValue === View.HORIZONTAL) {
-        this.sliderModel.main.querySelector('.slider__inner')?.appendChild(this.flagViewOne.element);
-      } else if (this.sliderModel.rangeValue === Range.RANGE && this.sliderModel.viewValue === View.HORIZONTAL) {
-        this.sliderModel.main.querySelector('.slider__inner')?.appendChild(this.flagViewRange.element);
-      } else if (this.sliderModel.rangeValue === Range.ONE && this.sliderModel.viewValue === View.VERTICAL) {
-        this.sliderModel.main.querySelector('.slider__inner')?.appendChild(this.flagViewVerticalOne.element);
-      } else if (this.sliderModel.rangeValue === Range.RANGE && this.sliderModel.viewValue === View.VERTICAL) {
-        this.sliderModel.main.querySelector('.slider__inner')?.appendChild(this.flagViewVerticalRange.element);
+  private _showFlagView(): void {
+    if (this.sliderModel.flagValue) {
+      if (
+        this.sliderModel.rangeValue === Range.ONE &&
+        this.sliderModel.viewValue === View.HORIZONTAL
+      ) {
+        this.sliderModel.main
+          .querySelector('.slider__inner')
+          ?.appendChild(this.flagViewOne.element);
+      } else if (
+        this.sliderModel.rangeValue === Range.RANGE &&
+        this.sliderModel.viewValue === View.HORIZONTAL
+      ) {
+        this.sliderModel.main
+          .querySelector('.slider__inner')
+          ?.appendChild(this.flagViewRange.element);
+      } else if (
+        this.sliderModel.rangeValue === Range.ONE &&
+        this.sliderModel.viewValue === View.VERTICAL
+      ) {
+        this.sliderModel.main
+          .querySelector('.slider__inner')
+          ?.appendChild(this.flagViewVerticalOne.element);
+      } else if (
+        this.sliderModel.rangeValue === Range.RANGE &&
+        this.sliderModel.viewValue === View.VERTICAL
+      ) {
+        this.sliderModel.main
+          .querySelector('.slider__inner')
+          ?.appendChild(this.flagViewVerticalRange.element);
       } else {
-        throw new Error('incorrect value')
+        throw new Error('incorrect value');
       }
     }
   }
 
   private _showScaleView(): void {
-    if(this.sliderModel.scaleValue) {
+    if (this.sliderModel.scaleValue) {
       if (this.sliderModel.viewValue === View.HORIZONTAL) {
-        this.sliderModel.main.querySelector('.slider__inner')?.appendChild(this.scaleView.element);
+        this.sliderModel.main
+          .querySelector('.slider__inner')
+          ?.appendChild(this.scaleView.element);
       } else if (this.sliderModel.viewValue === View.VERTICAL) {
-        this.sliderModel.main.querySelector('.slider__inner')?.appendChild(this.scaleViewVertical.element);
+        this.sliderModel.main
+          .querySelector('.slider__inner')
+          ?.appendChild(this.scaleViewVertical.element);
       } else {
-        throw new Error('incorrect value')
+        throw new Error('incorrect value');
       }
-    };
+    }
   }
 
-  private _showSliderView():void {
-    if (this.sliderModel.rangeValue === Range.ONE && this.sliderModel.viewValue === View.HORIZONTAL) {
+  private _showSliderView(): void {
+    if (
+      this.sliderModel.rangeValue === Range.ONE &&
+      this.sliderModel.viewValue === View.HORIZONTAL
+    ) {
       this.sliderModel.main.appendChild(this.sliderViewOne.element);
-    } else if (this.sliderModel.rangeValue === Range.RANGE && this.sliderModel.viewValue === View.HORIZONTAL) {
+    } else if (
+      this.sliderModel.rangeValue === Range.RANGE &&
+      this.sliderModel.viewValue === View.HORIZONTAL
+    ) {
       this.sliderModel.main.appendChild(this.sliderViewRange.element);
-    } else if (this.sliderModel.rangeValue === Range.ONE && this.sliderModel.viewValue === View.VERTICAL) {
+    } else if (
+      this.sliderModel.rangeValue === Range.ONE &&
+      this.sliderModel.viewValue === View.VERTICAL
+    ) {
       this.sliderModel.main.appendChild(this.sliderViewVerticalOne.element);
-    } else if (this.sliderModel.rangeValue === Range.RANGE && this.sliderModel.viewValue === View.VERTICAL) {
+    } else if (
+      this.sliderModel.rangeValue === Range.RANGE &&
+      this.sliderModel.viewValue === View.VERTICAL
+    ) {
       this.sliderModel.main.appendChild(this.sliderViewVerticalRange.element);
     } else {
-      throw new Error('incorrect value')
+      throw new Error('incorrect value');
     }
-  } 
+  }
 }

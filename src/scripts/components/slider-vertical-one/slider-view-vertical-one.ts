@@ -13,15 +13,21 @@ export default class SliderViewVerticalOne extends AbstractView {
         </div>
         <div class="slider__toggle slider__toggle_vertical-maximum" style="top:${this.sliderModel.toPercentValue}%"></div>
       </div>
-    `
+    `;
   }
 
   bind() {
-    this.element.querySelectorAll('.slider__toggle').forEach((elem) => elem.addEventListener('touchstart', this.handleToggleMouseDown));
-    this.element.querySelectorAll('.slider__toggle').forEach((elem) => elem.addEventListener('mousedown', this.handleToggleMouseDown));
+    this.element
+      .querySelectorAll('.slider__toggle')
+      .forEach((elem) =>
+        elem.addEventListener('touchstart', this.handleToggleMouseDown)
+      );
+    this.element
+      .querySelectorAll('.slider__toggle')
+      .forEach((elem) =>
+        elem.addEventListener('mousedown', this.handleToggleMouseDown)
+      );
   }
 
-  public handleToggleMouseDown(evt: Event):void {
-    
-  }
+  public handleToggleMouseDown(evt: Event): void {}
 }

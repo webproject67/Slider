@@ -13,7 +13,7 @@ const state = {
   step: 1,
   to: -10000,
   toPercent: 100,
-  view: 'horizontal'
+  view: 'horizontal',
 };
 
 const model = new SliderModel(main, state);
@@ -23,16 +23,16 @@ test('spyOn click scale', () => {
   const somethingSpy = jest.spyOn(scale, 'handleItemClick');
   let evt: any;
   scale.handleItemClick(evt);
-  expect(somethingSpy).toHaveBeenCalledTimes(1)
+  expect(somethingSpy).toHaveBeenCalledTimes(1);
 });
 
 it('jest snapshots from element', () => {
-  expect(scale.element).toMatchSnapshot()
-})
+  expect(scale.element).toMatchSnapshot();
+});
 
 it('jest snapshots from new element', () => {
-  expect(scale.newElement).toMatchSnapshot()
-})
+  expect(scale.newElement).toMatchSnapshot();
+});
 
 const otherMain = document.createElement('div');
 const otherState = {
@@ -46,12 +46,12 @@ const otherState = {
   step: 2,
   to: -10000,
   toPercent: 100,
-  view: 'horizontal'
+  view: 'horizontal',
 };
 
 const otherModel = new SliderModel(otherMain, otherState);
 const otherScale = new ScaleView(otherModel);
 
 it('jest snapshots from other element', () => {
-  expect(otherScale.element).toMatchSnapshot()
-})
+  expect(otherScale.element).toMatchSnapshot();
+});

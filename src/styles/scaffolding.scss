@@ -1,22 +1,22 @@
 body {
-	min-width: 320px;
-	max-width: 1440px;
-	margin: 0;
-	font-family: Arial, sans-serif;
+  min-width: 320px;
+  max-width: 1440px;
+  margin: 0;
+  font-family: Arial, sans-serif;
   font-style: normal;
   font-weight: normal;
-	font-size: 14px;
+  font-size: 14px;
   line-height: 24px;
 }
 
 html {
-	box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 *,
 *::before,
 *::after {
-	box-sizing: inherit;
+  box-sizing: inherit;
 }
 
 .visually-hidden:not(:focus):not(:active) {
@@ -32,7 +32,7 @@ html {
   clip-path: inset(100%);
 }
 
-label, 
+label,
 input {
-  cursor: pointer; 
+  cursor: pointer;
 }

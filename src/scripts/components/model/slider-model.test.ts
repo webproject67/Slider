@@ -12,7 +12,7 @@ const state = {
   step: 1,
   to: -10000,
   toPercent: 100,
-  view: 'horizontal'
+  view: 'horizontal',
 };
 
 const model = new SliderModel(main, state);
@@ -27,7 +27,8 @@ test('get value scale true', () => expect(model.scaleValue).toBe(true));
 test('get value step 1', () => expect(model.stepValue).toBe(1));
 test('get value to -10000', () => expect(model.toValue).toBe(-10000));
 test('get value toPercent 100', () => expect(model.toPercentValue).toBe(100));
-test('get value view horizontal', () => expect(model.viewValue).toBe('horizontal'));
+test('get value view horizontal', () =>
+  expect(model.viewValue).toBe('horizontal'));
 
 test('set value flag on false', () => {
   model.flagValue = false;
@@ -75,7 +76,7 @@ test('set value view on vertical', () => {
 });
 
 const otherMain = document.createElement('div');
-otherMain.className = '.banana'
+otherMain.className = '.banana';
 const otherState = {
   flag: false,
   from: -10000,
@@ -87,7 +88,7 @@ const otherState = {
   step: 1,
   to: -10000,
   toPercent: 100,
-  view: 'horizontal'
+  view: 'horizontal',
 };
 
 const otherModel = new SliderModel(otherMain, otherState);

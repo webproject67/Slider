@@ -14,17 +14,14 @@ module.exports = {
   devtool: 'inline-source-map',
   output: {
     filename: 'bundle.js',
-    path: path.resolve(__dirname, 'public')
+    path: path.resolve(__dirname, 'public'),
   },
   optimization: {
-    minimizer: [
-      new TerserJSPlugin({}),
-      new OptimizeCSSAssetsPlugin({})
-    ]
+    minimizer: [new TerserJSPlugin({}), new OptimizeCSSAssetsPlugin({})],
   },
   devServer: {
     contentBase: path.resolve(__dirname, 'public'),
-    port: 9000
+    port: 9000,
   },
   plugins: [
     new webpack.ProvidePlugin({
@@ -33,30 +30,32 @@ module.exports = {
       'window.jQuery': 'jquery',
     }),
     new CleanWebpackPlugin(),
-    ...glob.sync('./src/pug/pages/**/*.pug')
-      .map(htmlFile => {
-        return new HtmlWebpackPlugin({
-          filename: `${path.basename(htmlFile, path.extname(htmlFile))}.html`,
-          template: htmlFile,
-          inject: true
-        });
-      }),
+    ...glob.sync('./src/pug/pages/**/*.pug').map((htmlFile) => {
+      return new HtmlWebpackPlugin({
+        filename: `${path.basename(htmlFile, path.extname(htmlFile))}.html`,
+        template: htmlFile,
+        inject: true,
+      });
+    }),
     new MiniCssExtractPlugin({
-      filename: 'style.css'
+      filename: 'style.css',
     }),
     new CopyPlugin([
       {
         from: path.resolve(__dirname, 'src/assets/favicon/*.{png,svg}'),
-        to: path.resolve(__dirname, 'public/img/favicon/[name].[ext]')
+        to: path.resolve(__dirname, 'public/img/favicon/[name].[ext]'),
       },
       {
-        from: path.resolve(__dirname, 'src/assets/favicon/*.{xml,webmanifest,ico}'),
-        to: path.resolve(__dirname, 'public/[name].[ext]')
-      }
+        from: path.resolve(
+          __dirname,
+          'src/assets/favicon/*.{xml,webmanifest,ico}'
+        ),
+        to: path.resolve(__dirname, 'public/[name].[ext]'),
+      },
     ]),
-    new ImageminPlugin({ 
-      test: /\.svg$/i 
-    })
+    new ImageminPlugin({
+      test: /\.svg$/i,
+    }),
   ],
   module: {
     rules: [
@@ -67,16 +66,21 @@ module.exports = {
       },
       {
         test: /\.pug$/,
-        use: ['html-loader', 'pug-html-loader']
+        use: ['html-loader', 'pug-html-loader'],
       },
       {
         test: /\.scss$/i,
-        use: [MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader', 'sass-loader']
-      }
-    ]
+        use: [
+          MiniCssExtractPlugin.loader,
+          'css-loader',
+          'postcss-loader',
+          'sass-loader',
+        ],
+      },
+    ],
   },
   resolve: {
-    extensions: ['.js', '.ts']
+    extensions: ['.js', '.ts'],
   },
-  devtool: 'source-map'
-}
+  devtool: 'source-map',
+};

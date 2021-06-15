@@ -11,40 +11,40 @@ export default class ScaleViewVertical extends AbstractView {
     const step: number = this.sliderModel.stepValue;
     let template: string = '';
 
-    for (let i = max; i >= min; i-= step) {
+    for (let i = max; i >= min; i -= step) {
       if (i === max) {
         template += `
           <div class="slider__item">|
             <span class="slider__item_centered slider__item_maximum slider__item_transformed">${i}</span>
           </div>
-        `
+        `;
       } else if (i === min) {
         template += `
           <div data-testid="scale-vertical" class="slider__item">|
             <span class="slider__item_centered slider__item_minimum slider__item_transformed">${i}</span>
           </div>
-        `
+        `;
       } else {
-        template += '<div class="slider__item">|</div>'
+        template += '<div class="slider__item">|</div>';
       }
     }
 
-    if(template.indexOf(<string><unknown>min, template.length - 50) === -1) {
+    if (template.indexOf(<string>(<unknown>min), template.length - 50) === -1) {
       template += `
           <div data-testid="scale-vertical" class="slider__item">|
             <span class="slider__item_centered slider__item_minimum slider__item_transformed">${min}</span>
           </div>
-        `
+        `;
     }
 
-    return template
-  }
-  
-  bind() {
-    this.element.querySelectorAll('.slider__item').forEach((elem) => elem.addEventListener('click', this.handleItemClick))
+    return template;
   }
 
-  public handleItemClick(evt: Event):void {
-    
+  bind() {
+    this.element
+      .querySelectorAll('.slider__item')
+      .forEach((elem) => elem.addEventListener('click', this.handleItemClick));
   }
+
+  public handleItemClick(evt: Event): void {}
 }

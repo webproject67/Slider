@@ -1,5 +1,5 @@
 import SliderPresenter from './slider-presenter';
-import {getByTestId} from '@testing-library/dom';
+import { getByTestId } from '@testing-library/dom';
 import '@testing-library/jest-dom';
 
 function getExampleDOM() {
@@ -16,7 +16,7 @@ function getExampleDOM() {
     </html>
   `;
   return div;
-};
+}
 const container = getExampleDOM();
 
 describe('slider #1', () => {
@@ -32,26 +32,26 @@ describe('slider #1', () => {
     step: 1,
     to: -10000,
     toPercent: 100,
-    view: 'horizontal'
+    view: 'horizontal',
   };
   const slider = new SliderPresenter(main, state);
   slider.init();
 
   it('show slider horizontal one', () => {
     expect(getByTestId(main, 'slider-one')).toHaveClass('slider__inner');
-  })
-  
+  });
+
   it('show configuring one', () => {
     expect(getByTestId(main, 'configuring-one')).toHaveClass('slider__input');
-  })
-  
+  });
+
   it('show scale horizontal', () => {
     expect(getByTestId(main, 'scale-horizontal')).toHaveClass('slider__item');
-  })
-  
+  });
+
   it('show flag horizontal one', () => {
     expect(getByTestId(main, 'flag-horizontal')).toHaveClass('slider__flag');
-  })
+  });
 });
 
 describe('slider #2', () => {
@@ -67,26 +67,28 @@ describe('slider #2', () => {
     step: 10,
     to: -10000,
     toPercent: 100,
-    view: 'horizontal'
+    view: 'horizontal',
   };
   const slider = new SliderPresenter(main, state);
   slider.init();
-  
+
   it('show slider horizontal range', () => {
     expect(getByTestId(main, 'slider-range')).toHaveClass('slider__inner');
-  })
+  });
 
   it('show configuring range', () => {
     expect(getByTestId(main, 'configuring-range')).toHaveClass('slider__input');
-  })
+  });
 
   it('show scale horizontal', () => {
     expect(getByTestId(main, 'scale-horizontal')).toHaveClass('slider__item');
-  })
+  });
 
   it('show flag horizontal range', () => {
-    expect(getByTestId(main, 'flag-horizontal-range')).toHaveClass('slider__flag');
-  })
+    expect(getByTestId(main, 'flag-horizontal-range')).toHaveClass(
+      'slider__flag'
+    );
+  });
 });
 
 describe('slider #3', () => {
@@ -102,26 +104,30 @@ describe('slider #3', () => {
     step: 1,
     to: -10000,
     toPercent: 100,
-    view: 'vertical'
+    view: 'vertical',
   };
   const slider = new SliderPresenter(main, state);
   slider.init();
-  
+
   it('show slider vertical one', () => {
-    expect(getByTestId(main, 'slider-vertical-one')).toHaveClass('slider__inner');
-  })
+    expect(getByTestId(main, 'slider-vertical-one')).toHaveClass(
+      'slider__inner'
+    );
+  });
 
   it('show configuring one', () => {
     expect(getByTestId(main, 'configuring-one')).toHaveClass('slider__input');
-  })
+  });
 
   it('show scale vertical', () => {
     expect(getByTestId(main, 'scale-vertical')).toHaveClass('slider__item');
-  })
+  });
 
   it('show flag vertical one', () => {
-    expect(getByTestId(main, 'flag-vertical')).toHaveClass('slider__flag-vertical');
-  })
+    expect(getByTestId(main, 'flag-vertical')).toHaveClass(
+      'slider__flag-vertical'
+    );
+  });
 });
 
 describe('slider #4', () => {
@@ -137,26 +143,30 @@ describe('slider #4', () => {
     step: 1,
     to: -10000,
     toPercent: 100,
-    view: 'vertical'
+    view: 'vertical',
   };
   const slider = new SliderPresenter(main, state);
   slider.init();
 
   it('show slider vertical range', () => {
-    expect(getByTestId(main, 'slider-vertical-range')).toHaveClass('slider__inner');
-  })
-  
+    expect(getByTestId(main, 'slider-vertical-range')).toHaveClass(
+      'slider__inner'
+    );
+  });
+
   it('show configuring range', () => {
     expect(getByTestId(main, 'configuring-range')).toHaveClass('slider__input');
-  })
-  
+  });
+
   it('show scale vertical', () => {
     expect(getByTestId(main, 'scale-vertical')).toHaveClass('slider__item');
-  })
-  
+  });
+
   it('show flag vertical range', () => {
-    expect(getByTestId(main, 'flag-vertical-range')).toHaveClass('slider__flag-vertical');
-  })
+    expect(getByTestId(main, 'flag-vertical-range')).toHaveClass(
+      'slider__flag-vertical'
+    );
+  });
 });
 
 describe('slider #5', () => {
@@ -172,20 +182,22 @@ describe('slider #5', () => {
     step: 1,
     to: -10000,
     toPercent: 100,
-    view: 'vertical'
+    view: 'vertical',
   };
   const slider = new SliderPresenter(main, state);
   slider.init();
 
   it('show slider vertical range', () => {
-    expect(getByTestId(main, 'slider-vertical-range')).toHaveClass('slider__inner');
-  })
+    expect(getByTestId(main, 'slider-vertical-range')).toHaveClass(
+      'slider__inner'
+    );
+  });
 
   it('show configuring range', () => {
     expect(getByTestId(main, 'configuring-range')).toHaveClass('slider__input');
-  })
+  });
 });
 
 it('jest snapshots', () => {
-  expect(container).toMatchSnapshot()
-})
+  expect(container).toMatchSnapshot();
+});
