@@ -20,6 +20,9 @@ exports[`jest snapshots from element 1`] = `
     </label>
     
         
+    <br />
+    
+        
     <input
       class="slider__min slider__number"
       data-name="min"
@@ -45,6 +48,9 @@ exports[`jest snapshots from element 1`] = `
     </label>
     
         
+    <br />
+    
+        
     <input
       class="slider__max slider__number"
       data-name="max"
@@ -68,6 +74,9 @@ exports[`jest snapshots from element 1`] = `
     >
       От
     </label>
+    
+        
+    <br />
     
         
     <input
@@ -96,6 +105,9 @@ exports[`jest snapshots from element 1`] = `
     </label>
     
         
+    <br />
+    
+        
     <input
       class="slider__to slider__number"
       data-name="to"
@@ -120,6 +132,9 @@ exports[`jest snapshots from element 1`] = `
     >
       Шаг
     </label>
+    
+        
+    <br />
     
         
     <input
@@ -291,6 +306,9 @@ exports[`jest snapshots from new element 1`] = `
     </label>
     
         
+    <br />
+    
+        
     <input
       class="slider__min slider__number"
       data-name="min"
@@ -316,6 +334,9 @@ exports[`jest snapshots from new element 1`] = `
     </label>
     
         
+    <br />
+    
+        
     <input
       class="slider__max slider__number"
       data-name="max"
@@ -339,6 +360,9 @@ exports[`jest snapshots from new element 1`] = `
     >
       От
     </label>
+    
+        
+    <br />
     
         
     <input
@@ -367,6 +391,9 @@ exports[`jest snapshots from new element 1`] = `
     </label>
     
         
+    <br />
+    
+        
     <input
       class="slider__to slider__number"
       data-name="to"
@@ -391,6 +418,9 @@ exports[`jest snapshots from new element 1`] = `
     >
       Шаг
     </label>
+    
+        
+    <br />
     
         
     <input
@@ -562,6 +592,9 @@ exports[`jest snapshots from other element 1`] = `
     </label>
     
         
+    <br />
+    
+        
     <input
       class="slider__min slider__number"
       data-name="min"
@@ -587,6 +620,9 @@ exports[`jest snapshots from other element 1`] = `
     </label>
     
         
+    <br />
+    
+        
     <input
       class="slider__max slider__number"
       data-name="max"
@@ -610,6 +646,9 @@ exports[`jest snapshots from other element 1`] = `
     >
       От
     </label>
+    
+        
+    <br />
     
         
     <input
@@ -638,6 +677,9 @@ exports[`jest snapshots from other element 1`] = `
     </label>
     
         
+    <br />
+    
+        
     <input
       class="slider__to slider__number"
       data-name="to"
@@ -662,6 +704,9 @@ exports[`jest snapshots from other element 1`] = `
     >
       Шаг
     </label>
+    
+        
+    <br />
     
         
     <input

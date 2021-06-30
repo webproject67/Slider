@@ -10,18 +10,21 @@ export default class ConfiguringViewRange extends AbstractView {
     return `
       <div data-testid="configuring-range" class="slider__input">
         <label class="slider__label" for="min">Минимальное значение</label>
+        <br>
         <input data-name="min" class="slider__min slider__number" type="number" value=${
   this.sliderModel.minValue
 } id="min">
       </div>
       <div class="slider__input">
         <label class="slider__label" for="max">Максимальное значение</label>
+        <br>
         <input data-name="max" class="slider__max slider__number" type="number" value=${
   this.sliderModel.maxValue
 } id="max">
       </div>
       <div class="slider__input">
         <label class="slider__label" for="from">От</label>
+        <br>
         <input data-name="from" class="slider__from slider__number" type="number" value=${
   this.sliderModel.fromValue === NULL_VALUE
     ? this.sliderModel.minValue
@@ -30,6 +33,7 @@ export default class ConfiguringViewRange extends AbstractView {
       </div>
       <div class="slider__input">
         <label class="slider__label" for="to">До</label>
+        <br>
         <input data-name="to" class="slider__to slider__number" type="number" value=${
   this.sliderModel.toValue === NULL_VALUE
     ? this.sliderModel.maxValue
@@ -38,6 +42,7 @@ export default class ConfiguringViewRange extends AbstractView {
       </div>
       <div class="slider__input">
         <label class="slider__label" for="step">Шаг</label>
+        <br>
         <input data-name="step" class="slider__step slider__number" type="number" value=${
   this.sliderModel.stepValue
 } id="step">

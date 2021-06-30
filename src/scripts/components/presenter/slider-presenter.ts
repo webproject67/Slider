@@ -243,13 +243,13 @@ export default class SliderPresenter {
     ) stepPercentResult = 100;
 
     if (stepPercentResult >= this.sliderModel.fromPercentValue) {
-      this.sliderModel.toPercentValue = <number>stepPercentResult;
+      this.sliderModel.toPercentValue = Number(stepPercentResult);
       const value: number = Number(((stepPercentResult / stepPercent) * step).toFixed()) + min;
-      this.sliderModel.toValue = <number>value;
+      this.sliderModel.toValue = Number(value);
     } else {
-      this.sliderModel.fromPercentValue = <number>stepPercentResult;
+      this.sliderModel.fromPercentValue = Number(stepPercentResult);
       const value: number = Number(((stepPercentResult / stepPercent) * step).toFixed()) + min;
-      this.sliderModel.fromValue = <number>value;
+      this.sliderModel.fromValue = Number(value);
     }
 
     this._replaceScreenFlag();
@@ -336,9 +336,9 @@ export default class SliderPresenter {
         if (toggle.className.split(' ')[1] === Const.SLIDER_TOGGLE_MINIMUM) {
           const { toPercentValue } = this.sliderModel;
           if (stepLeft > toPercentValue) stepLeft = toPercentValue;
-          this.sliderModel.fromPercentValue = <number>stepLeft;
+          this.sliderModel.fromPercentValue = Number(stepLeft);
           const value: number = Number(((stepLeft / stepPercent) * step).toFixed()) + min;
-          this.sliderModel.fromValue = <number>value;
+          this.sliderModel.fromValue = Number(value);
           (<HTMLElement>(
             slider.querySelector('.slider__bar')!
           )).style.marginLeft = `${stepLeft}%`;
@@ -347,16 +347,16 @@ export default class SliderPresenter {
           );
           if (flag) {
             flag.style.left = `${stepLeft}%`;
-            flag.textContent = <string>(<unknown>value);
+            flag.textContent = String(value);
           }
         }
 
         if (toggle.className.split(' ')[1] === Const.SLIDER_TOGGLE_MAXIMUM) {
           const { fromPercentValue } = this.sliderModel;
           if (fromPercentValue > stepLeft) stepLeft = fromPercentValue;
-          this.sliderModel.toPercentValue = <number>stepLeft;
+          this.sliderModel.toPercentValue = Number(stepLeft);
           const value: number = Number(((stepLeft / stepPercent) * step).toFixed()) + min;
-          this.sliderModel.toValue = <number>value;
+          this.sliderModel.toValue = Number(value);
           (<HTMLElement>(
             slider.querySelector('.slider__bar')!
           )).style.marginRight = `${100 - stepLeft}%`;
@@ -365,11 +365,11 @@ export default class SliderPresenter {
           );
           if (flag) {
             flag.style.left = `${stepLeft}%`;
-            flag.textContent = <string>(<unknown>value);
+            flag.textContent = String(value);
           }
         }
 
-        toggle.style.left = `${<string>(<unknown>stepLeft)}%`;
+        toggle.style.left = `${String(stepLeft)}%`;
         this._replaceScreenConfiguring();
       };
     } else {
@@ -389,9 +389,9 @@ export default class SliderPresenter {
         ) {
           const { toPercentValue } = this.sliderModel;
           if (stepTop > toPercentValue) stepTop = toPercentValue;
-          this.sliderModel.fromPercentValue = <number>stepTop;
+          this.sliderModel.fromPercentValue = Number(stepTop);
           const value: number = Number(((stepTop / stepPercent) * step).toFixed()) + min;
-          this.sliderModel.fromValue = <number>value;
+          this.sliderModel.fromValue = Number(value);
           (<HTMLElement>(
             slider.querySelector('.slider__bar')!
           )).style.top = `${stepTop}%`;
@@ -403,7 +403,7 @@ export default class SliderPresenter {
           );
           if (flag) {
             flag.style.top = `${stepTop}%`;
-            flag.textContent = <string>(<unknown>value);
+            flag.textContent = String(value);
           }
         }
 
@@ -413,9 +413,9 @@ export default class SliderPresenter {
         ) {
           const { fromPercentValue } = this.sliderModel;
           if (fromPercentValue > stepTop) stepTop = fromPercentValue;
-          this.sliderModel.toPercentValue = <number>stepTop;
+          this.sliderModel.toPercentValue = Number(stepTop);
           const value: number = Number(((stepTop / stepPercent) * step).toFixed()) + min;
-          this.sliderModel.toValue = <number>value;
+          this.sliderModel.toValue = Number(value);
           let fromPercent: number;
           if (
             toggle.previousElementSibling?.className.split(' ')[0]
@@ -433,11 +433,11 @@ export default class SliderPresenter {
           );
           if (flag) {
             flag.style.top = `${stepTop}%`;
-            flag.textContent = <string>(<unknown>value);
+            flag.textContent = String(value);
           }
         }
 
-        toggle.style.top = `${<string>(<unknown>stepTop)}%`;
+        toggle.style.top = `${String(stepTop)}%`;
         this._replaceScreenConfiguring();
       };
     }
@@ -461,31 +461,31 @@ export default class SliderPresenter {
   ): void {
     switch (key) {
       case 'min':
-        this.sliderModel.minValue = <number>value;
+        this.sliderModel.minValue = Number(value);
         break;
       case 'max':
-        this.sliderModel.maxValue = <number>value;
+        this.sliderModel.maxValue = Number(value);
         break;
       case 'from':
-        this.sliderModel.fromValue = <number>value;
+        this.sliderModel.fromValue = Number(value);
         break;
       case 'fromPercent':
-        this.sliderModel.fromPercentValue = <number>value;
+        this.sliderModel.fromPercentValue = Number(value);
         break;
       case 'to':
-        this.sliderModel.toValue = <number>value;
+        this.sliderModel.toValue = Number(value);
         break;
       case 'toPercent':
-        this.sliderModel.toPercentValue = <number>value;
+        this.sliderModel.toPercentValue = Number(value);
         break;
       case 'step':
-        this.sliderModel.stepValue = <number>value;
+        this.sliderModel.stepValue = Number(value);
         break;
       case 'view':
-        this.sliderModel.viewValue = <string>value;
+        this.sliderModel.viewValue = String(value);
         break;
       case 'range':
-        this.sliderModel.rangeValue = <string>value;
+        this.sliderModel.rangeValue = String(value);
         break;
       case 'flag':
         this.sliderModel.flagValue = <boolean>value;

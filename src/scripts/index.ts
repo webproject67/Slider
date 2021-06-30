@@ -1,4 +1,4 @@
 import $ from 'jquery';
 import './slider-jquery';
-import '../pug/blocks/slider/slider';
+import '../pug/pages/index/script';
 import '../styles/style.scss';

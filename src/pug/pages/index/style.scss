@@ -61,12 +61,13 @@
 
   &_transformed {
     width: 300px;
-    transform: translateX(-120px) translateY(-174px) rotate(-90deg);
+    transform: translateX(-134px) translateY(-160px) rotate(-90deg);
   }
 }
 
 .slider__item {
   width: 1px;
+  height: 20px;
   color: #4eb7a8;
   cursor: pointer;
 
@@ -138,10 +139,13 @@
   margin-top: 20px;
 }
 
-.slider__label {
-  display: block;
-}
-
 .slider__number {
   width: 177px;
+}
+
+.slider__view,
+.slider__range,
+.slider__flag-checkbox,
+.slider__scale-checkbox {
+  cursor: pointer;
 }
