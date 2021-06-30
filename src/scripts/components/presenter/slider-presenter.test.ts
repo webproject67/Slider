@@ -1,5 +1,5 @@
-import SliderPresenter from './slider-presenter';
 import { getByTestId } from '@testing-library/dom';
+import SliderPresenter from './slider-presenter';
 import '@testing-library/jest-dom';
 
 function getExampleDOM() {
@@ -86,7 +86,7 @@ describe('slider #2', () => {
 
   it('show flag horizontal range', () => {
     expect(getByTestId(main, 'flag-horizontal-range')).toHaveClass(
-      'slider__flag'
+      'slider__flag',
     );
   });
 });
@@ -111,7 +111,7 @@ describe('slider #3', () => {
 
   it('show slider vertical one', () => {
     expect(getByTestId(main, 'slider-vertical-one')).toHaveClass(
-      'slider__inner'
+      'slider__inner',
     );
   });
 
@@ -125,7 +125,7 @@ describe('slider #3', () => {
 
   it('show flag vertical one', () => {
     expect(getByTestId(main, 'flag-vertical')).toHaveClass(
-      'slider__flag-vertical'
+      'slider__flag-vertical',
     );
   });
 });
@@ -150,7 +150,7 @@ describe('slider #4', () => {
 
   it('show slider vertical range', () => {
     expect(getByTestId(main, 'slider-vertical-range')).toHaveClass(
-      'slider__inner'
+      'slider__inner',
     );
   });
 
@@ -164,7 +164,7 @@ describe('slider #4', () => {
 
   it('show flag vertical range', () => {
     expect(getByTestId(main, 'flag-vertical-range')).toHaveClass(
-      'slider__flag-vertical'
+      'slider__flag-vertical',
     );
   });
 });
@@ -189,7 +189,7 @@ describe('slider #5', () => {
 
   it('show slider vertical range', () => {
     expect(getByTestId(main, 'slider-vertical-range')).toHaveClass(
-      'slider__inner'
+      'slider__inner',
     );
   });
 

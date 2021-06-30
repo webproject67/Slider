@@ -16,13 +16,13 @@ import Slider from './components/presenter/slider-presenter';
         toPercent: 100,
         view: 'horizontal',
       },
-      options
+      options,
     );
 
     const main = this[0];
 
-    return this.each(function () {
+    return this.each(() => {
       new Slider(main, state).init();
     });
   };
-})(jQuery);
+}(jQuery));

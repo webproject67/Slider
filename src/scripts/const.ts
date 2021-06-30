@@ -29,4 +29,6 @@ const Const = {
   SLIDER_ITEM_MAXIMUM: 'slider__item_maximum',
 };
 
-export { NULL_VALUE, View, Range, State, Const };
+export {
+  NULL_VALUE, View, Range, State, Const,
+};

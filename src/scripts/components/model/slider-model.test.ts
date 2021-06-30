@@ -27,8 +27,7 @@ test('get value scale true', () => expect(model.scaleValue).toBe(true));
 test('get value step 1', () => expect(model.stepValue).toBe(1));
 test('get value to -10000', () => expect(model.toValue).toBe(-10000));
 test('get value toPercent 100', () => expect(model.toPercentValue).toBe(100));
-test('get value view horizontal', () =>
-  expect(model.viewValue).toBe('horizontal'));
+test('get value view horizontal', () => expect(model.viewValue).toBe('horizontal'));
 
 test('set value flag on false', () => {
   model.flagValue = false;

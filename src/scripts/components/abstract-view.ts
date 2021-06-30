@@ -2,6 +2,7 @@ import SliderModel from './model/slider-model';
 
 export default abstract class AbstractView {
   elem: HTMLElement | undefined;
+
   sliderModel: SliderModel;
 
   constructor(sliderModel: SliderModel) {

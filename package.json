@@ -8,7 +8,7 @@
     "dev:watch": "webpack --mode development --watch",
     "build": "webpack --mode production",
     "start": "webpack-dev-server --mode development --open",
-    "eslint": "eslint --ext .ts src/",
+    "eslint": "eslint --ext .ts src/ --fix",
     "jest": "jest",
     "jest:watch": "jest --watch",
     "test": "npm run eslint && npm run jest",
@@ -30,8 +30,6 @@
     "@babel/preset-env": "^7.14.1",
     "@babel/preset-typescript": "^7.13.0",
     "@prettier/plugin-pug": "^1.15.3",
-    "@testing-library/dom": "^7.31.0",
-    "@testing-library/jest-dom": "^5.12.0",
     "@types/jest": "^26.0.23",
     "@types/jquery": "^3.5.5",
     "@types/testing-library__dom": "^7.5.0",
@@ -66,6 +64,8 @@
     "webpack-dev-server": "^3.10.3"
   },
   "dependencies": {
+    "@testing-library/dom": "^7.31.2",
+    "@testing-library/jest-dom": "^5.14.1",
     "jquery": "^3.6.0"
   },
   "browserslist": [
