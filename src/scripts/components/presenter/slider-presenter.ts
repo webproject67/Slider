@@ -157,24 +157,61 @@ export default class SliderPresenter {
 
   private _handleInputChange(evt: any): void {
     const input: HTMLElement = evt.currentTarget;
-
-    if (input.dataset.name === State.MIN) {
-      this._setInModelValue('min', +(<HTMLInputElement>input).value);
-      this._setInModelValue('from', +(<HTMLInputElement>input).value);
-      this._setInModelValue('fromPercent', 0);
-    }
-
-    if (input.dataset.name === State.MAX) {
-      this._setInModelValue('max', +(<HTMLInputElement>input).value);
-      this._setInModelValue('to', +(<HTMLInputElement>input).value);
-      this._setInModelValue('toPercent', 100);
-    }
-
-    if (input.dataset.name === State.STEP) {
-      let value: number = +(<HTMLInputElement>input).value;
+    const updateStepValue = () => {
+      const min: number = this.sliderModel.minValue;
+      const max: number = this.sliderModel.maxValue;
+      const generalValue = max - min;
+      let value: number = Number(
+        (<HTMLInputElement>(
+          input.parentElement!.parentElement!.querySelector('.slider__step')
+        )).value,
+      );
       if (value === 0) value = 1;
       if (value < 0) value = Math.abs(value);
+      if (value > generalValue) value = generalValue;
       this._setInModelValue('step', value);
+    };
+    const updateMinValue = () => {
+      const min: number = Number(
+        (<HTMLInputElement>(
+          input.parentElement!.parentElement!.querySelector('.slider__min')
+        )).value,
+      );
+      const max: number = this.sliderModel.maxValue;
+      if (min >= max) {
+        this._setInModelValue('min', max - 1);
+        this._setInModelValue('from', max - 1);
+      } else {
+        this._setInModelValue('min', min);
+        this._setInModelValue('from', min);
+      }
+      this._setInModelValue('fromPercent', 0);
+    };
+    const updateMaxValue = () => {
+      const min: number = this.sliderModel.minValue;
+      const max: number = Number(
+        (<HTMLInputElement>(
+          input.parentElement!.parentElement!.querySelector('.slider__max')
+        )).value,
+      );
+      if (min >= max) {
+        this._setInModelValue('max', min + 1);
+        this._setInModelValue('to', min + 1);
+      } else {
+        this._setInModelValue('max', max);
+        this._setInModelValue('to', max);
+      }
+      this._setInModelValue('toPercent', 100);
+    };
+    const inputMin = input.dataset.name === State.MIN;
+    const inputMax = input.dataset.name === State.MAX;
+    const inputStep = input.dataset.name === State.STEP;
+    const generalInput = inputMin || inputMax || inputStep;
+
+    if (generalInput) {
+      updateMinValue();
+      updateMaxValue();
+      updateStepValue();
     }
 
     if (
@@ -233,14 +270,16 @@ export default class SliderPresenter {
     const stepCount: number = (max - min) / step;
     const stepPercent: number = 100 / stepCount;
     let stepPercentResult: number = Math.round(corner / stepPercent) * stepPercent;
-    if (
-      stepPercentResult < 0
-      || scale.className.split(' ')[1] === Const.SLIDER_ITEM_MINIMUM
-    ) stepPercentResult = 0;
-    if (
-      stepPercentResult > 100
-      || scale.className.split(' ')[1] === Const.SLIDER_ITEM_MAXIMUM
-    ) stepPercentResult = 100;
+    if (stepPercentResult < 0) stepPercentResult = 0;
+    if (stepPercentResult > 100) stepPercentResult = 100;
+    if (scale.children.length) {
+      if (
+        scale.children[0].className.split(' ')[1] === Const.SLIDER_ITEM_MINIMUM
+      ) stepPercentResult = 0;
+      if (
+        scale.children[0].className.split(' ')[1] === Const.SLIDER_ITEM_MAXIMUM
+      ) stepPercentResult = 100;
+    }
 
     if (stepPercentResult >= this.sliderModel.fromPercentValue) {
       this.sliderModel.toPercentValue = Number(stepPercentResult);
@@ -550,14 +589,36 @@ export default class SliderPresenter {
 
   private _showScaleView(): void {
     if (this.sliderModel.scaleValue) {
+      const setStyle = (main: HTMLElement) => {
+        const items = main
+          .querySelector('.slider__inner')!
+          .querySelectorAll('.slider__item:not(:first-child):not(:last-child)');
+        const stepCount: number = (this.sliderModel.maxValue - this.sliderModel.minValue)
+          / this.sliderModel.stepValue;
+        const stepPercent: number = 100 / stepCount;
+        let scale = 1;
+        if (stepCount > 20) scale = Math.ceil(stepCount / 20);
+        let percent = stepPercent * scale;
+        items.forEach((item) => {
+          if (percent > 99) {
+            (<HTMLElement>item).style.display = 'none';
+            return;
+          }
+          (<HTMLElement>item).style.left = `${percent}%`;
+          percent += stepPercent * scale;
+        });
+      };
+
       if (this.sliderModel.viewValue === View.HORIZONTAL) {
         this.sliderModel.main
           .querySelector('.slider__inner')!
           .appendChild(this.scaleView.element);
+        setStyle(this.sliderModel.main);
       } else if (this.sliderModel.viewValue === View.VERTICAL) {
         this.sliderModel.main
           .querySelector('.slider__inner')!
           .appendChild(this.scaleViewVertical.element);
+        setStyle(this.sliderModel.main);
       } else {
         throw new Error('incorrect value');
       }

@@ -11,17 +11,17 @@ export default class ScaleView extends AbstractView {
     const step: number = this.sliderModel.stepValue;
     let template: string = '';
 
-    for (let i = min; i <= max; i += step) {
+    for (let i = min; i < max; i += step) {
       if (i === min) {
         template += `
           <div data-testid="scale-horizontal" class="slider__item">|
-            <span class="slider__item_centered slider__item_minimum">${i}</span>
+            <span class="slider__item_centered slider__item_minimum">${min}</span>
           </div>
         `;
       } else if (i === max) {
         template += `
           <div class="slider__item">|
-            <span class="slider__item_centered slider__item_maximum">${i}</span>
+            <span class="slider__item_centered slider__item_maximum">${max}</span>
           </div>
         `;
       } else {
@@ -29,7 +29,7 @@ export default class ScaleView extends AbstractView {
       }
     }
 
-    if (template.indexOf(<string>(<unknown>max), template.length - 50) === -1) {
+    if (template.indexOf(String(max), template.length - 50) === -1) {
       template += `
           <div class="slider__item">|
             <span class="slider__item_centered slider__item_maximum">${max}</span>

@@ -8,13 +8,14 @@ exports[`jest snapshots from element 1`] = `
           
   <div
     class="slider__item"
+    data-testid="scale-vertical"
   >
     |
             
     <span
-      class="slider__item_centered slider__item_maximum slider__item_transformed"
+      class="slider__item_centered slider__item_minimum slider__item_transformed"
     >
-      100
+      0
     </span>
     
           
@@ -520,14 +521,13 @@ exports[`jest snapshots from element 1`] = `
           
   <div
     class="slider__item"
-    data-testid="scale-vertical"
   >
     |
             
     <span
-      class="slider__item_centered slider__item_minimum slider__item_transformed"
+      class="slider__item_centered slider__item_maximum slider__item_transformed"
     >
-      0
+      100
     </span>
     
           
@@ -545,13 +545,14 @@ exports[`jest snapshots from new element 1`] = `
           
   <div
     class="slider__item"
+    data-testid="scale-vertical"
   >
     |
             
     <span
-      class="slider__item_centered slider__item_maximum slider__item_transformed"
+      class="slider__item_centered slider__item_minimum slider__item_transformed"
     >
-      100
+      0
     </span>
     
           
@@ -1057,14 +1058,13 @@ exports[`jest snapshots from new element 1`] = `
           
   <div
     class="slider__item"
-    data-testid="scale-vertical"
   >
     |
             
     <span
-      class="slider__item_centered slider__item_minimum slider__item_transformed"
+      class="slider__item_centered slider__item_maximum slider__item_transformed"
     >
-      0
+      100
     </span>
     
           
@@ -1082,13 +1082,14 @@ exports[`jest snapshots from other element 1`] = `
           
   <div
     class="slider__item"
+    data-testid="scale-vertical"
   >
     |
             
     <span
-      class="slider__item_centered slider__item_maximum slider__item_transformed"
+      class="slider__item_centered slider__item_minimum slider__item_transformed"
     >
-      100
+      1
     </span>
     
           
@@ -1344,14 +1345,13 @@ exports[`jest snapshots from other element 1`] = `
           
   <div
     class="slider__item"
-    data-testid="scale-vertical"
   >
     |
             
     <span
-      class="slider__item_centered slider__item_minimum slider__item_transformed"
+      class="slider__item_centered slider__item_maximum slider__item_transformed"
     >
-      1
+      100
     </span>
     
           

@@ -1,5 +1,5 @@
 .slider__wrapper {
-  margin: 70px 30px;
+  margin: 70px 40px;
 }
 
 .slider__inner {
@@ -56,13 +56,18 @@
 }
 
 .slider__list {
+  position: relative;
   display: flex;
   justify-content: space-between;
 
   &_transformed {
     width: 300px;
-    transform: translateX(-134px) translateY(-160px) rotate(-90deg);
+    transform: translateX(-134px) translateY(-162px) rotate(-90deg) scale(-1, 1);
   }
+}
+
+.slider__item:not(:first-child):not(:last-child) {
+  position: absolute;
 }
 
 .slider__item {
@@ -77,7 +82,7 @@
   }
 
   &_transformed {
-    transform: rotate(90deg);
+    transform: rotate(90deg) scale(1, -1);
   }
 }
 
