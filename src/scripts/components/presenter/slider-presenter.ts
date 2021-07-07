@@ -14,50 +14,47 @@ import FlagViewVerticalRange from '../flag-vertical-range/flag-view-vertical-ran
 import {
   State, Const, Range, View,
 } from '../../const';
+import { StateType } from '../../types';
 
 export default class SliderPresenter {
-  sliderModel: SliderModel;
+  sliderModel!: SliderModel;
 
-  sliderViewOne: SliderViewOne;
+  sliderViewOne!: SliderViewOne;
 
-  sliderViewRange: SliderViewRange;
+  sliderViewRange!: SliderViewRange;
 
-  sliderViewVerticalOne: SliderViewVerticalOne;
+  sliderViewVerticalOne!: SliderViewVerticalOne;
 
-  sliderViewVerticalRange: SliderViewVerticalRange;
+  sliderViewVerticalRange!: SliderViewVerticalRange;
 
-  configuringViewOne: ConfiguringViewOne;
+  configuringViewOne!: ConfiguringViewOne;
 
-  configuringViewRange: ConfiguringViewRange;
+  configuringViewRange!: ConfiguringViewRange;
 
-  scaleView: ScaleView;
+  scaleView!: ScaleView;
 
-  scaleViewVertical: ScaleViewVertical;
+  scaleViewVertical!: ScaleViewVertical;
 
-  flagViewOne: FlagViewOne;
+  flagViewOne!: FlagViewOne;
 
-  flagViewRange: FlagViewRange;
+  flagViewRange!: FlagViewRange;
 
-  flagViewVerticalOne: FlagViewVerticalOne;
+  flagViewVerticalOne!: FlagViewVerticalOne;
 
-  flagViewVerticalRange: FlagViewVerticalRange;
+  flagViewVerticalRange!: FlagViewVerticalRange;
 
-  constructor(
-    main: HTMLElement,
-    state: {
-      flag: boolean;
-      from: number;
-      fromPercent: number;
-      max: number;
-      min: number;
-      range: string;
-      scale: boolean;
-      step: number;
-      to: number;
-      toPercent: number;
-      view: string;
-    },
-  ) {
+  constructor(main: HTMLElement, state: StateType) {
+    this.importModules(main, state);
+  }
+
+  public init(): void {
+    this.showSliderView();
+    this.showConfiguringView();
+    this.showScaleView();
+    this.showFlagView();
+  }
+
+  private importModules(main: HTMLElement, state: StateType): void {
     this.sliderModel = new SliderModel(main, state);
     this.sliderViewOne = new SliderViewOne(this.sliderModel);
     this.sliderViewRange = new SliderViewRange(this.sliderModel);
@@ -74,64 +71,61 @@ export default class SliderPresenter {
     this.flagViewVerticalOne = new FlagViewVerticalOne(this.sliderModel);
     this.flagViewVerticalRange = new FlagViewVerticalRange(this.sliderModel);
 
+    this.importHandlers();
+  }
+
+  private importHandlers(): void {
     this.configuringViewOne.handleInputChange = (evt) => {
-      this._handleInputChange(evt);
+      this.handleInputChange(evt);
     };
 
     this.configuringViewRange.handleInputChange = (evt) => {
-      this._handleInputChange(evt);
+      this.handleInputChange(evt);
     };
 
     this.flagViewOne.handleFlagMouseDown = (evt) => {
-      this._handleFlagMouseDown(evt);
+      this.handleFlagMouseDown(evt);
     };
 
     this.flagViewRange.handleFlagMouseDown = (evt) => {
-      this._handleFlagMouseDown(evt);
+      this.handleFlagMouseDown(evt);
     };
 
     this.flagViewVerticalOne.handleFlagMouseDown = (evt) => {
-      this._handleFlagMouseDown(evt);
+      this.handleFlagMouseDown(evt);
     };
 
     this.flagViewVerticalRange.handleFlagMouseDown = (evt) => {
-      this._handleFlagMouseDown(evt);
+      this.handleFlagMouseDown(evt);
     };
 
     this.scaleView.handleItemClick = (evt) => {
-      this._handleItemClick(evt);
+      this.handleItemClick(evt);
     };
 
     this.scaleViewVertical.handleItemClick = (evt) => {
-      this._handleItemClick(evt);
+      this.handleItemClick(evt);
     };
 
     this.sliderViewOne.handleToggleMouseDown = (evt) => {
-      this._handleToggleMouseDown(evt);
+      this.handleToggleMouseDown(evt);
     };
 
     this.sliderViewRange.handleToggleMouseDown = (evt) => {
-      this._handleToggleMouseDown(evt);
+      this.handleToggleMouseDown(evt);
     };
 
     this.sliderViewVerticalOne.handleToggleMouseDown = (evt) => {
-      this._handleToggleMouseDown(evt);
+      this.handleToggleMouseDown(evt);
     };
 
     this.sliderViewVerticalRange.handleToggleMouseDown = (evt) => {
-      this._handleToggleMouseDown(evt);
+      this.handleToggleMouseDown(evt);
     };
   }
 
-  public init(): void {
-    this._showSliderView();
-    this._showConfiguringView();
-    this._showScaleView();
-    this._showFlagView();
-  }
-
-  private _handleFlagMouseDown(evt: any): void {
-    const flag: HTMLElement = evt.currentTarget;
+  private handleFlagMouseDown(evt: Event): void {
+    const flag: HTMLElement = <HTMLElement>evt.currentTarget;
     const slider: HTMLElement = flag.parentElement!.parentElement!;
     let toggle: HTMLElement;
 
@@ -152,11 +146,11 @@ export default class SliderPresenter {
         break;
     }
 
-    this._replaceToggle(evt, toggle!);
+    this.replaceToggle(evt, toggle!);
   }
 
-  private _handleInputChange(evt: any): void {
-    const input: HTMLElement = evt.currentTarget;
+  private handleInputChange(evt: Event): void {
+    const input: HTMLElement = <HTMLElement>evt.currentTarget;
     const updateStepValue = () => {
       const min: number = this.sliderModel.minValue;
       const max: number = this.sliderModel.maxValue;
@@ -169,7 +163,7 @@ export default class SliderPresenter {
       if (value === 0) value = 1;
       if (value < 0) value = Math.abs(value);
       if (value > generalValue) value = generalValue;
-      this._setInModelValue('step', value);
+      this.setInModelValue('step', value);
     };
     const updateMinValue = () => {
       const min: number = Number(
@@ -179,13 +173,13 @@ export default class SliderPresenter {
       );
       const max: number = this.sliderModel.maxValue;
       if (min >= max) {
-        this._setInModelValue('min', max - 1);
-        this._setInModelValue('from', max - 1);
+        this.setInModelValue('min', max - 1);
+        this.setInModelValue('from', max - 1);
       } else {
-        this._setInModelValue('min', min);
-        this._setInModelValue('from', min);
+        this.setInModelValue('min', min);
+        this.setInModelValue('from', min);
       }
-      this._setInModelValue('fromPercent', 0);
+      this.setInModelValue('fromPercent', 0);
     };
     const updateMaxValue = () => {
       const min: number = this.sliderModel.minValue;
@@ -195,13 +189,13 @@ export default class SliderPresenter {
         )).value,
       );
       if (min >= max) {
-        this._setInModelValue('max', min + 1);
-        this._setInModelValue('to', min + 1);
+        this.setInModelValue('max', min + 1);
+        this.setInModelValue('to', min + 1);
       } else {
-        this._setInModelValue('max', max);
-        this._setInModelValue('to', max);
+        this.setInModelValue('max', max);
+        this.setInModelValue('to', max);
       }
-      this._setInModelValue('toPercent', 100);
+      this.setInModelValue('toPercent', 100);
     };
     const inputMin = input.dataset.name === State.MIN;
     const inputMax = input.dataset.name === State.MAX;
@@ -218,35 +212,34 @@ export default class SliderPresenter {
       input.dataset.name === State.VIEW
       || input.dataset.name === State.RANGE
     ) {
-      this._setInModelValue(
-        input.dataset.name,
-        (<HTMLInputElement>input).value,
-      );
+      this.setInModelValue(input.dataset.name, (<HTMLInputElement>input).value);
       this.sliderModel.main.removeChild(this.sliderModel.main.children[0]);
-      this._showSliderView();
+      this.showSliderView();
     }
 
     if (
       input.dataset.name === State.FLAG
       || input.dataset.name === State.SCALE
     ) {
-      this._setInModelValue(
+      this.setInModelValue(
         input.dataset.name,
         (<HTMLInputElement>input).checked,
       );
     }
 
-    this._replaceScreenScale();
-    this._replaceScreenFlag();
-    this._replaceScreenConfiguring();
-    this._replaceScreenSlider();
-    this._showScaleView();
-    this._showFlagView();
-    this._showConfiguringView();
+    this.replaceScreenScale();
+    this.replaceScreenFlag();
+    this.replaceScreenConfiguring();
+    this.replaceScreenSlider();
+    this.showScaleView();
+    this.showFlagView();
+    this.showConfiguringView();
   }
 
-  private _handleItemClick(evt: any): void {
-    const scale: HTMLElement = evt.currentTarget;
+  private handleItemClick(
+    evt: Event & { pageX?: number; pageY?: number },
+  ): void {
+    const scale: HTMLElement = <HTMLElement>evt.currentTarget;
     const min: number = this.sliderModel.minValue;
     const max: number = this.sliderModel.maxValue;
     const step: number = this.sliderModel.stepValue;
@@ -262,9 +255,9 @@ export default class SliderPresenter {
     let corner: number;
 
     if (!stepList.className.split(' ')[1]) {
-      corner = ((evt.pageX - sliderLeft) / sliderWidth) * 100;
+      corner = ((evt.pageX! - sliderLeft) / sliderWidth) * 100;
     } else {
-      corner = ((evt.pageY - boxTop) / sliderHeight) * 100;
+      corner = ((evt.pageY! - boxTop) / sliderHeight) * 100;
     }
 
     const stepCount: number = (max - min) / step;
@@ -291,20 +284,20 @@ export default class SliderPresenter {
       this.sliderModel.fromValue = Number(value);
     }
 
-    this._replaceScreenFlag();
-    this._replaceScreenConfiguring();
-    this._replaceScreenSlider();
-    this._showScaleView();
-    this._showFlagView();
-    this._showConfiguringView();
+    this.replaceScreenFlag();
+    this.replaceScreenConfiguring();
+    this.replaceScreenSlider();
+    this.showScaleView();
+    this.showFlagView();
+    this.showConfiguringView();
   }
 
-  private _handleToggleMouseDown(evt: any): void {
-    const toggle: HTMLElement = evt.currentTarget;
-    this._replaceToggle(evt, toggle);
+  private handleToggleMouseDown(evt: Event): void {
+    const toggle: HTMLElement = <HTMLElement>evt.currentTarget;
+    this.replaceToggle(evt, toggle);
   }
 
-  private _replaceScreenConfiguring(): void {
+  private replaceScreenConfiguring(): void {
     this.configuringViewOne.element.replaceWith(
       this.configuringViewOne.newElement,
     );
@@ -313,7 +306,7 @@ export default class SliderPresenter {
     );
   }
 
-  private _replaceScreenFlag(): void {
+  private replaceScreenFlag(): void {
     this.flagViewOne.element.replaceWith(this.flagViewOne.newElement);
     this.flagViewRange.element.replaceWith(this.flagViewRange.newElement);
     this.flagViewVerticalOne.element.replaceWith(
@@ -324,14 +317,14 @@ export default class SliderPresenter {
     );
   }
 
-  private _replaceScreenScale(): void {
+  private replaceScreenScale(): void {
     this.scaleView.element.replaceWith(this.scaleView.newElement);
     this.scaleViewVertical.element.replaceWith(
       this.scaleViewVertical.newElement,
     );
   }
 
-  private _replaceScreenSlider(): void {
+  private replaceScreenSlider(): void {
     this.sliderViewOne.element.replaceWith(this.sliderViewOne.newElement);
     this.sliderViewRange.element.replaceWith(this.sliderViewRange.newElement);
     this.sliderViewVerticalOne.element.replaceWith(
@@ -342,7 +335,7 @@ export default class SliderPresenter {
     );
   }
 
-  private _replaceToggle(evt: any, toggle: HTMLElement): void {
+  private replaceToggle(evt: Event, toggle: HTMLElement): void {
     const min: number = this.sliderModel.minValue;
     const max: number = this.sliderModel.maxValue;
     const step: number = this.sliderModel.stepValue;
@@ -355,17 +348,19 @@ export default class SliderPresenter {
     const sliderWidth: number = boxRight - boxLeft;
     const sliderHeight: number = boxBottom - boxTop;
 
-    let onMouseMove: { (evt: any): void };
+    let onMouseMove: { (evt: Event): void };
     evt.preventDefault();
 
     if (
       toggle.className.split(' ')[1] === Const.SLIDER_TOGGLE_MINIMUM
       || toggle.className.split(' ')[1] === Const.SLIDER_TOGGLE_MAXIMUM
     ) {
-      onMouseMove = (evt: any): void => {
-        const getEvent = () => (evt.type.search('touch') !== -1 ? evt.touches[0] : evt);
+      onMouseMove = (
+        evt: Event & { touches?: TouchList; pageX?: number },
+      ): void => {
+        const getEvent = () => (evt.type.search('touch') !== -1 ? evt.touches![0] : evt);
         const event = getEvent();
-        const left: number = ((event.pageX - sliderLeft) / sliderWidth) * 100;
+        const left: number = ((event.pageX! - sliderLeft) / sliderWidth) * 100;
         const stepCount: number = (max - min) / step;
         const stepPercent: number = 100 / stepCount;
         let stepLeft: number = Math.round(left / stepPercent) * stepPercent;
@@ -409,13 +404,15 @@ export default class SliderPresenter {
         }
 
         toggle.style.left = `${String(stepLeft)}%`;
-        this._replaceScreenConfiguring();
+        this.replaceScreenConfiguring();
       };
     } else {
-      onMouseMove = (evt: any): void => {
-        const getEvent = () => (evt.type.search('touch') !== -1 ? evt.touches[0] : evt);
+      onMouseMove = (
+        evt: Event & { touches?: TouchList; pageY?: number },
+      ): void => {
+        const getEvent = () => (evt.type.search('touch') !== -1 ? evt.touches![0] : evt);
         const event = getEvent();
-        const top: number = ((event.pageY - boxTop) / sliderHeight) * 100;
+        const top: number = ((event.pageY! - boxTop) / sliderHeight) * 100;
         const stepCount: number = (max - min) / step;
         const stepPercent: number = 100 / stepCount;
         let stepTop: number = Math.round(top / stepPercent) * stepPercent;
@@ -477,7 +474,7 @@ export default class SliderPresenter {
         }
 
         toggle.style.top = `${String(stepTop)}%`;
-        this._replaceScreenConfiguring();
+        this.replaceScreenConfiguring();
       };
     }
 
@@ -494,10 +491,7 @@ export default class SliderPresenter {
     document.addEventListener('mouseup', onMouseUp);
   }
 
-  private _setInModelValue(
-    key: string,
-    value: number | string | boolean,
-  ): void {
+  private setInModelValue(key: string, value: number | string | boolean): void {
     switch (key) {
       case 'min':
         this.sliderModel.minValue = Number(value);
@@ -537,7 +531,7 @@ export default class SliderPresenter {
     }
   }
 
-  private _showConfiguringView(): void {
+  private showConfiguringView(): void {
     if (this.sliderModel.rangeValue === Range.ONE) {
       this.sliderModel.main
         .querySelector('.slider__wrapper')!
@@ -551,7 +545,7 @@ export default class SliderPresenter {
     }
   }
 
-  private _showFlagView(): void {
+  private showFlagView(): void {
     if (this.sliderModel.flagValue) {
       if (
         this.sliderModel.rangeValue === Range.ONE
@@ -587,7 +581,7 @@ export default class SliderPresenter {
     }
   }
 
-  private _showScaleView(): void {
+  private showScaleView(): void {
     if (this.sliderModel.scaleValue) {
       const setStyle = (main: HTMLElement) => {
         const items = main
@@ -625,7 +619,7 @@ export default class SliderPresenter {
     }
   }
 
-  private _showSliderView(): void {
+  private showSliderView(): void {
     if (
       this.sliderModel.rangeValue === Range.ONE
       && this.sliderModel.viewValue === View.HORIZONTAL
