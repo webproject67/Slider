@@ -1,38 +1,13 @@
+import { StateType } from '../../types';
+
 export default class SliderModel {
   main: HTMLElement;
 
   mainName: string;
 
-  state: {
-    flag: boolean;
-    from: number;
-    fromPercent: number;
-    max: number;
-    min: number;
-    range: string;
-    scale: boolean;
-    step: number;
-    to: number;
-    toPercent: number;
-    view: string;
-  };
+  state: StateType;
 
-  constructor(
-    main: HTMLElement,
-    state: {
-      flag: boolean;
-      from: number;
-      fromPercent: number;
-      max: number;
-      min: number;
-      range: string;
-      scale: boolean;
-      step: number;
-      to: number;
-      toPercent: number;
-      view: string;
-    },
-  ) {
+  constructor(main: HTMLElement, state: StateType) {
     this.main = main;
     this.mainName = main.className ? `.${main.className}` : `#${main.id}`;
     this.state = state;

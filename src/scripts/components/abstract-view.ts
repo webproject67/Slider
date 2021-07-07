@@ -13,13 +13,13 @@ export default abstract class AbstractView {
     if (this.elem) {
       return this.elem;
     }
-    this.elem = this._render();
+    this.elem = this.render();
     this.bind();
     return this.elem;
   }
 
   public get newElement(): HTMLElement {
-    this.elem = this._render();
+    this.elem = this.render();
     this.bind();
     return this.elem;
   }
@@ -34,14 +34,14 @@ export default abstract class AbstractView {
 
   protected bind(): void {}
 
-  private _createElement(template: string, className: string): HTMLElement {
+  private createElement(template: string, className: string): HTMLElement {
     const newElement: HTMLElement = document.createElement('div');
     newElement.className = className;
     newElement.innerHTML = template;
     return newElement;
   }
 
-  private _render(): HTMLElement {
-    return this._createElement(this.template, this.className);
+  private render(): HTMLElement {
+    return this.createElement(this.template, this.className);
   }
 }
