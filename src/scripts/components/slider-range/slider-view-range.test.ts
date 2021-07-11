@@ -19,13 +19,6 @@ const state = {
 const model = new SliderModel(main, state);
 const slider = new SliderViewRange(model);
 
-test('spyOn mouseDown toggle range', () => {
-  const somethingSpy = jest.spyOn(slider, 'handleToggleMouseDown');
-  let evt: any;
-  slider.handleToggleMouseDown(evt);
-  expect(somethingSpy).toHaveBeenCalledTimes(1);
-});
-
 it('jest snapshots from element', () => {
   expect(slider.element).toMatchSnapshot();
 });

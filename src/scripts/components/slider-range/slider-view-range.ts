@@ -1,4 +1,5 @@
 import AbstractView from '../abstract-view';
+import { Const } from '../../const';
 
 export default class SliderViewRange extends AbstractView {
   get className() {
@@ -26,11 +27,72 @@ export default class SliderViewRange extends AbstractView {
   bind() {
     this.element
       .querySelectorAll('.slider__toggle')
-      .forEach((elem) => elem.addEventListener('touchstart', this.handleToggleMouseDown));
+      .forEach((elem) => elem.addEventListener(
+        'touchstart',
+        this.handleToggleMouseDown.bind(this),
+      ));
     this.element
       .querySelectorAll('.slider__toggle')
-      .forEach((elem) => elem.addEventListener('mousedown', this.handleToggleMouseDown));
+      .forEach((elem) => elem.addEventListener(
+        'mousedown',
+        this.handleToggleMouseDown.bind(this),
+      ));
   }
 
-  public handleToggleMouseDown(evt: Event): void {}
+  public handleToggleMouseDown(evt: Event): void {
+    evt.preventDefault();
+    const min: number = this.sliderModel.minValue;
+    const max: number = this.sliderModel.maxValue;
+    const step: number = this.sliderModel.stepValue;
+    const toggle: HTMLElement = <HTMLElement>evt.currentTarget;
+    const slider: HTMLElement = toggle.parentElement!;
+    const boxLeft: number = slider.offsetLeft;
+    const boxRight: number = boxLeft + slider.clientWidth;
+    const sliderLeft: number = boxLeft + window.pageXOffset;
+    const sliderWidth: number = boxRight - boxLeft;
+    const onMouseMove = (
+      evt: Event & { touches?: TouchList; pageX?: number },
+    ): void => {
+      const getEvent = () => (evt.type.search('touch') !== -1 ? evt.touches![0] : evt);
+      const event = getEvent();
+      const left: number = ((event.pageX! - sliderLeft) / sliderWidth) * 100;
+      const stepCount: number = (max - min) / step;
+      const stepPercent: number = 100 / stepCount;
+      let stepLeft: number = Math.round(left / stepPercent) * stepPercent;
+      if (stepLeft < 0) stepLeft = 0;
+      if (stepLeft > 100) stepLeft = 100;
+
+      if (toggle.className.split(' ')[1] === Const.SLIDER_TOGGLE_MINIMUM) {
+        const { toPercentValue } = this.sliderModel;
+        if (stepLeft > toPercentValue) stepLeft = toPercentValue;
+        const value: number = Number(((stepLeft / stepPercent) * step).toFixed()) + min;
+        this.sliderModel.broadcast(
+          ['fromPercentValue', 'fromValue'],
+          [stepLeft, value],
+        );
+      }
+
+      if (toggle.className.split(' ')[1] === Const.SLIDER_TOGGLE_MAXIMUM) {
+        const { fromPercentValue } = this.sliderModel;
+        if (fromPercentValue > stepLeft) stepLeft = fromPercentValue;
+        const value: number = Number(((stepLeft / stepPercent) * step).toFixed()) + min;
+        this.sliderModel.broadcast(
+          ['toPercentValue', 'toValue'],
+          [stepLeft, value],
+        );
+      }
+    };
+
+    const onMouseUp = () => {
+      document.removeEventListener('touchmove', onMouseMove);
+      document.removeEventListener('mousemove', onMouseMove);
+      document.removeEventListener('touchend', onMouseUp);
+      document.removeEventListener('mouseup', onMouseUp);
+    };
+
+    document.addEventListener('touchmove', onMouseMove);
+    document.addEventListener('mousemove', onMouseMove);
+    document.addEventListener('touchend', onMouseUp);
+    document.addEventListener('mouseup', onMouseUp);
+  }
 }

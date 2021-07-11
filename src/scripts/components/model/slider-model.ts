@@ -1,6 +1,7 @@
+import Observer from '../observer/observer';
 import { StateType } from '../../types';
 
-export default class SliderModel {
+export default class SliderModel extends Observer {
   main: HTMLElement;
 
   mainName: string;
@@ -8,9 +9,51 @@ export default class SliderModel {
   state: StateType;
 
   constructor(main: HTMLElement, state: StateType) {
+    super();
     this.main = main;
     this.mainName = main.className ? `.${main.className}` : `#${main.id}`;
     this.state = state;
+  }
+
+  public setValueState(keys: string[], values: (number | string | boolean)[]) {
+    keys.forEach((key, i) => {
+      switch (key) {
+        case 'minValue':
+          this.minValue = Number(values[i]);
+          break;
+        case 'maxValue':
+          this.maxValue = Number(values[i]);
+          break;
+        case 'stepValue':
+          this.stepValue = Number(values[i]);
+          break;
+        case 'toValue':
+          this.toValue = Number(values[i]);
+          break;
+        case 'toPercentValue':
+          this.toPercentValue = Number(values[i]);
+          break;
+        case 'fromValue':
+          this.fromValue = Number(values[i]);
+          break;
+        case 'fromPercentValue':
+          this.fromPercentValue = Number(values[i]);
+          break;
+        case 'view':
+          this.viewValue = String(values[i]);
+          break;
+        case 'range':
+          this.rangeValue = String(values[i]);
+          break;
+        case 'flag':
+          this.flagValue = Boolean(values[i]);
+          break;
+        case 'scale':
+          this.scaleValue = Boolean(values[i]);
+          break;
+        default:
+      }
+    });
   }
 
   public get flagValue(): boolean {
