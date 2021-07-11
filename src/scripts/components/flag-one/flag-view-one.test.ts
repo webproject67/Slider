@@ -19,13 +19,6 @@ const state = {
 const model = new SliderModel(main, state);
 const flag = new FlagViewOne(model);
 
-test('spyOn mouseDown flag one', () => {
-  const somethingSpy = jest.spyOn(flag, 'handleFlagMouseDown');
-  let evt: any;
-  flag.handleFlagMouseDown(evt);
-  expect(somethingSpy).toHaveBeenCalledTimes(1);
-});
-
 it('jest snapshots from element', () => {
   expect(flag.element).toMatchSnapshot();
 });

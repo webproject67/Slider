@@ -20,13 +20,6 @@ const state = {
 const model = new SliderModel(main, state);
 const configuring = new ConfiguringViewOne(model);
 
-test('spyOn change input', () => {
-  const somethingSpy = jest.spyOn(configuring, 'handleInputChange');
-  let evt: any;
-  configuring.handleInputChange(evt);
-  expect(somethingSpy).toHaveBeenCalledTimes(1);
-});
-
 it('jest snapshots from element', () => {
   expect(configuring.element).toMatchSnapshot();
 });
