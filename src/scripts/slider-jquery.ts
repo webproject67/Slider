@@ -1,4 +1,4 @@
-import Slider from './components/presenter/slider-presenter';
+import Presenter from './components/presenter/presenter';
 
 (function ($) {
   $.fn.slider = function (options) {
@@ -9,7 +9,9 @@ import Slider from './components/presenter/slider-presenter';
         fromPercent: 0,
         max: 100,
         min: 0,
+        progress: true,
         range: 'one',
+        draft: 0,
         scale: true,
         step: 1,
         to: -10000,
@@ -22,7 +24,7 @@ import Slider from './components/presenter/slider-presenter';
     const main = this[0];
 
     return this.each(() => {
-      new Slider(main, state).init();
+      new Presenter(main, state).init();
     });
   };
 }(jQuery));

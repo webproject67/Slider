@@ -1,5 +1,5 @@
 export default class Observer {
-  observers: Function[];
+  private observers: Function[];
 
   constructor() {
     this.observers = [];
@@ -9,7 +9,7 @@ export default class Observer {
     this.observers.push(fn);
   }
 
-  public broadcast(keys: string[], values: (number | string | boolean)[]) {
+  public broadcast(keys?: string[], values?: (number | string | boolean)[]) {
     this.observers.forEach((subscriber) => subscriber(keys, values));
   }
 }

@@ -9,6 +9,7 @@ $('#slider2').slider({
   min: 10,
   max: 50,
   step: 10,
+  progress: false,
 });
 
 $('.js-sabakA').slider({

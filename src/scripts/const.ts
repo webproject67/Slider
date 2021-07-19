@@ -12,6 +12,7 @@ const Range = {
 
 const State = {
   FLAG: 'flag',
+  PROGRESS: 'progress',
   MAX: 'max',
   MIN: 'min',
   RANGE: 'range',
@@ -25,10 +26,6 @@ const Const = {
   SLIDER_TOGGLE_MAXIMUM: 'slider__toggle_maximum',
   SLIDER_TOGGLE_VERTICAL_MINIMUM: 'slider__toggle_vertical-minimum',
   SLIDER_TOGGLE_VERTICAL_MAXIMUM: 'slider__toggle_vertical-maximum',
-  SLIDER_FLAG_MINIMUM: 'slider__flag_minimum',
-  SLIDER_FLAG_MAXIMUM: 'slider__flag_maximum',
-  SLIDER_FLAG_VERTICAL_MINIMUM: 'slider__flag-vertical_minimum',
-  SLIDER_FLAG_VERTICAL_MAXIMUM: 'slider__flag-vertical_maximum',
   SLIDER_ITEM_MINIMUM: 'slider__item_minimum',
   SLIDER_ITEM_MAXIMUM: 'slider__item_maximum',
 };
