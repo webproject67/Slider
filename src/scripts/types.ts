@@ -4,7 +4,9 @@ export interface StateType {
   fromPercent: number;
   max: number;
   min: number;
+  progress: boolean;
   range: string;
+  draft: number;
   scale: boolean;
   step: number;
   to: number;

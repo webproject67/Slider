@@ -1,12 +1,12 @@
-import SliderModel from './model/slider-model';
+import Model from '../model/model';
 
 export default abstract class AbstractView {
-  elem: HTMLElement | undefined;
+  public model: Model;
 
-  sliderModel: SliderModel;
+  private elem: HTMLElement | undefined;
 
-  constructor(sliderModel: SliderModel) {
-    this.sliderModel = sliderModel;
+  constructor(model: Model) {
+    this.model = model;
   }
 
   public get element(): HTMLElement {
@@ -18,7 +18,7 @@ export default abstract class AbstractView {
     return this.elem;
   }
 
-  public get newElement(): HTMLElement {
+  public get updatedElement(): HTMLElement {
     this.elem = this.render();
     this.bind();
     return this.elem;
