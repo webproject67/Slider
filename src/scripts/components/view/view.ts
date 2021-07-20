@@ -399,6 +399,9 @@ export default class Views extends Observer {
           (<HTMLElement>item).style.display = 'none';
           return;
         }
+        const value = Number(((percent / stepPercent) * this.model.state.step).toFixed())
+          + this.model.state.min;
+        if (scale !== 1) item.children[0].textContent = String(value);
         (<HTMLElement>item).style.left = `${percent}%`;
         percent += stepPercent * scale;
       });
