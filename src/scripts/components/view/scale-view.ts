@@ -21,29 +21,23 @@ export default class ScaleView extends AbstractView {
     if (view === View.VERTICAL) itemVertical = 'slider__item_transformed';
 
     for (let i = min; i < max; i += step) {
-      if (i === min) {
-        template += `
-          <div class="slider__item">|
-            <span class="slider__item_centered slider__item_minimum ${itemVertical}">${min}</span>
-          </div>
-        `;
-      } else if (i === max) {
-        template += `
-          <div class="slider__item">|
-            <span class="slider__item_centered slider__item_maximum ${itemVertical}">${max}</span>
-          </div>
-        `;
-      } else {
-        template += '<div class="slider__item">|</div>';
-      }
+      let itemPlace = '';
+      if (i === min) itemPlace = 'slider__item_minimum';
+      if (i === max) itemPlace = 'slider__item_maximum';
+
+      template += `
+        <div class="slider__item">|
+          <span class="slider__item_centered ${itemPlace} ${itemVertical}">${i}</span>
+        </div>
+      `;
     }
 
     if (template.indexOf(String(max), template.length - 50) === -1) {
       template += `
-          <div class="slider__item">|
-            <span class="slider__item_centered slider__item_maximum ${itemVertical}">${max}</span>
-          </div>
-        `;
+        <div class="slider__item">|
+          <span class="slider__item_centered slider__item_maximum ${itemVertical}">${max}</span>
+        </div>
+      `;
     }
 
     return template;
