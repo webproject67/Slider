@@ -7,6 +7,9 @@ export interface StateType {
   progress: boolean;
   range: string;
   draft: number;
+  start: number;
+  main?: HTMLElement;
+  mainName?: string;
   scale: boolean;
   step: number;
   to: number;

@@ -1,13 +1,14 @@
 import AbstractView from './abstract-view';
 import { View } from '../../const';
+import { StateType } from '../../types';
 
 export default class ProgressView extends AbstractView {
-  get className() {
+  getClassName() {
     return 'slider__bars';
   }
 
-  get template() {
-    const { fromPercent, toPercent, view } = this.model.state;
+  getTemplate(model: StateType) {
+    const { fromPercent, toPercent, view } = model;
     let bar = `<div class="slider__bar" style="margin-left:${fromPercent}%;margin-right:${
       100 - toPercent
     }%"></div>`;
@@ -21,9 +22,12 @@ export default class ProgressView extends AbstractView {
     return `${bar}`;
   }
 
-  bind() {
-    this.element.addEventListener('click', this.handleBarClick);
+  bind(model: StateType) {
+    this.getElement(model).addEventListener(
+      'click',
+      this.handleBarClick.bind(null, model),
+    );
   }
 
-  public handleBarClick(evt: Event): void {}
+  public handleBarClick(model: StateType, evt: Event): void {}
 }

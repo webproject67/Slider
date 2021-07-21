@@ -1,15 +1,16 @@
 import AbstractView from './abstract-view';
 import { NULL_VALUE, Range, View } from '../../const';
+import { StateType } from '../../types';
 
 export default class FlagView extends AbstractView {
-  get className() {
+  getClassName() {
     return 'slider__flags';
   }
 
-  get template() {
+  getTemplate(model: StateType) {
     const {
       range, view, fromPercent, from, min, toPercent, to, max,
-    } = this.model.state;
+    } = model;
     let flagMin = '';
     let flagMax = 'slider__flag_maximum';
     let position = 'left';
@@ -39,14 +40,20 @@ export default class FlagView extends AbstractView {
     `;
   }
 
-  bind() {
-    this.element
+  bind(model: StateType) {
+    this.getElement(model)
       .querySelectorAll('.slider__flag')
-      .forEach((elem) => elem.addEventListener('touchstart', this.handleFlagMouseDown));
-    this.element
+      .forEach((elem) => elem.addEventListener(
+        'touchstart',
+        this.handleFlagMouseDown.bind(null, model),
+      ));
+    this.getElement(model)
       .querySelectorAll('.slider__flag')
-      .forEach((elem) => elem.addEventListener('mousedown', this.handleFlagMouseDown));
+      .forEach((elem) => elem.addEventListener(
+        'mousedown',
+        this.handleFlagMouseDown.bind(null, model),
+      ));
   }
 
-  public handleFlagMouseDown(evt: Event): void {}
+  public handleFlagMouseDown(model: StateType, evt: Event): void {}
 }
