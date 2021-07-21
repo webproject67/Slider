@@ -9,7 +9,7 @@ export default class Presenter {
 
   constructor(main: HTMLElement, state: StateType) {
     this.model = new Model(main, state);
-    this.view = new View(main, state);
+    this.view = new View();
   }
 
   public init() {
@@ -18,7 +18,7 @@ export default class Presenter {
         this.model.setValue(keys, values);
       },
     );
-
-    this.model.subscribe((bool: boolean) => this.view.updateView(bool));
+    this.model.subscribe((value: StateType, bool: boolean) => this.view.updateView(value, bool));
+    this.model.broadcast(this.model.state);
   }
 }

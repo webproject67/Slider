@@ -1,26 +1,37 @@
 import AbstractView from './abstract-view';
 import { NULL_VALUE, View, Range } from '../../const';
+import { StateType } from '../../types';
 
 export default class ConfiguringView extends AbstractView {
-  get className() {
+  getClassName() {
     return 'slider__inputs';
   }
 
-  get template() {
+  getTemplate(model: StateType) {
     const {
-      range, from, min, max, to, step, view, flag, scale, progress,
-    } = this.model.state;
+      range,
+      from,
+      min,
+      max,
+      to,
+      step,
+      view,
+      flag,
+      scale,
+      progress,
+      mainName,
+    } = model;
     let fromTemplate = '';
     let toTemplate = 'Текущее значение';
 
     if (range === Range.RANGE) {
       fromTemplate = `
         <div class="slider__input">
-          <label class="slider__label" for="from">От</label>
+          <label class="slider__label" for="from${mainName}">От</label>
           <br>
           <input data-name="from" class="slider__from slider__number" type="number" value=${
   from === NULL_VALUE ? min : from
-} id="from" readonly>
+} id="from${mainName}" readonly>
         </div>
       `;
       toTemplate = 'До';
@@ -28,74 +39,77 @@ export default class ConfiguringView extends AbstractView {
 
     return `
       <div class="slider__input">
-        <label class="slider__label" for="min">Минимальное значение</label>
+        <label class="slider__label" for="min${mainName}">Минимальное значение</label>
         <br>
-        <input data-name="min" class="slider__min slider__number" type="number" value=${min} id="min">
+        <input data-name="min" class="slider__min slider__number" type="number" value=${min} id="min${mainName}">
       </div>
       <div class="slider__input">
-        <label class="slider__label" for="max">Максимальное значение</label>
+        <label class="slider__label" for="max${mainName}">Максимальное значение</label>
         <br>
-        <input data-name="max" class="slider__max slider__number" type="number" value=${max} id="max">
+        <input data-name="max" class="slider__max slider__number" type="number" value=${max} id="max${mainName}">
       </div>
       ${fromTemplate}
       <div class="slider__input">
-        <label class="slider__label" for="to">${toTemplate}</label>
+        <label class="slider__label" for="to${mainName}">${toTemplate}</label>
         <br>
         <input data-name="to" class="slider__to slider__number" type="number" value=${
   to === NULL_VALUE ? max : to
-} id="to" readonly>
+} id="to${mainName}" readonly>
       </div>
       <div class="slider__input">
-        <label class="slider__label" for="step">Шаг</label>
+        <label class="slider__label" for="step${mainName}">Шаг</label>
         <br>
-        <input data-name="step" class="slider__step slider__number" type="number" value=${step} id="step">
+        <input data-name="step" class="slider__step slider__number" type="number" value=${step} id="step${mainName}">
       </div>
       <div class="slider__input">
-        <input data-name="view" class="slider__view" type="radio" name="view${this.model.getMainName()}" value="horizontal" id="horizontal${this.model.getMainName()}" ${
+        <input data-name="view" class="slider__view" type="radio" name="view${mainName}" value="horizontal" id="horizontal${mainName}" ${
   view === View.HORIZONTAL ? 'checked' : ''
 }>
-        <label for="horizontal${this.model.getMainName()}">Горизонтальный</label>
-        <input data-name="view" class="slider__view" type="radio" name="view${this.model.getMainName()}" value="vertical" id="vertical${this.model.getMainName()}" ${
+        <label for="horizontal${mainName}">Горизонтальный</label>
+        <input data-name="view" class="slider__view" type="radio" name="view${mainName}" value="vertical" id="vertical${mainName}" ${
   view === View.VERTICAL ? 'checked' : ''
 }>
-        <label for="vertical${this.model.getMainName()}">Вертикальный</label>
+        <label for="vertical${mainName}">Вертикальный</label>
       </div>
       <div class="slider__input">
-        <input data-name="range" class="slider__range" type="radio" name="range${this.model.getMainName()}" value="one" id="one${this.model.getMainName()}" ${
+        <input data-name="range" class="slider__range" type="radio" name="range${mainName}" value="one" id="one${mainName}" ${
   range === Range.ONE ? 'checked' : ''
 }>
-        <label for="one${this.model.getMainName()}">Одиночное значение</label>
-        <input data-name="range" class="slider__range" type="radio" name="range${this.model.getMainName()}" value="range" id="range${this.model.getMainName()}" ${
+        <label for="one${mainName}">Одиночное значение</label>
+        <input data-name="range" class="slider__range" type="radio" name="range${mainName}" value="range" id="range${mainName}" ${
   range === Range.RANGE ? 'checked' : ''
 }>
-        <label for="range${this.model.getMainName()}">Интервал</label>
+        <label for="range${mainName}">Интервал</label>
       </div>
       <div class="slider__input">
-        <input data-name="flag" class="slider__flag-checkbox" type="checkbox" id="flag${this.model.getMainName()}" ${
+        <input data-name="flag" class="slider__flag-checkbox" type="checkbox" id="flag${mainName}" ${
   flag ? 'checked' : ''
 }>
-        <label for="flag${this.model.getMainName()}">Значение</label>
+        <label for="flag${mainName}">Значение</label>
       </div>
       <div class="slider__input">
-        <input data-name="scale" class="slider__scale-checkbox" type="checkbox" id="scale${this.model.getMainName()}" ${
+        <input data-name="scale" class="slider__scale-checkbox" type="checkbox" id="scale${mainName}" ${
   scale ? 'checked' : ''
 }>
-        <label for="scale${this.model.getMainName()}">Шкала</label>
+        <label for="scale${mainName}">Шкала</label>
       </div>
       <div class="slider__input">
-        <input data-name="progress" class="slider__progress-checkbox" type="checkbox" id="progress${this.model.getMainName()}" ${
+        <input data-name="progress" class="slider__progress-checkbox" type="checkbox" id="progress${mainName}" ${
   progress ? 'checked' : ''
 }>
-        <label for="progress${this.model.getMainName()}">Прогресс</label>
+        <label for="progress${mainName}">Прогресс</label>
       </div>
     `;
   }
 
-  bind() {
-    this.element
+  bind(model: StateType) {
+    this.getElement(model)
       .querySelectorAll('input')
-      .forEach((elem) => elem.addEventListener('change', this.handleInputChange));
+      .forEach((elem) => elem.addEventListener(
+        'change',
+        this.handleInputChange.bind(null, model),
+      ));
   }
 
-  public handleInputChange(evt: Event): void {}
+  public handleInputChange(model: StateType, evt: Event): void {}
 }

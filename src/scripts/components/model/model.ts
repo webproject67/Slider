@@ -10,44 +10,7 @@ export default class Model extends Observer {
     super();
     this.main = main;
     this.state = state;
-  }
-
-  public getMainName(): string {
-    return this.main.className ? `.${this.main.className}` : `#${this.main.id}`;
-  }
-
-  public getStepValue(value: number) {
-    const { min, max } = this.state;
-    const generalValue = max - min;
-    if (value === 0) value = 1;
-    if (value < 0) value = Math.abs(value);
-    if (value > generalValue) value = generalValue;
-    return value;
-  }
-
-  public getStepCount(corner: number) {
-    const stepCount: number = (this.state.max - this.state.min) / this.state.step;
-    const stepPercent: number = 100 / stepCount;
-    let stepPercentResult: number = Math.round(corner / stepPercent) * stepPercent;
-    if (stepPercentResult < 0) stepPercentResult = 0;
-    if (stepPercentResult > 100) stepPercentResult = 100;
-    return {
-      stepCount,
-      stepPercent,
-      stepPercentResult,
-    };
-  }
-
-  public getPercentScale(main: HTMLElement) {
-    const { stepCount, stepPercent } = this.getStepCount(0);
-    let scale = 1;
-    if (stepCount > 20) scale = Math.ceil(stepCount / 20);
-    const percent = stepPercent * scale;
-    return {
-      percent,
-      stepPercent,
-      scale,
-    };
+    this.setMainToState();
   }
 
   public setValue(keys: string[], values: (number | string | boolean)[]) {
@@ -55,59 +18,69 @@ export default class Model extends Observer {
       switch (key) {
         case 'min':
           this.state.min = Number(values[i]);
-          this.broadcast();
+          this.broadcast(this.state);
           break;
         case 'max':
           this.state.max = Number(values[i]);
-          this.broadcast();
+          this.broadcast(this.state);
           break;
         case 'step':
           this.state.step = Number(values[i]);
-          this.broadcast();
+          this.broadcast(this.state);
           break;
         case 'to':
           this.state.to = Number(values[i]);
-          this.broadcast(['on']);
+          this.broadcast(this.state, true);
           break;
         case 'toPercent':
           this.state.toPercent = Number(values[i]);
-          this.broadcast(['on']);
+          this.broadcast(this.state, true);
           break;
         case 'draft':
           this.state.draft = Number(values[i]);
-          this.broadcast();
+          this.broadcast(this.state);
+          break;
+        case 'start':
+          this.state.start = Number(values[i]);
           break;
         case 'from':
           this.state.from = Number(values[i]);
-          this.broadcast(['on']);
+          this.broadcast(this.state, true);
           break;
         case 'fromPercent':
           this.state.fromPercent = Number(values[i]);
-          this.broadcast(['on']);
+          this.broadcast(this.state, true);
           break;
         case 'view':
           this.state.view = String(values[i]);
-          this.broadcast();
+          this.broadcast(this.state);
           break;
         case 'range':
           this.state.range = String(values[i]);
-          this.broadcast();
+          this.broadcast(this.state);
           break;
         case 'flag':
           this.state.flag = Boolean(values[i]);
-          this.broadcast();
+          this.broadcast(this.state);
           break;
         case 'progress':
           this.state.progress = Boolean(values[i]);
-          this.broadcast();
+          this.broadcast(this.state);
           break;
         case 'scale':
           this.state.scale = Boolean(values[i]);
-          this.broadcast();
+          this.broadcast(this.state);
           break;
         default:
           break;
       }
     });
+  }
+
+  private setMainToState(): void {
+    this.state.main = this.main;
+    this.state.mainName = this.main.className
+      ? `.${this.main.className}`
+      : `#${this.main.id}`;
   }
 }

@@ -12,6 +12,7 @@ import Presenter from './components/presenter/presenter';
         progress: true,
         range: 'one',
         draft: 0,
+        start: 1,
         scale: true,
         step: 1,
         to: -10000,

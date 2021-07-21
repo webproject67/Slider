@@ -1,15 +1,16 @@
 import AbstractView from './abstract-view';
 import { Range, View } from '../../const';
+import { StateType } from '../../types';
 
 export default class TrackView extends AbstractView {
-  get className() {
+  getClassName() {
     return 'slider__wrapper';
   }
 
-  get template() {
+  getTemplate(model: StateType) {
     const {
       fromPercent, toPercent, range, view,
-    } = this.model.state;
+    } = model;
     let innerWithHeight = '';
     let scaleWithHeight = '';
     let toggleMin = '';
@@ -41,14 +42,20 @@ export default class TrackView extends AbstractView {
     `;
   }
 
-  bind() {
-    this.element
+  bind(model: StateType) {
+    this.getElement(model)
       .querySelectorAll('.slider__toggle')
-      .forEach((elem) => elem.addEventListener('touchstart', this.handleToggleMouseDown));
-    this.element
+      .forEach((elem) => elem.addEventListener(
+        'touchstart',
+        this.handleToggleMouseDown.bind(null, model),
+      ));
+    this.getElement(model)
       .querySelectorAll('.slider__toggle')
-      .forEach((elem) => elem.addEventListener('mousedown', this.handleToggleMouseDown));
+      .forEach((elem) => elem.addEventListener(
+        'mousedown',
+        this.handleToggleMouseDown.bind(null, model),
+      ));
   }
 
-  public handleToggleMouseDown(evt: Event): void {}
+  public handleToggleMouseDown(model: StateType, evt: Event): void {}
 }
