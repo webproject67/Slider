@@ -22,10 +22,10 @@ import Presenter from './components/presenter/presenter';
       options,
     );
 
-    const main = this[0];
+    const cb = () => {
+      new Presenter(this[0], state);
+    };
 
-    return this.each(() => {
-      new Presenter(main, state).init();
-    });
+    return this.each(cb);
   };
 }(jQuery));
