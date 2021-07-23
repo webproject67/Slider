@@ -152,10 +152,31 @@ export default class Views extends Observer {
     }
   }
 
-  private handleItemClick(model: StateType, evt: Event): void {
+  private handleItemClick(
+    model: StateType,
+    evt: Event & { pageX?: number; pageY?: number },
+  ): void {
     const scale: HTMLElement = <HTMLElement>evt.currentTarget;
     const { min, step, fromPercent } = model;
-    const corner: number = parseInt(scale.style.left, 10);
+    const stepList: HTMLElement = scale.parentElement!;
+    const slider: HTMLElement = stepList.parentElement!;
+    const boxLeft: number = slider.offsetLeft;
+    const boxRight: number = boxLeft + slider.clientWidth;
+    const boxTop: number = slider.offsetTop;
+    const boxBottom: number = boxTop + slider.clientHeight;
+    const sliderLeft: number = boxLeft + window.pageXOffset;
+    const sliderWidth: number = boxRight - boxLeft;
+    const sliderHeight: number = boxBottom - boxTop;
+    let corner: number;
+
+    if (stepList.className.split(' ')[1]) {
+      corner = ((evt.pageY! - boxTop) / sliderHeight) * 100;
+    } else {
+      corner = ((evt.pageX! - sliderLeft) / sliderWidth) * 100;
+    }
+
+    if (scale.style.left) corner = parseFloat(scale.style.left);
+
     const { stepPercent } = this.getStepCount(model, corner);
     let { stepPercentResult } = this.getStepCount(model, corner);
 
