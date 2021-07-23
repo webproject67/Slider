@@ -92,7 +92,7 @@ export default class Views extends Observer {
     const slider: HTMLElement = flag.parentElement!.parentElement!;
     const flagClassNames = flag.className.split(' ');
     const flagClassNamesLength = flagClassNames.length;
-    let toggle: HTMLElement;
+    let toggle!: HTMLElement;
 
     switch (flagClassNames[flagClassNamesLength - 1]) {
       case 'slider__flag_minimum':
@@ -111,7 +111,7 @@ export default class Views extends Observer {
         break;
     }
 
-    this.replaceToggle(model, evt, toggle!);
+    this.replaceToggle(model, evt, toggle);
   }
 
   private handleInputChange(model: StateType, evt: Event): void {
@@ -169,7 +169,7 @@ export default class Views extends Observer {
     const sliderHeight: number = boxBottom - boxTop;
     let corner: number;
 
-    if (!stepList.className.split(' ')[1]) {
+    if (stepList.className.split(' ')[1]) {
       corner = ((evt.pageX! - sliderLeft) / sliderWidth) * 100;
     } else {
       corner = ((evt.pageY! - boxTop) / sliderHeight) * 100;
@@ -246,9 +246,9 @@ export default class Views extends Observer {
     const boxRight: number = boxLeft + slider.clientWidth;
     const sliderLeft: number = boxLeft + window.pageXOffset;
     const sliderWidth: number = boxRight - boxLeft;
-    let value: number;
-    let stepPercentResult: number;
-    let flag: HTMLElement;
+    let value!: number;
+    let stepPercentResult!: number;
+    let flag!: HTMLElement;
     const getEvent = () => (evt.type.search('touch') !== -1 ? evt.touches![0] : evt);
     const event = getEvent();
     const corner: number = ((event.pageX! - sliderLeft) / sliderWidth) * 100;
@@ -264,8 +264,8 @@ export default class Views extends Observer {
       stepPercentResult = this.setToValue(model, corner).stepPercentResult;
       flag = <HTMLElement>slider.querySelector('.slider__flag_maximum');
     }
-    if (flag!) this.setPosition(flag, 'horizontal', stepPercentResult!, String(value!));
-    this.setPosition(toggle, 'horizontal', stepPercentResult!);
+    if (flag) this.setPosition(flag, 'horizontal', stepPercentResult, String(value));
+    this.setPosition(toggle, 'horizontal', stepPercentResult);
   }
 
   private mouseMoveY(
@@ -277,9 +277,9 @@ export default class Views extends Observer {
     const boxTop: number = slider.offsetTop;
     const boxBottom: number = boxTop + slider.clientHeight;
     const sliderHeight: number = boxBottom - boxTop;
-    let value: number;
-    let stepPercentResult: number;
-    let flag: HTMLElement;
+    let value!: number;
+    let stepPercentResult!: number;
+    let flag!: HTMLElement;
     const getEvent = () => (evt.type.search('touch') !== -1 ? evt.touches![0] : evt);
     const event = getEvent();
     const corner: number = ((event.pageY! - boxTop) / sliderHeight) * 100;
@@ -303,8 +303,8 @@ export default class Views extends Observer {
         slider.querySelector('.slider__flag-vertical_maximum')
       );
     }
-    if (flag!) this.setPosition(flag, 'vertical', stepPercentResult!, String(value!));
-    this.setPosition(toggle, 'vertical', stepPercentResult!);
+    if (flag) this.setPosition(flag, 'vertical', stepPercentResult, String(value));
+    this.setPosition(toggle, 'vertical', stepPercentResult);
   }
 
   private replaceScreenConfiguring(model: StateType): void {

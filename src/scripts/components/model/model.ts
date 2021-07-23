@@ -2,9 +2,9 @@ import Observer from '../observer';
 import { StateType } from '../../types';
 
 export default class Model extends Observer {
-  public main: HTMLElement;
-
   public state: StateType;
+
+  private main: HTMLElement;
 
   constructor(main: HTMLElement, state: StateType) {
     super();
