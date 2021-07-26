@@ -1,13 +1,13 @@
 import AbstractView from './abstract-view';
 import { NULL_VALUE, View, Range } from '../../const';
-import { StateType } from '../../types';
+import { ModelType, StateType } from '../../types';
 
 export default class ConfiguringView extends AbstractView {
   getClassName() {
     return 'slider__inputs';
   }
 
-  getTemplate(model: StateType) {
+  getTemplate(state: StateType) {
     const {
       range,
       from,
@@ -20,7 +20,7 @@ export default class ConfiguringView extends AbstractView {
       scale,
       progress,
       mainName,
-    } = model;
+    } = state;
     let fromTemplate = '';
     let toTemplate = 'Текущее значение';
 
@@ -102,7 +102,7 @@ export default class ConfiguringView extends AbstractView {
     `;
   }
 
-  bind(model: StateType) {
+  bind(model: ModelType) {
     this.getElement(model)
       .querySelectorAll('input')
       .forEach((elem) => elem.addEventListener(
@@ -111,5 +111,5 @@ export default class ConfiguringView extends AbstractView {
       ));
   }
 
-  public handleInputChange(model: StateType, evt: Event): void {}
+  public handleInputChange(model: ModelType, evt: Event): void {}
 }

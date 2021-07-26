@@ -1,7 +1,20 @@
 import Presenter from './components/presenter/presenter';
 
 (function ($) {
-  $.fn.slider = function (options) {
+  let presenter: Presenter;
+  $.fn.slider = function (options: object | string, obj?: object) {
+    if (options === 'getState') return presenter.model.getState();
+    if (options === 'setState') {
+      const keys = Object.keys(obj!);
+      const values = Object.values(obj!);
+      presenter.model.setValue(keys, values);
+      return null;
+    }
+    if (options === 'getConfiguring') {
+      presenter.model.setValue(['configuring'], [1]);
+      return null;
+    }
+
     const state = $.extend(
       {
         flag: true,
@@ -13,6 +26,7 @@ import Presenter from './components/presenter/presenter';
         range: 'one',
         draft: 0,
         start: 1,
+        configuring: 0,
         scale: true,
         step: 1,
         to: -10000,
@@ -23,7 +37,7 @@ import Presenter from './components/presenter/presenter';
     );
 
     const cb = () => {
-      new Presenter(this[0], state);
+      presenter = new Presenter(this[0], state);
     };
 
     return this.each(cb);

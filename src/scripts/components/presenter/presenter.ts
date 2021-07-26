@@ -1,9 +1,9 @@
 import Model from '../model/model';
 import View from '../view/view';
-import { StateType } from '../../types';
+import { StateType, ModelType } from '../../types';
 
 export default class Presenter {
-  private model: Model;
+  public model: Model;
 
   private view: View;
 
@@ -19,9 +19,9 @@ export default class Presenter {
     };
     this.view.subscribe(cbView);
 
-    const cbModel = (value: StateType, bool: boolean) => this.view.updateView(value, bool);
+    const cbModel = (model: ModelType, bool: boolean) => this.view.updateView(model, bool);
     this.model.subscribe(cbModel);
 
-    this.model.broadcast(this.model.state);
+    this.model.broadcast(this.model);
   }
 }

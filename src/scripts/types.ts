@@ -1,4 +1,6 @@
-export interface StateType {
+import Model from './components/model/model';
+
+interface StateType {
   flag: boolean;
   from: number;
   fromPercent: number;
@@ -8,6 +10,7 @@ export interface StateType {
   range: string;
   draft: number;
   start: number;
+  configuring: number;
   main?: HTMLElement;
   mainName?: string;
   scale: boolean;
@@ -16,3 +19,7 @@ export interface StateType {
   toPercent: number;
   view: string;
 }
+
+type ModelType = Model;
+
+export { StateType, ModelType };

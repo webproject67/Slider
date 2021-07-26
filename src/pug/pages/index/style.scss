@@ -25,6 +25,7 @@
 
 .slider__bars {
   height: 100%;
+  cursor: pointer;
 }
 
 .slider__bar {
@@ -142,6 +143,7 @@
 .slider__view,
 .slider__range,
 .slider__flag-checkbox,
-.slider__scale-checkbox {
+.slider__scale-checkbox,
+.slider__progress-checkbox {
   cursor: pointer;
 }
