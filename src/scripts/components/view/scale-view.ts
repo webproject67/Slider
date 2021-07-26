@@ -1,10 +1,10 @@
 import AbstractView from './abstract-view';
 import { View } from '../../const';
-import { StateType } from '../../types';
+import { ModelType, StateType } from '../../types';
 
 export default class ScaleView extends AbstractView {
-  getClassName(model: StateType) {
-    const { view } = model;
+  getClassName(state: StateType) {
+    const { view } = state;
     let listVertical = '';
 
     if (view === View.VERTICAL) listVertical = 'slider__list_transformed';
@@ -12,10 +12,10 @@ export default class ScaleView extends AbstractView {
     return `slider__list ${listVertical}`;
   }
 
-  getTemplate(model: StateType) {
+  getTemplate(state: StateType) {
     const {
       min, max, step, view,
-    } = model;
+    } = state;
     let template: string = '';
     let itemVertical = '';
 
@@ -44,11 +44,11 @@ export default class ScaleView extends AbstractView {
     return template;
   }
 
-  bind(model: StateType) {
+  bind(model: ModelType) {
     this.getElement(model)
       .querySelectorAll('.slider__item')
       .forEach((elem) => elem.addEventListener('click', this.handleItemClick.bind(null, model)));
   }
 
-  public handleItemClick(model: StateType, evt: Event): void {}
+  public handleItemClick(model: ModelType, evt: Event): void {}
 }

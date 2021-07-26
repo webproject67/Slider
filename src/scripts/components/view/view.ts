@@ -5,7 +5,7 @@ import ConfiguringView from './configuring-view';
 import ScaleView from './scale-view';
 import FlagView from './flag-view';
 import { State, Const, View } from '../../const';
-import { StateType } from '../../types';
+import { ModelType } from '../../types';
 
 export default class Views extends Observer {
   private trackView!: TrackView;
@@ -24,8 +24,8 @@ export default class Views extends Observer {
     this.importHandlers();
   }
 
-  public updateView(model: StateType, bool: boolean) {
-    if (model.start) {
+  public updateView(model: ModelType, bool: boolean) {
+    if (model.state.start) {
       this.showTrackView(model);
       this.showProgressView(model);
       this.showConfiguringView(model);
@@ -52,42 +52,7 @@ export default class Views extends Observer {
     this.showConfiguringView(model);
   }
 
-  private getPercentScale(model: StateType) {
-    const { stepCount, stepPercent } = this.getStepCount(model, 0);
-    let scale = 1;
-    if (stepCount > 20) scale = Math.ceil(stepCount / 20);
-    const percent = stepPercent * scale;
-    return {
-      percent,
-      stepPercent,
-      scale,
-    };
-  }
-
-  private getStepCount(model: StateType, corner: number) {
-    const { min, max, step } = model;
-    const stepCount: number = (max - min) / step;
-    const stepPercent: number = 100 / stepCount;
-    let stepPercentResult: number = Math.round(corner / stepPercent) * stepPercent;
-    if (stepPercentResult < 0) stepPercentResult = 0;
-    if (corner > 100) stepPercentResult = 100;
-    return {
-      stepCount,
-      stepPercent,
-      stepPercentResult,
-    };
-  }
-
-  private getStepValue(model: StateType, value: number) {
-    const { min, max } = model;
-    const generalValue = max - min;
-    if (value === 0) value = 1;
-    if (value < 0) value = Math.abs(value);
-    if (value > generalValue) value = generalValue;
-    return value;
-  }
-
-  private handleFlagMouseDown(model: StateType, evt: Event): void {
+  private handleFlagMouseDown(model: ModelType, evt: Event): void {
     const flag: HTMLElement = <HTMLElement>evt.currentTarget;
     const slider: HTMLElement = flag.parentElement!.parentElement!;
     const flagClassNames = flag.className.split(' ');
@@ -114,7 +79,7 @@ export default class Views extends Observer {
     this.replaceToggle(model, evt, toggle);
   }
 
-  private handleInputChange(model: StateType, evt: Event): void {
+  private handleInputChange(model: ModelType, evt: Event): void {
     const input: HTMLElement = <HTMLElement>evt.currentTarget;
     const inputMin = input.dataset.name === State.MIN;
     const inputMax = input.dataset.name === State.MAX;
@@ -132,7 +97,7 @@ export default class Views extends Observer {
     }
 
     if (input.dataset.name === State.RANGE) {
-      const { min } = model;
+      const { min } = model.getValue(0);
       this.broadcast(
         [input.dataset.name, 'from', 'fromPercent'],
         [(<HTMLInputElement>input).value, min, 0],
@@ -153,11 +118,10 @@ export default class Views extends Observer {
   }
 
   private handleItemClick(
-    model: StateType,
+    model: ModelType,
     evt: Event & { pageX?: number; pageY?: number },
   ): void {
     const scale: HTMLElement = <HTMLElement>evt.currentTarget;
-    const { min, step, fromPercent } = model;
     const stepList: HTMLElement = scale.parentElement!;
     const slider: HTMLElement = stepList.parentElement!;
     const boxLeft: number = slider.offsetLeft;
@@ -177,8 +141,7 @@ export default class Views extends Observer {
 
     if (scale.style.left) corner = parseFloat(scale.style.left);
 
-    const { stepPercent } = this.getStepCount(model, corner);
-    let { stepPercentResult } = this.getStepCount(model, corner);
+    let { stepPercentResult } = model.getStepCount(corner);
 
     if (scale.children.length) {
       if (
@@ -188,9 +151,9 @@ export default class Views extends Observer {
         scale.children[0].className.split(' ')[1] === Const.SLIDER_ITEM_MAXIMUM
       ) stepPercentResult = 100;
     }
-    const value: number = Number(((stepPercentResult / stepPercent) * step).toFixed()) + min;
+    const { value, boolFrom } = model.getValue(stepPercentResult);
 
-    if (stepPercentResult >= fromPercent) {
+    if (boolFrom) {
       this.broadcast(
         ['toPercent', 'to', 'draft'],
         [stepPercentResult, value, 0],
@@ -203,7 +166,7 @@ export default class Views extends Observer {
     }
   }
 
-  private handleToggleMouseDown(model: StateType, evt: Event): void {
+  private handleToggleMouseDown(model: ModelType, evt: Event): void {
     const toggle: HTMLElement = <HTMLElement>evt.currentTarget;
     this.replaceToggle(model, evt, toggle);
   }
@@ -239,7 +202,7 @@ export default class Views extends Observer {
   }
 
   private mouseMoveX(
-    model: StateType,
+    model: ModelType,
     evt: Event & { touches?: TouchList; pageX?: number },
     slider: HTMLElement,
     toggle: HTMLElement,
@@ -271,7 +234,7 @@ export default class Views extends Observer {
   }
 
   private mouseMoveY(
-    model: StateType,
+    model: ModelType,
     evt: Event & { touches?: TouchList; pageY?: number },
     slider: HTMLElement,
     toggle: HTMLElement,
@@ -309,38 +272,38 @@ export default class Views extends Observer {
     this.setPosition(toggle, 'vertical', stepPercentResult);
   }
 
-  private replaceScreenConfiguring(model: StateType): void {
+  private replaceScreenConfiguring(model: ModelType): void {
     this.configuringView
       .getElement(model)
       .replaceWith(this.configuringView.getUpdatedElement(model));
   }
 
-  private replaceScreenFlag(model: StateType): void {
+  private replaceScreenFlag(model: ModelType): void {
     this.flagView
       .getElement(model)
       .replaceWith(this.flagView.getUpdatedElement(model));
   }
 
-  private replaceScreenProgress(model: StateType): void {
+  private replaceScreenProgress(model: ModelType): void {
     this.progressView
       .getElement(model)
       .replaceWith(this.progressView.getUpdatedElement(model));
   }
 
-  private replaceScreenScale(model: StateType): void {
+  private replaceScreenScale(model: ModelType): void {
     this.scaleView
       .getElement(model)
       .replaceWith(this.scaleView.getUpdatedElement(model));
   }
 
-  private replaceScreenTrack(model: StateType): void {
+  private replaceScreenTrack(model: ModelType): void {
     this.trackView
       .getElement(model)
       .replaceWith(this.trackView.getUpdatedElement(model));
   }
 
   private replaceToggle(
-    model: StateType,
+    model: ModelType,
     evt: Event,
     toggle: HTMLElement,
   ): void {
@@ -370,12 +333,9 @@ export default class Views extends Observer {
     document.addEventListener('mouseup', onMouseUp);
   }
 
-  private setFromValue(model: StateType, corner: number) {
-    const { min, step, toPercent } = model;
-    const { stepPercent } = this.getStepCount(model, corner);
-    let { stepPercentResult } = this.getStepCount(model, corner);
-    if (stepPercentResult > toPercent) stepPercentResult = toPercent;
-    const value = Number(((stepPercentResult / stepPercent) * step).toFixed()) + min;
+  private setFromValue(model: ModelType, corner: number) {
+    const { stepPercentResult } = model.getStepCount(corner, 'toPercent');
+    const { value } = model.getValue(stepPercentResult);
     this.broadcast(['fromPercent', 'from'], [stepPercentResult, value]);
     return {
       value,
@@ -397,12 +357,9 @@ export default class Views extends Observer {
     if (value) element.textContent = value;
   }
 
-  private setToValue(model: StateType, corner: number) {
-    const { min, step, fromPercent } = model;
-    const { stepPercent } = this.getStepCount(model, corner);
-    let { stepPercentResult } = this.getStepCount(model, corner);
-    if (fromPercent > stepPercentResult) stepPercentResult = fromPercent;
-    const value = Number(((stepPercentResult / stepPercent) * step).toFixed()) + min;
+  private setToValue(model: ModelType, corner: number) {
+    const { stepPercentResult } = model.getStepCount(corner, 'fromPercent');
+    const { value } = model.getValue(stepPercentResult);
     this.broadcast(['toPercent', 'to'], [stepPercentResult, value]);
     return {
       value,
@@ -410,44 +367,46 @@ export default class Views extends Observer {
     };
   }
 
-  private showConfiguringView(model: StateType): void {
-    model
-      .main!.querySelector('.slider__wrapper')!
-      .appendChild(this.configuringView.getElement(model));
+  private showConfiguringView(model: ModelType): void {
+    if (model.state.configuring) {
+      model.state
+        .main!.querySelector('.slider__wrapper')!
+        .appendChild(this.configuringView.getElement(model));
+    }
   }
 
-  private showFlagView(model: StateType): void {
-    if (model.flag) {
-      model
+  private showFlagView(model: ModelType): void {
+    if (model.state.flag) {
+      model.state
         .main!.querySelector('.slider__inner')!
         .appendChild(this.flagView.getElement(model));
     }
   }
 
-  private showProgressView(model: StateType): void {
-    if (model.progress) {
-      model
+  private showProgressView(model: ModelType): void {
+    if (model.state.progress) {
+      model.state
         .main!.querySelector('.slider__scale')!
         .appendChild(this.progressView.getElement(model));
     }
   }
 
-  private showScaleView(model: StateType): void {
-    if (model.scale) {
-      model
+  private showScaleView(model: ModelType): void {
+    if (model.state.scale) {
+      model.state
         .main!.querySelector('.slider__inner')!
         .appendChild(this.scaleView.getElement(model));
-      const items = model
+      const items = model.state
         .main!.querySelector('.slider__inner')!
         .querySelectorAll('.slider__item:not(:first-child):not(:last-child)');
-      let { percent } = this.getPercentScale(model);
-      const { stepPercent, scale } = this.getPercentScale(model);
+      let { percent } = model.getPercentScale();
+      const { stepPercent, scale } = model.getPercentScale();
       items.forEach((item) => {
         if (percent > 99) {
           (<HTMLElement>item).style.display = 'none';
           return;
         }
-        const value = Number(((percent / stepPercent) * model.step).toFixed()) + model.min;
+        const { value } = model.getValue(percent);
         if (scale !== 1) item.children[0].textContent = String(value);
         (<HTMLElement>item).style.left = `${percent}%`;
         percent += stepPercent * scale;
@@ -455,45 +414,45 @@ export default class Views extends Observer {
     }
   }
 
-  private showTrackView(model: StateType): void {
-    model.main!.appendChild(this.trackView.getElement(model));
+  private showTrackView(model: ModelType): void {
+    model.state.main!.appendChild(this.trackView.getElement(model));
   }
 
-  private updateMaxValue(model: StateType, input: HTMLElement) {
-    const { min } = model;
+  private updateMaxValue(model: ModelType, input: HTMLElement) {
     const max: number = Number(
       (<HTMLInputElement>(
         input.parentElement!.parentElement!.querySelector('.slider__max')
       )).value,
     );
-    if (min >= max) {
+    const { min, boolMinMax } = model.getValue(0, null, max);
+    if (boolMinMax) {
       this.broadcast(['max', 'to', 'toPercent'], [min + 1, min + 1, 100]);
     } else {
       this.broadcast(['max', 'to', 'toPercent'], [max, max, 100]);
     }
   }
 
-  private updateMinValue(model: StateType, input: HTMLElement) {
+  private updateMinValue(model: ModelType, input: HTMLElement) {
     const min: number = Number(
       (<HTMLInputElement>(
         input.parentElement!.parentElement!.querySelector('.slider__min')
       )).value,
     );
-    const { max } = model;
-    if (min >= max) {
+    const { max, boolMinMax } = model.getValue(0, min, null);
+    if (boolMinMax) {
       this.broadcast(['min', 'from', 'fromPercent'], [max - 1, max - 1, 0]);
     } else {
       this.broadcast(['min', 'from', 'fromPercent'], [min, min, 0]);
     }
   }
 
-  private updateStepValue(model: StateType, input: HTMLElement) {
+  private updateStepValue(model: ModelType, input: HTMLElement) {
     const valueStart: number = Number(
       (<HTMLInputElement>(
         input.parentElement!.parentElement!.querySelector('.slider__step')
       )).value,
     );
-    const value = this.getStepValue(model, valueStart);
+    const value = model.getStepValue(valueStart);
     this.broadcast(['step'], [value]);
   }
 }

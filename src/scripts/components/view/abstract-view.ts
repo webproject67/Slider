@@ -1,32 +1,32 @@
-import { StateType } from '../../types';
+import { StateType, ModelType } from '../../types';
 
 export default abstract class AbstractView {
   private elem: HTMLElement | undefined;
 
-  public getElement(model: StateType): HTMLElement {
+  public getElement(model: ModelType): HTMLElement {
     if (this.elem) {
       return this.elem;
     }
-    this.elem = this.render(model);
+    this.elem = this.render(model.state);
     this.bind(model);
     return this.elem;
   }
 
-  public getUpdatedElement(model: StateType): HTMLElement {
-    this.elem = this.render(model);
+  public getUpdatedElement(model: ModelType): HTMLElement {
+    this.elem = this.render(model.state);
     this.bind(model);
     return this.elem;
   }
 
-  protected getClassName(model: StateType): string {
+  protected getClassName(state: StateType): string {
     return '';
   }
 
-  protected getTemplate(model: StateType): string {
+  protected getTemplate(state: StateType): string {
     return '';
   }
 
-  protected bind(model: StateType): void {}
+  protected bind(model: ModelType): void {}
 
   private createElement(template: string, className: string): HTMLElement {
     const newElement: HTMLElement = document.createElement('div');
@@ -35,10 +35,10 @@ export default abstract class AbstractView {
     return newElement;
   }
 
-  private render(model: StateType): HTMLElement {
+  private render(state: StateType): HTMLElement {
     return this.createElement(
-      this.getTemplate(model),
-      this.getClassName(model),
+      this.getTemplate(state),
+      this.getClassName(state),
     );
   }
 }
