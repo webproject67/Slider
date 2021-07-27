@@ -19,7 +19,7 @@ $(селектор).slider(опции)
 
 ## Пример использования
 ```typescript
-$('#block').slider({});
+$('#block').slider();
 $('#block').slider({view: 'vertical'});
 $('#block').slider({
   range: 'range',
@@ -32,17 +32,20 @@ $('#block').slider({
 
 ## Получить состояние
 ```typescript
-$('#block').slider('getState');
+const slider1 = $('#block').slider();
+slider1.slider('getState');
 ```
 
 ## Обновить состояние
 ```typescript
-$('#block').slider('setState', {range: 'range'});
+const slider1 = $('#block').slider();
+slider1.slider('setState', {range: 'range'});
 ```
 
 ## Показать панель конфигурирования
 ```typescript
-$('#block').slider('getConfiguring');
+const slider1 = $('#block').slider();
+slider1.slider('getConfiguring');
 ```
 
 ## Настройки по умолчанию
