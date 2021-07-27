@@ -1,5 +1,5 @@
 import AbstractView from './abstract-view';
-import { Range, View } from '../../const';
+import { RANGE, HORIZONTAL, VERTICAL } from '../../const';
 import { ModelType, StateType } from '../../types';
 
 export default class TrackView extends AbstractView {
@@ -17,15 +17,15 @@ export default class TrackView extends AbstractView {
     let toggleMax = 'slider__toggle_maximum';
     let position = 'left';
 
-    if (range === Range.RANGE && view === View.HORIZONTAL) {
+    if (range === RANGE && view === HORIZONTAL) {
       toggleMin = `<div class="slider__toggle slider__toggle_minimum" style="left:${fromPercent}%"></div>`;
     }
 
-    if (range === Range.RANGE && view === View.VERTICAL) {
+    if (range === RANGE && view === VERTICAL) {
       toggleMin = `<div class="slider__toggle slider__toggle_vertical-minimum" style="top:${fromPercent}%"></div>`;
     }
 
-    if (view === View.VERTICAL) {
+    if (view === VERTICAL) {
       innerWithHeight = 'slider__inner_with-height';
       scaleWithHeight = 'slider__scale_with-height';
       toggleMax = 'slider__toggle_vertical-maximum';

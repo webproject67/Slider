@@ -1,5 +1,7 @@
 import AbstractView from './abstract-view';
-import { NULL_VALUE, View, Range } from '../../const';
+import {
+  NULL_VALUE, HORIZONTAL, VERTICAL, ONE, RANGE,
+} from '../../const';
 import { ModelType, StateType } from '../../types';
 
 export default class ConfiguringView extends AbstractView {
@@ -24,7 +26,7 @@ export default class ConfiguringView extends AbstractView {
     let fromTemplate = '';
     let toTemplate = 'Текущее значение';
 
-    if (range === Range.RANGE) {
+    if (range === RANGE) {
       fromTemplate = `
         <div class="slider__input">
           <label class="slider__label" for="from${mainName}">От</label>
@@ -63,21 +65,21 @@ export default class ConfiguringView extends AbstractView {
       </div>
       <div class="slider__input">
         <input data-name="view" class="slider__view" type="radio" name="view${mainName}" value="horizontal" id="horizontal${mainName}" ${
-  view === View.HORIZONTAL ? 'checked' : ''
+  view === HORIZONTAL ? 'checked' : ''
 }>
         <label for="horizontal${mainName}">Горизонтальный</label>
         <input data-name="view" class="slider__view" type="radio" name="view${mainName}" value="vertical" id="vertical${mainName}" ${
-  view === View.VERTICAL ? 'checked' : ''
+  view === VERTICAL ? 'checked' : ''
 }>
         <label for="vertical${mainName}">Вертикальный</label>
       </div>
       <div class="slider__input">
         <input data-name="range" class="slider__range" type="radio" name="range${mainName}" value="one" id="one${mainName}" ${
-  range === Range.ONE ? 'checked' : ''
+  range === ONE ? 'checked' : ''
 }>
         <label for="one${mainName}">Одиночное значение</label>
         <input data-name="range" class="slider__range" type="radio" name="range${mainName}" value="range" id="range${mainName}" ${
-  range === Range.RANGE ? 'checked' : ''
+  range === RANGE ? 'checked' : ''
 }>
         <label for="range${mainName}">Интервал</label>
       </div>

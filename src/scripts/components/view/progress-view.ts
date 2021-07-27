@@ -1,5 +1,5 @@
 import AbstractView from './abstract-view';
-import { View } from '../../const';
+import { VERTICAL } from '../../const';
 import { ModelType, StateType } from '../../types';
 
 export default class ProgressView extends AbstractView {
@@ -13,7 +13,7 @@ export default class ProgressView extends AbstractView {
       100 - toPercent
     }%"></div>`;
 
-    if (view === View.VERTICAL) {
+    if (view === VERTICAL) {
       bar = `<div class="slider__bar slider__bar_with-width" style="top:${fromPercent}%;height:${
         toPercent - fromPercent
       }%"></div>`;

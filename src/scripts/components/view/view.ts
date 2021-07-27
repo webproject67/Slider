@@ -4,7 +4,23 @@ import ProgressView from './progress-view';
 import ConfiguringView from './configuring-view';
 import ScaleView from './scale-view';
 import FlagView from './flag-view';
-import { State, Const, View } from '../../const';
+import {
+  MIN,
+  MAX,
+  STEP,
+  VIEW,
+  RANGE,
+  FLAG,
+  SCALE,
+  PROGRESS,
+  TOGGLE_MINIMUM,
+  TOGGLE_MAXIMUM,
+  TOGGLE_VERTICAL_MINIMUM,
+  TOGGLE_VERTICAL_MAXIMUM,
+  ITEM_MINIMUM,
+  ITEM_MAXIMUM,
+  HORIZONTAL,
+} from '../../const';
 import { ModelType } from '../../types';
 
 export default class Views extends Observer {
@@ -81,9 +97,9 @@ export default class Views extends Observer {
 
   private handleInputChange(model: ModelType, evt: Event): void {
     const input: HTMLElement = <HTMLElement>evt.currentTarget;
-    const inputMin = input.dataset.name === State.MIN;
-    const inputMax = input.dataset.name === State.MAX;
-    const inputStep = input.dataset.name === State.STEP;
+    const inputMin = input.dataset.name === MIN;
+    const inputMax = input.dataset.name === MAX;
+    const inputStep = input.dataset.name === STEP;
     const generalInput = inputMin || inputMax || inputStep;
 
     if (generalInput) {
@@ -92,11 +108,11 @@ export default class Views extends Observer {
       this.updateStepValue(model, input);
     }
 
-    if (input.dataset.name === State.VIEW) {
+    if (input.dataset.name === VIEW) {
       this.broadcast([input.dataset.name], [(<HTMLInputElement>input).value]);
     }
 
-    if (input.dataset.name === State.RANGE) {
+    if (input.dataset.name === RANGE) {
       const { min } = model.getValue(0);
       this.broadcast(
         [input.dataset.name, 'from', 'fromPercent'],
@@ -104,9 +120,9 @@ export default class Views extends Observer {
       );
     }
 
-    const inputFlag = input.dataset.name === State.FLAG;
-    const inputScale = input.dataset.name === State.SCALE;
-    const inputProgress = input.dataset.name === State.PROGRESS;
+    const inputFlag = input.dataset.name === FLAG;
+    const inputScale = input.dataset.name === SCALE;
+    const inputProgress = input.dataset.name === PROGRESS;
     const generalInput2 = inputFlag || inputScale || inputProgress;
 
     if (generalInput2) {
@@ -144,12 +160,8 @@ export default class Views extends Observer {
     let { stepPercentResult } = model.getStepCount(corner);
 
     if (scale.children.length) {
-      if (
-        scale.children[0].className.split(' ')[1] === Const.SLIDER_ITEM_MINIMUM
-      ) stepPercentResult = 0;
-      if (
-        scale.children[0].className.split(' ')[1] === Const.SLIDER_ITEM_MAXIMUM
-      ) stepPercentResult = 100;
+      if (scale.children[0].className.split(' ')[1] === ITEM_MINIMUM) stepPercentResult = 0;
+      if (scale.children[0].className.split(' ')[1] === ITEM_MAXIMUM) stepPercentResult = 100;
     }
     const { value, boolFrom } = model.getValue(stepPercentResult);
 
@@ -218,13 +230,13 @@ export default class Views extends Observer {
     const event = getEvent();
     const corner: number = ((event.pageX! - sliderLeft) / sliderWidth) * 100;
 
-    if (toggle.className.split(' ')[1] === Const.SLIDER_TOGGLE_MINIMUM) {
+    if (toggle.className.split(' ')[1] === TOGGLE_MINIMUM) {
       value = this.setFromValue(model, corner).value;
       stepPercentResult = this.setFromValue(model, corner).stepPercentResult;
       flag = <HTMLElement>slider.querySelector('.slider__flag_minimum');
     }
 
-    if (toggle.className.split(' ')[1] === Const.SLIDER_TOGGLE_MAXIMUM) {
+    if (toggle.className.split(' ')[1] === TOGGLE_MAXIMUM) {
       value = this.setToValue(model, corner).value;
       stepPercentResult = this.setToValue(model, corner).stepPercentResult;
       flag = <HTMLElement>slider.querySelector('.slider__flag_maximum');
@@ -249,9 +261,7 @@ export default class Views extends Observer {
     const event = getEvent();
     const corner: number = ((event.pageY! - boxTop) / sliderHeight) * 100;
 
-    if (
-      toggle.className.split(' ')[1] === Const.SLIDER_TOGGLE_VERTICAL_MINIMUM
-    ) {
+    if (toggle.className.split(' ')[1] === TOGGLE_VERTICAL_MINIMUM) {
       value = this.setFromValue(model, corner).value;
       stepPercentResult = this.setFromValue(model, corner).stepPercentResult;
       flag = <HTMLElement>(
@@ -259,9 +269,7 @@ export default class Views extends Observer {
       );
     }
 
-    if (
-      toggle.className.split(' ')[1] === Const.SLIDER_TOGGLE_VERTICAL_MAXIMUM
-    ) {
+    if (toggle.className.split(' ')[1] === TOGGLE_VERTICAL_MAXIMUM) {
       value = this.setToValue(model, corner).value;
       stepPercentResult = this.setToValue(model, corner).stepPercentResult;
       flag = <HTMLElement>(
@@ -312,8 +320,8 @@ export default class Views extends Observer {
     let onMouseMove: { (evt: Event): void };
 
     if (
-      toggle.className.split(' ')[1] === Const.SLIDER_TOGGLE_MINIMUM
-      || toggle.className.split(' ')[1] === Const.SLIDER_TOGGLE_MAXIMUM
+      toggle.className.split(' ')[1] === TOGGLE_MINIMUM
+      || toggle.className.split(' ')[1] === TOGGLE_MAXIMUM
     ) {
       onMouseMove = (evt: Event): void => this.mouseMoveX(model, evt, slider, toggle);
     } else {
@@ -349,7 +357,7 @@ export default class Views extends Observer {
     valuePercent: number,
     value?: string,
   ) {
-    if (position === View.HORIZONTAL) {
+    if (position === HORIZONTAL) {
       element.style.left = `${String(valuePercent)}%`;
     } else {
       element.style.top = `${String(valuePercent)}%`;

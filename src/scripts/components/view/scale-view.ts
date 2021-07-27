@@ -1,5 +1,5 @@
 import AbstractView from './abstract-view';
-import { View } from '../../const';
+import { VERTICAL } from '../../const';
 import { ModelType, StateType } from '../../types';
 
 export default class ScaleView extends AbstractView {
@@ -7,7 +7,7 @@ export default class ScaleView extends AbstractView {
     const { view } = state;
     let listVertical = '';
 
-    if (view === View.VERTICAL) listVertical = 'slider__list_transformed';
+    if (view === VERTICAL) listVertical = 'slider__list_transformed';
 
     return `slider__list ${listVertical}`;
   }
@@ -19,7 +19,7 @@ export default class ScaleView extends AbstractView {
     let template: string = '';
     let itemVertical = '';
 
-    if (view === View.VERTICAL) itemVertical = 'slider__item_transformed';
+    if (view === VERTICAL) itemVertical = 'slider__item_transformed';
 
     for (let i = min; i < max; i += step) {
       let itemPlace = '';
