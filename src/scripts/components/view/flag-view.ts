@@ -1,5 +1,7 @@
 import AbstractView from './abstract-view';
-import { NULL_VALUE, Range, View } from '../../const';
+import {
+  NULL_VALUE, RANGE, HORIZONTAL, VERTICAL,
+} from '../../const';
 import { ModelType, StateType } from '../../types';
 
 export default class FlagView extends AbstractView {
@@ -15,19 +17,19 @@ export default class FlagView extends AbstractView {
     let flagMax = 'slider__flag_maximum';
     let position = 'left';
 
-    if (range === Range.RANGE && view === View.HORIZONTAL) {
+    if (range === RANGE && view === HORIZONTAL) {
       flagMin = `<span class="slider__flag slider__flag_minimum" style="left:${fromPercent}%">${
         from === NULL_VALUE ? min : from
       }</span>`;
     }
 
-    if (range === Range.RANGE && view === View.VERTICAL) {
+    if (range === RANGE && view === VERTICAL) {
       flagMin = `<span class="slider__flag slider__flag-vertical slider__flag-vertical_minimum" style="top:${fromPercent}%">${
         from === NULL_VALUE ? min : from
       }</span>`;
     }
 
-    if (view === View.VERTICAL) {
+    if (view === VERTICAL) {
       flagMax = 'slider__flag-vertical slider__flag-vertical_maximum';
       position = 'top';
     }
