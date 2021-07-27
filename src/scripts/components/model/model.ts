@@ -37,7 +37,7 @@ export default class Model extends Observer {
     const stepPercent: number = 100 / stepCount;
     let stepPercentResult: number = Math.round(corner / stepPercent) * stepPercent;
     if (stepPercentResult < 0) stepPercentResult = 0;
-    if (corner > 100) stepPercentResult = 100;
+    if (corner > 100 || stepPercentResult > 100) stepPercentResult = 100;
     if (str === 'toPercent') {
       if (stepPercentResult > toPercent) stepPercentResult = toPercent;
     }
