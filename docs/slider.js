@@ -1,7 +1,3 @@
-interface JQuery {
-  slider: Function;
-}
-
 const slider1 = $('#slider').slider();
 slider1.slider('getConfiguring');
 
