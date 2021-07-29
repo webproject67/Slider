@@ -1,6 +1,5 @@
 const path = require('path');
 const glob = require('glob');
-const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
@@ -24,17 +23,12 @@ module.exports = {
     port: 9000,
   },
   plugins: [
-    new webpack.ProvidePlugin({
-      $: 'jquery',
-      jQuery: 'jquery',
-      'window.jQuery': 'jquery',
-    }),
     new CleanWebpackPlugin(),
-    ...glob.sync('./src/pug/pages/**/*.pug').map((htmlFile) => {
+    ...glob.sync('./src/*.html').map((htmlFile) => {
       return new HtmlWebpackPlugin({
-        filename: `${path.basename(htmlFile, path.extname(htmlFile))}.html`,
+        filename: path.basename(htmlFile),
         template: htmlFile,
-        inject: true,
+        inject: false,
       });
     }),
     new MiniCssExtractPlugin({
@@ -42,15 +36,20 @@ module.exports = {
     }),
     new CopyPlugin([
       {
-        from: path.resolve(__dirname, 'src/assets/favicon/*.{png,svg}'),
+        from: path.resolve(__dirname, 'src/favicon/*.{png,svg}'),
         to: path.resolve(__dirname, 'public/img/favicon/[name].[ext]'),
       },
       {
-        from: path.resolve(
-          __dirname,
-          'src/assets/favicon/*.{xml,webmanifest,ico}'
-        ),
+        from: path.resolve(__dirname, 'src/favicon/*.{xml,webmanifest,ico}'),
         to: path.resolve(__dirname, 'public/[name].[ext]'),
+      },
+      {
+        from: path.resolve(__dirname, 'src/scripts/jquery.min.js'),
+        to: path.resolve(__dirname, 'public/jquery.min.js'),
+      },
+      {
+        from: path.resolve(__dirname, 'src/scripts/slider.js'),
+        to: path.resolve(__dirname, 'public/slider.js'),
       },
     ]),
     new ImageminPlugin({
@@ -63,10 +62,6 @@ module.exports = {
         test: /\.ts$/,
         use: 'ts-loader',
         exclude: /node_modules/,
-      },
-      {
-        test: /\.pug$/,
-        use: ['html-loader', 'pug-html-loader'],
       },
       {
         test: /\.scss$/i,
