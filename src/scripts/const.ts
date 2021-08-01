@@ -14,6 +14,7 @@ const TOGGLE_MINIMUM = 'slider__toggle_minimum';
 const TOGGLE_MAXIMUM = 'slider__toggle_maximum';
 const TOGGLE_VERTICAL_MINIMUM = 'slider__toggle_vertical-minimum';
 const TOGGLE_VERTICAL_MAXIMUM = 'slider__toggle_vertical-maximum';
+const ITEM = 'slider__item';
 const ITEM_MINIMUM = 'slider__item_minimum';
 const ITEM_MAXIMUM = 'slider__item_maximum';
 
@@ -34,6 +35,7 @@ export {
   TOGGLE_MAXIMUM,
   TOGGLE_VERTICAL_MINIMUM,
   TOGGLE_VERTICAL_MAXIMUM,
+  ITEM,
   ITEM_MINIMUM,
   ITEM_MAXIMUM,
 };

@@ -1,0 +1,119 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`snapshot renders correctly element1 1`] = `
+<div
+  class="slider__flags"
+>
+  
+      
+      
+  <span
+    class="slider__flag slider__flag_maximum"
+    style="left:100%"
+  >
+    100
+  </span>
+  
+    
+</div>
+`;
+
+exports[`snapshot renders correctly element2 1`] = `
+<div
+  class="slider__flags"
+>
+  
+      
+  <span
+    class="slider__flag slider__flag_minimum"
+    style="left:0%"
+  >
+    0
+  </span>
+  
+      
+  <span
+    class="slider__flag slider__flag_maximum"
+    style="left:100%"
+  >
+    100
+  </span>
+  
+    
+</div>
+`;
+
+exports[`snapshot renders correctly element3 1`] = `
+<div
+  class="slider__flags"
+>
+  
+      
+  <span
+    class="slider__flag slider__flag_minimum"
+    style="left:0%"
+  >
+    10
+  </span>
+  
+      
+  <span
+    class="slider__flag slider__flag_maximum"
+    style="left:100%"
+  >
+    100
+  </span>
+  
+    
+</div>
+`;
+
+exports[`snapshot renders correctly element4 1`] = `
+<div
+  class="slider__flags"
+>
+  
+      
+  <span
+    class="slider__flag slider__flag-vertical slider__flag-vertical_minimum"
+    style="top:0%"
+  >
+    0
+  </span>
+  
+      
+  <span
+    class="slider__flag slider__flag-vertical slider__flag-vertical_maximum"
+    style="top:100%"
+  >
+    100
+  </span>
+  
+    
+</div>
+`;
+
+exports[`snapshot renders correctly element5 1`] = `
+<div
+  class="slider__flags"
+>
+  
+      
+  <span
+    class="slider__flag slider__flag-vertical slider__flag-vertical_minimum"
+    style="top:0%"
+  >
+    10
+  </span>
+  
+      
+  <span
+    class="slider__flag slider__flag-vertical slider__flag-vertical_maximum"
+    style="top:100%"
+  >
+    90
+  </span>
+  
+    
+</div>
+`;

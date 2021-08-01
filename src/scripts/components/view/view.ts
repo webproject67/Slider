@@ -1,4 +1,4 @@
-import Observer from '../observer';
+import Observer from '../observer/observer';
 import TrackView from './track-view';
 import ProgressView from './progress-view';
 import ConfiguringView from './configuring-view';
@@ -17,6 +17,7 @@ import {
   TOGGLE_MAXIMUM,
   TOGGLE_VERTICAL_MINIMUM,
   TOGGLE_VERTICAL_MAXIMUM,
+  ITEM,
   ITEM_MINIMUM,
   ITEM_MAXIMUM,
   HORIZONTAL,
@@ -24,15 +25,15 @@ import {
 import { ModelType } from '../../types';
 
 export default class Views extends Observer {
-  private trackView!: TrackView;
+  public trackView!: TrackView;
 
-  private progressView!: ProgressView;
+  public progressView!: ProgressView;
 
-  private configuringView!: ConfiguringView;
+  public configuringView!: ConfiguringView;
 
-  private scaleView!: ScaleView;
+  public scaleView!: ScaleView;
 
-  private flagView!: FlagView;
+  public flagView!: FlagView;
 
   constructor() {
     super();
@@ -155,7 +156,7 @@ export default class Views extends Observer {
       corner = ((evt.pageX! - sliderLeft) / sliderWidth) * 100;
     }
 
-    if (scale.style.left) corner = parseFloat(scale.style.left);
+    if (scale.className === ITEM) corner = parseFloat(scale.style.left);
 
     let { stepPercentResult } = model.getStepCount(corner);
 
