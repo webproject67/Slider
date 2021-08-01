@@ -1,0 +1,2449 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`snapshot renders correctly element1 1`] = `
+<div
+  class="slider__list "
+>
+  
+        
+  <div
+    class="slider__item"
+  >
+    |
+          
+    <span
+      class="slider__item_centered slider__item_minimum "
+    >
+      0
+    </span>
+    
+        
+  </div>
+  
+      
+        
+  <div
+    class="slider__item"
+  >
+    |
+          
+    <span
+      class="slider__item_centered  "
+    >
+      1
+    </span>
+    
+        
+  </div>
+  
+      
+        
+  <div
+    class="slider__item"
+  >
+    |
+          
+    <span
+      class="slider__item_centered  "
+    >
+      2
+    </span>
+    
+        
+  </div>
+  
+      
+        
+  <div
+    class="slider__item"
+  >
+    |
+          
+    <span
+      class="slider__item_centered  "
+    >
+      3
+    </span>
+    
+        
+  </div>
+  
+      
+        
+  <div
+    class="slider__item"
+  >
+    |
+          
+    <span
+      class="slider__item_centered  "
+    >
+      4
+    </span>
+    
+        
+  </div>
+  
+      
+        
+  <div
+    class="slider__item"
+  >
+    |
+          
+    <span
+      class="slider__item_centered  "
+    >
+      5
+    </span>
+    
+        
+  </div>
+  
+      
+        
+  <div
+    class="slider__item"
+  >
+    |
+          
+    <span
+      class="slider__item_centered  "
+    >
+      6
+    </span>
+    
+        
+  </div>
+  
+      
+        
+  <div
+    class="slider__item"
+  >
+    |
+          
+    <span
+      class="slider__item_centered  "
+    >
+      7
+    </span>
+    
+        
+  </div>
+  
+      
+        
+  <div
+    class="slider__item"
+  >
+    |
+          
+    <span
+      class="slider__item_centered  "
+    >
+      8
+    </span>
+    
+        
+  </div>
+  
+      
+        
+  <div
+    class="slider__item"
+  >
+    |
+          
+    <span
+      class="slider__item_centered  "
+    >
+      9
+    </span>
+    
+        
+  </div>
+  
+      
+        
+  <div
+    class="slider__item"
+  >
+    |
+          
+    <span
+      class="slider__item_centered  "
+    >
+      10
+    </span>
+    
+        
+  </div>
+  
+      
+        
+  <div
+    class="slider__item"
+  >
+    |
+          
+    <span
+      class="slider__item_centered  "
+    >
+      11
+    </span>
+    
+        
+  </div>
+  
+      
+        
+  <div
+    class="slider__item"
+  >
+    |
+          
+    <span
+      class="slider__item_centered  "
+    >
+      12
+    </span>
+    
+        
+  </div>
+  
+      
+        
+  <div
+    class="slider__item"
+  >
+    |
+          
+    <span
+      class="slider__item_centered  "
+    >
+      13
+    </span>
+    
+        
+  </div>
+  
+      
+        
+  <div
+    class="slider__item"
+  >
+    |
+          
+    <span
+      class="slider__item_centered  "
+    >
+      14
+    </span>
+    
+        
+  </div>
+  
+      
+        
+  <div
+    class="slider__item"
+  >
+    |
+          
+    <span
+      class="slider__item_centered  "
+    >
+      15
+    </span>
+    
+        
+  </div>
+  
+      
+        
+  <div
+    class="slider__item"
+  >
+    |
+          
+    <span
+      class="slider__item_centered  "
+    >
+      16
+    </span>
+    
+        
+  </div>
+  
+      
+        
+  <div
+    class="slider__item"
+  >
+    |
+          
+    <span
+      class="slider__item_centered  "
+    >
+      17
+    </span>
+    
+        
+  </div>
+  
+      
+        
+  <div
+    class="slider__item"
+  >
+    |
+          
+    <span
+      class="slider__item_centered  "
+    >
+      18
+    </span>
+    
+        
+  </div>
+  
+      
+        
+  <div
+    class="slider__item"
+  >
+    |
+          
+    <span
+      class="slider__item_centered  "
+    >
+      19
+    </span>
+    
+        
+  </div>
+  
+      
+        
+  <div
+    class="slider__item"
+  >
+    |
+          
+    <span
+      class="slider__item_centered  "
+    >
+      20
+    </span>
+    
+        
+  </div>
+  
+      
+        
+  <div
+    class="slider__item"
+  >
+    |
+          
+    <span
+      class="slider__item_centered  "
+    >
+      21
+    </span>
+    
+        
+  </div>
+  
+      
+        
+  <div
+    class="slider__item"
+  >
+    |
+          
+    <span
+      class="slider__item_centered  "
+    >
+      22
+    </span>
+    
+        
+  </div>
+  
+      
+        
+  <div
+    class="slider__item"
+  >
+    |
+          
+    <span
+      class="slider__item_centered  "
+    >
+      23
+    </span>
+    
+        
+  </div>
+  
+      
+        
+  <div
+    class="slider__item"
+  >
+    |
+          
+    <span
+      class="slider__item_centered  "
+    >
+      24
+    </span>
+    
+        
+  </div>
+  
+      
+        
+  <div
+    class="slider__item"
+  >
+    |
+          
+    <span
+      class="slider__item_centered  "
+    >
+      25
+    </span>
+    
+        
+  </div>
+  
+      
+        
+  <div
+    class="slider__item"
+  >
+    |
+          
+    <span
+      class="slider__item_centered  "
+    >
+      26
+    </span>
+    
+        
+  </div>
+  
+      
+        
+  <div
+    class="slider__item"
+  >
+    |
+          
+    <span
+      class="slider__item_centered  "
+    >
+      27
+    </span>
+    
+        
+  </div>
+  
+      
+        
+  <div
+    class="slider__item"
+  >
+    |
+          
+    <span
+      class="slider__item_centered  "
+    >
+      28
+    </span>
+    
+        
+  </div>
+  
+      
+        
+  <div
+    class="slider__item"
+  >
+    |
+          
+    <span
+      class="slider__item_centered  "
+    >
+      29
+    </span>
+    
+        
+  </div>
+  
+      
+        
+  <div
+    class="slider__item"
+  >
+    |
+          
+    <span
+      class="slider__item_centered  "
+    >
+      30
+    </span>
+    
+        
+  </div>
+  
+      
+        
+  <div
+    class="slider__item"
+  >
+    |
+          
+    <span
+      class="slider__item_centered  "
+    >
+      31
+    </span>
+    
+        
+  </div>
+  
+      
+        
+  <div
+    class="slider__item"
+  >
+    |
+          
+    <span
+      class="slider__item_centered  "
+    >
+      32
+    </span>
+    
+        
+  </div>
+  
+      
+        
+  <div
+    class="slider__item"
+  >
+    |
+          
+    <span
+      class="slider__item_centered  "
+    >
+      33
+    </span>
+    
+        
+  </div>
+  
+      
+        
+  <div
+    class="slider__item"
+  >
+    |
+          
+    <span
+      class="slider__item_centered  "
+    >
+      34
+    </span>
+    
+        
+  </div>
+  
+      
+        
+  <div
+    class="slider__item"
+  >
+    |
+          
+    <span
+      class="slider__item_centered  "
+    >
+      35
+    </span>
+    
+        
+  </div>
+  
+      
+        
+  <div
+    class="slider__item"
+  >
+    |
+          
+    <span
+      class="slider__item_centered  "
+    >
+      36
+    </span>
+    
+        
+  </div>
+  
+      
+        
+  <div
+    class="slider__item"
+  >
+    |
+          
+    <span
+      class="slider__item_centered  "
+    >
+      37
+    </span>
+    
+        
+  </div>
+  
+      
+        
+  <div
+    class="slider__item"
+  >
+    |
+          
+    <span
+      class="slider__item_centered  "
+    >
+      38
+    </span>
+    
+        
+  </div>
+  
+      
+        
+  <div
+    class="slider__item"
+  >
+    |
+          
+    <span
+      class="slider__item_centered  "
+    >
+      39
+    </span>
+    
+        
+  </div>
+  
+      
+        
+  <div
+    class="slider__item"
+  >
+    |
+          
+    <span
+      class="slider__item_centered  "
+    >
+      40
+    </span>
+    
+        
+  </div>
+  
+      
+        
+  <div
+    class="slider__item"
+  >
+    |
+          
+    <span
+      class="slider__item_centered  "
+    >
+      41
+    </span>
+    
+        
+  </div>
+  
+      
+        
+  <div
+    class="slider__item"
+  >
+    |
+          
+    <span
+      class="slider__item_centered  "
+    >
+      42
+    </span>
+    
+        
+  </div>
+  
+      
+        
+  <div
+    class="slider__item"
+  >
+    |
+          
+    <span
+      class="slider__item_centered  "
+    >
+      43
+    </span>
+    
+        
+  </div>
+  
+      
+        
+  <div
+    class="slider__item"
+  >
+    |
+          
+    <span
+      class="slider__item_centered  "
+    >
+      44
+    </span>
+    
+        
+  </div>
+  
+      
+        
+  <div
+    class="slider__item"
+  >
+    |
+          
+    <span
+      class="slider__item_centered  "
+    >
+      45
+    </span>
+    
+        
+  </div>
+  
+      
+        
+  <div
+    class="slider__item"
+  >
+    |
+          
+    <span
+      class="slider__item_centered  "
+    >
+      46
+    </span>
+    
+        
+  </div>
+  
+      
+        
+  <div
+    class="slider__item"
+  >
+    |
+          
+    <span
+      class="slider__item_centered  "
+    >
+      47
+    </span>
+    
+        
+  </div>
+  
+      
+        
+  <div
+    class="slider__item"
+  >
+    |
+          
+    <span
+      class="slider__item_centered  "
+    >
+      48
+    </span>
+    
+        
+  </div>
+  
+      
+        
+  <div
+    class="slider__item"
+  >
+    |
+          
+    <span
+      class="slider__item_centered  "
+    >
+      49
+    </span>
+    
+        
+  </div>
+  
+      
+        
+  <div
+    class="slider__item"
+  >
+    |
+          
+    <span
+      class="slider__item_centered  "
+    >
+      50
+    </span>
+    
+        
+  </div>
+  
+      
+        
+  <div
+    class="slider__item"
+  >
+    |
+          
+    <span
+      class="slider__item_centered  "
+    >
+      51
+    </span>
+    
+        
+  </div>
+  
+      
+        
+  <div
+    class="slider__item"
+  >
+    |
+          
+    <span
+      class="slider__item_centered  "
+    >
+      52
+    </span>
+    
+        
+  </div>
+  
+      
+        
+  <div
+    class="slider__item"
+  >
+    |
+          
+    <span
+      class="slider__item_centered  "
+    >
+      53
+    </span>
+    
+        
+  </div>
+  
+      
+        
+  <div
+    class="slider__item"
+  >
+    |
+          
+    <span
+      class="slider__item_centered  "
+    >
+      54
+    </span>
+    
+        
+  </div>
+  
+      
+        
+  <div
+    class="slider__item"
+  >
+    |
+          
+    <span
+      class="slider__item_centered  "
+    >
+      55
+    </span>
+    
+        
+  </div>
+  
+      
+        
+  <div
+    class="slider__item"
+  >
+    |
+          
+    <span
+      class="slider__item_centered  "
+    >
+      56
+    </span>
+    
+        
+  </div>
+  
+      
+        
+  <div
+    class="slider__item"
+  >
+    |
+          
+    <span
+      class="slider__item_centered  "
+    >
+      57
+    </span>
+    
+        
+  </div>
+  
+      
+        
+  <div
+    class="slider__item"
+  >
+    |
+          
+    <span
+      class="slider__item_centered  "
+    >
+      58
+    </span>
+    
+        
+  </div>
+  
+      
+        
+  <div
+    class="slider__item"
+  >
+    |
+          
+    <span
+      class="slider__item_centered  "
+    >
+      59
+    </span>
+    
+        
+  </div>
+  
+      
+        
+  <div
+    class="slider__item"
+  >
+    |
+          
+    <span
+      class="slider__item_centered  "
+    >
+      60
+    </span>
+    
+        
+  </div>
+  
+      
+        
+  <div
+    class="slider__item"
+  >
+    |
+          
+    <span
+      class="slider__item_centered  "
+    >
+      61
+    </span>
+    
+        
+  </div>
+  
+      
+        
+  <div
+    class="slider__item"
+  >
+    |
+          
+    <span
+      class="slider__item_centered  "
+    >
+      62
+    </span>
+    
+        
+  </div>
+  
+      
+        
+  <div
+    class="slider__item"
+  >
+    |
+          
+    <span
+      class="slider__item_centered  "
+    >
+      63
+    </span>
+    
+        
+  </div>
+  
+      
+        
+  <div
+    class="slider__item"
+  >
+    |
+          
+    <span
+      class="slider__item_centered  "
+    >
+      64
+    </span>
+    
+        
+  </div>
+  
+      
+        
+  <div
+    class="slider__item"
+  >
+    |
+          
+    <span
+      class="slider__item_centered  "
+    >
+      65
+    </span>
+    
+        
+  </div>
+  
+      
+        
+  <div
+    class="slider__item"
+  >
+    |
+          
+    <span
+      class="slider__item_centered  "
+    >
+      66
+    </span>
+    
+        
+  </div>
+  
+      
+        
+  <div
+    class="slider__item"
+  >
+    |
+          
+    <span
+      class="slider__item_centered  "
+    >
+      67
+    </span>
+    
+        
+  </div>
+  
+      
+        
+  <div
+    class="slider__item"
+  >
+    |
+          
+    <span
+      class="slider__item_centered  "
+    >
+      68
+    </span>
+    
+        
+  </div>
+  
+      
+        
+  <div
+    class="slider__item"
+  >
+    |
+          
+    <span
+      class="slider__item_centered  "
+    >
+      69
+    </span>
+    
+        
+  </div>
+  
+      
+        
+  <div
+    class="slider__item"
+  >
+    |
+          
+    <span
+      class="slider__item_centered  "
+    >
+      70
+    </span>
+    
+        
+  </div>
+  
+      
+        
+  <div
+    class="slider__item"
+  >
+    |
+          
+    <span
+      class="slider__item_centered  "
+    >
+      71
+    </span>
+    
+        
+  </div>
+  
+      
+        
+  <div
+    class="slider__item"
+  >
+    |
+          
+    <span
+      class="slider__item_centered  "
+    >
+      72
+    </span>
+    
+        
+  </div>
+  
+      
+        
+  <div
+    class="slider__item"
+  >
+    |
+          
+    <span
+      class="slider__item_centered  "
+    >
+      73
+    </span>
+    
+        
+  </div>
+  
+      
+        
+  <div
+    class="slider__item"
+  >
+    |
+          
+    <span
+      class="slider__item_centered  "
+    >
+      74
+    </span>
+    
+        
+  </div>
+  
+      
+        
+  <div
+    class="slider__item"
+  >
+    |
+          
+    <span
+      class="slider__item_centered  "
+    >
+      75
+    </span>
+    
+        
+  </div>
+  
+      
+        
+  <div
+    class="slider__item"
+  >
+    |
+          
+    <span
+      class="slider__item_centered  "
+    >
+      76
+    </span>
+    
+        
+  </div>
+  
+      
+        
+  <div
+    class="slider__item"
+  >
+    |
+          
+    <span
+      class="slider__item_centered  "
+    >
+      77
+    </span>
+    
+        
+  </div>
+  
+      
+        
+  <div
+    class="slider__item"
+  >
+    |
+          
+    <span
+      class="slider__item_centered  "
+    >
+      78
+    </span>
+    
+        
+  </div>
+  
+      
+        
+  <div
+    class="slider__item"
+  >
+    |
+          
+    <span
+      class="slider__item_centered  "
+    >
+      79
+    </span>
+    
+        
+  </div>
+  
+      
+        
+  <div
+    class="slider__item"
+  >
+    |
+          
+    <span
+      class="slider__item_centered  "
+    >
+      80
+    </span>
+    
+        
+  </div>
+  
+      
+        
+  <div
+    class="slider__item"
+  >
+    |
+          
+    <span
+      class="slider__item_centered  "
+    >
+      81
+    </span>
+    
+        
+  </div>
+  
+      
+        
+  <div
+    class="slider__item"
+  >
+    |
+          
+    <span
+      class="slider__item_centered  "
+    >
+      82
+    </span>
+    
+        
+  </div>
+  
+      
+        
+  <div
+    class="slider__item"
+  >
+    |
+          
+    <span
+      class="slider__item_centered  "
+    >
+      83
+    </span>
+    
+        
+  </div>
+  
+      
+        
+  <div
+    class="slider__item"
+  >
+    |
+          
+    <span
+      class="slider__item_centered  "
+    >
+      84
+    </span>
+    
+        
+  </div>
+  
+      
+        
+  <div
+    class="slider__item"
+  >
+    |
+          
+    <span
+      class="slider__item_centered  "
+    >
+      85
+    </span>
+    
+        
+  </div>
+  
+      
+        
+  <div
+    class="slider__item"
+  >
+    |
+          
+    <span
+      class="slider__item_centered  "
+    >
+      86
+    </span>
+    
+        
+  </div>
+  
+      
+        
+  <div
+    class="slider__item"
+  >
+    |
+          
+    <span
+      class="slider__item_centered  "
+    >
+      87
+    </span>
+    
+        
+  </div>
+  
+      
+        
+  <div
+    class="slider__item"
+  >
+    |
+          
+    <span
+      class="slider__item_centered  "
+    >
+      88
+    </span>
+    
+        
+  </div>
+  
+      
+        
+  <div
+    class="slider__item"
+  >
+    |
+          
+    <span
+      class="slider__item_centered  "
+    >
+      89
+    </span>
+    
+        
+  </div>
+  
+      
+        
+  <div
+    class="slider__item"
+  >
+    |
+          
+    <span
+      class="slider__item_centered  "
+    >
+      90
+    </span>
+    
+        
+  </div>
+  
+      
+        
+  <div
+    class="slider__item"
+  >
+    |
+          
+    <span
+      class="slider__item_centered  "
+    >
+      91
+    </span>
+    
+        
+  </div>
+  
+      
+        
+  <div
+    class="slider__item"
+  >
+    |
+          
+    <span
+      class="slider__item_centered  "
+    >
+      92
+    </span>
+    
+        
+  </div>
+  
+      
+        
+  <div
+    class="slider__item"
+  >
+    |
+          
+    <span
+      class="slider__item_centered  "
+    >
+      93
+    </span>
+    
+        
+  </div>
+  
+      
+        
+  <div
+    class="slider__item"
+  >
+    |
+          
+    <span
+      class="slider__item_centered  "
+    >
+      94
+    </span>
+    
+        
+  </div>
+  
+      
+        
+  <div
+    class="slider__item"
+  >
+    |
+          
+    <span
+      class="slider__item_centered  "
+    >
+      95
+    </span>
+    
+        
+  </div>
+  
+      
+        
+  <div
+    class="slider__item"
+  >
+    |
+          
+    <span
+      class="slider__item_centered  "
+    >
+      96
+    </span>
+    
+        
+  </div>
+  
+      
+        
+  <div
+    class="slider__item"
+  >
+    |
+          
+    <span
+      class="slider__item_centered  "
+    >
+      97
+    </span>
+    
+        
+  </div>
+  
+      
+        
+  <div
+    class="slider__item"
+  >
+    |
+          
+    <span
+      class="slider__item_centered  "
+    >
+      98
+    </span>
+    
+        
+  </div>
+  
+      
+        
+  <div
+    class="slider__item"
+  >
+    |
+          
+    <span
+      class="slider__item_centered  "
+    >
+      99
+    </span>
+    
+        
+  </div>
+  
+      
+        
+  <div
+    class="slider__item"
+  >
+    |
+          
+    <span
+      class="slider__item_centered slider__item_maximum "
+    >
+      100
+    </span>
+    
+        
+  </div>
+  
+      
+</div>
+`;
+
+exports[`snapshot renders correctly element2 1`] = `
+<div
+  class="slider__list slider__list_transformed"
+>
+  
+        
+  <div
+    class="slider__item"
+  >
+    |
+          
+    <span
+      class="slider__item_centered slider__item_minimum slider__item_transformed"
+    >
+      0
+    </span>
+    
+        
+  </div>
+  
+      
+        
+  <div
+    class="slider__item"
+  >
+    |
+          
+    <span
+      class="slider__item_centered  slider__item_transformed"
+    >
+      2
+    </span>
+    
+        
+  </div>
+  
+      
+        
+  <div
+    class="slider__item"
+  >
+    |
+          
+    <span
+      class="slider__item_centered  slider__item_transformed"
+    >
+      4
+    </span>
+    
+        
+  </div>
+  
+      
+        
+  <div
+    class="slider__item"
+  >
+    |
+          
+    <span
+      class="slider__item_centered  slider__item_transformed"
+    >
+      6
+    </span>
+    
+        
+  </div>
+  
+      
+        
+  <div
+    class="slider__item"
+  >
+    |
+          
+    <span
+      class="slider__item_centered  slider__item_transformed"
+    >
+      8
+    </span>
+    
+        
+  </div>
+  
+      
+        
+  <div
+    class="slider__item"
+  >
+    |
+          
+    <span
+      class="slider__item_centered  slider__item_transformed"
+    >
+      10
+    </span>
+    
+        
+  </div>
+  
+      
+        
+  <div
+    class="slider__item"
+  >
+    |
+          
+    <span
+      class="slider__item_centered  slider__item_transformed"
+    >
+      12
+    </span>
+    
+        
+  </div>
+  
+      
+        
+  <div
+    class="slider__item"
+  >
+    |
+          
+    <span
+      class="slider__item_centered  slider__item_transformed"
+    >
+      14
+    </span>
+    
+        
+  </div>
+  
+      
+        
+  <div
+    class="slider__item"
+  >
+    |
+          
+    <span
+      class="slider__item_centered  slider__item_transformed"
+    >
+      16
+    </span>
+    
+        
+  </div>
+  
+      
+        
+  <div
+    class="slider__item"
+  >
+    |
+          
+    <span
+      class="slider__item_centered  slider__item_transformed"
+    >
+      18
+    </span>
+    
+        
+  </div>
+  
+      
+        
+  <div
+    class="slider__item"
+  >
+    |
+          
+    <span
+      class="slider__item_centered  slider__item_transformed"
+    >
+      20
+    </span>
+    
+        
+  </div>
+  
+      
+        
+  <div
+    class="slider__item"
+  >
+    |
+          
+    <span
+      class="slider__item_centered  slider__item_transformed"
+    >
+      22
+    </span>
+    
+        
+  </div>
+  
+      
+        
+  <div
+    class="slider__item"
+  >
+    |
+          
+    <span
+      class="slider__item_centered  slider__item_transformed"
+    >
+      24
+    </span>
+    
+        
+  </div>
+  
+      
+        
+  <div
+    class="slider__item"
+  >
+    |
+          
+    <span
+      class="slider__item_centered  slider__item_transformed"
+    >
+      26
+    </span>
+    
+        
+  </div>
+  
+      
+        
+  <div
+    class="slider__item"
+  >
+    |
+          
+    <span
+      class="slider__item_centered  slider__item_transformed"
+    >
+      28
+    </span>
+    
+        
+  </div>
+  
+      
+        
+  <div
+    class="slider__item"
+  >
+    |
+          
+    <span
+      class="slider__item_centered  slider__item_transformed"
+    >
+      30
+    </span>
+    
+        
+  </div>
+  
+      
+        
+  <div
+    class="slider__item"
+  >
+    |
+          
+    <span
+      class="slider__item_centered  slider__item_transformed"
+    >
+      32
+    </span>
+    
+        
+  </div>
+  
+      
+        
+  <div
+    class="slider__item"
+  >
+    |
+          
+    <span
+      class="slider__item_centered  slider__item_transformed"
+    >
+      34
+    </span>
+    
+        
+  </div>
+  
+      
+        
+  <div
+    class="slider__item"
+  >
+    |
+          
+    <span
+      class="slider__item_centered  slider__item_transformed"
+    >
+      36
+    </span>
+    
+        
+  </div>
+  
+      
+        
+  <div
+    class="slider__item"
+  >
+    |
+          
+    <span
+      class="slider__item_centered  slider__item_transformed"
+    >
+      38
+    </span>
+    
+        
+  </div>
+  
+      
+        
+  <div
+    class="slider__item"
+  >
+    |
+          
+    <span
+      class="slider__item_centered  slider__item_transformed"
+    >
+      40
+    </span>
+    
+        
+  </div>
+  
+      
+        
+  <div
+    class="slider__item"
+  >
+    |
+          
+    <span
+      class="slider__item_centered  slider__item_transformed"
+    >
+      42
+    </span>
+    
+        
+  </div>
+  
+      
+        
+  <div
+    class="slider__item"
+  >
+    |
+          
+    <span
+      class="slider__item_centered  slider__item_transformed"
+    >
+      44
+    </span>
+    
+        
+  </div>
+  
+      
+        
+  <div
+    class="slider__item"
+  >
+    |
+          
+    <span
+      class="slider__item_centered  slider__item_transformed"
+    >
+      46
+    </span>
+    
+        
+  </div>
+  
+      
+        
+  <div
+    class="slider__item"
+  >
+    |
+          
+    <span
+      class="slider__item_centered  slider__item_transformed"
+    >
+      48
+    </span>
+    
+        
+  </div>
+  
+      
+        
+  <div
+    class="slider__item"
+  >
+    |
+          
+    <span
+      class="slider__item_centered  slider__item_transformed"
+    >
+      50
+    </span>
+    
+        
+  </div>
+  
+      
+        
+  <div
+    class="slider__item"
+  >
+    |
+          
+    <span
+      class="slider__item_centered  slider__item_transformed"
+    >
+      52
+    </span>
+    
+        
+  </div>
+  
+      
+        
+  <div
+    class="slider__item"
+  >
+    |
+          
+    <span
+      class="slider__item_centered  slider__item_transformed"
+    >
+      54
+    </span>
+    
+        
+  </div>
+  
+      
+        
+  <div
+    class="slider__item"
+  >
+    |
+          
+    <span
+      class="slider__item_centered  slider__item_transformed"
+    >
+      56
+    </span>
+    
+        
+  </div>
+  
+      
+        
+  <div
+    class="slider__item"
+  >
+    |
+          
+    <span
+      class="slider__item_centered  slider__item_transformed"
+    >
+      58
+    </span>
+    
+        
+  </div>
+  
+      
+        
+  <div
+    class="slider__item"
+  >
+    |
+          
+    <span
+      class="slider__item_centered  slider__item_transformed"
+    >
+      60
+    </span>
+    
+        
+  </div>
+  
+      
+        
+  <div
+    class="slider__item"
+  >
+    |
+          
+    <span
+      class="slider__item_centered  slider__item_transformed"
+    >
+      62
+    </span>
+    
+        
+  </div>
+  
+      
+        
+  <div
+    class="slider__item"
+  >
+    |
+          
+    <span
+      class="slider__item_centered  slider__item_transformed"
+    >
+      64
+    </span>
+    
+        
+  </div>
+  
+      
+        
+  <div
+    class="slider__item"
+  >
+    |
+          
+    <span
+      class="slider__item_centered  slider__item_transformed"
+    >
+      66
+    </span>
+    
+        
+  </div>
+  
+      
+        
+  <div
+    class="slider__item"
+  >
+    |
+          
+    <span
+      class="slider__item_centered  slider__item_transformed"
+    >
+      68
+    </span>
+    
+        
+  </div>
+  
+      
+        
+  <div
+    class="slider__item"
+  >
+    |
+          
+    <span
+      class="slider__item_centered  slider__item_transformed"
+    >
+      70
+    </span>
+    
+        
+  </div>
+  
+      
+        
+  <div
+    class="slider__item"
+  >
+    |
+          
+    <span
+      class="slider__item_centered  slider__item_transformed"
+    >
+      72
+    </span>
+    
+        
+  </div>
+  
+      
+        
+  <div
+    class="slider__item"
+  >
+    |
+          
+    <span
+      class="slider__item_centered  slider__item_transformed"
+    >
+      74
+    </span>
+    
+        
+  </div>
+  
+      
+        
+  <div
+    class="slider__item"
+  >
+    |
+          
+    <span
+      class="slider__item_centered  slider__item_transformed"
+    >
+      76
+    </span>
+    
+        
+  </div>
+  
+      
+        
+  <div
+    class="slider__item"
+  >
+    |
+          
+    <span
+      class="slider__item_centered  slider__item_transformed"
+    >
+      78
+    </span>
+    
+        
+  </div>
+  
+      
+        
+  <div
+    class="slider__item"
+  >
+    |
+          
+    <span
+      class="slider__item_centered  slider__item_transformed"
+    >
+      80
+    </span>
+    
+        
+  </div>
+  
+      
+        
+  <div
+    class="slider__item"
+  >
+    |
+          
+    <span
+      class="slider__item_centered  slider__item_transformed"
+    >
+      82
+    </span>
+    
+        
+  </div>
+  
+      
+        
+  <div
+    class="slider__item"
+  >
+    |
+          
+    <span
+      class="slider__item_centered  slider__item_transformed"
+    >
+      84
+    </span>
+    
+        
+  </div>
+  
+      
+        
+  <div
+    class="slider__item"
+  >
+    |
+          
+    <span
+      class="slider__item_centered  slider__item_transformed"
+    >
+      86
+    </span>
+    
+        
+  </div>
+  
+      
+        
+  <div
+    class="slider__item"
+  >
+    |
+          
+    <span
+      class="slider__item_centered  slider__item_transformed"
+    >
+      88
+    </span>
+    
+        
+  </div>
+  
+      
+        
+  <div
+    class="slider__item"
+  >
+    |
+          
+    <span
+      class="slider__item_centered  slider__item_transformed"
+    >
+      90
+    </span>
+    
+        
+  </div>
+  
+      
+        
+  <div
+    class="slider__item"
+  >
+    |
+          
+    <span
+      class="slider__item_centered  slider__item_transformed"
+    >
+      92
+    </span>
+    
+        
+  </div>
+  
+      
+        
+  <div
+    class="slider__item"
+  >
+    |
+          
+    <span
+      class="slider__item_centered  slider__item_transformed"
+    >
+      94
+    </span>
+    
+        
+  </div>
+  
+      
+        
+  <div
+    class="slider__item"
+  >
+    |
+          
+    <span
+      class="slider__item_centered  slider__item_transformed"
+    >
+      96
+    </span>
+    
+        
+  </div>
+  
+      
+        
+  <div
+    class="slider__item"
+  >
+    |
+          
+    <span
+      class="slider__item_centered  slider__item_transformed"
+    >
+      98
+    </span>
+    
+        
+  </div>
+  
+      
+        
+  <div
+    class="slider__item"
+  >
+    |
+          
+    <span
+      class="slider__item_centered slider__item_maximum slider__item_transformed"
+    >
+      99
+    </span>
+    
+        
+  </div>
+  
+      
+</div>
+`;

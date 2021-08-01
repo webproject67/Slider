@@ -21,7 +21,7 @@ export default class ScaleView extends AbstractView {
 
     if (view === VERTICAL) itemVertical = 'slider__item_transformed';
 
-    for (let i = min; i < max; i += step) {
+    for (let i = min; i <= max; i += step) {
       let itemPlace = '';
       if (i === min) itemPlace = 'slider__item_minimum';
       if (i === max) itemPlace = 'slider__item_maximum';

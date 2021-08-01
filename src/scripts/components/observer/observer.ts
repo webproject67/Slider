@@ -1,4 +1,4 @@
-import { ModelType } from '../types';
+import { ModelType } from '../../types';
 
 export default class Observer {
   private observers: Function[];

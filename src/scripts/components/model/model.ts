@@ -1,4 +1,4 @@
-import Observer from '../observer';
+import Observer from '../observer/observer';
 import { StateType } from '../../types';
 
 export default class Model extends Observer {

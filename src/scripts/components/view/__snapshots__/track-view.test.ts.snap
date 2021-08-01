@@ -1,0 +1,144 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`snapshot renders correctly element1 1`] = `
+<div
+  class="slider__wrapper"
+>
+  
+      
+  <div
+    class="slider__inner "
+  >
+    
+        
+    <div
+      class="slider__scale "
+    >
+      
+        
+    </div>
+    
+        
+        
+    <div
+      class="slider__toggle slider__toggle_maximum"
+      style="left:100%"
+    />
+    
+      
+  </div>
+  
+    
+</div>
+`;
+
+exports[`snapshot renders correctly element2 1`] = `
+<div
+  class="slider__wrapper"
+>
+  
+      
+  <div
+    class="slider__inner "
+  >
+    
+        
+    <div
+      class="slider__scale "
+    >
+      
+        
+    </div>
+    
+        
+    <div
+      class="slider__toggle slider__toggle_minimum"
+      style="left:0%"
+    />
+    
+        
+    <div
+      class="slider__toggle slider__toggle_maximum"
+      style="left:100%"
+    />
+    
+      
+  </div>
+  
+    
+</div>
+`;
+
+exports[`snapshot renders correctly element3 1`] = `
+<div
+  class="slider__wrapper"
+>
+  
+      
+  <div
+    class="slider__inner slider__inner_with-height"
+  >
+    
+        
+    <div
+      class="slider__scale slider__scale_with-height"
+    >
+      
+        
+    </div>
+    
+        
+    <div
+      class="slider__toggle slider__toggle_vertical-minimum"
+      style="top:0%"
+    />
+    
+        
+    <div
+      class="slider__toggle slider__toggle_vertical-maximum"
+      style="top:100%"
+    />
+    
+      
+  </div>
+  
+    
+</div>
+`;
+
+exports[`snapshot renders correctly updated element4 1`] = `
+<div
+  class="slider__wrapper"
+>
+  
+      
+  <div
+    class="slider__inner "
+  >
+    
+        
+    <div
+      class="slider__scale "
+    >
+      
+        
+    </div>
+    
+        
+    <div
+      class="slider__toggle slider__toggle_minimum"
+      style="left:0%"
+    />
+    
+        
+    <div
+      class="slider__toggle slider__toggle_maximum"
+      style="left:100%"
+    />
+    
+      
+  </div>
+  
+    
+</div>
+`;
