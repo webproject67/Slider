@@ -51,7 +51,8 @@ export default class Model extends Observer {
     };
   }
 
-  public getStepValue(value: number) {
+  public getStepValue(val: number) {
+    let value = val;
     const { min, max } = this.state;
     const generalValue = max - min;
     if (value === 0) value = 1;
