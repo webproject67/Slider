@@ -10,7 +10,6 @@ const ImageminPlugin = require('imagemin-webpack-plugin').default;
 
 module.exports = {
   entry: './src/scripts/index.ts',
-  devtool: 'inline-source-map',
   output: {
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'public'),
@@ -44,7 +43,7 @@ module.exports = {
         to: path.resolve(__dirname, 'public/[name].[ext]'),
       },
       {
-        from: path.resolve(__dirname, 'src/scripts/jquery.min.js'),
+        from: path.resolve(__dirname, 'node_modules/jquery/dist/jquery.min.js'),
         to: path.resolve(__dirname, 'public/jquery.min.js'),
       },
       {

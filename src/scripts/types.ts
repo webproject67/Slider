@@ -1,4 +1,4 @@
-import Model from './components/model/model';
+import type Model from './components/model/model';
 
 interface StateType {
   flag: boolean;

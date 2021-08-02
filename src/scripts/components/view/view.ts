@@ -353,11 +353,12 @@ export default class Views extends Observer {
   }
 
   private setPosition(
-    element: HTMLElement,
+    elem: HTMLElement,
     position: string,
     valuePercent: number,
     value?: string,
   ) {
+    const element = elem;
     if (position === HORIZONTAL) {
       element.style.left = `${String(valuePercent)}%`;
     } else {
@@ -410,7 +411,8 @@ export default class Views extends Observer {
         .querySelectorAll('.slider__item:not(:first-child):not(:last-child)');
       let { percent } = model.getPercentScale();
       const { stepPercent, scale } = model.getPercentScale();
-      items.forEach((item) => {
+      items.forEach((it) => {
+        const item = it;
         if (percent > 99) {
           (<HTMLElement>item).style.display = 'none';
           return;
