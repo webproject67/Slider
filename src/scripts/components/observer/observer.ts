@@ -13,7 +13,7 @@ export default class Observer {
 
   public broadcast(
     keys: string[] | ModelType,
-    values?: (number | string | boolean)[] | boolean,
+    values?: (number | string | boolean)[] | boolean
   ) {
     this.observers.forEach((subscriber) => subscriber(keys, values));
   }

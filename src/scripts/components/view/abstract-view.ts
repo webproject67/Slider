@@ -38,7 +38,7 @@ export default abstract class AbstractView {
   private render(state: StateType): HTMLElement {
     return this.createElement(
       this.getTemplate(state),
-      this.getClassName(state),
+      this.getClassName(state)
     );
   }
 }

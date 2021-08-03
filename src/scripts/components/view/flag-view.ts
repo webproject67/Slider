@@ -1,7 +1,5 @@
 import AbstractView from './abstract-view';
-import {
-  NULL_VALUE, RANGE, HORIZONTAL, VERTICAL,
-} from '../../const';
+import { NULL_VALUE, RANGE, HORIZONTAL, VERTICAL } from '../../const';
 import { ModelType, StateType } from '../../types';
 
 export default class FlagView extends AbstractView {
@@ -10,26 +8,29 @@ export default class FlagView extends AbstractView {
   }
 
   getTemplate(state: StateType) {
-    const {
-      range, view, fromPercent, from, min, toPercent, to, max,
-    } = state;
+    const { range, view, fromPercent, from, min, toPercent, to, max } = state;
     let flagMin = '';
     let flagMax = 'slider__flag_maximum';
     let position = 'left';
+    const rangeBol = range === RANGE;
+    const viewHBol = view === HORIZONTAL;
+    const viewVBol = view === VERTICAL;
+    const rangeAndViewH = rangeBol && viewHBol;
+    const rangeAndViewV = rangeBol && viewVBol;
 
-    if (range === RANGE && view === HORIZONTAL) {
+    if (rangeAndViewH) {
       flagMin = `<span class="slider__flag slider__flag_minimum" style="left:${fromPercent}%">${
         from === NULL_VALUE ? min : from
       }</span>`;
     }
 
-    if (range === RANGE && view === VERTICAL) {
+    if (rangeAndViewV) {
       flagMin = `<span class="slider__flag slider__flag-vertical slider__flag-vertical_minimum" style="top:${fromPercent}%">${
         from === NULL_VALUE ? min : from
       }</span>`;
     }
 
-    if (view === VERTICAL) {
+    if (viewVBol) {
       flagMax = 'slider__flag-vertical slider__flag-vertical_maximum';
       position = 'top';
     }
@@ -37,24 +38,28 @@ export default class FlagView extends AbstractView {
     return `
       ${flagMin}
       <span class="slider__flag ${flagMax}" style="${position}:${toPercent}%">${
-  to === NULL_VALUE ? max : to
-}</span>
+      to === NULL_VALUE ? max : to
+    }</span>
     `;
   }
 
   bind(model: ModelType) {
     this.getElement(model)
       .querySelectorAll('.slider__flag')
-      .forEach((elem) => elem.addEventListener(
-        'touchstart',
-        this.handleFlagMouseDown.bind(null, model),
-      ));
+      .forEach((elem) =>
+        elem.addEventListener(
+          'touchstart',
+          this.handleFlagMouseDown.bind(null, model)
+        )
+      );
     this.getElement(model)
       .querySelectorAll('.slider__flag')
-      .forEach((elem) => elem.addEventListener(
-        'mousedown',
-        this.handleFlagMouseDown.bind(null, model),
-      ));
+      .forEach((elem) =>
+        elem.addEventListener(
+          'mousedown',
+          this.handleFlagMouseDown.bind(null, model)
+        )
+      );
   }
 
   public handleFlagMouseDown(model: ModelType, evt: Event): void {}

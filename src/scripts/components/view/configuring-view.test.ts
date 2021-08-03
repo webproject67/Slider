@@ -38,7 +38,7 @@ describe('snapshot', () => {
   test('renders correctly element3', () => {
     model.setValue(
       ['from', 'to', 'view', 'flag', 'scale', 'progress'],
-      [10, 90, 'vertical', false, false, false],
+      [10, 90, 'vertical', false, false, false]
     );
     expect(new ConfiguringView().getElement(model)).toMatchSnapshot();
   });

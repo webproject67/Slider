@@ -25,7 +25,7 @@ export default class ProgressView extends AbstractView {
   bind(model: ModelType) {
     this.getElement(model).addEventListener(
       'click',
-      this.handleBarClick.bind(null, model),
+      this.handleBarClick.bind(null, model)
     );
   }
 

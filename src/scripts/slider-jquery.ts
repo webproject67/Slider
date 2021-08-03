@@ -32,7 +32,7 @@ $.fn.slider = function f(options: object | string, obj?: object) {
       toPercent: 100,
       view: 'horizontal',
     },
-    options,
+    options
   );
 
   const cb = () => {

@@ -30,12 +30,11 @@ export default class Model extends Observer {
   }
 
   public getStepCount(corner: number, str?: string) {
-    const {
-      min, max, step, toPercent, fromPercent,
-    } = this.state;
+    const { min, max, step, toPercent, fromPercent } = this.state;
     const stepCount: number = (max - min) / step;
     const stepPercent: number = 100 / stepCount;
-    let stepPercentResult: number = Math.round(corner / stepPercent) * stepPercent;
+    let stepPercentResult: number =
+      Math.round(corner / stepPercent) * stepPercent;
     if (stepPercentResult < 0) stepPercentResult = 0;
     if (corner > 100 || stepPercentResult > 100) stepPercentResult = 100;
     if (str === 'toPercent') {
@@ -64,12 +63,13 @@ export default class Model extends Observer {
   public getValue(
     percent: number,
     firstValue?: number | null,
-    secondValue?: number | null,
+    secondValue?: number | null
   ) {
     const { min, max, fromPercent } = this.state;
     const { stepPercent } = this.getStepCount(0);
-    const value = Number(((percent / stepPercent) * this.state.step).toFixed())
-      + this.state.min;
+    const value =
+      Number(((percent / stepPercent) * this.state.step).toFixed()) +
+      this.state.min;
     const boolFrom = percent >= fromPercent;
     const boolMinMax = (firstValue || min) >= (secondValue || max);
     return {

@@ -117,7 +117,7 @@ export default class Views extends Observer {
       const { min } = model.getValue(0);
       this.broadcast(
         [input.dataset.name, 'from', 'fromPercent'],
-        [(<HTMLInputElement>input).value, min, 0],
+        [(<HTMLInputElement>input).value, min, 0]
       );
     }
 
@@ -129,14 +129,14 @@ export default class Views extends Observer {
     if (generalInput2) {
       this.broadcast(
         [input.dataset.name!],
-        [(<HTMLInputElement>input).checked],
+        [(<HTMLInputElement>input).checked]
       );
     }
   }
 
   private handleItemClick(
     model: ModelType,
-    evt: Event & { pageX?: number; pageY?: number },
+    evt: Event & { pageX?: number; pageY?: number }
   ): void {
     const scale: HTMLElement = <HTMLElement>evt.currentTarget;
     const stepList: HTMLElement = scale.parentElement!;
@@ -161,20 +161,22 @@ export default class Views extends Observer {
     let { stepPercentResult } = model.getStepCount(corner);
 
     if (scale.children.length) {
-      if (scale.children[0].className.split(' ')[1] === ITEM_MINIMUM) stepPercentResult = 0;
-      if (scale.children[0].className.split(' ')[1] === ITEM_MAXIMUM) stepPercentResult = 100;
+      if (scale.children[0].className.split(' ')[1] === ITEM_MINIMUM)
+        stepPercentResult = 0;
+      if (scale.children[0].className.split(' ')[1] === ITEM_MAXIMUM)
+        stepPercentResult = 100;
     }
     const { value, boolFrom } = model.getValue(stepPercentResult);
 
     if (boolFrom) {
       this.broadcast(
         ['toPercent', 'to', 'draft'],
-        [stepPercentResult, value, 0],
+        [stepPercentResult, value, 0]
       );
     } else {
       this.broadcast(
         ['fromPercent', 'from', 'draft'],
-        [stepPercentResult, value, 0],
+        [stepPercentResult, value, 0]
       );
     }
   }
@@ -218,7 +220,7 @@ export default class Views extends Observer {
     model: ModelType,
     evt: Event & { touches?: TouchList; pageX?: number },
     slider: HTMLElement,
-    toggle: HTMLElement,
+    toggle: HTMLElement
   ) {
     const boxLeft: number = slider.offsetLeft;
     const boxRight: number = boxLeft + slider.clientWidth;
@@ -227,7 +229,8 @@ export default class Views extends Observer {
     let value!: number;
     let stepPercentResult!: number;
     let flag!: HTMLElement;
-    const getEvent = () => (evt.type.search('touch') !== -1 ? evt.touches![0] : evt);
+    const getEvent = () =>
+      evt.type.search('touch') !== -1 ? evt.touches![0] : evt;
     const event = getEvent();
     const corner: number = ((event.pageX! - sliderLeft) / sliderWidth) * 100;
 
@@ -242,7 +245,8 @@ export default class Views extends Observer {
       stepPercentResult = this.setToValue(model, corner).stepPercentResult;
       flag = <HTMLElement>slider.querySelector('.slider__flag_maximum');
     }
-    if (flag) this.setPosition(flag, 'horizontal', stepPercentResult, String(value));
+    if (flag)
+      this.setPosition(flag, 'horizontal', stepPercentResult, String(value));
     this.setPosition(toggle, 'horizontal', stepPercentResult);
   }
 
@@ -250,7 +254,7 @@ export default class Views extends Observer {
     model: ModelType,
     evt: Event & { touches?: TouchList; pageY?: number },
     slider: HTMLElement,
-    toggle: HTMLElement,
+    toggle: HTMLElement
   ) {
     const boxTop: number = slider.offsetTop;
     const boxBottom: number = boxTop + slider.clientHeight;
@@ -258,7 +262,8 @@ export default class Views extends Observer {
     let value!: number;
     let stepPercentResult!: number;
     let flag!: HTMLElement;
-    const getEvent = () => (evt.type.search('touch') !== -1 ? evt.touches![0] : evt);
+    const getEvent = () =>
+      evt.type.search('touch') !== -1 ? evt.touches![0] : evt;
     const event = getEvent();
     const corner: number = ((event.pageY! - boxTop) / sliderHeight) * 100;
 
@@ -277,7 +282,8 @@ export default class Views extends Observer {
         slider.querySelector('.slider__flag-vertical_maximum')
       );
     }
-    if (flag) this.setPosition(flag, 'vertical', stepPercentResult, String(value));
+    if (flag)
+      this.setPosition(flag, 'vertical', stepPercentResult, String(value));
     this.setPosition(toggle, 'vertical', stepPercentResult);
   }
 
@@ -314,19 +320,21 @@ export default class Views extends Observer {
   private replaceToggle(
     model: ModelType,
     evt: Event,
-    toggle: HTMLElement,
+    toggle: HTMLElement
   ): void {
     evt.preventDefault();
     const slider: HTMLElement = toggle.parentElement!;
     let onMouseMove: { (evt: Event): void };
+    const toggleMin = toggle.className.split(' ')[1] === TOGGLE_MINIMUM;
+    const toggleMax = toggle.className.split(' ')[1] === TOGGLE_MAXIMUM;
+    const toggleBol = toggleMin || toggleMax;
 
-    if (
-      toggle.className.split(' ')[1] === TOGGLE_MINIMUM
-      || toggle.className.split(' ')[1] === TOGGLE_MAXIMUM
-    ) {
-      onMouseMove = (evt: Event): void => this.mouseMoveX(model, evt, slider, toggle);
+    if (toggleBol) {
+      onMouseMove = (evt: Event): void =>
+        this.mouseMoveX(model, evt, slider, toggle);
     } else {
-      onMouseMove = (evt: Event): void => this.mouseMoveY(model, evt, slider, toggle);
+      onMouseMove = (evt: Event): void =>
+        this.mouseMoveY(model, evt, slider, toggle);
     }
 
     const onMouseUp = () => {
@@ -356,7 +364,7 @@ export default class Views extends Observer {
     elem: HTMLElement,
     position: string,
     valuePercent: number,
-    value?: string,
+    value?: string
   ) {
     const element = elem;
     if (position === HORIZONTAL) {
@@ -433,7 +441,7 @@ export default class Views extends Observer {
     const max: number = Number(
       (<HTMLInputElement>(
         input.parentElement!.parentElement!.querySelector('.slider__max')
-      )).value,
+      )).value
     );
     const { min, boolMinMax } = model.getValue(0, null, max);
     if (boolMinMax) {
@@ -447,7 +455,7 @@ export default class Views extends Observer {
     const min: number = Number(
       (<HTMLInputElement>(
         input.parentElement!.parentElement!.querySelector('.slider__min')
-      )).value,
+      )).value
     );
     const { max, boolMinMax } = model.getValue(0, min, null);
     if (boolMinMax) {
@@ -461,7 +469,7 @@ export default class Views extends Observer {
     const valueStart: number = Number(
       (<HTMLInputElement>(
         input.parentElement!.parentElement!.querySelector('.slider__step')
-      )).value,
+      )).value
     );
     const value = model.getStepValue(valueStart);
     this.broadcast(['step'], [value]);
