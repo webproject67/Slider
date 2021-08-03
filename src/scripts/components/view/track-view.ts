@@ -8,24 +8,27 @@ export default class TrackView extends AbstractView {
   }
 
   getTemplate(state: StateType) {
-    const {
-      fromPercent, toPercent, range, view,
-    } = state;
+    const { fromPercent, toPercent, range, view } = state;
     let innerWithHeight = '';
     let scaleWithHeight = '';
     let toggleMin = '';
     let toggleMax = 'slider__toggle_maximum';
     let position = 'left';
+    const rangeBol = range === RANGE;
+    const viewHBol = view === HORIZONTAL;
+    const viewVBol = view === VERTICAL;
+    const rangeAndViewH = rangeBol && viewHBol;
+    const rangeAndViewV = rangeBol && viewVBol;
 
-    if (range === RANGE && view === HORIZONTAL) {
+    if (rangeAndViewH) {
       toggleMin = `<div class="slider__toggle slider__toggle_minimum" style="left:${fromPercent}%"></div>`;
     }
 
-    if (range === RANGE && view === VERTICAL) {
+    if (rangeAndViewV) {
       toggleMin = `<div class="slider__toggle slider__toggle_vertical-minimum" style="top:${fromPercent}%"></div>`;
     }
 
-    if (view === VERTICAL) {
+    if (viewVBol) {
       innerWithHeight = 'slider__inner_with-height';
       scaleWithHeight = 'slider__scale_with-height';
       toggleMax = 'slider__toggle_vertical-maximum';
@@ -45,16 +48,20 @@ export default class TrackView extends AbstractView {
   bind(model: ModelType) {
     this.getElement(model)
       .querySelectorAll('.slider__toggle')
-      .forEach((elem) => elem.addEventListener(
-        'touchstart',
-        this.handleToggleMouseDown.bind(null, model),
-      ));
+      .forEach((elem) =>
+        elem.addEventListener(
+          'touchstart',
+          this.handleToggleMouseDown.bind(null, model)
+        )
+      );
     this.getElement(model)
       .querySelectorAll('.slider__toggle')
-      .forEach((elem) => elem.addEventListener(
-        'mousedown',
-        this.handleToggleMouseDown.bind(null, model),
-      ));
+      .forEach((elem) =>
+        elem.addEventListener(
+          'mousedown',
+          this.handleToggleMouseDown.bind(null, model)
+        )
+      );
   }
 
   public handleToggleMouseDown(model: ModelType, evt: Event): void {}

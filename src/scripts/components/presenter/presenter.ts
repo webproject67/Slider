@@ -19,7 +19,8 @@ export default class Presenter {
     };
     this.view.subscribe(cbView);
 
-    const cbModel = (model: ModelType, bool: boolean) => this.view.updateView(model, bool);
+    const cbModel = (model: ModelType, bool: boolean) =>
+      this.view.updateView(model, bool);
     this.model.subscribe(cbModel);
 
     this.model.broadcast(this.model);

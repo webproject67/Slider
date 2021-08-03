@@ -13,9 +13,7 @@ export default class ScaleView extends AbstractView {
   }
 
   getTemplate(state: StateType) {
-    const {
-      min, max, step, view,
-    } = state;
+    const { min, max, step, view } = state;
     let template: string = '';
     let itemVertical = '';
 
@@ -47,7 +45,9 @@ export default class ScaleView extends AbstractView {
   bind(model: ModelType) {
     this.getElement(model)
       .querySelectorAll('.slider__item')
-      .forEach((elem) => elem.addEventListener('click', this.handleItemClick.bind(null, model)));
+      .forEach((elem) =>
+        elem.addEventListener('click', this.handleItemClick.bind(null, model))
+      );
   }
 
   public handleItemClick(model: ModelType, evt: Event): void {}

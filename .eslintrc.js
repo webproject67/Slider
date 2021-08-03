@@ -6,7 +6,12 @@ module.exports = {
     jest: true,
     jquery: true,
   },
-  extends: ['airbnb-base', 'plugin:fsd/all', 'plugin:import/typescript'],
+  extends: [
+    'airbnb-base',
+    'plugin:fsd/all',
+    'plugin:import/typescript',
+    'prettier',
+  ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaVersion: 10,

@@ -104,7 +104,7 @@ describe('handleFlagMouseDown', () => {
   const somethingSpy = jest.spyOn(view.flagView, 'handleFlagMouseDown');
   test('spyOn flag horizontal max mouseDown', () => {
     const element = createElementSlider(model).querySelector(
-      '.slider__flag_maximum',
+      '.slider__flag_maximum'
     );
     view.flagView.handleFlagMouseDown(model, getEvt(element));
     expect(somethingSpy).toHaveBeenCalledTimes(1);
@@ -113,7 +113,7 @@ describe('handleFlagMouseDown', () => {
   test('spyOn flag horizontal min mouseDown', () => {
     state.range = 'range';
     const element = createElementSlider(model).querySelector(
-      '.slider__flag_minimum',
+      '.slider__flag_minimum'
     );
     view.flagView.handleFlagMouseDown(model, getEvt(element));
     expect(somethingSpy).toHaveBeenCalledTimes(2);
@@ -122,7 +122,7 @@ describe('handleFlagMouseDown', () => {
   test('spyOn flag vertical max mouseDown', () => {
     state.view = 'vertical';
     const element = createElementSlider(model).querySelector(
-      '.slider__flag-vertical_maximum',
+      '.slider__flag-vertical_maximum'
     );
     view.flagView.handleFlagMouseDown(model, getEvt(element));
     expect(somethingSpy).toHaveBeenCalledTimes(3);
@@ -130,7 +130,7 @@ describe('handleFlagMouseDown', () => {
 
   test('spyOn flag vertical min mouseDown', () => {
     const element = createElementSlider(model).querySelector(
-      '.slider__flag-vertical_minimum',
+      '.slider__flag-vertical_minimum'
     );
     view.flagView.handleFlagMouseDown(model, getEvt(element));
     expect(somethingSpy).toHaveBeenCalledTimes(4);
@@ -142,7 +142,7 @@ describe('handleItemClick', () => {
   test('spyOn first item click', () => {
     state.view = 'horizontal';
     const element = createElementSlider(model).querySelector(
-      '.slider__item:first-child',
+      '.slider__item:first-child'
     );
     view.scaleView.handleItemClick(model, getEvt(element));
     expect(somethingSpy).toHaveBeenCalledTimes(1);
@@ -151,7 +151,7 @@ describe('handleItemClick', () => {
   test('spyOn last item click', () => {
     state.view = 'vertical';
     const element = createElementSlider(model).querySelector(
-      '.slider__item:last-child',
+      '.slider__item:last-child'
     );
     view.scaleView.handleItemClick(model, getEvt(element));
     expect(somethingSpy).toHaveBeenCalledTimes(2);
@@ -159,7 +159,7 @@ describe('handleItemClick', () => {
 
   test('spyOn second item click', () => {
     const element = createElementSlider(model).querySelector(
-      '.slider__item:nth-child(2)',
+      '.slider__item:nth-child(2)'
     );
     view.scaleView.handleItemClick(model, getEvt(element));
     expect(somethingSpy).toHaveBeenCalledTimes(3);
@@ -214,7 +214,7 @@ describe('handleInputChange', () => {
 
   test('spyOn input flag change', () => {
     const element = createElementSlider(model).querySelector(
-      '.slider__flag-checkbox',
+      '.slider__flag-checkbox'
     );
     view.configuringView.handleInputChange(model, getEvt(element));
     expect(somethingSpy).toHaveBeenCalledTimes(8);
