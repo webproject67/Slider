@@ -9,10 +9,10 @@
     "build": "webpack --mode production",
     "start": "webpack-dev-server --mode development --open",
     "eslint": "eslint --ext .ts src/ --fix",
-    "jest": "jest",
+    "jest": "jest --coverage",
     "jest:watch": "jest --watch",
     "test": "npm run eslint && npm run jest",
-    "prettier": "prettier --write src/pug/blocks/**/*.{scss,ts}"
+    "prettier": "prettier --write src/scripts/**/*.ts"
   },
   "repository": {
     "type": "git",
@@ -32,8 +32,6 @@
     "@prettier/plugin-pug": "^1.15.3",
     "@types/jest": "^26.0.23",
     "@types/jquery": "^3.5.5",
-    "@types/testing-library__dom": "^7.5.0",
-    "@types/testing-library__jest-dom": "^5.9.5",
     "@typescript-eslint/eslint-plugin": "^4.28.5",
     "@typescript-eslint/parser": "^4.24.0",
     "autoprefixer": "^9.7.4",

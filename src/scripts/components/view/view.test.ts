@@ -83,11 +83,47 @@ describe('updateView', () => {
 });
 
 describe('handleToggleMouseDown', () => {
-  const somethingSpy = jest.spyOn(view.trackView, 'handleToggleMouseDown');
-  test('spyOn toggle mouseDown', () => {
-    const element = createElementSlider(model).querySelector('.slider__toggle');
-    view.trackView.handleToggleMouseDown(model, getEvt(element));
-    expect(somethingSpy).toHaveBeenCalledTimes(1);
+  const triggerMouseEvent = (node: Element, eventType: string) => {
+    const clickEvent = document.createEvent('MouseEvents');
+    clickEvent.initEvent(eventType, true, true);
+    node.dispatchEvent(clickEvent);
+    document.dispatchEvent(clickEvent);
+  };
+
+  const events = (targetNode: Element) => {
+    triggerMouseEvent(targetNode, 'mouseover');
+    triggerMouseEvent(targetNode, 'mousedown');
+    triggerMouseEvent(targetNode, 'mousemove');
+    triggerMouseEvent(targetNode, 'mouseup');
+  };
+  test('mouse horizontal toggle max', () => {
+    const targetNode =
+      createElementSlider(model).querySelector('.slider__toggle');
+    events(targetNode!);
+  });
+
+  test('mouse horizontal toggle min', () => {
+    state.range = 'range';
+    state.flag = false;
+    const targetNode =
+      createElementSlider(model).querySelector('.slider__toggle');
+    events(targetNode!);
+  });
+
+  test('mouse vertical toggle max', () => {
+    state.view = 'vertical';
+    state.range = 'one';
+    const targetNode =
+      createElementSlider(model).querySelector('.slider__toggle');
+    events(targetNode!);
+  });
+
+  test('mouse vertical toggle min', () => {
+    state.range = 'range';
+    state.flag = true;
+    const targetNode =
+      createElementSlider(model).querySelector('.slider__toggle');
+    events(targetNode!);
   });
 });
 
@@ -103,6 +139,7 @@ describe('handleBarClick', () => {
 describe('handleFlagMouseDown', () => {
   const somethingSpy = jest.spyOn(view.flagView, 'handleFlagMouseDown');
   test('spyOn flag horizontal max mouseDown', () => {
+    state.view = 'horizontal';
     const element = createElementSlider(model).querySelector(
       '.slider__flag_maximum'
     );

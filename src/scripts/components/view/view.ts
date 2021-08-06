@@ -327,9 +327,9 @@ export default class Views extends Observer {
     let onMouseMove: { (evt: Event): void };
     const toggleMin = toggle.className.split(' ')[1] === TOGGLE_MINIMUM;
     const toggleMax = toggle.className.split(' ')[1] === TOGGLE_MAXIMUM;
-    const toggleBol = toggleMin || toggleMax;
+    const toggleBool = toggleMin || toggleMax;
 
-    if (toggleBol) {
+    if (toggleBool) {
       onMouseMove = (evt: Event): void =>
         this.mouseMoveX(model, evt, slider, toggle);
     } else {
