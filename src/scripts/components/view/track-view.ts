@@ -14,11 +14,11 @@ export default class TrackView extends AbstractView {
     let toggleMin = '';
     let toggleMax = 'slider__toggle_maximum';
     let position = 'left';
-    const rangeBol = range === RANGE;
-    const viewHBol = view === HORIZONTAL;
-    const viewVBol = view === VERTICAL;
-    const rangeAndViewH = rangeBol && viewHBol;
-    const rangeAndViewV = rangeBol && viewVBol;
+    const rangeBool = range === RANGE;
+    const viewHBool = view === HORIZONTAL;
+    const viewVBool = view === VERTICAL;
+    const rangeAndViewH = rangeBool && viewHBool;
+    const rangeAndViewV = rangeBool && viewVBool;
 
     if (rangeAndViewH) {
       toggleMin = `<div class="slider__toggle slider__toggle_minimum" style="left:${fromPercent}%"></div>`;
@@ -28,7 +28,7 @@ export default class TrackView extends AbstractView {
       toggleMin = `<div class="slider__toggle slider__toggle_vertical-minimum" style="top:${fromPercent}%"></div>`;
     }
 
-    if (viewVBol) {
+    if (viewVBool) {
       innerWithHeight = 'slider__inner_with-height';
       scaleWithHeight = 'slider__scale_with-height';
       toggleMax = 'slider__toggle_vertical-maximum';

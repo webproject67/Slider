@@ -12,11 +12,11 @@ export default class FlagView extends AbstractView {
     let flagMin = '';
     let flagMax = 'slider__flag_maximum';
     let position = 'left';
-    const rangeBol = range === RANGE;
-    const viewHBol = view === HORIZONTAL;
-    const viewVBol = view === VERTICAL;
-    const rangeAndViewH = rangeBol && viewHBol;
-    const rangeAndViewV = rangeBol && viewVBol;
+    const rangeBool = range === RANGE;
+    const viewHBool = view === HORIZONTAL;
+    const viewVBool = view === VERTICAL;
+    const rangeAndViewH = rangeBool && viewHBool;
+    const rangeAndViewV = rangeBool && viewVBool;
 
     if (rangeAndViewH) {
       flagMin = `<span class="slider__flag slider__flag_minimum" style="left:${fromPercent}%">${
@@ -30,7 +30,7 @@ export default class FlagView extends AbstractView {
       }</span>`;
     }
 
-    if (viewVBol) {
+    if (viewVBool) {
       flagMax = 'slider__flag-vertical slider__flag-vertical_maximum';
       position = 'top';
     }
