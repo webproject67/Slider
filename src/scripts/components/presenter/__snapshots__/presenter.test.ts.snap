@@ -9332,6 +9332,7 @@ Model {
           
         
           <label
+            class="slider__label"
             for="horizontal#banana"
           >
             Горизонтальный
@@ -9349,6 +9350,7 @@ Model {
           
         
           <label
+            class="slider__label"
             for="vertical#banana"
           >
             Вертикальный
@@ -9375,6 +9377,7 @@ Model {
           
         
           <label
+            class="slider__label"
             for="one#banana"
           >
             Одиночное значение
@@ -9392,6 +9395,7 @@ Model {
           
         
           <label
+            class="slider__label"
             for="range#banana"
           >
             Интервал
@@ -9415,6 +9419,7 @@ Model {
           
         
           <label
+            class="slider__label"
             for="flag#banana"
           >
             Значение
@@ -9438,6 +9443,7 @@ Model {
           
         
           <label
+            class="slider__label"
             for="scale#banana"
           >
             Шкала
@@ -9461,6 +9467,7 @@ Model {
           
         
           <label
+            class="slider__label"
             for="progress#banana"
           >
             Прогресс
@@ -11480,6 +11487,7 @@ Model {
             
         
             <label
+              class="slider__label"
               for="horizontal#banana"
             >
               Горизонтальный
@@ -11497,6 +11505,7 @@ Model {
             
         
             <label
+              class="slider__label"
               for="vertical#banana"
             >
               Вертикальный
@@ -11523,6 +11532,7 @@ Model {
             
         
             <label
+              class="slider__label"
               for="one#banana"
             >
               Одиночное значение
@@ -11540,6 +11550,7 @@ Model {
             
         
             <label
+              class="slider__label"
               for="range#banana"
             >
               Интервал
@@ -11563,6 +11574,7 @@ Model {
             
         
             <label
+              class="slider__label"
               for="flag#banana"
             >
               Значение
@@ -11586,6 +11598,7 @@ Model {
             
         
             <label
+              class="slider__label"
               for="scale#banana"
             >
               Шкала
@@ -11609,6 +11622,7 @@ Model {
             
         
             <label
+              class="slider__label"
               for="progress#banana"
             >
               Прогресс

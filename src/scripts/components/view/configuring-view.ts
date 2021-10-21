@@ -65,39 +65,39 @@ export default class ConfiguringView extends AbstractView {
         <input data-name="view" class="slider__view" type="radio" name="view${mainName}" value="horizontal" id="horizontal${mainName}" ${
       view === HORIZONTAL ? 'checked' : ''
     }>
-        <label for="horizontal${mainName}">Горизонтальный</label>
+        <label class="slider__label" for="horizontal${mainName}">Горизонтальный</label>
         <input data-name="view" class="slider__view" type="radio" name="view${mainName}" value="vertical" id="vertical${mainName}" ${
       view === VERTICAL ? 'checked' : ''
     }>
-        <label for="vertical${mainName}">Вертикальный</label>
+        <label class="slider__label" for="vertical${mainName}">Вертикальный</label>
       </div>
       <div class="slider__input">
         <input data-name="range" class="slider__range" type="radio" name="range${mainName}" value="one" id="one${mainName}" ${
       range === ONE ? 'checked' : ''
     }>
-        <label for="one${mainName}">Одиночное значение</label>
+        <label class="slider__label" for="one${mainName}">Одиночное значение</label>
         <input data-name="range" class="slider__range" type="radio" name="range${mainName}" value="range" id="range${mainName}" ${
       range === RANGE ? 'checked' : ''
     }>
-        <label for="range${mainName}">Интервал</label>
+        <label class="slider__label" for="range${mainName}">Интервал</label>
       </div>
       <div class="slider__input">
         <input data-name="flag" class="slider__flag-checkbox" type="checkbox" id="flag${mainName}" ${
       flag ? 'checked' : ''
     }>
-        <label for="flag${mainName}">Значение</label>
+        <label class="slider__label" for="flag${mainName}">Значение</label>
       </div>
       <div class="slider__input">
         <input data-name="scale" class="slider__scale-checkbox" type="checkbox" id="scale${mainName}" ${
       scale ? 'checked' : ''
     }>
-        <label for="scale${mainName}">Шкала</label>
+        <label class="slider__label" for="scale${mainName}">Шкала</label>
       </div>
       <div class="slider__input">
         <input data-name="progress" class="slider__progress-checkbox" type="checkbox" id="progress${mainName}" ${
       progress ? 'checked' : ''
     }>
-        <label for="progress${mainName}">Прогресс</label>
+        <label class="slider__label" for="progress${mainName}">Прогресс</label>
       </div>
     `;
   }
