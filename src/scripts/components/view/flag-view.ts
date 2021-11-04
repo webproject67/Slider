@@ -1,6 +1,6 @@
 import AbstractView from './abstract-view';
 import { NULL_VALUE, RANGE, HORIZONTAL, VERTICAL } from '../../const';
-import { ModelType, StateType } from '../../types';
+import StateType from '../../types';
 
 export default class FlagView extends AbstractView {
   getClassName() {
@@ -43,24 +43,24 @@ export default class FlagView extends AbstractView {
     `;
   }
 
-  bind(model: ModelType) {
-    this.getElement(model)
+  bind(state: StateType) {
+    this.getElement(state)
       .querySelectorAll('.slider__flag')
       .forEach((elem) =>
         elem.addEventListener(
           'touchstart',
-          this.handleFlagMouseDown.bind(null, model)
+          this.handleFlagMouseDown.bind(null, state)
         )
       );
-    this.getElement(model)
+    this.getElement(state)
       .querySelectorAll('.slider__flag')
       .forEach((elem) =>
         elem.addEventListener(
           'mousedown',
-          this.handleFlagMouseDown.bind(null, model)
+          this.handleFlagMouseDown.bind(null, state)
         )
       );
   }
 
-  public handleFlagMouseDown(model: ModelType, evt: Event): void {}
+  public handleFlagMouseDown(state: StateType, evt: Event): void {}
 }

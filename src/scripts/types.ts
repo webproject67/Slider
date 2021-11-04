@@ -1,5 +1,3 @@
-import type Model from './components/model/model';
-
 interface StateType {
   flag: boolean;
   from: number;
@@ -11,8 +9,6 @@ interface StateType {
   draft: number;
   start: number;
   configuring: number;
-  main?: HTMLElement;
-  mainName?: string;
   scale: boolean;
   step: number;
   to: number;
@@ -20,6 +16,4 @@ interface StateType {
   view: string;
 }
 
-type ModelType = Model;
-
-export { StateType, ModelType };
+export default StateType;

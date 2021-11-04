@@ -1,6 +1,6 @@
 import AbstractView from './abstract-view';
 import { RANGE, HORIZONTAL, VERTICAL } from '../../const';
-import { ModelType, StateType } from '../../types';
+import StateType from '../../types';
 
 export default class TrackView extends AbstractView {
   getClassName() {
@@ -45,24 +45,24 @@ export default class TrackView extends AbstractView {
     `;
   }
 
-  bind(model: ModelType) {
-    this.getElement(model)
+  bind(state: StateType) {
+    this.getElement(state)
       .querySelectorAll('.slider__toggle')
       .forEach((elem) =>
         elem.addEventListener(
           'touchstart',
-          this.handleToggleMouseDown.bind(null, model)
+          this.handleToggleMouseDown.bind(null, state)
         )
       );
-    this.getElement(model)
+    this.getElement(state)
       .querySelectorAll('.slider__toggle')
       .forEach((elem) =>
         elem.addEventListener(
           'mousedown',
-          this.handleToggleMouseDown.bind(null, model)
+          this.handleToggleMouseDown.bind(null, state)
         )
       );
   }
 
-  public handleToggleMouseDown(model: ModelType, evt: Event): void {}
+  public handleToggleMouseDown(state: StateType, evt: Event): void {}
 }

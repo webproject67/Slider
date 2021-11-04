@@ -2,163 +2,113 @@
 
 exports[`snapshot renders correctly element1 1`] = `
 <div
-  class="slider__inputs"
+  class="slider__labels"
 >
   
       
-  <div
-    class="slider__input"
+  <label
+    class="slider__label slider__label_state_displayed"
   >
-    
-        
-    <label
-      class="slider__label"
-      for="min#banana"
-    >
-      Минимальное значение
-    </label>
-    
-        
-    <br />
-    
+    Минимальное значение
         
     <input
-      class="slider__min slider__number"
+      class="slider__min"
       data-name="min"
-      id="min#banana"
       type="number"
       value="0"
     />
     
       
-  </div>
+  </label>
   
       
-  <div
-    class="slider__input"
+  <label
+    class="slider__label slider__label_state_displayed"
   >
-    
-        
-    <label
-      class="slider__label"
-      for="max#banana"
-    >
-      Максимальное значение
-    </label>
-    
-        
-    <br />
-    
+    Максимальное значение
         
     <input
-      class="slider__max slider__number"
+      class="slider__max"
       data-name="max"
-      id="max#banana"
       type="number"
       value="100"
     />
     
       
-  </div>
+  </label>
   
       
       
-  <div
-    class="slider__input"
+  <label
+    class="slider__label slider__label_state_displayed"
   >
-    
-        
-    <label
-      class="slider__label"
-      for="to#banana"
-    >
-      Текущее значение
-    </label>
-    
-        
-    <br />
-    
+    Текущее значение
         
     <input
-      class="slider__to slider__number"
+      class="slider__to"
       data-name="to"
-      id="to#banana"
       readonly=""
       type="number"
       value="100"
     />
     
       
-  </div>
+  </label>
   
       
-  <div
-    class="slider__input"
+  <label
+    class="slider__label slider__label_state_displayed"
   >
-    
-        
-    <label
-      class="slider__label"
-      for="step#banana"
-    >
-      Шаг
-    </label>
-    
-        
-    <br />
-    
+    Шаг
         
     <input
-      class="slider__step slider__number"
+      class="slider__step"
       data-name="step"
-      id="step#banana"
       type="number"
       value="1"
     />
     
       
-  </div>
+  </label>
   
       
   <div
-    class="slider__input"
+    class="slider__radio"
   >
-    
-        
-    <input
-      checked=""
-      class="slider__view"
-      data-name="view"
-      id="horizontal#banana"
-      name="view#banana"
-      type="radio"
-      value="horizontal"
-    />
     
         
     <label
       class="slider__label"
-      for="horizontal#banana"
     >
       Горизонтальный
-    </label>
-    
+          
+      <input
+        checked=""
+        class="slider__view"
+        data-name="view"
+        name="view3739"
+        type="radio"
+        value="horizontal"
+      />
+      
         
-    <input
-      class="slider__view"
-      data-name="view"
-      id="vertical#banana"
-      name="view#banana"
-      type="radio"
-      value="vertical"
-    />
+    </label>
     
         
     <label
       class="slider__label"
-      for="vertical#banana"
     >
       Вертикальный
+          
+      <input
+        class="slider__view"
+        data-name="view"
+        name="view3739"
+        type="radio"
+        value="vertical"
+      />
+      
+        
     </label>
     
       
@@ -166,123 +116,94 @@ exports[`snapshot renders correctly element1 1`] = `
   
       
   <div
-    class="slider__input"
+    class="slider__radio"
   >
-    
-        
-    <input
-      checked=""
-      class="slider__range"
-      data-name="range"
-      id="one#banana"
-      name="range#banana"
-      type="radio"
-      value="one"
-    />
     
         
     <label
       class="slider__label"
-      for="one#banana"
     >
       Одиночное значение
-    </label>
-    
+          
+      <input
+        checked=""
+        class="slider__range"
+        data-name="range"
+        name="range5624"
+        type="radio"
+        value="one"
+      />
+      
         
-    <input
-      class="slider__range"
-      data-name="range"
-      id="range#banana"
-      name="range#banana"
-      type="radio"
-      value="range"
-    />
+    </label>
     
         
     <label
       class="slider__label"
-      for="range#banana"
     >
       Интервал
+          
+      <input
+        class="slider__range"
+        data-name="range"
+        name="range5624"
+        type="radio"
+        value="range"
+      />
+      
+        
     </label>
     
       
   </div>
   
       
-  <div
-    class="slider__input"
+  <label
+    class="slider__label"
   >
-    
+    Значение
         
     <input
       checked=""
       class="slider__flag-checkbox"
       data-name="flag"
-      id="flag#banana"
       type="checkbox"
     />
     
-        
-    <label
-      class="slider__label"
-      for="flag#banana"
-    >
-      Значение
-    </label>
-    
       
-  </div>
+  </label>
   
       
-  <div
-    class="slider__input"
+  <label
+    class="slider__label"
   >
-    
+    Шкала
         
     <input
       checked=""
       class="slider__scale-checkbox"
       data-name="scale"
-      id="scale#banana"
       type="checkbox"
     />
     
-        
-    <label
-      class="slider__label"
-      for="scale#banana"
-    >
-      Шкала
-    </label>
-    
       
-  </div>
+  </label>
   
       
-  <div
-    class="slider__input"
+  <label
+    class="slider__label"
   >
-    
+    Прогресс
         
     <input
       checked=""
-      class="slider__progress-checkbox"
+      class="slider__progress"
       data-name="progress"
-      id="progress#banana"
       type="checkbox"
     />
     
-        
-    <label
-      class="slider__label"
-      for="progress#banana"
-    >
-      Прогресс
-    </label>
-    
       
-  </div>
+  </label>
   
     
 </div>
@@ -290,193 +211,131 @@ exports[`snapshot renders correctly element1 1`] = `
 
 exports[`snapshot renders correctly element2 1`] = `
 <div
-  class="slider__inputs"
+  class="slider__labels"
 >
   
       
-  <div
-    class="slider__input"
+  <label
+    class="slider__label slider__label_state_displayed"
   >
-    
-        
-    <label
-      class="slider__label"
-      for="min#banana"
-    >
-      Минимальное значение
-    </label>
-    
-        
-    <br />
-    
+    Минимальное значение
         
     <input
-      class="slider__min slider__number"
+      class="slider__min"
       data-name="min"
-      id="min#banana"
       type="number"
       value="0"
     />
     
       
-  </div>
+  </label>
   
       
-  <div
-    class="slider__input"
+  <label
+    class="slider__label slider__label_state_displayed"
   >
-    
-        
-    <label
-      class="slider__label"
-      for="max#banana"
-    >
-      Максимальное значение
-    </label>
-    
-        
-    <br />
-    
+    Максимальное значение
         
     <input
-      class="slider__max slider__number"
+      class="slider__max"
       data-name="max"
-      id="max#banana"
       type="number"
       value="100"
     />
     
       
-  </div>
+  </label>
   
       
         
-  <div
-    class="slider__input"
+  <label
+    class="slider__label slider__label_state_displayed"
   >
-    
-          
-    <label
-      class="slider__label"
-      for="from#banana"
-    >
-      От
-    </label>
-    
-          
-    <br />
-    
+    От
           
     <input
-      class="slider__from slider__number"
+      class="slider__from"
       data-name="from"
-      id="from#banana"
       readonly=""
       type="number"
       value="0"
     />
     
         
-  </div>
+  </label>
   
       
       
-  <div
-    class="slider__input"
+  <label
+    class="slider__label slider__label_state_displayed"
   >
-    
-        
-    <label
-      class="slider__label"
-      for="to#banana"
-    >
-      До
-    </label>
-    
-        
-    <br />
-    
+    До
         
     <input
-      class="slider__to slider__number"
+      class="slider__to"
       data-name="to"
-      id="to#banana"
       readonly=""
       type="number"
       value="100"
     />
     
       
-  </div>
+  </label>
   
       
-  <div
-    class="slider__input"
+  <label
+    class="slider__label slider__label_state_displayed"
   >
-    
-        
-    <label
-      class="slider__label"
-      for="step#banana"
-    >
-      Шаг
-    </label>
-    
-        
-    <br />
-    
+    Шаг
         
     <input
-      class="slider__step slider__number"
+      class="slider__step"
       data-name="step"
-      id="step#banana"
       type="number"
       value="1"
     />
     
       
-  </div>
+  </label>
   
       
   <div
-    class="slider__input"
+    class="slider__radio"
   >
-    
-        
-    <input
-      checked=""
-      class="slider__view"
-      data-name="view"
-      id="horizontal#banana"
-      name="view#banana"
-      type="radio"
-      value="horizontal"
-    />
     
         
     <label
       class="slider__label"
-      for="horizontal#banana"
     >
       Горизонтальный
-    </label>
-    
+          
+      <input
+        checked=""
+        class="slider__view"
+        data-name="view"
+        name="view585"
+        type="radio"
+        value="horizontal"
+      />
+      
         
-    <input
-      class="slider__view"
-      data-name="view"
-      id="vertical#banana"
-      name="view#banana"
-      type="radio"
-      value="vertical"
-    />
+    </label>
     
         
     <label
       class="slider__label"
-      for="vertical#banana"
     >
       Вертикальный
+          
+      <input
+        class="slider__view"
+        data-name="view"
+        name="view585"
+        type="radio"
+        value="vertical"
+      />
+      
+        
     </label>
     
       
@@ -484,123 +343,94 @@ exports[`snapshot renders correctly element2 1`] = `
   
       
   <div
-    class="slider__input"
+    class="slider__radio"
   >
-    
-        
-    <input
-      class="slider__range"
-      data-name="range"
-      id="one#banana"
-      name="range#banana"
-      type="radio"
-      value="one"
-    />
     
         
     <label
       class="slider__label"
-      for="one#banana"
     >
       Одиночное значение
-    </label>
-    
+          
+      <input
+        class="slider__range"
+        data-name="range"
+        name="range7950"
+        type="radio"
+        value="one"
+      />
+      
         
-    <input
-      checked=""
-      class="slider__range"
-      data-name="range"
-      id="range#banana"
-      name="range#banana"
-      type="radio"
-      value="range"
-    />
+    </label>
     
         
     <label
       class="slider__label"
-      for="range#banana"
     >
       Интервал
+          
+      <input
+        checked=""
+        class="slider__range"
+        data-name="range"
+        name="range7950"
+        type="radio"
+        value="range"
+      />
+      
+        
     </label>
     
       
   </div>
   
       
-  <div
-    class="slider__input"
+  <label
+    class="slider__label"
   >
-    
+    Значение
         
     <input
       checked=""
       class="slider__flag-checkbox"
       data-name="flag"
-      id="flag#banana"
       type="checkbox"
     />
     
-        
-    <label
-      class="slider__label"
-      for="flag#banana"
-    >
-      Значение
-    </label>
-    
       
-  </div>
+  </label>
   
       
-  <div
-    class="slider__input"
+  <label
+    class="slider__label"
   >
-    
+    Шкала
         
     <input
       checked=""
       class="slider__scale-checkbox"
       data-name="scale"
-      id="scale#banana"
       type="checkbox"
     />
     
-        
-    <label
-      class="slider__label"
-      for="scale#banana"
-    >
-      Шкала
-    </label>
-    
       
-  </div>
+  </label>
   
       
-  <div
-    class="slider__input"
+  <label
+    class="slider__label"
   >
-    
+    Прогресс
         
     <input
       checked=""
-      class="slider__progress-checkbox"
+      class="slider__progress"
       data-name="progress"
-      id="progress#banana"
       type="checkbox"
     />
     
-        
-    <label
-      class="slider__label"
-      for="progress#banana"
-    >
-      Прогресс
-    </label>
-    
       
-  </div>
+  </label>
   
     
 </div>
@@ -608,193 +438,131 @@ exports[`snapshot renders correctly element2 1`] = `
 
 exports[`snapshot renders correctly element3 1`] = `
 <div
-  class="slider__inputs"
+  class="slider__labels"
 >
   
       
-  <div
-    class="slider__input"
+  <label
+    class="slider__label slider__label_state_displayed"
   >
-    
-        
-    <label
-      class="slider__label"
-      for="min#banana"
-    >
-      Минимальное значение
-    </label>
-    
-        
-    <br />
-    
+    Минимальное значение
         
     <input
-      class="slider__min slider__number"
+      class="slider__min"
       data-name="min"
-      id="min#banana"
       type="number"
       value="0"
     />
     
       
-  </div>
+  </label>
   
       
-  <div
-    class="slider__input"
+  <label
+    class="slider__label slider__label_state_displayed"
   >
-    
-        
-    <label
-      class="slider__label"
-      for="max#banana"
-    >
-      Максимальное значение
-    </label>
-    
-        
-    <br />
-    
+    Максимальное значение
         
     <input
-      class="slider__max slider__number"
+      class="slider__max"
       data-name="max"
-      id="max#banana"
       type="number"
       value="100"
     />
     
       
-  </div>
+  </label>
   
       
         
-  <div
-    class="slider__input"
+  <label
+    class="slider__label slider__label_state_displayed"
   >
-    
-          
-    <label
-      class="slider__label"
-      for="from#banana"
-    >
-      От
-    </label>
-    
-          
-    <br />
-    
+    От
           
     <input
-      class="slider__from slider__number"
+      class="slider__from"
       data-name="from"
-      id="from#banana"
       readonly=""
       type="number"
       value="10"
     />
     
         
-  </div>
+  </label>
   
       
       
-  <div
-    class="slider__input"
+  <label
+    class="slider__label slider__label_state_displayed"
   >
-    
-        
-    <label
-      class="slider__label"
-      for="to#banana"
-    >
-      До
-    </label>
-    
-        
-    <br />
-    
+    До
         
     <input
-      class="slider__to slider__number"
+      class="slider__to"
       data-name="to"
-      id="to#banana"
       readonly=""
       type="number"
       value="90"
     />
     
       
-  </div>
+  </label>
   
       
-  <div
-    class="slider__input"
+  <label
+    class="slider__label slider__label_state_displayed"
   >
-    
-        
-    <label
-      class="slider__label"
-      for="step#banana"
-    >
-      Шаг
-    </label>
-    
-        
-    <br />
-    
+    Шаг
         
     <input
-      class="slider__step slider__number"
+      class="slider__step"
       data-name="step"
-      id="step#banana"
       type="number"
       value="1"
     />
     
       
-  </div>
+  </label>
   
       
   <div
-    class="slider__input"
+    class="slider__radio"
   >
-    
-        
-    <input
-      class="slider__view"
-      data-name="view"
-      id="horizontal#banana"
-      name="view#banana"
-      type="radio"
-      value="horizontal"
-    />
     
         
     <label
       class="slider__label"
-      for="horizontal#banana"
     >
       Горизонтальный
-    </label>
-    
+          
+      <input
+        class="slider__view"
+        data-name="view"
+        name="view5819"
+        type="radio"
+        value="horizontal"
+      />
+      
         
-    <input
-      checked=""
-      class="slider__view"
-      data-name="view"
-      id="vertical#banana"
-      name="view#banana"
-      type="radio"
-      value="vertical"
-    />
+    </label>
     
         
     <label
       class="slider__label"
-      for="vertical#banana"
     >
       Вертикальный
+          
+      <input
+        checked=""
+        class="slider__view"
+        data-name="view"
+        name="view5819"
+        type="radio"
+        value="vertical"
+      />
+      
+        
     </label>
     
       
@@ -802,120 +570,91 @@ exports[`snapshot renders correctly element3 1`] = `
   
       
   <div
-    class="slider__input"
+    class="slider__radio"
   >
-    
-        
-    <input
-      class="slider__range"
-      data-name="range"
-      id="one#banana"
-      name="range#banana"
-      type="radio"
-      value="one"
-    />
     
         
     <label
       class="slider__label"
-      for="one#banana"
     >
       Одиночное значение
-    </label>
-    
+          
+      <input
+        class="slider__range"
+        data-name="range"
+        name="range6915"
+        type="radio"
+        value="one"
+      />
+      
         
-    <input
-      checked=""
-      class="slider__range"
-      data-name="range"
-      id="range#banana"
-      name="range#banana"
-      type="radio"
-      value="range"
-    />
+    </label>
     
         
     <label
       class="slider__label"
-      for="range#banana"
     >
       Интервал
+          
+      <input
+        checked=""
+        class="slider__range"
+        data-name="range"
+        name="range6915"
+        type="radio"
+        value="range"
+      />
+      
+        
     </label>
     
       
   </div>
   
       
-  <div
-    class="slider__input"
+  <label
+    class="slider__label"
   >
-    
+    Значение
         
     <input
       class="slider__flag-checkbox"
       data-name="flag"
-      id="flag#banana"
       type="checkbox"
     />
     
-        
-    <label
-      class="slider__label"
-      for="flag#banana"
-    >
-      Значение
-    </label>
-    
       
-  </div>
+  </label>
   
       
-  <div
-    class="slider__input"
+  <label
+    class="slider__label"
   >
-    
+    Шкала
         
     <input
       class="slider__scale-checkbox"
       data-name="scale"
-      id="scale#banana"
       type="checkbox"
     />
     
-        
-    <label
-      class="slider__label"
-      for="scale#banana"
-    >
-      Шкала
-    </label>
-    
       
-  </div>
+  </label>
   
       
-  <div
-    class="slider__input"
+  <label
+    class="slider__label"
   >
-    
+    Прогресс
         
     <input
-      class="slider__progress-checkbox"
+      class="slider__progress"
       data-name="progress"
-      id="progress#banana"
       type="checkbox"
     />
     
-        
-    <label
-      class="slider__label"
-      for="progress#banana"
-    >
-      Прогресс
-    </label>
-    
       
-  </div>
+  </label>
   
     
 </div>

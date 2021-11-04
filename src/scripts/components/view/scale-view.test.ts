@@ -1,9 +1,6 @@
 import ScaleView from './scale-view';
 import Model from '../model/model';
 
-const main = document.createElement('div');
-main.id = 'banana';
-
 const state = {
   flag: true,
   from: -10000,
@@ -22,17 +19,17 @@ const state = {
   view: 'horizontal',
 };
 
-const model = new Model(main, state);
+const model = new Model(state);
 const scaleView = new ScaleView();
 
 describe('snapshot', () => {
   test('renders correctly element1', () => {
-    expect(new ScaleView().getElement(model)).toMatchSnapshot();
+    expect(new ScaleView().getElement(state)).toMatchSnapshot();
   });
 
   test('renders correctly element2', () => {
     model.setValue(['view', 'max', 'step'], ['vertical', 99, 2]);
-    expect(new ScaleView().getElement(model)).toMatchSnapshot();
+    expect(new ScaleView().getElement(state)).toMatchSnapshot();
   });
 });
 
@@ -40,7 +37,7 @@ describe('handleItemClick', () => {
   test('spyOn item click', () => {
     const somethingSpy = jest.spyOn(scaleView, 'handleItemClick');
     let evt: any;
-    scaleView.handleItemClick(model, evt);
+    scaleView.handleItemClick(state, evt);
     expect(somethingSpy).toHaveBeenCalledTimes(1);
   });
 });
