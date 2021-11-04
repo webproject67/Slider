@@ -1,8 +1,5 @@
 import Model from './model';
 
-const firstMain = document.createElement('div');
-firstMain.id = 'banana';
-
 const firstState = {
   flag: true,
   from: -10000,
@@ -21,80 +18,12 @@ const firstState = {
   view: 'horizontal',
 };
 
-const firstModel = new Model(firstMain, firstState);
-
-describe('getPercentScale', () => {
-  test('passed unknown, returned scale 5', () => {
-    const { scale } = firstModel.getPercentScale();
-    expect(scale).toBe(5);
-  });
-});
+const firstModel = new Model(firstState);
 
 describe('getState', () => {
   test('passed unknown, returned state', () => {
     const state = firstModel.getState();
     expect(state).toBe(firstState);
-  });
-});
-
-describe('getStepCount', () => {
-  test('passed 50, returned stepCount 100', () => {
-    const { stepCount } = firstModel.getStepCount(50);
-    expect(stepCount).toBe(100);
-  });
-  test('passed 50, returned stepPercent 1', () => {
-    const { stepPercent } = firstModel.getStepCount(50);
-    expect(stepPercent).toBe(1);
-  });
-  test('passed 50, returned stepPercentResult 50', () => {
-    const { stepPercentResult } = firstModel.getStepCount(50);
-    expect(stepPercentResult).toBe(50);
-  });
-  test('passed -20, returned stepPercentResult 0', () => {
-    const { stepPercentResult } = firstModel.getStepCount(-20);
-    expect(stepPercentResult).toBe(0);
-  });
-  test('passed 120, returned stepPercentResult 100', () => {
-    const { stepPercentResult } = firstModel.getStepCount(120);
-    expect(stepPercentResult).toBe(100);
-  });
-  test('passed (50, `toPercent`), returned stepPercentResult 50', () => {
-    const { stepPercentResult } = firstModel.getStepCount(50, 'toPercent');
-    expect(stepPercentResult).toBe(50);
-  });
-  test('passed (90, `toPercent`), returned stepPercentResult 88', () => {
-    const { stepPercentResult } = firstModel.getStepCount(90, 'toPercent');
-    expect(stepPercentResult).toBe(88);
-  });
-  test('passed (50, `fromPercent`), returned stepPercentResult 50', () => {
-    const { stepPercentResult } = firstModel.getStepCount(50, 'fromPercent');
-    expect(stepPercentResult).toBe(50);
-  });
-  test('passed (3, `fromPercent`), returned stepPercentResult 12', () => {
-    const { stepPercentResult } = firstModel.getStepCount(3, 'fromPercent');
-    expect(stepPercentResult).toBe(12);
-  });
-});
-
-describe('getStepValue', () => {
-  test('passed 0, returned 1', () => {
-    const step1 = firstModel.getStepValue(0);
-    expect(step1).toBe(1);
-  });
-  test('passed -5, returned 5', () => {
-    const step2 = firstModel.getStepValue(-5);
-    expect(step2).toBe(5);
-  });
-  test('passed 500, returned 100', () => {
-    const step3 = firstModel.getStepValue(500);
-    expect(step3).toBe(100);
-  });
-});
-
-describe('getValue', () => {
-  test('passed 70, returned 70', () => {
-    const { value } = firstModel.getValue(70);
-    expect(value).toBe(70);
   });
 });
 
@@ -161,35 +90,5 @@ describe('setValueState', () => {
   });
   test('set value unknownValue on unknown', () => {
     firstModel.setValue(['unknownValue'], ['unknown']);
-  });
-});
-
-const secondMain = document.createElement('div');
-secondMain.className = 'cat';
-
-const secondState = {
-  flag: true,
-  from: -10000,
-  fromPercent: 0,
-  max: 50,
-  min: 10,
-  progress: true,
-  range: 'one',
-  draft: 0,
-  start: 1,
-  configuring: 0,
-  scale: true,
-  step: 10,
-  to: -10000,
-  toPercent: 100,
-  view: 'horizontal',
-};
-
-const secondModel = new Model(secondMain, secondState);
-
-describe('getPercentScale', () => {
-  test('passed unknown, returned scale 1', () => {
-    const { scale } = secondModel.getPercentScale();
-    expect(scale).toBe(1);
   });
 });

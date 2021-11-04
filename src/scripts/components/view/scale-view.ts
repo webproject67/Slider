@@ -1,6 +1,6 @@
 import AbstractView from './abstract-view';
 import { VERTICAL } from '../../const';
-import { ModelType, StateType } from '../../types';
+import StateType from '../../types';
 
 export default class ScaleView extends AbstractView {
   getClassName(state: StateType) {
@@ -42,13 +42,13 @@ export default class ScaleView extends AbstractView {
     return template;
   }
 
-  bind(model: ModelType) {
-    this.getElement(model)
+  bind(state: StateType) {
+    this.getElement(state)
       .querySelectorAll('.slider__item')
       .forEach((elem) =>
-        elem.addEventListener('click', this.handleItemClick.bind(null, model))
+        elem.addEventListener('click', this.handleItemClick.bind(null, state))
       );
   }
 
-  public handleItemClick(model: ModelType, evt: Event): void {}
+  public handleItemClick(state: StateType, evt: Event): void {}
 }

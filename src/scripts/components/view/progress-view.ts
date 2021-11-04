@@ -1,6 +1,6 @@
 import AbstractView from './abstract-view';
 import { VERTICAL } from '../../const';
-import { ModelType, StateType } from '../../types';
+import StateType from '../../types';
 
 export default class ProgressView extends AbstractView {
   getClassName() {
@@ -22,12 +22,12 @@ export default class ProgressView extends AbstractView {
     return `${bar}`;
   }
 
-  bind(model: ModelType) {
-    this.getElement(model).addEventListener(
+  bind(state: StateType) {
+    this.getElement(state).addEventListener(
       'click',
-      this.handleBarClick.bind(null, model)
+      this.handleBarClick.bind(null, state)
     );
   }
 
-  public handleBarClick(model: ModelType, evt: Event): void {}
+  public handleBarClick(state: StateType, evt: Event): void {}
 }

@@ -1,9 +1,6 @@
 import ProgressView from './progress-view';
 import Model from '../model/model';
 
-const main = document.createElement('div');
-main.id = 'banana';
-
 const state = {
   flag: true,
   from: -10000,
@@ -22,17 +19,17 @@ const state = {
   view: 'horizontal',
 };
 
-const model = new Model(main, state);
+const model = new Model(state);
 const progressView = new ProgressView();
 
 describe('snapshot', () => {
   test('renders correctly element1', () => {
-    expect(new ProgressView().getElement(model)).toMatchSnapshot();
+    expect(new ProgressView().getElement(state)).toMatchSnapshot();
   });
 
   test('renders correctly element2', () => {
     model.setValue(['view'], ['vertical']);
-    expect(new ProgressView().getElement(model)).toMatchSnapshot();
+    expect(new ProgressView().getElement(state)).toMatchSnapshot();
   });
 });
 
@@ -40,7 +37,7 @@ describe('handleBarClick', () => {
   test('spyOn bar click', () => {
     const somethingSpy = jest.spyOn(progressView, 'handleBarClick');
     let evt: any;
-    progressView.handleBarClick(model, evt);
+    progressView.handleBarClick(state, evt);
     expect(somethingSpy).toHaveBeenCalledTimes(1);
   });
 });

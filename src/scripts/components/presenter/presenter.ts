@@ -1,6 +1,6 @@
 import Model from '../model/model';
 import View from '../view/view';
-import { StateType, ModelType } from '../../types';
+import StateType from '../../types';
 
 export default class Presenter {
   public model: Model;
@@ -8,8 +8,8 @@ export default class Presenter {
   private view: View;
 
   constructor(main: HTMLElement, state: StateType) {
-    this.model = new Model(main, state);
-    this.view = new View();
+    this.model = new Model(state);
+    this.view = new View(main);
     this.init();
   }
 
@@ -19,10 +19,10 @@ export default class Presenter {
     };
     this.view.subscribe(cbView);
 
-    const cbModel = (model: ModelType, bool: boolean) =>
-      this.view.updateView(model, bool);
+    const cbModel = (state: StateType, bool: boolean) =>
+      this.view.updateView(state, bool);
     this.model.subscribe(cbModel);
 
-    this.model.broadcast(this.model);
+    this.model.broadcast(this.model.state);
   }
 }

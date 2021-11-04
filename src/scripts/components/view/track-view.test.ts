@@ -1,9 +1,6 @@
 import TrackView from './track-view';
 import Model from '../model/model';
 
-const main = document.createElement('div');
-main.id = 'banana';
-
 const state = {
   flag: true,
   from: -10000,
@@ -22,27 +19,27 @@ const state = {
   view: 'horizontal',
 };
 
-const model = new Model(main, state);
+const model = new Model(state);
 const trackView = new TrackView();
 
 describe('snapshot', () => {
   test('renders correctly element1', () => {
-    expect(new TrackView().getElement(model)).toMatchSnapshot();
+    expect(new TrackView().getElement(state)).toMatchSnapshot();
   });
 
   test('renders correctly element2', () => {
     model.setValue(['range'], ['range']);
-    expect(new TrackView().getElement(model)).toMatchSnapshot();
+    expect(new TrackView().getElement(state)).toMatchSnapshot();
   });
 
   test('renders correctly element3', () => {
     model.setValue(['view'], ['vertical']);
-    expect(new TrackView().getElement(model)).toMatchSnapshot();
+    expect(new TrackView().getElement(state)).toMatchSnapshot();
   });
 
   test('renders correctly updated element4', () => {
     model.setValue(['view'], ['horizontal']);
-    expect(new TrackView().getUpdatedElement(model)).toMatchSnapshot();
+    expect(new TrackView().getUpdatedElement(state)).toMatchSnapshot();
   });
 });
 
@@ -50,7 +47,7 @@ describe('handleToggleMouseDown', () => {
   test('spyOn toggle mouseDown', () => {
     const somethingSpy = jest.spyOn(trackView, 'handleToggleMouseDown');
     let evt: any;
-    trackView.handleToggleMouseDown(model, evt);
+    trackView.handleToggleMouseDown(state, evt);
     expect(somethingSpy).toHaveBeenCalledTimes(1);
   });
 });

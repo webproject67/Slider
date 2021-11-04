@@ -129,7 +129,7 @@
   }
 }
 
-.slider__inputs {
+.slider__labels {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -137,17 +137,25 @@
 }
 
 .slider__label {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
   cursor: pointer;
+
+  &_state_displayed {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 }
 
-.slider__number {
-  width: 177px;
+.slider__radio {
+  display: flex;
 }
 
 .slider__view,
 .slider__range,
 .slider__flag-checkbox,
 .slider__scale-checkbox,
-.slider__progress-checkbox {
+.slider__progress {
   cursor: pointer;
 }

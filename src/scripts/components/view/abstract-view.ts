@@ -1,20 +1,20 @@
-import { StateType, ModelType } from '../../types';
+import StateType from '../../types';
 
 export default abstract class AbstractView {
   private elem: HTMLElement | undefined;
 
-  public getElement(model: ModelType): HTMLElement {
+  public getElement(state: StateType): HTMLElement {
     if (this.elem) {
       return this.elem;
     }
-    this.elem = this.render(model.state);
-    this.bind(model);
+    this.elem = this.render(state);
+    this.bind(state);
     return this.elem;
   }
 
-  public getUpdatedElement(model: ModelType): HTMLElement {
-    this.elem = this.render(model.state);
-    this.bind(model);
+  public getUpdatedElement(state: StateType): HTMLElement {
+    this.elem = this.render(state);
+    this.bind(state);
     return this.elem;
   }
 
@@ -22,11 +22,17 @@ export default abstract class AbstractView {
     return '';
   }
 
+  protected getRandomNumber(): number {
+    const min = 0;
+    const max = 10000;
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
+
   protected getTemplate(state: StateType): string {
     return '';
   }
 
-  protected bind(model: ModelType): void {}
+  protected bind(state: StateType): void {}
 
   private createElement(template: string, className: string): HTMLElement {
     const newElement: HTMLElement = document.createElement('div');

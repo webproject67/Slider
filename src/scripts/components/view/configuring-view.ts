@@ -1,117 +1,107 @@
 import AbstractView from './abstract-view';
 import { NULL_VALUE, HORIZONTAL, VERTICAL, ONE, RANGE } from '../../const';
-import { ModelType, StateType } from '../../types';
+import StateType from '../../types';
 
 export default class ConfiguringView extends AbstractView {
+  viewID: number;
+
+  rangeID: number;
+
+  constructor() {
+    super();
+    this.viewID = this.getRandomNumber();
+    this.rangeID = this.getRandomNumber();
+  }
+
   getClassName() {
-    return 'slider__inputs';
+    return 'slider__labels';
   }
 
   getTemplate(state: StateType) {
-    const {
-      range,
-      from,
-      min,
-      max,
-      to,
-      step,
-      view,
-      flag,
-      scale,
-      progress,
-      mainName,
-    } = state;
+    const { range, from, min, max, to, step, view, flag, scale, progress } =
+      state;
     let fromTemplate = '';
     let toTemplate = 'Текущее значение';
 
     if (range === RANGE) {
       fromTemplate = `
-        <div class="slider__input">
-          <label class="slider__label" for="from${mainName}">От</label>
-          <br>
-          <input data-name="from" class="slider__from slider__number" type="number" value=${
+        <label class="slider__label slider__label_state_displayed">От
+          <input data-name="from" class="slider__from" type="number" value=${
             from === NULL_VALUE ? min : from
-          } id="from${mainName}" readonly>
-        </div>
+          } readonly>
+        </label>
       `;
       toTemplate = 'До';
     }
 
     return `
-      <div class="slider__input">
-        <label class="slider__label" for="min${mainName}">Минимальное значение</label>
-        <br>
-        <input data-name="min" class="slider__min slider__number" type="number" value=${min} id="min${mainName}">
-      </div>
-      <div class="slider__input">
-        <label class="slider__label" for="max${mainName}">Максимальное значение</label>
-        <br>
-        <input data-name="max" class="slider__max slider__number" type="number" value=${max} id="max${mainName}">
-      </div>
+      <label class="slider__label slider__label_state_displayed">Минимальное значение
+        <input data-name="min" class="slider__min" type="number" value=${min}>
+      </label>
+      <label class="slider__label slider__label_state_displayed">Максимальное значение
+        <input data-name="max" class="slider__max" type="number" value=${max}>
+      </label>
       ${fromTemplate}
-      <div class="slider__input">
-        <label class="slider__label" for="to${mainName}">${toTemplate}</label>
-        <br>
-        <input data-name="to" class="slider__to slider__number" type="number" value=${
+      <label class="slider__label slider__label_state_displayed">${toTemplate}
+        <input data-name="to" class="slider__to" type="number" value=${
           to === NULL_VALUE ? max : to
-        } id="to${mainName}" readonly>
+        } readonly>
+      </label>
+      <label class="slider__label slider__label_state_displayed">Шаг
+        <input data-name="step" class="slider__step" type="number" value=${step}>
+      </label>
+      <div class="slider__radio">
+        <label class="slider__label">Горизонтальный
+          <input data-name="view" class="slider__view" type="radio" name="view${
+            this.viewID
+          }" value="horizontal" ${view === HORIZONTAL ? 'checked' : ''}>
+        </label>
+        <label class="slider__label">Вертикальный
+          <input data-name="view" class="slider__view" type="radio" name="view${
+            this.viewID
+          }" value="vertical" ${view === VERTICAL ? 'checked' : ''}>
+        </label>
       </div>
-      <div class="slider__input">
-        <label class="slider__label" for="step${mainName}">Шаг</label>
-        <br>
-        <input data-name="step" class="slider__step slider__number" type="number" value=${step} id="step${mainName}">
+      <div class="slider__radio">
+        <label class="slider__label">Одиночное значение
+          <input data-name="range" class="slider__range" type="radio" name="range${
+            this.rangeID
+          }" value="one" ${range === ONE ? 'checked' : ''}>
+        </label>
+        <label class="slider__label">Интервал
+          <input data-name="range" class="slider__range" type="radio" name="range${
+            this.rangeID
+          }" value="range" ${range === RANGE ? 'checked' : ''}>
+        </label>
       </div>
-      <div class="slider__input">
-        <input data-name="view" class="slider__view" type="radio" name="view${mainName}" value="horizontal" id="horizontal${mainName}" ${
-      view === HORIZONTAL ? 'checked' : ''
-    }>
-        <label class="slider__label" for="horizontal${mainName}">Горизонтальный</label>
-        <input data-name="view" class="slider__view" type="radio" name="view${mainName}" value="vertical" id="vertical${mainName}" ${
-      view === VERTICAL ? 'checked' : ''
-    }>
-        <label class="slider__label" for="vertical${mainName}">Вертикальный</label>
-      </div>
-      <div class="slider__input">
-        <input data-name="range" class="slider__range" type="radio" name="range${mainName}" value="one" id="one${mainName}" ${
-      range === ONE ? 'checked' : ''
-    }>
-        <label class="slider__label" for="one${mainName}">Одиночное значение</label>
-        <input data-name="range" class="slider__range" type="radio" name="range${mainName}" value="range" id="range${mainName}" ${
-      range === RANGE ? 'checked' : ''
-    }>
-        <label class="slider__label" for="range${mainName}">Интервал</label>
-      </div>
-      <div class="slider__input">
-        <input data-name="flag" class="slider__flag-checkbox" type="checkbox" id="flag${mainName}" ${
-      flag ? 'checked' : ''
-    }>
-        <label class="slider__label" for="flag${mainName}">Значение</label>
-      </div>
-      <div class="slider__input">
-        <input data-name="scale" class="slider__scale-checkbox" type="checkbox" id="scale${mainName}" ${
-      scale ? 'checked' : ''
-    }>
-        <label class="slider__label" for="scale${mainName}">Шкала</label>
-      </div>
-      <div class="slider__input">
-        <input data-name="progress" class="slider__progress-checkbox" type="checkbox" id="progress${mainName}" ${
-      progress ? 'checked' : ''
-    }>
-        <label class="slider__label" for="progress${mainName}">Прогресс</label>
-      </div>
+      <label class="slider__label">Значение
+        <input data-name="flag" class="slider__flag-checkbox" type="checkbox" ${
+          flag ? 'checked' : ''
+        }>
+      </label>
+      <label class="slider__label">Шкала
+        <input data-name="scale" class="slider__scale-checkbox" type="checkbox" ${
+          scale ? 'checked' : ''
+        }>
+      </label>
+      <label class="slider__label">Прогресс
+        <input data-name="progress" class="slider__progress" type="checkbox" ${
+          progress ? 'checked' : ''
+        }>
+      </label>
     `;
   }
 
-  bind(model: ModelType) {
-    this.getElement(model)
+  bind(state: StateType) {
+    this.getElement(state)
       .querySelectorAll('input')
       .forEach((elem) =>
         elem.addEventListener(
           'change',
-          this.handleInputChange.bind(null, model)
+          this.handleInputChange.bind(null, state)
         )
       );
   }
 
-  public handleInputChange(model: ModelType, evt: Event): void {}
+  public handleInputChange(state: StateType, evt: Event): void {}
 }
