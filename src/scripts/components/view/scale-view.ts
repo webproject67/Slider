@@ -1,6 +1,6 @@
-import AbstractView from './abstract-view';
+import AbstractView from './Abstract-view';
 import { VERTICAL } from '../../const';
-import StateType from '../../types';
+import StateType from '../../StateType';
 
 export default class ScaleView extends AbstractView {
   getClassName(state: StateType) {

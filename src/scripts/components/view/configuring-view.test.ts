@@ -1,5 +1,5 @@
-import ConfiguringView from './configuring-view';
-import Model from '../model/model';
+import ConfiguringView from './Configuring-view';
+import Model from '../model/Model';
 
 const state = {
   flag: true,
