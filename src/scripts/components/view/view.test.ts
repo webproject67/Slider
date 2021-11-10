@@ -1,5 +1,5 @@
-import View from './view';
-import StateType from '../../types';
+import View from './View';
+import StateType from '../../StateType';
 
 const main = document.createElement('div');
 main.id = 'banana';

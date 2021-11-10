@@ -1,4 +1,4 @@
-import Presenter from './presenter';
+import Presenter from './Presenter';
 
 const main = document.createElement('div');
 main.id = 'banana';

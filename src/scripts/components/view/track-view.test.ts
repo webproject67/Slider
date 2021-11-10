@@ -1,5 +1,5 @@
-import TrackView from './track-view';
-import Model from '../model/model';
+import TrackView from './Track-view';
+import Model from '../model/Model';
 
 const state = {
   flag: true,

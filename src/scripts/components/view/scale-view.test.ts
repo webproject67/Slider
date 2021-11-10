@@ -1,5 +1,5 @@
-import ScaleView from './scale-view';
-import Model from '../model/model';
+import ScaleView from './Scale-view';
+import Model from '../model/Model';
 
 const state = {
   flag: true,

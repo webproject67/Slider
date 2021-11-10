@@ -1,9 +1,9 @@
-import Observer from '../observer/observer';
-import TrackView from './track-view';
-import ProgressView from './progress-view';
-import ConfiguringView from './configuring-view';
-import ScaleView from './scale-view';
-import FlagView from './flag-view';
+import Observer from '../observer/Observer';
+import TrackView from './Track-view';
+import ProgressView from './Progress-view';
+import ConfiguringView from './Configuring-view';
+import ScaleView from './Scale-view';
+import FlagView from './Flag-view';
 import {
   MIN,
   MAX,
@@ -22,7 +22,7 @@ import {
   ITEM_MAXIMUM,
   HORIZONTAL,
 } from '../../const';
-import StateType from '../../types';
+import StateType from '../../StateType';
 
 export default class Views extends Observer {
   public trackView!: TrackView;

@@ -1,4 +1,4 @@
-import StateType from '../../types';
+import StateType from '../../StateType';
 
 export default class Observer {
   private observers: Function[];

@@ -1,5 +1,5 @@
-import FlagView from './flag-view';
-import Model from '../model/model';
+import FlagView from './Flag-view';
+import Model from '../model/Model';
 
 const state = {
   flag: true,

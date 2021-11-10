@@ -1,6 +1,6 @@
-import Model from '../model/model';
-import View from '../view/view';
-import StateType from '../../types';
+import Model from '../model/Model';
+import View from '../view/View';
+import StateType from '../../StateType';
 
 export default class Presenter {
   public model: Model;

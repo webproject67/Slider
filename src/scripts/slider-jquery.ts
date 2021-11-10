@@ -1,4 +1,4 @@
-import Presenter from './components/presenter/presenter';
+import Presenter from './components/presenter/Presenter';
 
 let presenter: Presenter;
 $.fn.slider = function f(options: object | string, obj?: object) {
