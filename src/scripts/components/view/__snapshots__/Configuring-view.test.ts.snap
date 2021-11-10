@@ -86,7 +86,7 @@ exports[`snapshot renders correctly element1 1`] = `
         checked=""
         class="slider__view"
         data-name="view"
-        name="view196"
+        name="view7441"
         type="radio"
         value="horizontal"
       />
@@ -103,7 +103,7 @@ exports[`snapshot renders correctly element1 1`] = `
       <input
         class="slider__view"
         data-name="view"
-        name="view196"
+        name="view7441"
         type="radio"
         value="vertical"
       />
@@ -129,7 +129,7 @@ exports[`snapshot renders correctly element1 1`] = `
         checked=""
         class="slider__range"
         data-name="range"
-        name="range4340"
+        name="range1190"
         type="radio"
         value="one"
       />
@@ -146,7 +146,7 @@ exports[`snapshot renders correctly element1 1`] = `
       <input
         class="slider__range"
         data-name="range"
-        name="range4340"
+        name="range1190"
         type="radio"
         value="range"
       />
@@ -313,7 +313,7 @@ exports[`snapshot renders correctly element2 1`] = `
         checked=""
         class="slider__view"
         data-name="view"
-        name="view4450"
+        name="view9961"
         type="radio"
         value="horizontal"
       />
@@ -330,7 +330,7 @@ exports[`snapshot renders correctly element2 1`] = `
       <input
         class="slider__view"
         data-name="view"
-        name="view4450"
+        name="view9961"
         type="radio"
         value="vertical"
       />
@@ -355,7 +355,7 @@ exports[`snapshot renders correctly element2 1`] = `
       <input
         class="slider__range"
         data-name="range"
-        name="range8006"
+        name="range4666"
         type="radio"
         value="one"
       />
@@ -373,7 +373,7 @@ exports[`snapshot renders correctly element2 1`] = `
         checked=""
         class="slider__range"
         data-name="range"
-        name="range8006"
+        name="range4666"
         type="radio"
         value="range"
       />
@@ -539,7 +539,7 @@ exports[`snapshot renders correctly element3 1`] = `
       <input
         class="slider__view"
         data-name="view"
-        name="view5321"
+        name="view5597"
         type="radio"
         value="horizontal"
       />
@@ -557,7 +557,7 @@ exports[`snapshot renders correctly element3 1`] = `
         checked=""
         class="slider__view"
         data-name="view"
-        name="view5321"
+        name="view5597"
         type="radio"
         value="vertical"
       />
@@ -582,7 +582,7 @@ exports[`snapshot renders correctly element3 1`] = `
       <input
         class="slider__range"
         data-name="range"
-        name="range9376"
+        name="range6980"
         type="radio"
         value="one"
       />
@@ -600,7 +600,7 @@ exports[`snapshot renders correctly element3 1`] = `
         checked=""
         class="slider__range"
         data-name="range"
-        name="range9376"
+        name="range6980"
         type="radio"
         value="range"
       />
