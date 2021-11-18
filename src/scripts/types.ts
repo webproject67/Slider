@@ -1,4 +1,4 @@
-interface StateType {
+interface stateType {
   flag: boolean;
   from: number;
   fromPercent: number;
@@ -6,7 +6,6 @@ interface StateType {
   min: number;
   progress: boolean;
   range: string;
-  draft: number;
   start: number;
   configuring: number;
   scale: boolean;
@@ -16,4 +15,13 @@ interface StateType {
   view: string;
 }
 
-export default StateType;
+interface dataType {
+  label: string;
+  dataset: string;
+  type: string;
+  readonly?: boolean;
+  name?: string;
+  value?: string;
+}
+
+export { stateType, dataType };

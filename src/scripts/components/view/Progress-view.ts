@@ -1,33 +1,47 @@
-import AbstractView from './Abstract-view';
-import { VERTICAL } from '../../const';
-import StateType from '../../StateType';
+import { HORIZONTAL } from '../../const';
+import { stateType } from '../../types';
 
-export default class ProgressView extends AbstractView {
-  getClassName() {
-    return 'slider__bars';
+export default class ProgressView {
+  private state: stateType;
+
+  private element!: HTMLElement;
+
+  constructor(state: stateType) {
+    this.state = state;
+    this.createElement();
   }
 
-  getTemplate(state: StateType) {
-    const { fromPercent, toPercent, view } = state;
-    let bar = `<div class="slider__bar" style="margin-left:${fromPercent}%;margin-right:${
-      100 - toPercent
-    }%"></div>`;
+  public getElement(): HTMLElement {
+    return this.element;
+  }
 
-    if (view === VERTICAL) {
-      bar = `<div class="slider__bar slider__bar_with-width" style="top:${fromPercent}%;height:${
-        toPercent - fromPercent
-      }%"></div>`;
+  public updateElement(): HTMLElement {
+    const { view, fromPercent, toPercent } = this.state;
+    const className = 'slider__bar_size_width';
+    const classNameBool = this.element.classList.contains(className);
+
+    if (view === HORIZONTAL) {
+      if (classNameBool) this.element.classList.remove(className);
+      this.element.style.top = '';
+      this.element.style.height = '';
+      this.element.style.marginLeft = `${fromPercent}%`;
+      this.element.style.marginRight = `${100 - toPercent}%`;
+
+      return this.element;
     }
 
-    return `${bar}`;
+    if (!classNameBool) this.element.classList.add(className);
+    this.element.style.marginLeft = '';
+    this.element.style.marginRight = '';
+    this.element.style.top = `${fromPercent}%`;
+    this.element.style.height = `${toPercent - fromPercent}%`;
+
+    return this.element;
   }
 
-  bind(state: StateType) {
-    this.getElement(state).addEventListener(
-      'click',
-      this.handleBarClick.bind(null, state)
-    );
+  private createElement(): void {
+    this.element = document.createElement('div');
+    this.element.className = 'slider__bar';
+    this.updateElement();
   }
-
-  public handleBarClick(state: StateType, evt: Event): void {}
 }
