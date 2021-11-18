@@ -1,4 +1,4 @@
-import StateType from '../../StateType';
+import { stateType } from '../../types';
 
 export default class Observer {
   private observers: Function[];
@@ -12,8 +12,8 @@ export default class Observer {
   }
 
   public broadcast(
-    keys: string[] | StateType,
-    values?: (number | string | boolean)[] | boolean
+    keys: string[] | stateType,
+    values?: (number | string | boolean)[]
   ) {
     this.observers.forEach((subscriber) => subscriber(keys, values));
   }

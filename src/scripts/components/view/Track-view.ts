@@ -1,68 +1,36 @@
-import AbstractView from './Abstract-view';
-import { RANGE, HORIZONTAL, VERTICAL } from '../../const';
-import StateType from '../../StateType';
+import { stateType } from '../../types';
+import { HORIZONTAL, VERTICAL } from '../../const';
 
-export default class TrackView extends AbstractView {
-  getClassName() {
-    return 'slider__wrapper';
+export default class TrackView {
+  private state: stateType;
+
+  private element!: HTMLElement;
+
+  constructor(state: stateType) {
+    this.state = state;
+    this.createElement();
   }
 
-  getTemplate(state: StateType) {
-    const { fromPercent, toPercent, range, view } = state;
-    let innerWithHeight = '';
-    let scaleWithHeight = '';
-    let toggleMin = '';
-    let toggleMax = 'slider__toggle_maximum';
-    let position = 'left';
-    const rangeBool = range === RANGE;
+  public getElement(): HTMLElement {
+    return this.element;
+  }
+
+  public updateElement(): HTMLElement {
+    const { view } = this.state;
     const viewHBool = view === HORIZONTAL;
     const viewVBool = view === VERTICAL;
-    const rangeAndViewH = rangeBool && viewHBool;
-    const rangeAndViewV = rangeBool && viewVBool;
+    const className = 'slider__track_size_height';
+    const classNameBool = this.element.classList.contains(className);
 
-    if (rangeAndViewH) {
-      toggleMin = `<div class="slider__toggle slider__toggle_minimum" style="left:${fromPercent}%"></div>`;
-    }
+    if (viewHBool && classNameBool) this.element.classList.remove(className);
+    if (viewVBool && !classNameBool) this.element.classList.add(className);
 
-    if (rangeAndViewV) {
-      toggleMin = `<div class="slider__toggle slider__toggle_vertical-minimum" style="top:${fromPercent}%"></div>`;
-    }
-
-    if (viewVBool) {
-      innerWithHeight = 'slider__inner_with-height';
-      scaleWithHeight = 'slider__scale_with-height';
-      toggleMax = 'slider__toggle_vertical-maximum';
-      position = 'top';
-    }
-
-    return `
-      <div class="slider__inner ${innerWithHeight}">
-        <div class="slider__scale ${scaleWithHeight}">
-        </div>
-        ${toggleMin}
-        <div class="slider__toggle ${toggleMax}" style="${position}:${toPercent}%"></div>
-      </div>
-    `;
+    return this.element;
   }
 
-  bind(state: StateType) {
-    this.getElement(state)
-      .querySelectorAll('.slider__toggle')
-      .forEach((elem) =>
-        elem.addEventListener(
-          'touchstart',
-          this.handleToggleMouseDown.bind(null, state)
-        )
-      );
-    this.getElement(state)
-      .querySelectorAll('.slider__toggle')
-      .forEach((elem) =>
-        elem.addEventListener(
-          'mousedown',
-          this.handleToggleMouseDown.bind(null, state)
-        )
-      );
+  private createElement(): void {
+    this.element = document.createElement('div');
+    this.element.className = 'slider__track';
+    this.updateElement();
   }
-
-  public handleToggleMouseDown(state: StateType, evt: Event): void {}
 }

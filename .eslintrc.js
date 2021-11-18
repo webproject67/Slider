@@ -26,5 +26,6 @@ module.exports = {
     'no-shadow': ['error', { allow: ['evt'] }],
     'no-unused-vars': 'off',
     'class-methods-use-this': 'off',
+    'no-continue': 'off',
   },
 };

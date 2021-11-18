@@ -9,6 +9,7 @@ $.fn.slider = function f(options: object | string, obj?: object) {
     presenter.model.setValue(keys, values);
     return null;
   }
+
   if (options === 'getConfiguring') {
     presenter.model.setValue(['configuring'], [1]);
     return null;
@@ -23,7 +24,6 @@ $.fn.slider = function f(options: object | string, obj?: object) {
       min: 0,
       progress: true,
       range: 'one',
-      draft: 0,
       start: 1,
       configuring: 0,
       scale: true,
