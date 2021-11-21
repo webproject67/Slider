@@ -1,10 +1,10 @@
 import Observer from '../observer/Observer';
-import TrackView from './Track-view';
-import ProgressView from './Progress-view';
-import CircleView from './Circle-view';
-import FlagView from './Flag-view';
-import ScaleView from './Scale-view';
-import ConfiguringView from './Configuring-view';
+import TrackView from './TrackView';
+import ProgressView from './ProgressView';
+import CircleView from './CircleView';
+import FlagView from './FlagView';
+import ScaleView from './ScaleView';
+import ConfiguringView from './ConfiguringView';
 import { stateType } from '../../types';
 import {
   MIN,
@@ -18,7 +18,7 @@ import {
   VERTICAL,
 } from '../../const';
 
-export default class Views extends Observer {
+export default class View extends Observer {
   private main: HTMLElement;
 
   private wrapper!: HTMLElement;
