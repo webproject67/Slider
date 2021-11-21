@@ -1,20 +1,10 @@
+import App from './components/app/App';
 import Presenter from './components/presenter/Presenter';
 
+let app: App;
 let presenter: Presenter;
+
 $.fn.slider = function f(options: object | string, obj?: object) {
-  if (options === 'getState') return presenter.model.getState();
-  if (options === 'setState') {
-    const keys = Object.keys(obj!);
-    const values = Object.values(obj!);
-    presenter.model.setValue(keys, values);
-    return null;
-  }
-
-  if (options === 'getConfiguring') {
-    presenter.model.setValue(['configuring'], [1]);
-    return null;
-  }
-
   const state = $.extend(
     {
       flag: true,
@@ -25,7 +15,6 @@ $.fn.slider = function f(options: object | string, obj?: object) {
       progress: true,
       range: 'one',
       start: 1,
-      configuring: 0,
       scale: true,
       step: 1,
       to: -10000,
@@ -35,8 +24,23 @@ $.fn.slider = function f(options: object | string, obj?: object) {
     options
   );
 
+  if (options === 'getState') return presenter.model.getState();
+
+  if (options === 'setState') {
+    const keys = Object.keys(obj!);
+    const values = Object.values(obj!);
+    presenter.model.setValue(keys, values);
+    return null;
+  }
+
+  if (options === 'getConfiguring') {
+    app.renderConfiguringPanel();
+    return null;
+  }
+
   const cb = () => {
-    presenter = new Presenter(this[0], state);
+    app = new App(this[0], state);
+    app.render();
   };
 
   return this.each(cb);
