@@ -7,7 +7,6 @@ interface stateType {
   progress: boolean;
   range: string;
   start: number;
-  configuring: number;
   scale: boolean;
   step: number;
   to: number;

@@ -5,7 +5,7 @@ import { stateType } from '../../types';
 export default class Presenter {
   public model: Model;
 
-  private view: View;
+  public view: View;
 
   constructor(main: HTMLElement, state: stateType) {
     this.model = new Model(state);

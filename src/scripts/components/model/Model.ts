@@ -73,10 +73,6 @@ export default class Model extends Observer {
         case 'step':
           this.state.step = Number(values[i]);
           break;
-        case 'configuring':
-          this.state.configuring = Number(values[i]);
-          this.broadcast(this.state);
-          break;
         default:
           break;
       }

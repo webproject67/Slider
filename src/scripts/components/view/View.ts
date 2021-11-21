@@ -4,7 +4,6 @@ import ProgressView from './ProgressView';
 import CircleView from './CircleView';
 import FlagView from './FlagView';
 import ScaleView from './ScaleView';
-import ConfiguringView from './ConfiguringView';
 import { stateType } from '../../types';
 import {
   MIN,
@@ -35,12 +34,14 @@ export default class View extends Observer {
 
   private scale!: ScaleView;
 
-  private configuring!: ConfiguringView;
-
   constructor(main: HTMLElement) {
     super();
     this.main = main;
     this.circle = [];
+  }
+
+  public getElement(): HTMLElement {
+    return this.main;
   }
 
   public updateView(state: stateType) {
@@ -52,14 +53,10 @@ export default class View extends Observer {
     this.track.updateElement();
     this.progress.updateElement();
     this.scale.updateElement();
-    this.configuring.updateElement();
     this.circle.forEach((circle, i) => {
       circle.updateElement(i);
       this.flag.updateElement(i);
     });
-
-    if (state.configuring)
-      this.wrapper.appendChild(this.configuring.getElement());
 
     if (state.view === VERTICAL) {
       this.slider.classList.add('slider__inner_size_height');
@@ -135,65 +132,11 @@ export default class View extends Observer {
     );
     if (state.scale) this.slider.appendChild(scaleElement);
 
-    this.configuring = new ConfiguringView(state, this.main);
-    const configuringElement = this.configuring.getElement();
-    for (let i = 0; i < configuringElement.children.length; i += 1) {
-      const element = configuringElement.children[i];
-      if (element.className === 'slider__radio') {
-        element.childNodes.forEach((elem) =>
-          elem.addEventListener(
-            'change',
-            this.handleInputChange.bind(this, state)
-          )
-        );
-        continue;
-      }
-      element.addEventListener(
-        'change',
-        this.handleInputChange.bind(this, state)
-      );
-    }
-
     this.wrapper = this.createElement('slider__wrapper');
     this.wrapper.appendChild(this.slider);
     this.main.appendChild(this.wrapper);
 
     this.broadcast(['start'], [0]);
-  }
-
-  private handleInputChange(state: stateType, evt: Event) {
-    const label: HTMLElement = <HTMLElement>evt.currentTarget;
-    const input: HTMLElement = <HTMLElement>label.children[0];
-
-    const inputMin = input.dataset.name === MIN;
-    const inputMax = input.dataset.name === MAX;
-    const inputStep = input.dataset.name === STEP;
-    const generalInput = inputMin || inputMax || inputStep;
-    const inputFlag = input.dataset.name === FLAG;
-    const inputScale = input.dataset.name === SCALE;
-    const inputProgress = input.dataset.name === PROGRESS;
-    const generalInput2 = inputFlag || inputScale || inputProgress;
-
-    if (generalInput)
-      this.broadcast(
-        [input.dataset.name!, 'listDistance'],
-        [(<HTMLInputElement>input).value]
-      );
-
-    if (input.dataset.name === VIEW)
-      this.broadcast([input.dataset.name], [(<HTMLInputElement>input).value]);
-
-    if (input.dataset.name === RANGE)
-      this.broadcast(
-        ['from', 'fromPercent', input.dataset.name],
-        [state.min, 0, (<HTMLInputElement>input).value]
-      );
-
-    if (generalInput2)
-      this.broadcast(
-        [input.dataset.name!],
-        [(<HTMLInputElement>input).checked]
-      );
   }
 
   private handleFlagMouseDown(state: stateType, evt: Event): void {

@@ -1,3 +1,4 @@
+import Observer from '../observer/Observer';
 import { stateType, dataType } from '../../types';
 import {
   NULL_VALUE,
@@ -16,7 +17,7 @@ import {
   VIEW,
 } from '../../const';
 
-export default class ConfiguringView {
+export default class ConfiguringPanel extends Observer {
   private state: stateType;
 
   private element!: HTMLElement;
@@ -28,6 +29,7 @@ export default class ConfiguringView {
   private dataCheckbox: dataType[];
 
   constructor(state: stateType, main: HTMLElement) {
+    super();
     this.dataInput = [
       {
         label: 'Минимальное значение',
@@ -170,6 +172,9 @@ export default class ConfiguringView {
       const label = this.createElementLabel(data);
       this.element.appendChild(label);
     });
+
+    this.updateElement();
+    this.bind();
   }
 
   private createElement(tag: string, className: string): HTMLElement {
@@ -238,5 +243,59 @@ export default class ConfiguringView {
     }
 
     return inputElement;
+  }
+
+  private bind() {
+    for (let i = 0; i < this.element.children.length; i += 1) {
+      const element = this.element.children[i];
+      if (element.className === 'slider__radio') {
+        element.childNodes.forEach((elem) =>
+          elem.addEventListener(
+            'change',
+            this.handleInputChange.bind(this)
+          )
+        );
+        continue;
+      }
+      element.addEventListener(
+        'change',
+        this.handleInputChange.bind(this)
+      );
+    }
+  }
+
+  private handleInputChange(evt: Event) {
+    const label: HTMLElement = <HTMLElement>evt.currentTarget;
+    const input: HTMLElement = <HTMLElement>label.children[0];
+
+    const inputMin = input.dataset.name === MIN;
+    const inputMax = input.dataset.name === MAX;
+    const inputStep = input.dataset.name === STEP;
+    const generalInput = inputMin || inputMax || inputStep;
+    const inputFlag = input.dataset.name === FLAG;
+    const inputScale = input.dataset.name === SCALE;
+    const inputProgress = input.dataset.name === PROGRESS;
+    const generalInput2 = inputFlag || inputScale || inputProgress;
+
+    if (generalInput)
+      this.broadcast(
+        [input.dataset.name!, 'listDistance'],
+        [(<HTMLInputElement>input).value]
+      );
+
+    if (input.dataset.name === VIEW)
+      this.broadcast([input.dataset.name], [(<HTMLInputElement>input).value]);
+
+    if (input.dataset.name === RANGE)
+      this.broadcast(
+        ['from', 'fromPercent', input.dataset.name],
+        [this.state.min, 0, (<HTMLInputElement>input).value]
+      );
+
+    if (generalInput2)
+      this.broadcast(
+        [input.dataset.name!],
+        [(<HTMLInputElement>input).checked]
+      );
   }
 }
