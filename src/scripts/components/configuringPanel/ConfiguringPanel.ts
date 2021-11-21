@@ -250,17 +250,11 @@ export default class ConfiguringPanel extends Observer {
       const element = this.element.children[i];
       if (element.className === 'slider__radio') {
         element.childNodes.forEach((elem) =>
-          elem.addEventListener(
-            'change',
-            this.handleInputChange.bind(this)
-          )
+          elem.addEventListener('change', this.handleInputChange.bind(this))
         );
         continue;
       }
-      element.addEventListener(
-        'change',
-        this.handleInputChange.bind(this)
-      );
+      element.addEventListener('change', this.handleInputChange.bind(this));
     }
   }
 
