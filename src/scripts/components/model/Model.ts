@@ -20,9 +20,6 @@ export default class Model extends Observer {
         case 'start':
           this.state.start = Number(values[i]);
           break;
-        case 'corner':
-          this.calculateValue(Number(values[i]));
-          break;
         case 'from':
           this.state.from = Number(values[i]);
           break;
@@ -34,12 +31,6 @@ export default class Model extends Observer {
           break;
         case 'toPercent':
           this.state.toPercent = Number(values[i]);
-          break;
-        case 'mouseTo':
-          this.calculateValue(Number(values[i]), 'toPercent');
-          break;
-        case 'mouseFrom':
-          this.calculateValue(Number(values[i]), 'fromPercent');
           break;
         case 'view':
           this.state.view = String(values[i]);
@@ -61,9 +52,6 @@ export default class Model extends Observer {
           this.state.scale = Boolean(values[i]);
           this.broadcast(this.state);
           break;
-        case 'listDistance':
-          this.calculateDistance(keys[0], Number(values[0]));
-          break;
         case 'min':
           this.state.min = Number(values[i]);
           break;
@@ -79,7 +67,7 @@ export default class Model extends Observer {
     });
   }
 
-  private calculateDistance(input: string, values: number): void {
+  public calculateDistance(input: string, values: number): void {
     const { min, max } = this.state;
     const boolMinMax = min >= max;
     let value = values;
@@ -111,7 +99,7 @@ export default class Model extends Observer {
     this.broadcast(this.state);
   }
 
-  private calculateValue(corner: number, val?: string): void {
+  public calculateValue(corner: number, val: string): void {
     const { min, max, step, toPercent, fromPercent } = this.state;
     const stepCount: number = (max - min) / step;
     const stepPercent: number = 100 / stepCount;

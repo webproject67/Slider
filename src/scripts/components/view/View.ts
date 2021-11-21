@@ -212,9 +212,9 @@ export default class View extends Observer {
     const corner: number = ((event.pageX! - sliderLeft) / sliderWidth) * 100;
 
     if (toggle.className.split(' ')[1] === 'slider__toggle_position_minimum')
-      this.broadcast(['mouseFrom'], [corner]);
+      this.broadcast(['fromPercent'], [corner]);
     if (toggle.className.split(' ')[1] === 'slider__toggle_position_maximum')
-      this.broadcast(['mouseTo'], [corner]);
+      this.broadcast(['toPercent'], [corner]);
   }
 
   private mouseMoveY(
@@ -234,12 +234,12 @@ export default class View extends Observer {
       toggle.className.split(' ')[1] ===
       'slider__toggle_position_vertical-minimum'
     )
-      this.broadcast(['mouseFrom'], [corner]);
+      this.broadcast(['fromPercent'], [corner]);
     if (
       toggle.className.split(' ')[1] ===
       'slider__toggle_position_vertical-maximum'
     )
-      this.broadcast(['mouseTo'], [corner]);
+      this.broadcast(['toPercent'], [corner]);
   }
 
   private handleItemClick(
