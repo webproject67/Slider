@@ -259,23 +259,50 @@ export default class ConfiguringPanel extends Observer {
   }
 
   private handleInputChange(evt: Event) {
+    const { min, max } = this.state;
     const label: HTMLElement = <HTMLElement>evt.currentTarget;
     const input: HTMLElement = <HTMLElement>label.children[0];
+    let value = Number((<HTMLInputElement>input).value);
 
-    const inputMin = input.dataset.name === MIN;
-    const inputMax = input.dataset.name === MAX;
-    const inputStep = input.dataset.name === STEP;
-    const generalInput = inputMin || inputMax || inputStep;
     const inputFlag = input.dataset.name === FLAG;
     const inputScale = input.dataset.name === SCALE;
     const inputProgress = input.dataset.name === PROGRESS;
     const generalInput2 = inputFlag || inputScale || inputProgress;
+    if (input.dataset.name === MIN) {
+      if (value >= max) {
+        this.broadcast(
+          ['min', 'from', 'fromPercent', 'to', 'toPercent', 'step'],
+          [max - 1, max - 1, 0, max, 100, 1]
+        );
+      } else {
+        this.broadcast(
+          ['min', 'from', 'fromPercent', 'to', 'toPercent'],
+          [value, value, 0, max, 100]
+        );
+      }
+    }
 
-    if (generalInput)
-      this.broadcast(
-        [input.dataset.name!, 'listDistance'],
-        [(<HTMLInputElement>input).value]
-      );
+    if (input.dataset.name === MAX) {
+      if (min >= value) {
+        this.broadcast(
+          ['max', 'to', 'toPercent', 'from', 'fromPercent', 'step'],
+          [min + 1, min + 1, 100, min, 0, 1]
+        );
+      } else {
+        this.broadcast(
+          ['max', 'to', 'toPercent', 'from', 'fromPercent'],
+          [value, value, 100, min, 0]
+        );
+      }
+    }
+
+    if (input.dataset.name === STEP) {
+      const generalValue = max - min;
+      if (value === 0) value = 1;
+      if (value < 0) value = Math.abs(value);
+      if (value > generalValue) value = generalValue;
+      this.broadcast(['step'], [value]);
+    }
 
     if (input.dataset.name === VIEW)
       this.broadcast([input.dataset.name], [(<HTMLInputElement>input).value]);

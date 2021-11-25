@@ -1,5 +1,5 @@
 const slider1 = $('#slider').slider();
-slider1.slider('getConfiguring');
+slider1.showConfiguringPanel();
 
 const slider2 = $('#slider2').slider({
   range: 'range',
@@ -8,10 +8,10 @@ const slider2 = $('#slider2').slider({
   step: 10,
   progress: false,
 });
-slider2.slider('getConfiguring');
+slider2.showConfiguringPanel();
 
 const slider3 = $('.js-sabakA').slider({ view: 'vertical' });
-slider3.slider('getConfiguring');
+slider3.showConfiguringPanel();
 
 const slider4 = $('.js-cat').slider({
   view: 'vertical',
@@ -19,4 +19,4 @@ const slider4 = $('.js-cat').slider({
   flag: false,
   scale: false,
 });
-slider4.slider('getConfiguring');
+slider4.showConfiguringPanel();
