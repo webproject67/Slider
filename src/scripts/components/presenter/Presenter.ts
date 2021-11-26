@@ -33,6 +33,6 @@ export default class Presenter {
     const cbModel = (state: stateType) => this.view.updateView(state);
     this.model.subscribe(cbModel);
 
-    this.model.broadcast(this.model.state);
+    this.model.broadcast(this.model.getState());
   }
 }

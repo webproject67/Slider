@@ -3,7 +3,7 @@ import { stateType } from '../../types';
 import { MAX, MIN, STEP } from '../../const';
 
 export default class Model extends Observer {
-  public state: stateType;
+  private state: stateType;
 
   constructor(state: stateType) {
     super();
