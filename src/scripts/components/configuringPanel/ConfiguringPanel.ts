@@ -126,7 +126,9 @@ export default class ConfiguringPanel extends Observer {
 
     this.element.childNodes.forEach((element) => {
       const label = <HTMLElement>element;
-      const input = <HTMLInputElement>(<HTMLElement>label).children[0];
+      const input = <HTMLInputElement>(
+        (<HTMLElement>label).querySelector('input')
+      );
 
       if (input.className === 'slider__min') input.value = String(min);
       if (input.className === 'slider__max') input.value = String(max);
@@ -154,6 +156,7 @@ export default class ConfiguringPanel extends Observer {
 
     this.dataInput.forEach((data) => {
       const label = this.createElementLabel(data);
+      label.addEventListener('change', this.handleInputChange.bind(this));
       this.element.appendChild(label);
     });
 
@@ -162,6 +165,7 @@ export default class ConfiguringPanel extends Observer {
 
       radio.forEach((data) => {
         const label = this.createElementLabel(data);
+        label.addEventListener('change', this.handleInputChange.bind(this));
         radioElement.appendChild(label);
       });
 
@@ -170,11 +174,11 @@ export default class ConfiguringPanel extends Observer {
 
     this.dataCheckbox.forEach((data) => {
       const label = this.createElementLabel(data);
+      label.addEventListener('change', this.handleInputChange.bind(this));
       this.element.appendChild(label);
     });
 
     this.updateElement();
-    this.bind();
   }
 
   private createElement(tag: string, className: string): HTMLElement {
@@ -245,23 +249,10 @@ export default class ConfiguringPanel extends Observer {
     return inputElement;
   }
 
-  private bind() {
-    for (let i = 0; i < this.element.children.length; i += 1) {
-      const element = this.element.children[i];
-      if (element.className === 'slider__radio') {
-        element.childNodes.forEach((elem) =>
-          elem.addEventListener('change', this.handleInputChange.bind(this))
-        );
-        continue;
-      }
-      element.addEventListener('change', this.handleInputChange.bind(this));
-    }
-  }
-
   private handleInputChange(evt: Event) {
     const { min, max } = this.state;
     const label: HTMLElement = <HTMLElement>evt.currentTarget;
-    const input: HTMLElement = <HTMLElement>label.children[0];
+    const input: HTMLElement = <HTMLElement>label.querySelector('input');
     let value = Number((<HTMLInputElement>input).value);
 
     const inputFlag = input.dataset.name === FLAG;
