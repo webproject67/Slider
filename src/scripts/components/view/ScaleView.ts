@@ -6,8 +6,14 @@ export default class ScaleView {
 
   private element!: HTMLElement;
 
+  private item!: HTMLElement[];
+
+  private quantity!: HTMLElement[];
+
   constructor(state: stateType) {
     this.state = state;
+    this.item = [];
+    this.quantity = [];
     this.createElements();
   }
 
@@ -28,39 +34,38 @@ export default class ScaleView {
     let percent = stepPercent * scale;
 
     for (let i = 0; i <= 20; i += 1) {
-      const item = <HTMLElement>this.element.children[i];
-      const quantity = item.children[0];
-
       if (view === HORIZONTAL && classNameBool) {
         this.element.classList.remove(classNameList);
-        quantity.classList.remove(classNameQuantity);
+        this.quantity[i].classList.remove(classNameQuantity);
       }
 
       if (view === VERTICAL && !classNameBool) {
         this.element.classList.add(classNameList);
-        quantity.classList.add(classNameQuantity);
+        this.quantity[i].classList.add(classNameQuantity);
       }
 
       if (i === 0) {
-        quantity.textContent = String(min);
+        this.item[i].style.left = '0%';
+        this.quantity[i].textContent = String(min);
         continue;
       }
 
       if (i === 20) {
-        quantity.textContent = String(max);
+        this.item[i].style.left = '100%';
+        this.quantity[i].textContent = String(max);
         continue;
       }
 
-      item.style.display = '';
+      this.item[i].style.display = '';
 
       if (percent > 99) {
-        item.style.display = 'none';
+        this.item[i].style.display = 'none';
         continue;
       }
 
       const value = Number(((percent / stepPercent) * step).toFixed()) + min;
-      quantity.textContent = String(value);
-      item.style.left = `${percent}%`;
+      this.quantity[i].textContent = String(value);
+      this.item[i].style.left = `${percent}%`;
       percent += stepPercent * scale;
     }
 
@@ -71,15 +76,12 @@ export default class ScaleView {
     this.element = this.createElement('slider__list');
 
     for (let i = 0; i <= 20; i += 1) {
-      const item = this.createElement('slider__item');
-      item.textContent = '|';
+      this.item[i] = this.createElement('slider__item');
+      this.item[i].textContent = '|';
 
-      if (i === 0) item.style.left = '0%';
-      if (i === 20) item.style.left = '100%';
-
-      const quantity = this.createElement('slider__quantity');
-      item.appendChild(quantity);
-      this.element.appendChild(item);
+      this.quantity[i] = this.createElement('slider__quantity');
+      this.item[i].appendChild(this.quantity[i]);
+      this.element.appendChild(this.item[i]);
     }
 
     this.updateElement();

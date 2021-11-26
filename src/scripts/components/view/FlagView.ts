@@ -6,9 +6,9 @@ export default class FlagView {
 
   private element!: HTMLElement;
 
-  constructor(state: stateType) {
+  constructor(state: stateType, index: number) {
     this.state = state;
-    this.createElements();
+    this.createElement(index);
   }
 
   public getElement(): HTMLElement {
@@ -26,37 +26,36 @@ export default class FlagView {
     const rangeOAndViewV = rangeOBool && viewVBool;
     const rangeRAndViewH = rangeRBool && viewHBool;
     const rangeRAndViewV = rangeRBool && viewVBool;
-    const element = <HTMLElement>this.element.childNodes[index];
 
-    element.className = '';
-    element.textContent = '';
-    element.style.left = '';
-    element.style.top = '';
+    this.element.className = '';
+    this.element.textContent = '';
+    this.element.style.left = '';
+    this.element.style.top = '';
 
     const getFlagMin = () => {
-      element.className = 'slider__pin slider__pin_position_minimum';
-      element.textContent = String(from === NULL_VALUE ? min : from);
-      element.style.left = `${fromPercent}%`;
+      this.element.className = 'slider__pin slider__pin_position_minimum';
+      this.element.textContent = String(from === NULL_VALUE ? min : from);
+      this.element.style.left = `${fromPercent}%`;
     };
 
     const getFlagMax = () => {
-      element.className = 'slider__pin slider__pin_position_maximum';
-      element.textContent = String(to === NULL_VALUE ? max : to);
-      element.style.left = `${toPercent}%`;
+      this.element.className = 'slider__pin slider__pin_position_maximum';
+      this.element.textContent = String(to === NULL_VALUE ? max : to);
+      this.element.style.left = `${toPercent}%`;
     };
 
     const getFlagVerticalMin = () => {
-      element.className =
+      this.element.className =
         'slider__pin slider__pin-vertical slider__pin-vertical_position_minimum';
-      element.textContent = String(from === NULL_VALUE ? min : from);
-      element.style.top = `${fromPercent}%`;
+      this.element.textContent = String(from === NULL_VALUE ? min : from);
+      this.element.style.top = `${fromPercent}%`;
     };
 
     const getFlagVerticalMax = () => {
-      element.className =
+      this.element.className =
         'slider__pin slider__pin-vertical slider__pin-vertical_position_maximum';
-      element.textContent = String(to === NULL_VALUE ? max : to);
-      element.style.top = `${toPercent}%`;
+      this.element.textContent = String(to === NULL_VALUE ? max : to);
+      this.element.style.top = `${toPercent}%`;
     };
 
     if (!index && rangeOAndViewH) getFlagMax();
@@ -80,18 +79,8 @@ export default class FlagView {
     return this.element;
   }
 
-  private createElements(): void {
-    this.element = this.createElement('slider__pins');
-
-    for (let i = 0; i < 2; i += 1) {
-      this.element.appendChild(this.createElement());
-      this.updateElement(i);
-    }
-  }
-
-  private createElement(className?: string): HTMLElement {
-    const newElement: HTMLElement = document.createElement('div');
-    if (className) newElement.className = className;
-    return newElement;
+  private createElement(index: number): void {
+    this.element = document.createElement('div');
+    this.updateElement(index);
   }
 }
