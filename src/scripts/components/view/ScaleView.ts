@@ -1,17 +1,19 @@
 import { stateType } from '../../types';
-import { HORIZONTAL, VERTICAL } from '../../const';
 
 export default class ScaleView {
   private state: stateType;
 
   private element!: HTMLElement;
 
-  private item!: HTMLElement[];
+  private quantityItem: number;
 
-  private quantity!: HTMLElement[];
+  private item: HTMLElement[];
+
+  private quantity: HTMLElement[];
 
   constructor(state: stateType) {
     this.state = state;
+    this.quantityItem = 20;
     this.item = [];
     this.quantity = [];
     this.createElements();
@@ -25,23 +27,21 @@ export default class ScaleView {
     const { min, max, step, view } = this.state;
     const classNameList = 'slider__list_state_transformed';
     const classNameQuantity = 'slider__quantity_state_transformed';
-    const classNameBool = this.element.classList.contains(classNameList);
 
     const stepCount: number = (max - min) / step;
     const stepPercent: number = 100 / stepCount;
     let scale = 1;
-    if (stepCount > 20) scale = Math.ceil(stepCount / 20);
+    if (stepCount > this.quantityItem)
+      scale = Math.ceil(stepCount / this.quantityItem);
     let percent = stepPercent * scale;
 
-    for (let i = 0; i <= 20; i += 1) {
-      if (view === HORIZONTAL && classNameBool) {
-        this.element.classList.remove(classNameList);
-        this.quantity[i].classList.remove(classNameQuantity);
-      }
-
-      if (view === VERTICAL && !classNameBool) {
+    for (let i = 0; i <= this.quantityItem; i += 1) {
+      if (view) {
         this.element.classList.add(classNameList);
         this.quantity[i].classList.add(classNameQuantity);
+      } else {
+        this.element.classList.remove(classNameList);
+        this.quantity[i].classList.remove(classNameQuantity);
       }
 
       if (i === 0) {
@@ -75,7 +75,7 @@ export default class ScaleView {
   private createElements(): void {
     this.element = this.createElement('slider__list');
 
-    for (let i = 0; i <= 20; i += 1) {
+    for (let i = 0; i <= this.quantityItem; i += 1) {
       this.item[i] = this.createElement('slider__item');
       this.item[i].textContent = '|';
 

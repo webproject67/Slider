@@ -36,7 +36,7 @@
     }
   }
 
-  &__toggle {
+  &__circle {
     position: absolute;
     width: 20px;
     height: 20px;
@@ -115,14 +115,27 @@
   }
 
   &__pin-vertical {
+    position: absolute;
     left: 33px;
     z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     margin-top: -15px;
-    transform: translate(0, 0);
+    padding: 3px 15px;
+    color: #ffffff;
+    background-color: #4eb7a8;
+    border-radius: 5px;
+    cursor: pointer;
 
     &::before {
+      position: absolute;
+      content: '';
       top: 10px;
       left: -5px;
+      width: 10px;
+      height: 10px;
+      background-color: #4eb7a8;
       transform: rotate(45deg);
     }
   }
