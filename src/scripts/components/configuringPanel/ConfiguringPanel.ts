@@ -1,119 +1,77 @@
 import Observer from '../observer/Observer';
 import { stateType, dataType } from '../../types';
-import {
-  NULL_VALUE,
-  HORIZONTAL,
-  VERTICAL,
-  ONE,
-  RANGE,
-  FROM,
-  MIN,
-  MAX,
-  TO,
-  STEP,
-  FLAG,
-  SCALE,
-  PROGRESS,
-  VIEW,
-} from '../../const';
 
 export default class ConfiguringPanel extends Observer {
   private state: stateType;
 
+  private data: dataType[];
+
   private element!: HTMLElement;
 
-  private dataInput: dataType[];
+  private label: HTMLElement[];
 
-  private dataRadio: dataType[][];
+  private input: HTMLInputElement[];
 
-  private dataCheckbox: dataType[];
-
-  constructor(state: stateType, main: HTMLElement) {
+  constructor(state: stateType) {
     super();
-    this.dataInput = [
+    this.data = [
       {
         label: 'Минимальное значение',
-        dataset: MIN,
+        dataset: 'min',
         type: 'number',
       },
       {
         label: 'Максимальное значение',
-        dataset: MAX,
+        dataset: 'max',
         type: 'number',
       },
       {
         label: 'От',
-        dataset: FROM,
+        dataset: 'from',
         type: 'number',
         readonly: true,
       },
       {
         label: 'До',
-        dataset: TO,
+        dataset: 'to',
         type: 'number',
         readonly: true,
       },
       {
         label: 'Шаг',
-        dataset: STEP,
+        dataset: 'step',
         type: 'number',
       },
-    ];
-
-    this.dataRadio = [
-      [
-        {
-          label: 'Горизонтальный',
-          dataset: VIEW,
-          type: 'radio',
-          name: `${VIEW}${main.className}${main.id}`,
-          value: HORIZONTAL,
-        },
-        {
-          label: 'Вертикальный',
-          dataset: VIEW,
-          type: 'radio',
-          name: `${VIEW}${main.className}${main.id}`,
-          value: VERTICAL,
-        },
-      ],
-      [
-        {
-          label: 'Одиночное значение',
-          dataset: RANGE,
-          type: 'radio',
-          name: `${RANGE}${main.className}${main.id}`,
-          value: ONE,
-        },
-        {
-          label: 'Интервал',
-          dataset: RANGE,
-          type: 'radio',
-          name: `${RANGE}${main.className}${main.id}`,
-          value: RANGE,
-        },
-      ],
-    ];
-
-    this.dataCheckbox = [
+      {
+        label: 'Вертикальный',
+        dataset: 'view',
+        type: 'checkbox',
+      },
+      {
+        label: 'Интервал',
+        dataset: 'range',
+        type: 'checkbox',
+      },
       {
         label: 'Значение',
-        dataset: FLAG,
+        dataset: 'flag',
         type: 'checkbox',
       },
       {
         label: 'Шкала',
-        dataset: SCALE,
+        dataset: 'scale',
         type: 'checkbox',
       },
       {
         label: 'Прогресс',
-        dataset: PROGRESS,
+        dataset: 'progress',
         type: 'checkbox',
       },
     ];
 
     this.state = state;
+    this.label = [];
+    this.input = [];
     this.createElements();
   }
 
@@ -124,27 +82,23 @@ export default class ConfiguringPanel extends Observer {
   public updateElement(): HTMLElement {
     const { range, from, to, min, max, step } = this.state;
 
-    this.element.childNodes.forEach((element) => {
-      const label = <HTMLElement>element;
-      const input = <HTMLInputElement>(
-        (<HTMLElement>label).querySelector('input')
-      );
-
-      if (input.className === 'slider__min') input.value = String(min);
-      if (input.className === 'slider__max') input.value = String(max);
-      if (input.className === 'slider__step') input.value = String(step);
-      if (input.className === 'slider__from') {
-        label.style.display = range === RANGE ? '' : 'none';
-        input.value = String(from === NULL_VALUE ? min : from);
+    this.data.forEach((element, i) => {
+      if (this.input[i].dataset.name === 'min')
+        this.input[i].value = String(min);
+      if (this.input[i].dataset.name === 'max')
+        this.input[i].value = String(max);
+      if (this.input[i].dataset.name === 'step')
+        this.input[i].value = String(step);
+      if (this.input[i].dataset.name === 'from') {
+        this.label[i].style.display = range ? '' : 'none';
+        this.input[i].value = String(from);
       }
 
-      if (input.className === 'slider__to') {
-        label.textContent = range === RANGE ? 'До' : 'Текущее значение';
-        const inputElement = <HTMLInputElement>(
-          this.createElementInput(this.dataInput[3])
-        );
-        inputElement.value = String(to === NULL_VALUE ? max : to);
-        label.appendChild(inputElement);
+      if (this.input[i].dataset.name === 'to') {
+        this.label[i].textContent = range ? 'До' : 'Текущее значение';
+        this.input[i] = this.createElementInput(this.data[3]);
+        this.input[i].value = String(to);
+        this.label[i].appendChild(this.input[i]);
       }
     });
 
@@ -154,28 +108,13 @@ export default class ConfiguringPanel extends Observer {
   private createElements(): void {
     this.element = this.createElement('div', 'slider__labels');
 
-    this.dataInput.forEach((data) => {
-      const label = this.createElementLabel(data);
-      label.addEventListener('change', this.handleInputChange.bind(this));
-      this.element.appendChild(label);
-    });
-
-    this.dataRadio.forEach((radio) => {
-      const radioElement = this.createElement('div', 'slider__radio');
-
-      radio.forEach((data) => {
-        const label = this.createElementLabel(data);
-        label.addEventListener('change', this.handleInputChange.bind(this));
-        radioElement.appendChild(label);
-      });
-
-      this.element.appendChild(radioElement);
-    });
-
-    this.dataCheckbox.forEach((data) => {
-      const label = this.createElementLabel(data);
-      label.addEventListener('change', this.handleInputChange.bind(this));
-      this.element.appendChild(label);
+    this.data.forEach((data, i) => {
+      this.label[i] = this.createElementLabel(data, i);
+      this.label[i].addEventListener(
+        'change',
+        this.handleLabelChange.bind(this)
+      );
+      this.element.appendChild(this.label[i]);
     });
 
     this.updateElement();
@@ -187,32 +126,28 @@ export default class ConfiguringPanel extends Observer {
     return newElement;
   }
 
-  private createElementLabel(data: dataType): HTMLElement {
-    const { range } = this.state;
+  private createElementLabel(data: dataType, index: number): HTMLElement {
     const labelElement = this.createElement('label', 'slider__label');
     labelElement.textContent = data.label;
 
-    const inputMin = data.dataset === MIN;
-    const inputMax = data.dataset === MAX;
-    const inputFrom = data.dataset === FROM;
-    const inputTo = data.dataset === TO;
-    const inputStep = data.dataset === STEP;
-    const inputFromRus = data.label === 'От';
-    const rangeBool = range === ONE;
+    const inputMin = data.dataset === 'min';
+    const inputMax = data.dataset === 'max';
+    const inputFrom = data.dataset === 'from';
+    const inputTo = data.dataset === 'to';
+    const inputStep = data.dataset === 'step';
     const generalInput =
       inputMin || inputMax || inputFrom || inputTo || inputStep;
 
     if (generalInput)
       labelElement.classList.add('slider__label_state_displayed');
-    if (inputFromRus && rangeBool) labelElement.style.display = 'none';
 
-    const inputElement = this.createElementInput(data);
-    labelElement.appendChild(inputElement);
+    this.input[index] = this.createElementInput(data);
+    labelElement.appendChild(this.input[index]);
 
     return labelElement;
   }
 
-  private createElementInput(data: dataType): HTMLElement {
+  private createElementInput(data: dataType): HTMLInputElement {
     const { range, view, flag, scale, progress } = this.state;
     const inputElement = <HTMLInputElement>(
       this.createElement('input', `slider__${data.dataset}`)
@@ -221,45 +156,31 @@ export default class ConfiguringPanel extends Observer {
     inputElement.type = data.type;
 
     if (data.readonly) inputElement.readOnly = data.readonly;
-    if (data.dataset === FLAG) inputElement.checked = flag;
-    if (data.dataset === SCALE) inputElement.checked = scale;
-    if (data.dataset === PROGRESS) inputElement.checked = progress;
-    if (data.dataset === VIEW || data.dataset === RANGE) {
-      inputElement.value = String(data.value);
-      inputElement.name = String(data.name);
-
-      const valueVHorizontal = data.value === HORIZONTAL;
-      const valueVVertical = data.value === VERTICAL;
-      const valueROne = data.value === ONE;
-      const valueRRange = data.value === RANGE;
-      const stateVHorizontal = view === HORIZONTAL;
-      const stateVVertical = view === VERTICAL;
-      const stateROne = range === ONE;
-      const stateRRange = range === RANGE;
-      const horizontalBool = valueVHorizontal && stateVHorizontal;
-      const verticalBool = valueVVertical && stateVVertical;
-      const oneBool = valueROne && stateROne;
-      const rangeBool = valueRRange && stateRRange;
-      const generalInput3 =
-        horizontalBool || verticalBool || oneBool || rangeBool;
-
-      if (generalInput3) inputElement.checked = true;
-    }
+    if (data.dataset === 'view') inputElement.checked = view;
+    if (data.dataset === 'range') inputElement.checked = range;
+    if (data.dataset === 'flag') inputElement.checked = flag;
+    if (data.dataset === 'scale') inputElement.checked = scale;
+    if (data.dataset === 'progress') inputElement.checked = progress;
 
     return inputElement;
   }
 
-  private handleInputChange(evt: Event) {
+  private handleLabelChange(evt: Event): void {
     const { min, max } = this.state;
     const label: HTMLElement = <HTMLElement>evt.currentTarget;
-    const input: HTMLElement = <HTMLElement>label.querySelector('input');
-    let value = Number((<HTMLInputElement>input).value);
+    const input = <HTMLInputElement>label.querySelector('input');
+    const inputMin = input.dataset.name === 'min';
+    const inputMax = input.dataset.name === 'max';
+    const inputStep = input.dataset.name === 'step';
+    const inputView = input.dataset.name === 'view';
+    const inputRange = input.dataset.name === 'range';
+    const inputFlag = input.dataset.name === 'flag';
+    const inputScale = input.dataset.name === 'scale';
+    const inputProgress = input.dataset.name === 'progress';
+    const generalInput = inputView || inputFlag || inputScale || inputProgress;
+    let value = Number(input.value);
 
-    const inputFlag = input.dataset.name === FLAG;
-    const inputScale = input.dataset.name === SCALE;
-    const inputProgress = input.dataset.name === PROGRESS;
-    const generalInput2 = inputFlag || inputScale || inputProgress;
-    if (input.dataset.name === MIN) {
+    if (inputMin) {
       if (value >= max) {
         this.broadcast(
           ['min', 'from', 'fromPercent', 'to', 'toPercent', 'step'],
@@ -273,7 +194,7 @@ export default class ConfiguringPanel extends Observer {
       }
     }
 
-    if (input.dataset.name === MAX) {
+    if (inputMax) {
       if (min >= value) {
         this.broadcast(
           ['max', 'to', 'toPercent', 'from', 'fromPercent', 'step'],
@@ -287,7 +208,7 @@ export default class ConfiguringPanel extends Observer {
       }
     }
 
-    if (input.dataset.name === STEP) {
+    if (inputStep) {
       const generalValue = max - min;
       if (value === 0) value = 1;
       if (value < 0) value = Math.abs(value);
@@ -295,19 +216,12 @@ export default class ConfiguringPanel extends Observer {
       this.broadcast(['step'], [value]);
     }
 
-    if (input.dataset.name === VIEW)
-      this.broadcast([input.dataset.name], [(<HTMLInputElement>input).value]);
-
-    if (input.dataset.name === RANGE)
+    if (inputRange)
       this.broadcast(
-        ['from', 'fromPercent', input.dataset.name],
-        [this.state.min, 0, (<HTMLInputElement>input).value]
+        ['from', 'fromPercent', input.dataset.name!],
+        [min, 0, input.checked]
       );
 
-    if (generalInput2)
-      this.broadcast(
-        [input.dataset.name!],
-        [(<HTMLInputElement>input).checked]
-      );
+    if (generalInput) this.broadcast([input.dataset.name!], [input.checked]);
   }
 }

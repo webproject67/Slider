@@ -5,18 +5,6 @@ import CircleView from './CircleView';
 import FlagView from './FlagView';
 import ScaleView from './ScaleView';
 import { stateType } from '../../types';
-import {
-  MIN,
-  MAX,
-  STEP,
-  VIEW,
-  RANGE,
-  FLAG,
-  SCALE,
-  PROGRESS,
-  VERTICAL,
-  HORIZONTAL,
-} from '../../const';
 
 export default class View extends Observer {
   private main: HTMLElement;
@@ -29,22 +17,18 @@ export default class View extends Observer {
 
   private progress!: ProgressView;
 
-  private circle!: CircleView[];
+  private circle!: CircleView;
 
-  private flag!: FlagView[];
-
-  private flags!: HTMLElement;
+  private flag!: FlagView;
 
   private scale!: ScaleView;
 
   constructor(main: HTMLElement) {
     super();
     this.main = main;
-    this.circle = [];
-    this.flag = [];
   }
 
-  public updateView(state: stateType) {
+  public updateView(state: stateType): void {
     if (state.start) {
       this.render(state);
       return;
@@ -53,9 +37,9 @@ export default class View extends Observer {
     this.toggleClassNameSlider(state);
     this.track.updateElement();
     this.progress.updateElement();
+    this.circle.updateElement();
+    this.flag.updateElement();
     this.scale.updateElement();
-    this.circle.forEach((circle, i) => circle.updateElement(i));
-    this.flag.forEach((flag, i) => flag.updateElement(i));
 
     if (state.progress) {
       this.track.getElement().appendChild(this.progress.getElement());
@@ -64,9 +48,9 @@ export default class View extends Observer {
     }
 
     if (state.flag) {
-      this.slider.appendChild(this.flags);
+      this.slider.appendChild(this.flag.getElement());
     } else {
-      this.flags.remove();
+      this.flag.getElement().remove();
     }
 
     if (state.scale) {
@@ -90,39 +74,45 @@ export default class View extends Observer {
     if (state.progress)
       this.track.getElement().appendChild(this.progress.getElement());
 
-    this.flags = this.createElement('slider__pins');
-    for (let i = 0; i < 2; i += 1) {
-      this.circle[i] = new CircleView(state, i);
-      this.circle[i]
-        .getElement()
-        .addEventListener('touchstart', this.handleCircleMouseDown.bind(this));
-      this.circle[i]
-        .getElement()
-        .addEventListener('mousedown', this.handleCircleMouseDown.bind(this));
-      this.slider.appendChild(this.circle[i].getElement());
-
-      this.flag[i] = new FlagView(state, i);
-      this.flag[i]
-        .getElement()
-        .addEventListener(
-          'touchstart',
-          this.handleFlagMouseDown.bind(this, state)
-        );
-      this.flag[i]
-        .getElement()
-        .addEventListener(
+    this.circle = new CircleView(state);
+    this.circle
+      .getElement()
+      .querySelectorAll('div')
+      .forEach((circle) => {
+        circle.addEventListener(
           'mousedown',
-          this.handleFlagMouseDown.bind(this, state)
+          this.handleCircleMouseDown.bind(this)
         );
-      this.flags.appendChild(this.flag[i].getElement());
-    }
-    if (state.flag) this.slider.appendChild(this.flags);
+        circle.addEventListener(
+          'touchstart',
+          this.handleCircleMouseDown.bind(this)
+        );
+      });
+    this.slider.appendChild(this.circle.getElement());
+
+    this.flag = new FlagView(state);
+    this.flag
+      .getElement()
+      .querySelectorAll('div')
+      .forEach((flag) => {
+        flag.addEventListener(
+          'mousedown',
+          this.handlePinMouseDown.bind(this, state)
+        );
+        flag.addEventListener(
+          'touchstart',
+          this.handlePinMouseDown.bind(this, state)
+        );
+      });
+    if (state.flag) this.slider.appendChild(this.flag.getElement());
 
     this.scale = new ScaleView(state);
-    const items = this.scale.getElement().querySelectorAll('.slider__item');
-    items.forEach((item) =>
-      item.addEventListener('mousedown', this.handleItemClick.bind(this))
-    );
+    this.scale
+      .getElement()
+      .querySelectorAll('.slider__item')
+      .forEach((item) =>
+        item.addEventListener('mousedown', this.handleItemClick.bind(this))
+      );
     if (state.scale) this.slider.appendChild(this.scale.getElement());
 
     this.wrapper = this.createElement('slider__wrapper');
@@ -132,60 +122,84 @@ export default class View extends Observer {
     this.broadcast(['start'], [0]);
   }
 
-  private handleFlagMouseDown(state: stateType, evt: Event): void {
-    const flag: HTMLElement = <HTMLElement>evt.currentTarget;
+  private handlePinMouseDown(state: stateType, evt: Event): void {
+    const pin: HTMLElement = <HTMLElement>evt.currentTarget;
 
-    const classNameBoolHMin = flag.classList.contains(
+    const classNameBoolHMin = pin.classList.contains(
       'slider__pin_position_minimum'
     );
-    const classNameBoolVMin = flag.classList.contains(
+    const classNameBoolVMin = pin.classList.contains(
       'slider__pin-vertical_position_minimum'
     );
-    const classNameBoolHMax = flag.classList.contains(
+    const classNameBoolHMax = pin.classList.contains(
       'slider__pin_position_maximum'
     );
-    const classNameBoolVMax = flag.classList.contains(
+    const classNameBoolVMax = pin.classList.contains(
       'slider__pin-vertical_position_maximum'
     );
 
-    let toggle!: HTMLElement;
+    let circle: HTMLElement;
 
     if (classNameBoolHMin || classNameBoolVMin)
-      toggle = this.circle[0].getElement();
+      circle = <HTMLElement>(
+        this.circle.getElement().querySelector('div:first-child')
+      );
 
     if (classNameBoolHMax || classNameBoolVMax)
-      toggle =
-        state.range === RANGE
-          ? this.circle[1].getElement()
-          : this.circle[0].getElement();
+      circle = state.range
+        ? <HTMLElement>this.circle.getElement().querySelector('div:last-child')
+        : <HTMLElement>(
+            this.circle.getElement().querySelector('div:first-child')
+          );
 
-    this.replaceCircle(evt, toggle);
+    this.replaceCircle(evt, circle!);
   }
 
   private handleCircleMouseDown(evt: Event): void {
-    const toggle: HTMLElement = <HTMLElement>evt.currentTarget;
-    this.replaceCircle(evt, toggle);
+    const circle: HTMLElement = <HTMLElement>evt.currentTarget;
+    this.replaceCircle(evt, circle);
   }
 
-  private replaceCircle(evt: Event, toggle: HTMLElement): void {
+  private replaceCircle(evt: Event, circle: HTMLElement): void {
     evt.preventDefault();
-    const {slider} = this;
 
-    let onMouseMove: { (evt: Event): void };
+    const onMouseMove = (
+      evt: Event & { touches?: TouchList; pageX?: number; pageY?: number }
+    ): void => {
+      const { slider } = this;
+      const boxLeft: number = slider.offsetLeft;
+      const boxRight: number = boxLeft + slider.clientWidth;
+      const sliderLeft: number = boxLeft + window.pageXOffset;
+      const sliderWidth: number = boxRight - boxLeft;
+      const boxTop: number = slider.offsetTop;
+      const boxBottom: number = boxTop + slider.clientHeight;
+      const sliderHeight: number = boxBottom - boxTop;
+      const getEvent = () =>
+        evt.type.search('touch') !== -1 ? evt.touches![0] : evt;
+      const event = getEvent();
+      const circleMin = circle.classList.contains(
+        'slider__circle_position_minimum'
+      );
+      const circleMax = circle.classList.contains(
+        'slider__circle_position_maximum'
+      );
+      const circleVMin = circle.classList.contains(
+        'slider__circle_position_vertical-minimum'
+      );
+      const circleVMax = circle.classList.contains(
+        'slider__circle_position_vertical-maximum'
+      );
+      let corner: number;
 
-    const toggleMin = toggle.classList.contains(
-      'slider__toggle_position_minimum'
-    );
-    const toggleMax = toggle.classList.contains(
-      'slider__toggle_position_maximum'
-    );
-    const toggleBool = toggleMin || toggleMax;
+      if (circleVMin || circleVMax) {
+        corner = ((event.pageY! - boxTop) / sliderHeight) * 100;
+      } else {
+        corner = ((event.pageX! - sliderLeft) / sliderWidth) * 100;
+      }
 
-    if (toggleBool) {
-      onMouseMove = (evt: Event): void => this.mouseMoveX(evt, slider, toggle);
-    } else {
-      onMouseMove = (evt: Event): void => this.mouseMoveY(evt, slider, toggle);
-    }
+      if (circleMin || circleVMin) this.broadcast(['fromPercent'], [corner]);
+      if (circleMax || circleVMax) this.broadcast(['toPercent'], [corner]);
+    };
 
     const onMouseUp = () => {
       document.removeEventListener('touchmove', onMouseMove);
@@ -200,55 +214,6 @@ export default class View extends Observer {
     document.addEventListener('mouseup', onMouseUp);
   }
 
-  private mouseMoveX(
-    evt: Event & { touches?: TouchList; pageX?: number },
-    slider: HTMLElement,
-    toggle: HTMLElement
-  ) {
-    const boxLeft: number = slider.offsetLeft;
-    const boxRight: number = boxLeft + slider.clientWidth;
-    const sliderLeft: number = boxLeft + window.pageXOffset;
-    const sliderWidth: number = boxRight - boxLeft;
-    const getEvent = () =>
-      evt.type.search('touch') !== -1 ? evt.touches![0] : evt;
-    const event = getEvent();
-    const corner: number = ((event.pageX! - sliderLeft) / sliderWidth) * 100;
-
-    const toggleMin = toggle.classList.contains(
-      'slider__toggle_position_minimum'
-    );
-    const toggleMax = toggle.classList.contains(
-      'slider__toggle_position_maximum'
-    );
-
-    if (toggleMin) this.broadcast(['fromPercent'], [corner]);
-    if (toggleMax) this.broadcast(['toPercent'], [corner]);
-  }
-
-  private mouseMoveY(
-    evt: Event & { touches?: TouchList; pageY?: number },
-    slider: HTMLElement,
-    toggle: HTMLElement
-  ) {
-    const boxTop: number = slider.offsetTop;
-    const boxBottom: number = boxTop + slider.clientHeight;
-    const sliderHeight: number = boxBottom - boxTop;
-    const getEvent = () =>
-      evt.type.search('touch') !== -1 ? evt.touches![0] : evt;
-    const event = getEvent();
-    const corner: number = ((event.pageY! - boxTop) / sliderHeight) * 100;
-
-    const toggleMin = toggle.classList.contains(
-      'slider__toggle_position_vertical-minimum'
-    );
-    const toggleMax = toggle.classList.contains(
-      'slider__toggle_position_vertical-maximum'
-    );
-
-    if (toggleMin) this.broadcast(['fromPercent'], [corner]);
-    if (toggleMax) this.broadcast(['toPercent'], [corner]);
-  }
-
   private handleItemClick(
     evt: Event & { pageX?: number; pageY?: number }
   ): void {
@@ -261,10 +226,10 @@ export default class View extends Observer {
     const sliderLeft: number = boxLeft + window.pageXOffset;
     const sliderWidth: number = boxRight - boxLeft;
     const sliderHeight: number = scale.offsetHeight;
+    const classNameBool = stepList.classList.contains(
+      'slider__list_state_transformed'
+    );
     let corner: number;
-
-    const className = 'slider__list_state_transformed';
-    const classNameBool = stepList.classList.contains(className);
 
     if (classNameBool) {
       corner = ((evt.pageY! - boxTop) / sliderHeight) * 100;
@@ -286,12 +251,12 @@ export default class View extends Observer {
 
   private toggleClassNameSlider(state: stateType): void {
     const { view } = state;
-    const viewHBool = view === HORIZONTAL;
-    const viewVBool = view === VERTICAL;
     const className = 'slider__inner_size_height';
-    const classNameBool = this.slider.classList.contains(className);
 
-    if (viewHBool && classNameBool) this.slider.classList.remove(className);
-    if (viewVBool && !classNameBool) this.slider.classList.add(className);
+    if (view) {
+      this.slider.classList.add(className);
+    } else {
+      this.slider.classList.remove(className);
+    }
   }
 }

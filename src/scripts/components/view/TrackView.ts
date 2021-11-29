@@ -1,5 +1,4 @@
 import { stateType } from '../../types';
-import { HORIZONTAL, VERTICAL } from '../../const';
 
 export default class TrackView {
   private state: stateType;
@@ -17,13 +16,13 @@ export default class TrackView {
 
   public updateElement(): HTMLElement {
     const { view } = this.state;
-    const viewHBool = view === HORIZONTAL;
-    const viewVBool = view === VERTICAL;
     const className = 'slider__track_size_height';
-    const classNameBool = this.element.classList.contains(className);
 
-    if (viewHBool && classNameBool) this.element.classList.remove(className);
-    if (viewVBool && !classNameBool) this.element.classList.add(className);
+    if (view) {
+      this.element.classList.add(className);
+    } else {
+      this.element.classList.remove(className);
+    }
 
     return this.element;
   }

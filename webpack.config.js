@@ -47,8 +47,8 @@ module.exports = {
         to: path.resolve(__dirname, 'public/jquery.min.js'),
       },
       {
-        from: path.resolve(__dirname, 'src/scripts/slider.js'),
-        to: path.resolve(__dirname, 'public/slider.js'),
+        from: path.resolve(__dirname, 'src/scripts/init.js'),
+        to: path.resolve(__dirname, 'public/init.js'),
       },
     ]),
     new ImageminPlugin({

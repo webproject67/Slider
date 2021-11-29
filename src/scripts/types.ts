@@ -1,17 +1,17 @@
 interface stateType {
-  flag: boolean;
+  start: number;
+  min: number;
+  max: number;
   from: number;
   fromPercent: number;
-  max: number;
-  min: number;
-  progress: boolean;
-  range: string;
-  start: number;
-  scale: boolean;
-  step: number;
   to: number;
   toPercent: number;
-  view: string;
+  step: number;
+  view: boolean;
+  range: boolean;
+  flag: boolean;
+  scale: boolean;
+  progress: boolean;
 }
 
 interface dataType {
@@ -19,8 +19,6 @@ interface dataType {
   dataset: string;
   type: string;
   readonly?: boolean;
-  name?: string;
-  value?: string;
 }
 
 export { stateType, dataType };

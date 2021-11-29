@@ -7,14 +7,14 @@ export default class Presenter {
 
   public view: View;
 
-  constructor(main: HTMLElement, state: stateType) {
-    this.model = new Model(state);
+  constructor(main: HTMLElement, options: object | undefined) {
+    this.model = new Model(options);
     this.view = new View(main);
     this.init();
   }
 
   private init() {
-    const cbView = (keys: string[], values: (number | string | boolean)[]) => {
+    const cbView = (keys: string[], values: (number | boolean)[]) => {
       keys.forEach((key, i) => {
         const corner = key === 'corner';
         const pinMax = key === 'toPercent';

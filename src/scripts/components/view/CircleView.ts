@@ -1,80 +1,95 @@
 import { stateType } from '../../types';
-import { HORIZONTAL, ONE, RANGE, VERTICAL } from '../../const';
 
 export default class CircleView {
   private state: stateType;
 
   private element!: HTMLElement;
 
-  constructor(state: stateType, index: number) {
+  private quantityCircle: number;
+
+  private circle: HTMLElement[];
+
+  constructor(state: stateType) {
     this.state = state;
-    this.createElement(index);
+    this.quantityCircle = 2;
+    this.circle = [];
+    this.createElements();
   }
 
   public getElement(): HTMLElement {
     return this.element;
   }
 
-  public updateElement(index: number): HTMLElement {
+  public updateElement(): HTMLElement {
     const { range, view, fromPercent, toPercent } = this.state;
-    const rangeOBool = range === ONE;
-    const rangeRBool = range === RANGE;
-    const viewHBool = view === HORIZONTAL;
-    const viewVBool = view === VERTICAL;
-    const rangeOAndViewH = rangeOBool && viewHBool;
-    const rangeOAndViewV = rangeOBool && viewVBool;
-    const rangeRAndViewH = rangeRBool && viewHBool;
-    const rangeRAndViewV = rangeRBool && viewVBool;
 
-    this.element.className = '';
-    this.element.style.left = '';
-    this.element.style.top = '';
+    for (let index = 0; index < this.quantityCircle; index += 1) {
+      this.circle[index].className = '';
+      this.circle[index].style.left = '';
+      this.circle[index].style.top = '';
 
-    const getCircleMin = () => {
-      this.element.className = 'slider__toggle slider__toggle_position_minimum';
-      this.element.style.left = `${fromPercent}%`;
-    };
+      const getCircleMin = () => {
+        this.circle[index].className =
+          'slider__circle slider__circle_position_minimum';
+        this.circle[index].style.left = `${fromPercent}%`;
+      };
 
-    const getCircleMax = () => {
-      this.element.className = 'slider__toggle slider__toggle_position_maximum';
-      this.element.style.left = `${toPercent}%`;
-    };
+      const getCircleMax = () => {
+        this.circle[index].className =
+          'slider__circle slider__circle_position_maximum';
+        this.circle[index].style.left = `${toPercent}%`;
+      };
 
-    const getCircleVerticalMin = () => {
-      this.element.className =
-        'slider__toggle slider__toggle_position_vertical-minimum';
-      this.element.style.top = `${fromPercent}%`;
-    };
+      const getCircleVerticalMin = () => {
+        this.circle[index].className =
+          'slider__circle slider__circle_position_vertical-minimum';
+        this.circle[index].style.top = `${fromPercent}%`;
+      };
 
-    const getCircleVerticalMax = () => {
-      this.element.className =
-        'slider__toggle slider__toggle_position_vertical-maximum';
-      this.element.style.top = `${toPercent}%`;
-    };
+      const getCircleVerticalMax = () => {
+        this.circle[index].className =
+          'slider__circle slider__circle_position_vertical-maximum';
+        this.circle[index].style.top = `${toPercent}%`;
+      };
 
-    if (!index && rangeOAndViewH) getCircleMax();
-    if (!index && rangeOAndViewV) getCircleVerticalMax();
-    if (rangeRAndViewH) {
-      if (!index) {
-        getCircleMin();
-      } else {
-        getCircleMax();
+      const indexAndRangeBool = !index && !range;
+
+      if (indexAndRangeBool && !view) getCircleMax();
+      if (indexAndRangeBool && view) getCircleVerticalMax();
+      if (range && !view) {
+        if (!index) {
+          getCircleMin();
+        } else {
+          getCircleMax();
+        }
       }
-    }
 
-    if (rangeRAndViewV) {
-      if (!index) {
-        getCircleVerticalMin();
-      } else {
-        getCircleVerticalMax();
+      if (range && view) {
+        if (!index) {
+          getCircleVerticalMin();
+        } else {
+          getCircleVerticalMax();
+        }
       }
     }
 
     return this.element;
   }
 
-  private createElement(index: number): void {
-    this.element = document.createElement('div');
-    this.updateElement(index);
+  private createElements(): void {
+    this.element = this.createElement('slider__circles');
+
+    for (let i = 0; i < this.quantityCircle; i += 1) {
+      this.circle[i] = this.createElement();
+      this.element.appendChild(this.circle[i]);
+    }
+
+    this.updateElement();
+  }
+
+  private createElement(className?: string): HTMLElement {
+    const newElement: HTMLElement = document.createElement('div');
+    if (className) newElement.className = className;
+    return newElement;
   }
 }

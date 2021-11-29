@@ -1,4 +1,3 @@
-import { HORIZONTAL } from '../../const';
 import { stateType } from '../../types';
 
 export default class ProgressView {
@@ -18,23 +17,21 @@ export default class ProgressView {
   public updateElement(): HTMLElement {
     const { view, fromPercent, toPercent } = this.state;
     const className = 'slider__bar_size_width';
-    const classNameBool = this.element.classList.contains(className);
 
-    if (view === HORIZONTAL) {
-      if (classNameBool) this.element.classList.remove(className);
-      this.element.style.top = '';
-      this.element.style.height = '';
-      this.element.style.marginLeft = `${fromPercent}%`;
-      this.element.style.marginRight = `${100 - toPercent}%`;
-
-      return this.element;
-    }
-
-    if (!classNameBool) this.element.classList.add(className);
+    this.element.style.top = '';
+    this.element.style.height = '';
     this.element.style.marginLeft = '';
     this.element.style.marginRight = '';
-    this.element.style.top = `${fromPercent}%`;
-    this.element.style.height = `${toPercent - fromPercent}%`;
+
+    if (view) {
+      this.element.classList.add(className);
+      this.element.style.top = `${fromPercent}%`;
+      this.element.style.height = `${toPercent - fromPercent}%`;
+    } else {
+      this.element.classList.remove(className);
+      this.element.style.marginLeft = `${fromPercent}%`;
+      this.element.style.marginRight = `${100 - toPercent}%`;
+    }
 
     return this.element;
   }

@@ -11,10 +11,7 @@ export default class Observer {
     this.observers.push(fn);
   }
 
-  public broadcast(
-    keys: string[] | stateType,
-    values?: (number | string | boolean)[]
-  ) {
+  public broadcast(keys: string[] | stateType, values?: (number | boolean)[]) {
     this.observers.forEach((subscriber) => subscriber(keys, values));
   }
 }
