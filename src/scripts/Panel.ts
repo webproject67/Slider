@@ -1,5 +1,6 @@
 import Slider from './Slider';
 import ConfiguringPanel from './components/configuringPanel/ConfiguringPanel';
+import { stateType } from './types';
 
 export default class Panel {
   private configuringPanel!: ConfiguringPanel;
@@ -25,10 +26,11 @@ export default class Panel {
 
   private subscribe(): void {
     const cbPanel = (keys: string[], values: (number | boolean)[]) =>
-      this.slider.presenter.model.setValue(keys, values);
+      this.slider.setValue(keys, values);
     this.configuringPanel.subscribe(cbPanel);
 
-    const cbModel = () => this.configuringPanel.updateElement();
-    this.slider.presenter.model.subscribe(cbModel);
+    const cbModel = (state: stateType) =>
+      this.configuringPanel.updateElement(state);
+    this.slider.subscribe(cbModel);
   }
 }

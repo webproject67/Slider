@@ -23,23 +23,27 @@ export default class View extends Observer {
 
   private scale!: ScaleView;
 
+  private state!: stateType;
+
   constructor(main: HTMLElement) {
     super();
     this.main = main;
   }
 
   public updateView(state: stateType): void {
+    this.state = state;
+
     if (state.start) {
       this.render(state);
       return;
     }
 
     this.toggleClassNameSlider(state);
-    this.track.updateElement();
-    this.progress.updateElement();
-    this.circle.updateElement();
-    this.flag.updateElement();
-    this.scale.updateElement();
+    this.track.updateElement(state);
+    this.progress.updateElement(state);
+    this.circle.updateElement(state);
+    this.flag.updateElement(state);
+    this.scale.updateElement(state);
 
     if (state.progress) {
       this.track.getElement().appendChild(this.progress.getElement());
@@ -95,14 +99,8 @@ export default class View extends Observer {
       .getElement()
       .querySelectorAll('div')
       .forEach((flag) => {
-        flag.addEventListener(
-          'mousedown',
-          this.handlePinMouseDown.bind(this, state)
-        );
-        flag.addEventListener(
-          'touchstart',
-          this.handlePinMouseDown.bind(this, state)
-        );
+        flag.addEventListener('mousedown', this.handlePinMouseDown.bind(this));
+        flag.addEventListener('touchstart', this.handlePinMouseDown.bind(this));
       });
     if (state.flag) this.slider.appendChild(this.flag.getElement());
 
@@ -122,7 +120,7 @@ export default class View extends Observer {
     this.broadcast(['start'], [0]);
   }
 
-  private handlePinMouseDown(state: stateType, evt: Event): void {
+  private handlePinMouseDown(evt: Event): void {
     const pin: HTMLElement = <HTMLElement>evt.currentTarget;
 
     const classNameBoolHMin = pin.classList.contains(
@@ -146,7 +144,7 @@ export default class View extends Observer {
       );
 
     if (classNameBoolHMax || classNameBoolVMax)
-      circle = state.range
+      circle = this.state.range
         ? <HTMLElement>this.circle.getElement().querySelector('div:last-child')
         : <HTMLElement>(
             this.circle.getElement().querySelector('div:first-child')

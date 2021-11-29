@@ -1,8 +1,6 @@
 import { stateType } from '../../types';
 
 export default class ScaleView {
-  private state: stateType;
-
   private element!: HTMLElement;
 
   private quantityItem: number;
@@ -12,19 +10,18 @@ export default class ScaleView {
   private quantity: HTMLElement[];
 
   constructor(state: stateType) {
-    this.state = state;
     this.quantityItem = 20;
     this.item = [];
     this.quantity = [];
-    this.createElements();
+    this.createElements(state);
   }
 
   public getElement(): HTMLElement {
     return this.element;
   }
 
-  public updateElement(): HTMLElement {
-    const { min, max, step, view } = this.state;
+  public updateElement(state: stateType): HTMLElement {
+    const { min, max, step, view } = state;
     const classNameList = 'slider__list_state_transformed';
     const classNameQuantity = 'slider__quantity_state_transformed';
 
@@ -72,7 +69,7 @@ export default class ScaleView {
     return this.element;
   }
 
-  private createElements(): void {
+  private createElements(state: stateType): void {
     this.element = this.createElement('slider__list');
 
     for (let i = 0; i <= this.quantityItem; i += 1) {
@@ -84,7 +81,7 @@ export default class ScaleView {
       this.element.appendChild(this.item[i]);
     }
 
-    this.updateElement();
+    this.updateElement(state);
   }
 
   private createElement(className: string): HTMLElement {

@@ -25,7 +25,7 @@ export default class Model extends Observer {
   }
 
   public getState(): stateType {
-    return this.state;
+    return { ...this.state };
   }
 
   public setValue(keys: string[], values: (number | boolean)[]) {
