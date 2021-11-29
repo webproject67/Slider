@@ -3,9 +3,9 @@ import View from '../view/View';
 import { stateType } from '../../types';
 
 export default class Presenter {
-  public model: Model;
+  private model: Model;
 
-  public view: View;
+  private view: View;
 
   constructor(main: HTMLElement, options: object | undefined) {
     this.model = new Model(options);
@@ -34,5 +34,21 @@ export default class Presenter {
     this.model.subscribe(cbModel);
 
     this.model.broadcast(this.model.getState());
+  }
+
+  public getState(): stateType {
+    return this.model.getState();
+  }
+
+  public initModel(options: object): void {
+    this.model.init(options);
+  }
+
+  public setValue(keys: string[], values: (number | boolean)[]): void {
+    this.model.setValue(keys, values);
+  }
+
+  public subscribe(cb: (state: stateType) => HTMLElement) {
+    this.model.subscribe(cb);
   }
 }

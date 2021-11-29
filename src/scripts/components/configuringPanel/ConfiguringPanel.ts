@@ -2,8 +2,6 @@ import Observer from '../observer/Observer';
 import { stateType, dataType } from '../../types';
 
 export default class ConfiguringPanel extends Observer {
-  private state: stateType;
-
   private data: dataType[];
 
   private element!: HTMLElement;
@@ -69,18 +67,17 @@ export default class ConfiguringPanel extends Observer {
       },
     ];
 
-    this.state = state;
     this.label = [];
     this.input = [];
-    this.createElements();
+    this.createElements(state);
   }
 
   public getElement(): HTMLElement {
     return this.element;
   }
 
-  public updateElement(): HTMLElement {
-    const { range, from, to, min, max, step } = this.state;
+  public updateElement(state: stateType): HTMLElement {
+    const { range, from, to, min, max, step } = state;
 
     this.data.forEach((element, i) => {
       if (this.input[i].dataset.name === 'min')
@@ -96,7 +93,7 @@ export default class ConfiguringPanel extends Observer {
 
       if (this.input[i].dataset.name === 'to') {
         this.label[i].textContent = range ? 'До' : 'Текущее значение';
-        this.input[i] = this.createElementInput(this.data[3]);
+        this.input[i] = this.createElementInput(this.data[3], state);
         this.input[i].value = String(to);
         this.label[i].appendChild(this.input[i]);
       }
@@ -105,19 +102,19 @@ export default class ConfiguringPanel extends Observer {
     return this.element;
   }
 
-  private createElements(): void {
+  private createElements(state: stateType): void {
     this.element = this.createElement('div', 'slider__labels');
 
     this.data.forEach((data, i) => {
-      this.label[i] = this.createElementLabel(data, i);
+      this.label[i] = this.createElementLabel(data, i, state);
       this.label[i].addEventListener(
         'change',
-        this.handleLabelChange.bind(this)
+        this.handleLabelChange.bind(this, state)
       );
       this.element.appendChild(this.label[i]);
     });
 
-    this.updateElement();
+    this.updateElement(state);
   }
 
   private createElement(tag: string, className: string): HTMLElement {
@@ -126,7 +123,11 @@ export default class ConfiguringPanel extends Observer {
     return newElement;
   }
 
-  private createElementLabel(data: dataType, index: number): HTMLElement {
+  private createElementLabel(
+    data: dataType,
+    index: number,
+    state: stateType
+  ): HTMLElement {
     const labelElement = this.createElement('label', 'slider__label');
     labelElement.textContent = data.label;
 
@@ -141,14 +142,17 @@ export default class ConfiguringPanel extends Observer {
     if (generalInput)
       labelElement.classList.add('slider__label_state_displayed');
 
-    this.input[index] = this.createElementInput(data);
+    this.input[index] = this.createElementInput(data, state);
     labelElement.appendChild(this.input[index]);
 
     return labelElement;
   }
 
-  private createElementInput(data: dataType): HTMLInputElement {
-    const { range, view, flag, scale, progress } = this.state;
+  private createElementInput(
+    data: dataType,
+    state: stateType
+  ): HTMLInputElement {
+    const { range, view, flag, scale, progress } = state;
     const inputElement = <HTMLInputElement>(
       this.createElement('input', `slider__${data.dataset}`)
     );
@@ -165,8 +169,8 @@ export default class ConfiguringPanel extends Observer {
     return inputElement;
   }
 
-  private handleLabelChange(evt: Event): void {
-    const { min, max } = this.state;
+  private handleLabelChange(state: stateType, evt: Event): void {
+    const { min, max } = state;
     const label: HTMLElement = <HTMLElement>evt.currentTarget;
     const input = <HTMLInputElement>label.querySelector('input');
     const inputMin = input.dataset.name === 'min';

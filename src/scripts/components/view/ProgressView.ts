@@ -1,21 +1,18 @@
 import { stateType } from '../../types';
 
 export default class ProgressView {
-  private state: stateType;
-
   private element!: HTMLElement;
 
   constructor(state: stateType) {
-    this.state = state;
-    this.createElement();
+    this.createElement(state);
   }
 
   public getElement(): HTMLElement {
     return this.element;
   }
 
-  public updateElement(): HTMLElement {
-    const { view, fromPercent, toPercent } = this.state;
+  public updateElement(state: stateType): HTMLElement {
+    const { view, fromPercent, toPercent } = state;
     const className = 'slider__bar_size_width';
 
     this.element.style.top = '';
@@ -36,9 +33,9 @@ export default class ProgressView {
     return this.element;
   }
 
-  private createElement(): void {
+  private createElement(state: stateType): void {
     this.element = document.createElement('div');
     this.element.className = 'slider__bar';
-    this.updateElement();
+    this.updateElement(state);
   }
 }

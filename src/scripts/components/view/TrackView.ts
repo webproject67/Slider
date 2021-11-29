@@ -1,21 +1,18 @@
 import { stateType } from '../../types';
 
 export default class TrackView {
-  private state: stateType;
-
   private element!: HTMLElement;
 
   constructor(state: stateType) {
-    this.state = state;
-    this.createElement();
+    this.createElement(state);
   }
 
   public getElement(): HTMLElement {
     return this.element;
   }
 
-  public updateElement(): HTMLElement {
-    const { view } = this.state;
+  public updateElement(state: stateType): HTMLElement {
+    const { view } = state;
     const className = 'slider__track_size_height';
 
     if (view) {
@@ -27,9 +24,9 @@ export default class TrackView {
     return this.element;
   }
 
-  private createElement(): void {
+  private createElement(state: stateType): void {
     this.element = document.createElement('div');
     this.element.className = 'slider__track';
-    this.updateElement();
+    this.updateElement(state);
   }
 }

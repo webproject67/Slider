@@ -1,8 +1,6 @@
 import { stateType } from '../../types';
 
 export default class FlagView {
-  private state: stateType;
-
   private element!: HTMLElement;
 
   private quantityPin: number;
@@ -10,18 +8,17 @@ export default class FlagView {
   private pin: HTMLElement[];
 
   constructor(state: stateType) {
-    this.state = state;
     this.quantityPin = 2;
     this.pin = [];
-    this.createElements();
+    this.createElements(state);
   }
 
   public getElement(): HTMLElement {
     return this.element;
   }
 
-  public updateElement(): HTMLElement {
-    const { range, view, fromPercent, toPercent, from, to } = this.state;
+  public updateElement(state: stateType): HTMLElement {
+    const { range, view, fromPercent, toPercent, from, to } = state;
 
     for (let index = 0; index < this.quantityPin; index += 1) {
       this.pin[index].className = '';
@@ -79,7 +76,7 @@ export default class FlagView {
     return this.element;
   }
 
-  private createElements(): void {
+  private createElements(state: stateType): void {
     this.element = this.createElement('slider__pins');
 
     for (let i = 0; i < this.quantityPin; i += 1) {
@@ -87,7 +84,7 @@ export default class FlagView {
       this.element.appendChild(this.pin[i]);
     }
 
-    this.updateElement();
+    this.updateElement(state);
   }
 
   private createElement(className?: string): HTMLElement {

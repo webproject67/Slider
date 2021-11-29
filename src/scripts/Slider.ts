@@ -9,11 +9,19 @@ export default class Slider {
   }
 
   public getState(): stateType {
-    return this.presenter.model.getState();
+    return this.presenter.getState();
   }
 
   public setState(options: object): void {
-    this.presenter.model.init(options);
+    this.presenter.initModel(options);
+  }
+
+  public setValue(keys: string[], values: (number | boolean)[]): void {
+    this.presenter.setValue(keys, values);
+  }
+
+  public subscribe(cb: (state: stateType) => HTMLElement) {
+    this.presenter.subscribe(cb);
   }
 
   private init(main: HTMLElement, options: object | undefined): Presenter {

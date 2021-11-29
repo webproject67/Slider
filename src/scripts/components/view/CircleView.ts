@@ -1,8 +1,6 @@
 import { stateType } from '../../types';
 
 export default class CircleView {
-  private state: stateType;
-
   private element!: HTMLElement;
 
   private quantityCircle: number;
@@ -10,18 +8,17 @@ export default class CircleView {
   private circle: HTMLElement[];
 
   constructor(state: stateType) {
-    this.state = state;
     this.quantityCircle = 2;
     this.circle = [];
-    this.createElements();
+    this.createElements(state);
   }
 
   public getElement(): HTMLElement {
     return this.element;
   }
 
-  public updateElement(): HTMLElement {
-    const { range, view, fromPercent, toPercent } = this.state;
+  public updateElement(state: stateType): HTMLElement {
+    const { range, view, fromPercent, toPercent } = state;
 
     for (let index = 0; index < this.quantityCircle; index += 1) {
       this.circle[index].className = '';
@@ -76,7 +73,7 @@ export default class CircleView {
     return this.element;
   }
 
-  private createElements(): void {
+  private createElements(state: stateType): void {
     this.element = this.createElement('slider__circles');
 
     for (let i = 0; i < this.quantityCircle; i += 1) {
@@ -84,7 +81,7 @@ export default class CircleView {
       this.element.appendChild(this.circle[i]);
     }
 
-    this.updateElement();
+    this.updateElement(state);
   }
 
   private createElement(className?: string): HTMLElement {
