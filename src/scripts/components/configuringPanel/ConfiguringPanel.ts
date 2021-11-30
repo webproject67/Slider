@@ -170,7 +170,6 @@ export default class ConfiguringPanel extends Observer {
   }
 
   private handleLabelChange(state: stateType, evt: Event): void {
-    const { min, max } = state;
     const label: HTMLElement = <HTMLElement>evt.currentTarget;
     const input = <HTMLInputElement>label.querySelector('input');
     const inputMin = input.dataset.name === 'min';
@@ -182,48 +181,20 @@ export default class ConfiguringPanel extends Observer {
     const inputScale = input.dataset.name === 'scale';
     const inputProgress = input.dataset.name === 'progress';
     const generalInput = inputView || inputFlag || inputScale || inputProgress;
-    let value = Number(input.value);
+    const value = Number(input.value);
 
-    if (inputMin) {
-      if (value >= max) {
-        this.broadcast(
-          ['min', 'from', 'fromPercent', 'to', 'toPercent', 'step'],
-          [max - 1, max - 1, 0, max, 100, 1]
-        );
-      } else {
-        this.broadcast(
-          ['min', 'from', 'fromPercent', 'to', 'toPercent'],
-          [value, value, 0, max, 100]
-        );
-      }
-    }
+    if (inputMin)
+      this.broadcast(['min', 'from', 'fromPercent'], [value, value, 0]);
 
-    if (inputMax) {
-      if (min >= value) {
-        this.broadcast(
-          ['max', 'to', 'toPercent', 'from', 'fromPercent', 'step'],
-          [min + 1, min + 1, 100, min, 0, 1]
-        );
-      } else {
-        this.broadcast(
-          ['max', 'to', 'toPercent', 'from', 'fromPercent'],
-          [value, value, 100, min, 0]
-        );
-      }
-    }
+    if (inputMax)
+      this.broadcast(['max', 'to', 'toPercent'], [value, value, 100]);
 
-    if (inputStep) {
-      const generalValue = max - min;
-      if (value === 0) value = 1;
-      if (value < 0) value = Math.abs(value);
-      if (value > generalValue) value = generalValue;
-      this.broadcast(['step'], [value]);
-    }
+    if (inputStep) this.broadcast(['step'], [value]);
 
     if (inputRange)
       this.broadcast(
         ['from', 'fromPercent', input.dataset.name!],
-        [min, 0, input.checked]
+        [state.min, 0, input.checked]
       );
 
     if (generalInput) this.broadcast([input.dataset.name!], [input.checked]);
