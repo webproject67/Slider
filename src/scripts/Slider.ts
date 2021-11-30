@@ -2,9 +2,11 @@ import Presenter from './components/presenter/Presenter';
 import { stateType } from './types';
 
 export default class Slider {
-  presenter!: Presenter;
+  private state!: stateType;
 
-  constructor(main: HTMLElement, options: object | undefined) {
+  private presenter!: Presenter;
+
+  constructor(main: HTMLElement, options?: object) {
     this.init(main, options);
   }
 
@@ -12,8 +14,8 @@ export default class Slider {
     return this.presenter.getState();
   }
 
-  public setState(options: object): void {
-    this.presenter.initModel(options);
+  public setState(state: stateType): void {
+    this.presenter.initModel(state);
   }
 
   public setValue(keys: string[], values: (number | boolean)[]): void {
@@ -24,8 +26,27 @@ export default class Slider {
     this.presenter.subscribe(cb);
   }
 
-  private init(main: HTMLElement, options: object | undefined): Presenter {
-    this.presenter = new Presenter(main, options);
+  private init(main: HTMLElement, options?: object): Presenter {
+    this.state = $.extend(
+      {
+        start: 1,
+        min: 0,
+        max: 100,
+        from: 0,
+        fromPercent: 0,
+        to: 100,
+        toPercent: 100,
+        step: 1,
+        view: false,
+        range: false,
+        flag: true,
+        progress: true,
+        scale: true,
+      },
+      options
+    );
+
+    this.presenter = new Presenter(main, this.state);
     return this.presenter;
   }
 }

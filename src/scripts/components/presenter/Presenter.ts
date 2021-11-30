@@ -7,8 +7,8 @@ export default class Presenter {
 
   private view: View;
 
-  constructor(main: HTMLElement, options: object | undefined) {
-    this.model = new Model(options);
+  constructor(main: HTMLElement, state: stateType) {
+    this.model = new Model(state);
     this.view = new View(main);
     this.init();
   }
@@ -40,8 +40,8 @@ export default class Presenter {
     return this.model.getState();
   }
 
-  public initModel(options: object): void {
-    this.model.init(options);
+  public initModel(state: stateType): void {
+    this.model.init(state);
   }
 
   public setValue(keys: string[], values: (number | boolean)[]): void {
