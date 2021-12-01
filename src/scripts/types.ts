@@ -1,5 +1,4 @@
 interface stateType {
-  start: number;
   min: number;
   max: number;
   from: number;

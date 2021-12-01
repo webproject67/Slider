@@ -9,6 +9,8 @@ import { stateType } from '../../types';
 export default class View extends Observer {
   private main: HTMLElement;
 
+  private start: boolean;
+
   private wrapper!: HTMLElement;
 
   private slider!: HTMLElement;
@@ -28,12 +30,13 @@ export default class View extends Observer {
   constructor(main: HTMLElement) {
     super();
     this.main = main;
+    this.start = true;
   }
 
   public updateView(state: stateType): void {
     this.state = state;
 
-    if (state.start) {
+    if (this.start) {
       this.render(state);
       return;
     }
@@ -117,7 +120,7 @@ export default class View extends Observer {
     this.wrapper.appendChild(this.slider);
     this.main.appendChild(this.wrapper);
 
-    this.broadcast(['start'], [0]);
+    this.start = false;
   }
 
   private handlePinMouseDown(evt: Event): void {
@@ -139,16 +142,12 @@ export default class View extends Observer {
     let circle: HTMLElement;
 
     if (classNameBoolHMin || classNameBoolVMin)
-      circle = <HTMLElement>(
-        this.circle.getElement().querySelector('div:first-child')
-      );
+      circle = this.circle.getElement().querySelector('div:first-child')!;
 
     if (classNameBoolHMax || classNameBoolVMax)
       circle = this.state.range
-        ? <HTMLElement>this.circle.getElement().querySelector('div:last-child')
-        : <HTMLElement>(
-            this.circle.getElement().querySelector('div:first-child')
-          );
+        ? this.circle.getElement().querySelector('div:last-child')!
+        : this.circle.getElement().querySelector('div:first-child')!;
 
     this.replaceCircle(evt, circle!);
   }
@@ -161,9 +160,7 @@ export default class View extends Observer {
   private replaceCircle(evt: Event, circle: HTMLElement): void {
     evt.preventDefault();
 
-    const onMouseMove = (
-      evt: Event & { touches?: TouchList; pageX?: number; pageY?: number }
-    ): void => {
+    const onMouseMove = (evt: MouseEvent | TouchEvent): void => {
       const { slider } = this;
       const boxLeft: number = slider.offsetLeft;
       const boxRight: number = boxLeft + slider.clientWidth;
@@ -173,7 +170,7 @@ export default class View extends Observer {
       const boxBottom: number = boxTop + slider.clientHeight;
       const sliderHeight: number = boxBottom - boxTop;
       const getEvent = () =>
-        evt.type.search('touch') !== -1 ? evt.touches![0] : evt;
+        evt instanceof TouchEvent ? evt.targetTouches[0] : evt;
       const event = getEvent();
       const circleMin = circle.classList.contains(
         'slider__circle_position_minimum'
@@ -195,8 +192,8 @@ export default class View extends Observer {
         corner = ((event.pageX! - sliderLeft) / sliderWidth) * 100;
       }
 
-      if (circleMin || circleVMin) this.broadcast(['fromPercent'], [corner]);
-      if (circleMax || circleVMax) this.broadcast(['toPercent'], [corner]);
+      if (circleMin || circleVMin) this.broadcast({ fromPercent: corner });
+      if (circleMax || circleVMax) this.broadcast({ toPercent: corner });
     };
 
     const onMouseUp = () => {
@@ -238,7 +235,7 @@ export default class View extends Observer {
     if (scale.className === 'slider__item')
       corner = parseFloat(scale.style.left);
 
-    this.broadcast(['corner'], [corner]);
+    this.broadcast({ max: corner });
   }
 
   private createElement(className: string): HTMLElement {

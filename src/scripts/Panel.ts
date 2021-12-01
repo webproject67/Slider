@@ -25,8 +25,7 @@ export default class Panel {
   }
 
   private subscribe(): void {
-    const cbPanel = (keys: string[], values: (number | boolean)[]) =>
-      this.slider.setValue(keys, values);
+    const cbPanel = (state: stateType) => this.slider.setState(state);
     this.configuringPanel.subscribe(cbPanel);
 
     const cbModel = (state: stateType) =>

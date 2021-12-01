@@ -6,7 +6,7 @@ export default class Slider {
 
   private presenter!: Presenter;
 
-  constructor(main: HTMLElement, options?: object) {
+  constructor(main: HTMLElement, options: stateType) {
     this.init(main, options);
   }
 
@@ -15,21 +15,16 @@ export default class Slider {
   }
 
   public setState(state: stateType): void {
-    this.presenter.initModel(state);
-  }
-
-  public setValue(keys: string[], values: (number | boolean)[]): void {
-    this.presenter.setValue(keys, values);
+    this.presenter.setState(state);
   }
 
   public subscribe(cb: (state: stateType) => HTMLElement) {
     this.presenter.subscribe(cb);
   }
 
-  private init(main: HTMLElement, options?: object): Presenter {
+  private init(main: HTMLElement, options: stateType): Presenter {
     this.state = $.extend(
       {
-        start: 1,
         min: 0,
         max: 100,
         from: 0,

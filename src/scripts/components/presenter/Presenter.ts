@@ -14,20 +14,7 @@ export default class Presenter {
   }
 
   private init() {
-    const cbView = (keys: string[], values: (number | boolean)[]) => {
-      keys.forEach((key, i) => {
-        const corner = key === 'corner';
-        const pinMax = key === 'toPercent';
-        const pinMin = key === 'fromPercent';
-        const generalConst = corner || pinMax || pinMin;
-
-        if (generalConst) {
-          this.model.calculateValue(Number(values[i]), keys[i]);
-        } else {
-          this.model.setValue(keys, values);
-        }
-      });
-    };
+    const cbView = (state: stateType) => this.model.calculateValue(state);
     this.view.subscribe(cbView);
 
     const cbModel = (state: stateType) => this.view.updateView(state);
@@ -40,12 +27,8 @@ export default class Presenter {
     return this.model.getState();
   }
 
-  public initModel(state: stateType): void {
-    this.model.init(state);
-  }
-
-  public setValue(keys: string[], values: (number | boolean)[]): void {
-    this.model.setValue(keys, values);
+  public setState(state: stateType): void {
+    this.model.setState(state);
   }
 
   public subscribe(cb: (state: stateType) => HTMLElement) {
