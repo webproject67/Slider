@@ -7,84 +7,85 @@ export default class Model extends Observer {
   constructor(state: stateType) {
     super();
     this.state = state;
-    this.init(state);
+    this.setState(state);
   }
 
   public getState(): stateType {
     return { ...this.state };
   }
 
-  public setValue(keys: string[], values: (number | boolean)[]) {
-    keys.forEach((key, i) => {
-      switch (key) {
-        case 'start':
-          this.state.start = Number(values[i]);
-          break;
-        case 'min':
-          if (!(typeof values[i] === 'number'))
-            throw new Error('invalid value');
-          this.state.min = Number(values[i]);
-          break;
-        case 'max':
-          if (!(typeof values[i] === 'number'))
-            throw new Error('invalid value');
-          this.state.max = Number(values[i]);
-          break;
-        case 'step':
-          if (!(typeof values[i] === 'number'))
-            throw new Error('invalid value');
-          this.state.step = Number(values[i]);
-          break;
-        case 'from':
-          if (!(typeof values[i] === 'number'))
-            throw new Error('invalid value');
-          this.state.from = Number(values[i]);
-          break;
-        case 'fromPercent':
-          this.state.fromPercent = Number(values[i]);
-          break;
-        case 'to':
-          if (!(typeof values[i] === 'number'))
-            throw new Error('invalid value');
-          this.state.to = Number(values[i]);
-          break;
-        case 'toPercent':
-          this.state.toPercent = Number(values[i]);
-          break;
-        case 'view':
-          if (!(typeof values[i] === 'boolean'))
-            throw new Error('invalid value');
-          this.state.view = Boolean(values[i]);
-          break;
-        case 'range':
-          if (!(typeof values[i] === 'boolean'))
-            throw new Error('invalid value');
-          this.state.range = Boolean(values[i]);
-          break;
-        case 'flag':
-          if (!(typeof values[i] === 'boolean'))
-            throw new Error('invalid value');
-          this.state.flag = Boolean(values[i]);
-          break;
-        case 'progress':
-          if (!(typeof values[i] === 'boolean'))
-            throw new Error('invalid value');
-          this.state.progress = Boolean(values[i]);
-          break;
-        case 'scale':
-          if (!(typeof values[i] === 'boolean'))
-            throw new Error('invalid value');
-          this.state.scale = Boolean(values[i]);
-          break;
-        default:
-          break;
-      }
-    });
+  public setState(state: Partial<stateType>) {
+    if (state.min) {
+      if (!(typeof state.min === 'number')) throw new Error('invalid value');
+      this.state.min = Number(state.min);
+    }
+
+    if (state.max) {
+      if (!(typeof state.max === 'number')) throw new Error('invalid value');
+      this.state.max = Number(state.max);
+    }
+
+    if (state.step) {
+      if (!(typeof state.step === 'number')) throw new Error('invalid value');
+      this.state.step = Number(state.step);
+    }
+
+    if (state.from) {
+      if (!(typeof state.from === 'number')) throw new Error('invalid value');
+      this.state.from = Number(state.from);
+    }
+
+    if (state.fromPercent) this.state.fromPercent = Number(state.fromPercent);
+
+    if (state.to) {
+      if (!(typeof state.to === 'number')) throw new Error('invalid value');
+      this.state.to = Number(state.to);
+    }
+
+    if (state.toPercent) this.state.toPercent = Number(state.toPercent);
+
+    if (!(typeof state.view === 'undefined')) {
+      if (!(typeof state.view === 'boolean')) throw new Error('invalid value');
+      this.state.view = Boolean(state.view);
+    }
+
+    if (!(typeof state.range === 'undefined')) {
+      if (!(typeof state.range === 'boolean')) throw new Error('invalid value');
+      this.state.range = Boolean(state.range);
+    }
+
+    if (!(typeof state.flag === 'undefined')) {
+      if (!(typeof state.flag === 'boolean')) throw new Error('invalid value');
+      this.state.flag = Boolean(state.flag);
+    }
+
+    if (!(typeof state.progress === 'undefined')) {
+      if (!(typeof state.progress === 'boolean'))
+        throw new Error('invalid value');
+      this.state.progress = Boolean(state.progress);
+    }
+
+    if (!(typeof state.scale === 'undefined')) {
+      if (!(typeof state.scale === 'boolean')) throw new Error('invalid value');
+      this.state.scale = Boolean(state.scale);
+    }
 
     this.validation();
   }
 
-  public calculateValue(corner: number, val: string): void {
+  public calculateValue(state: stateType): void {
+    let val: string = '';
+    let corner: number = 0;
+
+    if (state.max) corner = state.max;
+    if (state.fromPercent) {
+      val = 'fromPercent';
+      corner = state.fromPercent;
+    }
+    if (state.toPercent) {
+      val = 'toPercent';
+      corner = state.toPercent;
+    }
     const { min, max, step, toPercent, fromPercent } = this.state;
     const stepCount: number = (max - min) / step;
     const stepPercent: number = 100 / stepCount;
@@ -106,82 +107,50 @@ export default class Model extends Observer {
     const boolFrom = stepPercentResult >= fromPercent;
 
     if (val === 'fromPercent' || !boolFrom) {
-      this.setValue(['fromPercent', 'from'], [stepPercentResult, value]);
+      this.setState({ fromPercent: stepPercentResult, from: value });
       this.broadcast(this.state);
       return;
     }
 
     if (val === 'toPercent' || boolFrom) {
-      this.setValue(['toPercent', 'to'], [stepPercentResult, value]);
+      this.setState({ toPercent: stepPercentResult, to: value });
       this.broadcast(this.state);
     }
   }
 
-  public init(state: stateType): void {
-    const keys = Object.keys(state);
-    const values = Object.values(state);
-    const ranges = ['min', 'max'];
-    const mandatoryKeys = ['from', 'to'];
-    const states = [this.state.min, this.state.max];
-
-    mandatoryKeys.forEach((key, i) => {
-      if (keys.indexOf(key) === -1) {
-        keys.push(key);
-        const numElement = keys.indexOf(ranges[i]);
-        if (numElement === -1) {
-          values.push(states[i]);
-        } else {
-          values.push(values[numElement]);
-        }
-      }
-    });
-
-    this.setValue(keys, values);
-  }
-
   private validation(): void {
-    const keys = Object.keys(this.state);
-    const values = Object.values(this.state);
+    if (this.state.min >= this.state.max) {
+      this.state.min = this.state.max - 1;
+      this.state.from = this.state.max - 1;
+    }
 
-    keys.forEach((key, i) => {
-      const generalValue = this.state.max - this.state.min;
-      const stepCount: number = generalValue / this.state.step;
-      const stepPercent: number = 100 / stepCount;
-      const minBool = values[i] < this.state.min;
-      const maxBool = values[i] > this.state.max;
-      const toBool = values[i] > this.state.to;
-      const fromBool = values[i] < this.state.from;
-      const generalFrom = minBool || maxBool || toBool;
-      const generalTo = minBool || maxBool || fromBool;
+    const generalValue = this.state.max - this.state.min;
 
-      switch (key) {
-        case 'min':
-          if (values[i] >= this.state.max) {
-            this.state.min = this.state.max - 1;
-            this.state.from = this.state.max - 1;
-          }
-          break;
-        case 'step':
-          if (values[i] === 0) this.state.step = 1;
-          if (values[i] < 0) this.state.step = Math.abs(values[i]);
-          if (values[i] > generalValue || this.state.step > generalValue)
-            this.state.step = generalValue;
-          break;
-        case 'from':
-          if (generalFrom) this.state.from = this.state.min;
-          this.state.fromPercent =
-            ((this.state.from - this.state.min) / this.state.step) *
-            stepPercent;
-          break;
-        case 'to':
-          if (generalTo) this.state.to = this.state.max;
-          this.state.toPercent =
-            ((this.state.to - this.state.min) / this.state.step) * stepPercent;
-          break;
-        default:
-          break;
-      }
-    });
+    if (this.state.step === 0) this.state.step = 1;
+    if (this.state.step < 0) this.state.step = Math.abs(this.state.step);
+    if (this.state.step > generalValue || this.state.step > generalValue)
+      this.state.step = generalValue;
+
+    const stepCount: number = generalValue / this.state.step;
+    const stepPercent: number = 100 / stepCount;
+
+    const fromMaxBool = this.state.from > this.state.max;
+    const fromMinBool = this.state.from < this.state.min;
+    const fromToBool = this.state.from > this.state.to;
+    const generalFrom = fromMinBool || fromMaxBool || fromToBool;
+
+    if (generalFrom) this.state.from = this.state.min;
+    this.state.fromPercent =
+      ((this.state.from - this.state.min) / this.state.step) * stepPercent;
+
+    const toMaxBool = this.state.to > this.state.max;
+    const toMinBool = this.state.to < this.state.min;
+    const toFromBool = this.state.to < this.state.from;
+    const generalTo = toMinBool || toMaxBool || toFromBool;
+
+    if (generalTo) this.state.to = this.state.max;
+    this.state.toPercent =
+      ((this.state.to - this.state.min) / this.state.step) * stepPercent;
 
     this.broadcast(this.state);
   }

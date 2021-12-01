@@ -183,20 +183,20 @@ export default class ConfiguringPanel extends Observer {
     const generalInput = inputView || inputFlag || inputScale || inputProgress;
     const value = Number(input.value);
 
-    if (inputMin)
-      this.broadcast(['min', 'from', 'fromPercent'], [value, value, 0]);
+    if (inputMin) this.broadcast({ min: value, from: value, fromPercent: 0 });
 
-    if (inputMax)
-      this.broadcast(['max', 'to', 'toPercent'], [value, value, 100]);
+    if (inputMax) this.broadcast({ max: value, to: value, toPercent: 100 });
 
-    if (inputStep) this.broadcast(['step'], [value]);
+    if (inputStep) this.broadcast({ step: value });
 
     if (inputRange)
-      this.broadcast(
-        ['from', 'fromPercent', input.dataset.name!],
-        [state.min, 0, input.checked]
-      );
+      this.broadcast({
+        [`${input.dataset.name!}`]: input.checked,
+        from: state.min,
+        fromPercent: 0,
+      });
 
-    if (generalInput) this.broadcast([input.dataset.name!], [input.checked]);
+    if (generalInput)
+      this.broadcast({ [`${input.dataset.name!}`]: input.checked });
   }
 }
