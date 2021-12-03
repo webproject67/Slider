@@ -23,7 +23,7 @@ module.exports = {
     'no-debugger': 'error',
     'no-console': 'error',
     'import/extensions': ['error', 'ignorePackages', { ts: 'never' }],
-    'no-shadow': ['error', { allow: ['evt'] }],
+    'no-shadow': 'off',
     'no-unused-vars': 'off',
     'class-methods-use-this': 'off',
     'no-continue': 'off',

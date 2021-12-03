@@ -1,9 +1,9 @@
-import { stateType } from '../../types';
+import { IState } from '../../types';
 
 export default class TrackView {
   private element!: HTMLElement;
 
-  constructor(state: stateType) {
+  constructor(state: IState) {
     this.createElement(state);
   }
 
@@ -11,11 +11,10 @@ export default class TrackView {
     return this.element;
   }
 
-  public updateElement(state: stateType): HTMLElement {
-    const { view } = state;
+  public updateElement(state: IState): HTMLElement {
     const className = 'slider__track_size_height';
 
-    if (view) {
+    if (state.view) {
       this.element.classList.add(className);
     } else {
       this.element.classList.remove(className);
@@ -24,7 +23,7 @@ export default class TrackView {
     return this.element;
   }
 
-  private createElement(state: stateType): void {
+  private createElement(state: IState): void {
     this.element = document.createElement('div');
     this.element.className = 'slider__track';
     this.updateElement(state);

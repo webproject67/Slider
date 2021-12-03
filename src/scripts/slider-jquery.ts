@@ -1,6 +1,6 @@
 import Slider from './Slider';
-import { stateType } from './types';
+import { IState } from './types';
 
-$.fn.slider = function f(options: stateType) {
+$.fn.slider = function f(options: IState) {
   return new Slider(this[0], options);
 };

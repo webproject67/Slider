@@ -1,48 +1,78 @@
 import Observer from '../observer/Observer';
-import { stateType } from '../../types';
+import { IState, ModelType, ModelUpdate, PanelTypes } from '../../types';
 
-export default class Model extends Observer {
-  private state: stateType;
+export default class Model extends Observer<ModelType> {
+  private state: IState;
 
-  constructor(state: stateType) {
+  constructor(state: IState) {
     super();
     this.state = state;
     this.setState(state);
   }
 
-  public getState(): stateType {
-    return { ...this.state };
+  public getState(): ModelType {
+    return { type: ModelUpdate.UPDATE, value: { ...this.state } };
   }
 
-  public setState(state: Partial<stateType>) {
-    if (state.min) {
+  public setStateFrom(valuePercent: number): void {
+    let cloneValuePercent = valuePercent;
+    if (valuePercent > this.state.toPercent)
+      cloneValuePercent = this.state.toPercent;
+    const value = this.calculateValue(cloneValuePercent);
+    this.setState({ fromPercent: cloneValuePercent, from: value });
+  }
+
+  public setStateTo(valuePercent: number): void {
+    let cloneValuePercent = valuePercent;
+    if (valuePercent < this.state.fromPercent)
+      cloneValuePercent = this.state.fromPercent;
+    const value = this.calculateValue(cloneValuePercent);
+    this.setState({ toPercent: cloneValuePercent, to: value });
+  }
+
+  public setStateFromOrTo(valuePercent: number): void {
+    if (this.state.fromPercent > valuePercent) {
+      this.setStateFrom(valuePercent);
+    } else {
+      this.setStateTo(valuePercent);
+    }
+  }
+
+  public setState(state: Partial<IState>): void {
+    if (!(typeof state.min === 'undefined')) {
       if (!(typeof state.min === 'number')) throw new Error('invalid value');
       this.state.min = Number(state.min);
+      this.state.from = this.state.min;
     }
 
-    if (state.max) {
+    if (!(typeof state.max === 'undefined')) {
       if (!(typeof state.max === 'number')) throw new Error('invalid value');
       this.state.max = Number(state.max);
+      this.state.to = this.state.max;
     }
 
-    if (state.step) {
+    if (!(typeof state.step === 'undefined')) {
       if (!(typeof state.step === 'number')) throw new Error('invalid value');
       this.state.step = Number(state.step);
+      this.state.from = this.state.min;
+      this.state.to = this.state.max;
     }
 
-    if (state.from) {
+    if (!(typeof state.from === 'undefined')) {
       if (!(typeof state.from === 'number')) throw new Error('invalid value');
       this.state.from = Number(state.from);
     }
 
-    if (state.fromPercent) this.state.fromPercent = Number(state.fromPercent);
+    if (!(typeof state.fromPercent === 'undefined'))
+      this.state.fromPercent = Number(state.fromPercent);
 
-    if (state.to) {
+    if (!(typeof state.to === 'undefined')) {
       if (!(typeof state.to === 'number')) throw new Error('invalid value');
       this.state.to = Number(state.to);
     }
 
-    if (state.toPercent) this.state.toPercent = Number(state.toPercent);
+    if (!(typeof state.toPercent === 'undefined'))
+      this.state.toPercent = Number(state.toPercent);
 
     if (!(typeof state.view === 'undefined')) {
       if (!(typeof state.view === 'boolean')) throw new Error('invalid value');
@@ -52,6 +82,7 @@ export default class Model extends Observer {
     if (!(typeof state.range === 'undefined')) {
       if (!(typeof state.range === 'boolean')) throw new Error('invalid value');
       this.state.range = Boolean(state.range);
+      this.state.from = this.state.min;
     }
 
     if (!(typeof state.flag === 'undefined')) {
@@ -73,49 +104,19 @@ export default class Model extends Observer {
     this.validation();
   }
 
-  public calculateValue(state: stateType): void {
-    let val: string = '';
-    let corner: number = 0;
+  public updateState(data: PanelTypes): void {
+    const key = data.type;
+    const { value } = data;
+    this.setState({ [`${key}`]: value });
+  }
 
-    if (state.max) corner = state.max;
-    if (state.fromPercent) {
-      val = 'fromPercent';
-      corner = state.fromPercent;
-    }
-    if (state.toPercent) {
-      val = 'toPercent';
-      corner = state.toPercent;
-    }
-    const { min, max, step, toPercent, fromPercent } = this.state;
+  private calculateValue(valuePercent: number): number {
+    const { min, max, step } = this.state;
     const stepCount: number = (max - min) / step;
     const stepPercent: number = 100 / stepCount;
-    let stepPercentResult: number =
-      Math.round(corner / stepPercent) * stepPercent;
-
-    if (stepPercentResult < 0) stepPercentResult = 0;
-
-    if (corner > 100 || stepPercentResult > 100) stepPercentResult = 100;
-
-    if (val === 'fromPercent' && stepPercentResult > toPercent)
-      stepPercentResult = toPercent;
-
-    if (val === 'toPercent' && fromPercent > stepPercentResult)
-      stepPercentResult = fromPercent;
-
-    const value =
-      Number(((stepPercentResult / stepPercent) * step).toFixed()) + min;
-    const boolFrom = stepPercentResult >= fromPercent;
-
-    if (val === 'fromPercent' || !boolFrom) {
-      this.setState({ fromPercent: stepPercentResult, from: value });
-      this.broadcast(this.state);
-      return;
-    }
-
-    if (val === 'toPercent' || boolFrom) {
-      this.setState({ toPercent: stepPercentResult, to: value });
-      this.broadcast(this.state);
-    }
+    const stepPercentResult: number =
+      Math.round(valuePercent / stepPercent) * stepPercent;
+    return Number(((stepPercentResult / stepPercent) * step).toFixed()) + min;
   }
 
   private validation(): void {
@@ -152,6 +153,6 @@ export default class Model extends Observer {
     this.state.toPercent =
       ((this.state.to - this.state.min) / this.state.step) * stepPercent;
 
-    this.broadcast(this.state);
+    this.broadcast({ type: ModelUpdate.UPDATE, value: { ...this.state } });
   }
 }

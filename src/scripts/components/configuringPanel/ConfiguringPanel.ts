@@ -1,8 +1,10 @@
 import Observer from '../observer/Observer';
-import { stateType, dataType } from '../../types';
+import { IState, IData, PanelHandler, PanelTypes } from '../../types';
 
-export default class ConfiguringPanel extends Observer {
-  private data: dataType[];
+export default class ConfiguringPanel extends Observer<PanelTypes> {
+  private state: IState;
+
+  private data: IData[];
 
   private element!: HTMLElement;
 
@@ -10,8 +12,9 @@ export default class ConfiguringPanel extends Observer {
 
   private input: HTMLInputElement[];
 
-  constructor(state: stateType) {
+  constructor(state: IState) {
     super();
+    this.state = state;
     this.data = [
       {
         label: 'Минимальное значение',
@@ -69,17 +72,18 @@ export default class ConfiguringPanel extends Observer {
 
     this.label = [];
     this.input = [];
-    this.createElements(state);
+    this.createElements();
   }
 
   public getElement(): HTMLElement {
     return this.element;
   }
 
-  public updateElement(state: stateType): HTMLElement {
-    const { range, from, to, min, max, step } = state;
+  public updateElement(state: IState): HTMLElement {
+    this.state = state;
+    const { range, from, to, min, max, step } = this.state;
 
-    this.data.forEach((element, i) => {
+    this.data.forEach((elem, i) => {
       if (this.input[i].dataset.name === 'min')
         this.input[i].value = String(min);
       if (this.input[i].dataset.name === 'max')
@@ -93,7 +97,7 @@ export default class ConfiguringPanel extends Observer {
 
       if (this.input[i].dataset.name === 'to') {
         this.label[i].textContent = range ? 'До' : 'Текущее значение';
-        this.input[i] = this.createElementInput(this.data[3], state);
+        this.input[i] = this.createElementInput(this.data[3]);
         this.input[i].value = String(to);
         this.label[i].appendChild(this.input[i]);
       }
@@ -102,19 +106,15 @@ export default class ConfiguringPanel extends Observer {
     return this.element;
   }
 
-  private createElements(state: stateType): void {
+  private createElements(): void {
     this.element = this.createElement('div', 'slider__labels');
 
     this.data.forEach((data, i) => {
-      this.label[i] = this.createElementLabel(data, i, state);
-      this.label[i].addEventListener(
-        'change',
-        this.handleLabelChange.bind(this, state)
-      );
+      this.label[i] = this.createElementLabel(data, i);
       this.element.appendChild(this.label[i]);
     });
 
-    this.updateElement(state);
+    this.updateElement(this.state);
   }
 
   private createElement(tag: string, className: string): HTMLElement {
@@ -123,11 +123,7 @@ export default class ConfiguringPanel extends Observer {
     return newElement;
   }
 
-  private createElementLabel(
-    data: dataType,
-    index: number,
-    state: stateType
-  ): HTMLElement {
+  private createElementLabel(data: IData, index: number): HTMLElement {
     const labelElement = this.createElement('label', 'slider__label');
     labelElement.textContent = data.label;
 
@@ -142,17 +138,18 @@ export default class ConfiguringPanel extends Observer {
     if (generalInput)
       labelElement.classList.add('slider__label_state_displayed');
 
-    this.input[index] = this.createElementInput(data, state);
+    this.input[index] = this.createElementInput(data);
+    this.input[index].addEventListener(
+      'change',
+      this.handleInputChange.bind(this)
+    );
     labelElement.appendChild(this.input[index]);
 
     return labelElement;
   }
 
-  private createElementInput(
-    data: dataType,
-    state: stateType
-  ): HTMLInputElement {
-    const { range, view, flag, scale, progress } = state;
+  private createElementInput(data: IData): HTMLInputElement {
+    const { range, view, flag, scale, progress } = this.state;
     const inputElement = <HTMLInputElement>(
       this.createElement('input', `slider__${data.dataset}`)
     );
@@ -169,34 +166,36 @@ export default class ConfiguringPanel extends Observer {
     return inputElement;
   }
 
-  private handleLabelChange(state: stateType, evt: Event): void {
-    const label: HTMLElement = <HTMLElement>evt.currentTarget;
-    const input = <HTMLInputElement>label.querySelector('input');
-    const inputMin = input.dataset.name === 'min';
-    const inputMax = input.dataset.name === 'max';
-    const inputStep = input.dataset.name === 'step';
-    const inputView = input.dataset.name === 'view';
-    const inputRange = input.dataset.name === 'range';
-    const inputFlag = input.dataset.name === 'flag';
-    const inputScale = input.dataset.name === 'scale';
-    const inputProgress = input.dataset.name === 'progress';
-    const generalInput = inputView || inputFlag || inputScale || inputProgress;
-    const value = Number(input.value);
+  private handleInputChange(evt: Event): void {
+    const input = <HTMLInputElement>evt.currentTarget;
 
-    if (inputMin) this.broadcast({ min: value, from: value, fromPercent: 0 });
-
-    if (inputMax) this.broadcast({ max: value, to: value, toPercent: 100 });
-
-    if (inputStep) this.broadcast({ step: value });
-
-    if (inputRange)
-      this.broadcast({
-        [`${input.dataset.name!}`]: input.checked,
-        from: state.min,
-        fromPercent: 0,
-      });
-
-    if (generalInput)
-      this.broadcast({ [`${input.dataset.name!}`]: input.checked });
+    switch (input.dataset.name) {
+      case PanelHandler.MIN:
+        this.broadcast({ type: PanelHandler.MIN, value: Number(input.value) });
+        break;
+      case PanelHandler.MAX:
+        this.broadcast({ type: PanelHandler.MAX, value: Number(input.value) });
+        break;
+      case PanelHandler.STEP:
+        this.broadcast({ type: PanelHandler.STEP, value: Number(input.value) });
+        break;
+      case PanelHandler.VIEW:
+        this.broadcast({ type: PanelHandler.VIEW, value: input.checked });
+        break;
+      case PanelHandler.RANGE:
+        this.broadcast({ type: PanelHandler.RANGE, value: input.checked });
+        break;
+      case PanelHandler.FLAG:
+        this.broadcast({ type: PanelHandler.FLAG, value: input.checked });
+        break;
+      case PanelHandler.PROGRESS:
+        this.broadcast({ type: PanelHandler.PROGRESS, value: input.checked });
+        break;
+      case PanelHandler.SCALE:
+        this.broadcast({ type: PanelHandler.SCALE, value: input.checked });
+        break;
+      default:
+        throw new Error('invalid type');
+    }
   }
 }

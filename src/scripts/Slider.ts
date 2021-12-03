@@ -1,28 +1,32 @@
 import Presenter from './components/presenter/Presenter';
-import { stateType } from './types';
+import { IState, ModelType, PanelTypes } from './types';
 
 export default class Slider {
-  private state!: stateType;
+  private state!: IState;
 
   private presenter!: Presenter;
 
-  constructor(main: HTMLElement, options: stateType) {
+  constructor(main: HTMLElement, options: IState) {
     this.init(main, options);
   }
 
-  public getState(): stateType {
-    return this.presenter.getState();
+  public getState(): IState {
+    return this.presenter.getState().value;
   }
 
-  public setState(state: stateType): void {
+  public setState(state: IState): void {
     this.presenter.setState(state);
   }
 
-  public subscribe(cb: (state: stateType) => HTMLElement) {
+  public updateState(data: PanelTypes): void {
+    this.presenter.updateState(data);
+  }
+
+  public subscribe(cb: (data: ModelType) => void): void {
     this.presenter.subscribe(cb);
   }
 
-  private init(main: HTMLElement, options: stateType): Presenter {
+  private init(main: HTMLElement, options: IState): Presenter {
     this.state = $.extend(
       {
         min: 0,
