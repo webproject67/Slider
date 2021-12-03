@@ -1,4 +1,4 @@
-import { stateType } from '../../types';
+import { IState } from '../../types';
 
 export default class CircleView {
   private element!: HTMLElement;
@@ -7,7 +7,7 @@ export default class CircleView {
 
   private circle: HTMLElement[];
 
-  constructor(state: stateType) {
+  constructor(state: IState) {
     this.quantityCircle = 2;
     this.circle = [];
     this.createElements(state);
@@ -17,7 +17,7 @@ export default class CircleView {
     return this.element;
   }
 
-  public updateElement(state: stateType): HTMLElement {
+  public updateElement(state: IState): HTMLElement {
     const { range, view, fromPercent, toPercent } = state;
 
     for (let index = 0; index < this.quantityCircle; index += 1) {
@@ -49,10 +49,10 @@ export default class CircleView {
         this.circle[index].style.top = `${toPercent}%`;
       };
 
-      const indexAndRangeBool = !index && !range;
+      const indexAndRangeBool = index && range;
 
-      if (indexAndRangeBool && !view) getCircleMax();
-      if (indexAndRangeBool && view) getCircleVerticalMax();
+      if (!indexAndRangeBool && !view) getCircleMax();
+      if (!indexAndRangeBool && view) getCircleVerticalMax();
       if (range && !view) {
         if (!index) {
           getCircleMin();
@@ -73,7 +73,7 @@ export default class CircleView {
     return this.element;
   }
 
-  private createElements(state: stateType): void {
+  private createElements(state: IState): void {
     this.element = this.createElement('slider__circles');
 
     for (let i = 0; i < this.quantityCircle; i += 1) {

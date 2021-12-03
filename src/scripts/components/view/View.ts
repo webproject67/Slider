@@ -4,9 +4,9 @@ import ProgressView from './ProgressView';
 import CircleView from './CircleView';
 import FlagView from './FlagView';
 import ScaleView from './ScaleView';
-import { stateType } from '../../types';
+import { IState, ViewHandler, ViewTypes } from '../../types';
 
-export default class View extends Observer {
+export default class View extends Observer<ViewTypes> {
   private main: HTMLElement;
 
   private start: boolean;
@@ -25,7 +25,7 @@ export default class View extends Observer {
 
   private scale!: ScaleView;
 
-  private state!: stateType;
+  private state!: IState;
 
   constructor(main: HTMLElement) {
     super();
@@ -33,58 +33,60 @@ export default class View extends Observer {
     this.start = true;
   }
 
-  public updateView(state: stateType): void {
+  public updateView(state: IState): void {
     this.state = state;
 
     if (this.start) {
-      this.render(state);
+      this.render();
       return;
     }
 
-    this.toggleClassNameSlider(state);
-    this.track.updateElement(state);
-    this.progress.updateElement(state);
-    this.circle.updateElement(state);
-    this.flag.updateElement(state);
-    this.scale.updateElement(state);
+    this.toggleClassNameSlider();
+    this.track.updateElement(this.state);
+    this.progress.updateElement(this.state);
+    this.circle.updateElement(this.state);
+    this.flag.updateElement(this.state);
+    this.scale.updateElement(this.state);
 
-    if (state.progress) {
+    if (this.state.progress) {
       this.track.getElement().appendChild(this.progress.getElement());
     } else {
       this.progress.getElement().remove();
     }
 
-    if (state.flag) {
+    if (this.state.flag) {
       this.slider.appendChild(this.flag.getElement());
     } else {
       this.flag.getElement().remove();
     }
 
-    if (state.scale) {
+    if (this.state.scale) {
       this.slider.appendChild(this.scale.getElement());
     } else {
       this.scale.getElement().remove();
     }
   }
 
-  private render(state: stateType): void {
-    this.slider = this.createElement('slider__inner');
-    this.toggleClassNameSlider(state);
+  private render(): void {
+    this.start = false;
 
-    this.track = new TrackView(state);
+    this.slider = this.createElement('slider__inner');
+    this.toggleClassNameSlider();
+
+    this.track = new TrackView(this.state);
     this.track
       .getElement()
-      .addEventListener('mousedown', this.handleItemClick.bind(this));
+      .addEventListener('click', this.handleTrackClick.bind(this));
     this.slider.appendChild(this.track.getElement());
 
-    this.progress = new ProgressView(state);
-    if (state.progress)
+    this.progress = new ProgressView(this.state);
+    if (this.state.progress)
       this.track.getElement().appendChild(this.progress.getElement());
 
-    this.circle = new CircleView(state);
+    this.circle = new CircleView(this.state);
     this.circle
       .getElement()
-      .querySelectorAll('div')
+      .querySelectorAll<HTMLDivElement>('div')
       .forEach((circle) => {
         circle.addEventListener(
           'mousedown',
@@ -97,41 +99,33 @@ export default class View extends Observer {
       });
     this.slider.appendChild(this.circle.getElement());
 
-    this.flag = new FlagView(state);
+    this.flag = new FlagView(this.state);
     this.flag
       .getElement()
-      .querySelectorAll('div')
+      .querySelectorAll<HTMLDivElement>('div')
       .forEach((flag) => {
         flag.addEventListener('mousedown', this.handlePinMouseDown.bind(this));
         flag.addEventListener('touchstart', this.handlePinMouseDown.bind(this));
       });
-    if (state.flag) this.slider.appendChild(this.flag.getElement());
+    if (this.state.flag) this.slider.appendChild(this.flag.getElement());
 
-    this.scale = new ScaleView(state);
+    this.scale = new ScaleView(this.state);
     this.scale
       .getElement()
-      .querySelectorAll('.slider__item')
+      .querySelectorAll<HTMLDivElement>('.slider__item')
       .forEach((item) =>
-        item.addEventListener('mousedown', this.handleItemClick.bind(this))
+        item.addEventListener('click', this.handleScaleClick.bind(this))
       );
-    if (state.scale) this.slider.appendChild(this.scale.getElement());
+    if (this.state.scale) this.slider.appendChild(this.scale.getElement());
 
     this.wrapper = this.createElement('slider__wrapper');
     this.wrapper.appendChild(this.slider);
     this.main.appendChild(this.wrapper);
-
-    this.start = false;
   }
 
   private handlePinMouseDown(evt: Event): void {
     const pin: HTMLElement = <HTMLElement>evt.currentTarget;
 
-    const classNameBoolHMin = pin.classList.contains(
-      'slider__pin_position_minimum'
-    );
-    const classNameBoolVMin = pin.classList.contains(
-      'slider__pin-vertical_position_minimum'
-    );
     const classNameBoolHMax = pin.classList.contains(
       'slider__pin_position_maximum'
     );
@@ -139,17 +133,16 @@ export default class View extends Observer {
       'slider__pin-vertical_position_maximum'
     );
 
-    let circle: HTMLElement;
-
-    if (classNameBoolHMin || classNameBoolVMin)
-      circle = this.circle.getElement().querySelector('div:first-child')!;
+    let circle: HTMLElement | null = this.circle
+      .getElement()
+      .querySelector('div:first-child');
 
     if (classNameBoolHMax || classNameBoolVMax)
       circle = this.state.range
-        ? this.circle.getElement().querySelector('div:last-child')!
-        : this.circle.getElement().querySelector('div:first-child')!;
+        ? this.circle.getElement().querySelector('div:last-child')
+        : this.circle.getElement().querySelector('div:first-child');
 
-    this.replaceCircle(evt, circle!);
+    if (circle !== null) this.replaceCircle(evt, circle);
   }
 
   private handleCircleMouseDown(evt: Event): void {
@@ -161,17 +154,10 @@ export default class View extends Observer {
     evt.preventDefault();
 
     const onMouseMove = (evt: MouseEvent | TouchEvent): void => {
-      const { slider } = this;
-      const boxLeft: number = slider.offsetLeft;
-      const boxRight: number = boxLeft + slider.clientWidth;
-      const sliderLeft: number = boxLeft + window.pageXOffset;
-      const sliderWidth: number = boxRight - boxLeft;
-      const boxTop: number = slider.offsetTop;
-      const boxBottom: number = boxTop + slider.clientHeight;
-      const sliderHeight: number = boxBottom - boxTop;
       const getEvent = () =>
         evt instanceof TouchEvent ? evt.targetTouches[0] : evt;
       const event = getEvent();
+
       const circleMin = circle.classList.contains(
         'slider__circle_position_minimum'
       );
@@ -184,16 +170,22 @@ export default class View extends Observer {
       const circleVMax = circle.classList.contains(
         'slider__circle_position_vertical-maximum'
       );
-      let corner: number;
 
-      if (circleVMin || circleVMax) {
-        corner = ((event.pageY! - boxTop) / sliderHeight) * 100;
-      } else {
-        corner = ((event.pageX! - sliderLeft) / sliderWidth) * 100;
-      }
+      let corner: number =
+        ((event.pageX - this.slider.offsetLeft) /
+          this.track.getElement().clientWidth) *
+        100;
 
-      if (circleMin || circleVMin) this.broadcast({ fromPercent: corner });
-      if (circleMax || circleVMax) this.broadcast({ toPercent: corner });
+      if (this.state.view)
+        corner =
+          ((event.pageY - this.slider.offsetTop) /
+            this.track.getElement().clientHeight) *
+          100;
+
+      if (circleMin || circleVMin)
+        this.broadcast({ type: ViewHandler.FROMCIRCLE, value: corner });
+      if (circleMax || circleVMax)
+        this.broadcast({ type: ViewHandler.TOCIRCLE, value: corner });
     };
 
     const onMouseUp = () => {
@@ -209,33 +201,20 @@ export default class View extends Observer {
     document.addEventListener('mouseup', onMouseUp);
   }
 
-  private handleItemClick(
-    evt: Event & { pageX?: number; pageY?: number }
-  ): void {
+  private handleTrackClick(evt: MouseEvent): void {
+    let corner: number =
+      (evt.offsetX / this.track.getElement().clientWidth) * 100;
+
+    if (this.state.view)
+      corner = (evt.offsetY / this.track.getElement().clientHeight) * 100;
+
+    this.broadcast({ type: ViewHandler.TRACK, value: corner });
+  }
+
+  private handleScaleClick(evt: MouseEvent): void {
     const scale: HTMLElement = <HTMLElement>evt.currentTarget;
-    const stepList: HTMLElement = this.scale.getElement();
-    const slider: HTMLElement = this.wrapper;
-    const boxLeft: number = slider.offsetLeft;
-    const boxRight: number = boxLeft + slider.clientWidth;
-    const boxTop: number = slider.offsetTop;
-    const sliderLeft: number = boxLeft + window.pageXOffset;
-    const sliderWidth: number = boxRight - boxLeft;
-    const sliderHeight: number = scale.offsetHeight;
-    const classNameBool = stepList.classList.contains(
-      'slider__list_state_transformed'
-    );
-    let corner: number;
-
-    if (classNameBool) {
-      corner = ((evt.pageY! - boxTop) / sliderHeight) * 100;
-    } else {
-      corner = ((evt.pageX! - sliderLeft) / sliderWidth) * 100;
-    }
-
-    if (scale.className === 'slider__item')
-      corner = parseFloat(scale.style.left);
-
-    this.broadcast({ max: corner });
+    const corner: number = parseFloat(scale.style.left);
+    this.broadcast({ type: ViewHandler.SCALE, value: corner });
   }
 
   private createElement(className: string): HTMLElement {
@@ -244,11 +223,10 @@ export default class View extends Observer {
     return newElement;
   }
 
-  private toggleClassNameSlider(state: stateType): void {
-    const { view } = state;
+  private toggleClassNameSlider(): void {
     const className = 'slider__inner_size_height';
 
-    if (view) {
+    if (this.state.view) {
       this.slider.classList.add(className);
     } else {
       this.slider.classList.remove(className);

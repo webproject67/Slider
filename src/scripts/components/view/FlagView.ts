@@ -1,4 +1,4 @@
-import { stateType } from '../../types';
+import { IState } from '../../types';
 
 export default class FlagView {
   private element!: HTMLElement;
@@ -7,7 +7,7 @@ export default class FlagView {
 
   private pin: HTMLElement[];
 
-  constructor(state: stateType) {
+  constructor(state: IState) {
     this.quantityPin = 2;
     this.pin = [];
     this.createElements(state);
@@ -17,7 +17,7 @@ export default class FlagView {
     return this.element;
   }
 
-  public updateElement(state: stateType): HTMLElement {
+  public updateElement(state: IState): HTMLElement {
     const { range, view, fromPercent, toPercent, from, to } = state;
 
     for (let index = 0; index < this.quantityPin; index += 1) {
@@ -52,10 +52,10 @@ export default class FlagView {
         this.pin[index].style.top = `${toPercent}%`;
       };
 
-      const indexAndRangeBool = !index && !range;
+      const indexAndRangeBool = index && range;
 
-      if (indexAndRangeBool && !view) getPinMax();
-      if (indexAndRangeBool && view) getPinVerticalMax();
+      if (!indexAndRangeBool && !view) getPinMax();
+      if (!indexAndRangeBool && view) getPinVerticalMax();
       if (range && !view) {
         if (!index) {
           getPinMin();
@@ -76,7 +76,7 @@ export default class FlagView {
     return this.element;
   }
 
-  private createElements(state: stateType): void {
+  private createElements(state: IState): void {
     this.element = this.createElement('slider__pins');
 
     for (let i = 0; i < this.quantityPin; i += 1) {

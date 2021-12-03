@@ -1,9 +1,9 @@
-import { stateType } from '../../types';
+import { IState } from '../../types';
 
 export default class ProgressView {
   private element!: HTMLElement;
 
-  constructor(state: stateType) {
+  constructor(state: IState) {
     this.createElement(state);
   }
 
@@ -11,7 +11,7 @@ export default class ProgressView {
     return this.element;
   }
 
-  public updateElement(state: stateType): HTMLElement {
+  public updateElement(state: IState): HTMLElement {
     const { view, fromPercent, toPercent } = state;
     const className = 'slider__bar_size_width';
 
@@ -33,7 +33,7 @@ export default class ProgressView {
     return this.element;
   }
 
-  private createElement(state: stateType): void {
+  private createElement(state: IState): void {
     this.element = document.createElement('div');
     this.element.className = 'slider__bar';
     this.updateElement(state);

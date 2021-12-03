@@ -1,17 +1,15 @@
-import { stateType } from '../../types';
-
-export default class Observer {
-  private observers: Function[];
+export default class Observer<T> {
+  private observers: ((data: T) => void)[];
 
   constructor() {
     this.observers = [];
   }
 
-  public subscribe(fn: Function) {
+  public subscribe(fn: (data: T) => void): void {
     this.observers.push(fn);
   }
 
-  public broadcast(state: Partial<stateType>) {
-    this.observers.forEach((subscriber) => subscriber(state));
+  public broadcast(data: T): void {
+    this.observers.forEach((subscriber) => subscriber(data));
   }
 }
