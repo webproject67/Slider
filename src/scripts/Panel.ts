@@ -28,29 +28,35 @@ export default class Panel {
   private subscribe(): void {
     const cbPanel = (data: PanelTypes) => {
       switch (data.type) {
-        case PanelHandler.MIN:
-          this.slider.updateState(data);
+        case PanelHandler.HANDLEINPUTMINCHANGE:
+          this.slider.setState({ min: data.value });
           break;
-        case PanelHandler.MAX:
-          this.slider.updateState(data);
+        case PanelHandler.HANDLEINPUTMAXCHANGE:
+          this.slider.setState({ max: data.value });
           break;
-        case PanelHandler.STEP:
-          this.slider.updateState(data);
+        case PanelHandler.HANDLEINPUTFROMCHANGE:
+          this.slider.setState({ from: data.value });
           break;
-        case PanelHandler.VIEW:
-          this.slider.updateState(data);
+        case PanelHandler.HANDLEINPUTTOCHANGE:
+          this.slider.setState({ to: data.value });
           break;
-        case PanelHandler.RANGE:
-          this.slider.updateState(data);
+        case PanelHandler.HANDLEINPUTSTEPCHANGE:
+          this.slider.setState({ step: data.value });
           break;
-        case PanelHandler.FLAG:
-          this.slider.updateState(data);
+        case PanelHandler.HANDLEINPUTVIEWCHANGE:
+          this.slider.setState({ view: data.value });
           break;
-        case PanelHandler.PROGRESS:
-          this.slider.updateState(data);
+        case PanelHandler.HANDLEINPUTRANGECHANGE:
+          this.slider.setState({ range: data.value });
           break;
-        case PanelHandler.SCALE:
-          this.slider.updateState(data);
+        case PanelHandler.HANDLEINPUTFLAGCHANGE:
+          this.slider.setState({ flag: data.value });
+          break;
+        case PanelHandler.HANDLEINPUTPROGRESSCHANGE:
+          this.slider.setState({ progress: data.value });
+          break;
+        case PanelHandler.HANDLEINPUTSCALECHANGE:
+          this.slider.setState({ scale: data.value });
           break;
         default:
           throw new Error('there is no such event');
@@ -60,7 +66,7 @@ export default class Panel {
 
     const cbModel = (data: ModelType) => {
       switch (data.type) {
-        case ModelUpdate.UPDATE:
+        case ModelUpdate.UPDATEMODELSTATE:
           this.configuringPanel.updateElement(data.value);
           break;
         default:

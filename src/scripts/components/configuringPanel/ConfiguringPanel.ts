@@ -18,54 +18,52 @@ export default class ConfiguringPanel extends Observer<PanelTypes> {
     this.data = [
       {
         label: 'Минимальное значение',
-        dataset: 'min',
+        dataset: PanelHandler.HANDLEINPUTMINCHANGE,
         type: 'number',
       },
       {
         label: 'Максимальное значение',
-        dataset: 'max',
+        dataset: PanelHandler.HANDLEINPUTMAXCHANGE,
         type: 'number',
       },
       {
         label: 'От',
-        dataset: 'from',
+        dataset: PanelHandler.HANDLEINPUTFROMCHANGE,
         type: 'number',
-        readonly: true,
       },
       {
         label: 'До',
-        dataset: 'to',
+        dataset: PanelHandler.HANDLEINPUTTOCHANGE,
         type: 'number',
-        readonly: true,
       },
       {
         label: 'Шаг',
-        dataset: 'step',
+        dataset: PanelHandler.HANDLEINPUTSTEPCHANGE,
         type: 'number',
       },
       {
         label: 'Вертикальный',
-        dataset: 'view',
+        dataset: PanelHandler.HANDLEINPUTVIEWCHANGE,
         type: 'checkbox',
       },
       {
         label: 'Интервал',
-        dataset: 'range',
+        dataset: PanelHandler.HANDLEINPUTRANGECHANGE,
         type: 'checkbox',
       },
       {
         label: 'Значение',
-        dataset: 'flag',
+        dataset: PanelHandler.HANDLEINPUTFLAGCHANGE,
         type: 'checkbox',
       },
       {
         label: 'Шкала',
-        dataset: 'scale',
+        dataset: PanelHandler.HANDLEINPUTSCALECHANGE,
         type: 'checkbox',
       },
       {
         label: 'Прогресс',
-        dataset: 'progress',
+        dataset: PanelHandler.HANDLEINPUTPROGRESSCHANGE,
         type: 'checkbox',
       },
     ];
@@ -84,21 +82,25 @@ export default class ConfiguringPanel extends Observer<PanelTypes> {
     const { range, from, to, min, max, step } = this.state;
 
     this.data.forEach((elem, i) => {
-      if (this.input[i].dataset.name === 'min')
+      if (this.input[i].dataset.name === PanelHandler.HANDLEINPUTMINCHANGE)
         this.input[i].value = String(min);
-      if (this.input[i].dataset.name === 'max')
+      if (this.input[i].dataset.name === PanelHandler.HANDLEINPUTMAXCHANGE)
         this.input[i].value = String(max);
-      if (this.input[i].dataset.name === 'step')
+      if (this.input[i].dataset.name === PanelHandler.HANDLEINPUTSTEPCHANGE)
         this.input[i].value = String(step);
-      if (this.input[i].dataset.name === 'from') {
+      if (this.input[i].dataset.name === PanelHandler.HANDLEINPUTFROMCHANGE) {
         this.label[i].style.display = range ? '' : 'none';
         this.input[i].value = String(from);
       }
 
-      if (this.input[i].dataset.name === 'to') {
+      if (this.input[i].dataset.name === PanelHandler.HANDLEINPUTTOCHANGE) {
         this.label[i].textContent = range ? 'До' : 'Текущее значение';
         this.input[i] = this.createElementInput(this.data[3]);
         this.input[i].value = String(to);
+        this.input[i].addEventListener(
+          'change',
+          this.handleInputChange.bind(this)
+        );
         this.label[i].appendChild(this.input[i]);
       }
     });
@@ -127,11 +129,11 @@ export default class ConfiguringPanel extends Observer<PanelTypes> {
     const labelElement = this.createElement('label', 'slider__label');
     labelElement.textContent = data.label;
 
-    const inputMin = data.dataset === 'min';
-    const inputMax = data.dataset === 'max';
-    const inputFrom = data.dataset === 'from';
-    const inputTo = data.dataset === 'to';
-    const inputStep = data.dataset === 'step';
+    const inputMin = data.dataset === PanelHandler.HANDLEINPUTMINCHANGE;
+    const inputMax = data.dataset === PanelHandler.HANDLEINPUTMAXCHANGE;
+    const inputFrom = data.dataset === PanelHandler.HANDLEINPUTFROMCHANGE;
+    const inputTo = data.dataset === PanelHandler.HANDLEINPUTTOCHANGE;
+    const inputStep = data.dataset === PanelHandler.HANDLEINPUTSTEPCHANGE;
     const generalInput =
       inputMin || inputMax || inputFrom || inputTo || inputStep;
 
@@ -156,12 +158,16 @@ export default class ConfiguringPanel extends Observer<PanelTypes> {
     inputElement.dataset.name = data.dataset;
     inputElement.type = data.type;
 
-    if (data.readonly) inputElement.readOnly = data.readonly;
-    if (data.dataset === 'view') inputElement.checked = view;
-    if (data.dataset === 'range') inputElement.checked = range;
-    if (data.dataset === 'flag') inputElement.checked = flag;
-    if (data.dataset === 'scale') inputElement.checked = scale;
-    if (data.dataset === 'progress') inputElement.checked = progress;
+    if (data.dataset === PanelHandler.HANDLEINPUTVIEWCHANGE)
+      inputElement.checked = view;
+    if (data.dataset === PanelHandler.HANDLEINPUTRANGECHANGE)
+      inputElement.checked = range;
+    if (data.dataset === PanelHandler.HANDLEINPUTFLAGCHANGE)
+      inputElement.checked = flag;
+    if (data.dataset === PanelHandler.HANDLEINPUTSCALECHANGE)
+      inputElement.checked = scale;
+    if (data.dataset === PanelHandler.HANDLEINPUTPROGRESSCHANGE)
+      inputElement.checked = progress;
 
     return inputElement;
   }
@@ -170,29 +176,65 @@ export default class ConfiguringPanel extends Observer<PanelTypes> {
     const input = <HTMLInputElement>evt.currentTarget;
 
     switch (input.dataset.name) {
-      case PanelHandler.MIN:
-        this.broadcast({ type: PanelHandler.MIN, value: Number(input.value) });
+      case PanelHandler.HANDLEINPUTMINCHANGE:
+        this.broadcast({
+          type: PanelHandler.HANDLEINPUTMINCHANGE,
+          value: Number(input.value),
+        });
         break;
-      case PanelHandler.MAX:
-        this.broadcast({ type: PanelHandler.MAX, value: Number(input.value) });
+      case PanelHandler.HANDLEINPUTMAXCHANGE:
+        this.broadcast({
+          type: PanelHandler.HANDLEINPUTMAXCHANGE,
+          value: Number(input.value),
+        });
         break;
-      case PanelHandler.STEP:
-        this.broadcast({ type: PanelHandler.STEP, value: Number(input.value) });
+      case PanelHandler.HANDLEINPUTFROMCHANGE:
+        this.broadcast({
+          type: PanelHandler.HANDLEINPUTFROMCHANGE,
+          value: Number(input.value),
+        });
         break;
-      case PanelHandler.VIEW:
-        this.broadcast({ type: PanelHandler.VIEW, value: input.checked });
+      case PanelHandler.HANDLEINPUTTOCHANGE:
+        this.broadcast({
+          type: PanelHandler.HANDLEINPUTTOCHANGE,
+          value: Number(input.value),
+        });
         break;
-      case PanelHandler.RANGE:
-        this.broadcast({ type: PanelHandler.RANGE, value: input.checked });
+      case PanelHandler.HANDLEINPUTSTEPCHANGE:
+        this.broadcast({
+          type: PanelHandler.HANDLEINPUTSTEPCHANGE,
+          value: Number(input.value),
+        });
         break;
-      case PanelHandler.FLAG:
-        this.broadcast({ type: PanelHandler.FLAG, value: input.checked });
+      case PanelHandler.HANDLEINPUTVIEWCHANGE:
+        this.broadcast({
+          type: PanelHandler.HANDLEINPUTVIEWCHANGE,
+          value: input.checked,
+        });
         break;
-      case PanelHandler.PROGRESS:
-        this.broadcast({ type: PanelHandler.PROGRESS, value: input.checked });
+      case PanelHandler.HANDLEINPUTRANGECHANGE:
+        this.broadcast({
+          type: PanelHandler.HANDLEINPUTRANGECHANGE,
+          value: input.checked,
+        });
         break;
-      case PanelHandler.SCALE:
-        this.broadcast({ type: PanelHandler.SCALE, value: input.checked });
+      case PanelHandler.HANDLEINPUTFLAGCHANGE:
+        this.broadcast({
+          type: PanelHandler.HANDLEINPUTFLAGCHANGE,
+          value: input.checked,
+        });
+        break;
+      case PanelHandler.HANDLEINPUTPROGRESSCHANGE:
+        this.broadcast({
+          type: PanelHandler.HANDLEINPUTPROGRESSCHANGE,
+          value: input.checked,
+        });
+        break;
+      case PanelHandler.HANDLEINPUTSCALECHANGE:
+        this.broadcast({
+          type: PanelHandler.HANDLEINPUTSCALECHANGE,
+          value: input.checked,
+        });
         break;
       default:
         throw new Error('invalid type');

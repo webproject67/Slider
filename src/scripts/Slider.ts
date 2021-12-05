@@ -14,12 +14,8 @@ export default class Slider {
     return this.presenter.getState().value;
   }
 
-  public setState(state: IState): void {
+  public setState(state: Partial<IState>): void {
     this.presenter.setState(state);
-  }
-
-  public updateState(data: PanelTypes): void {
-    this.presenter.updateState(data);
   }
 
   public subscribe(cb: (data: ModelType) => void): void {

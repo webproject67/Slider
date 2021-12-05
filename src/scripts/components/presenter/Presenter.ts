@@ -24,12 +24,8 @@ export default class Presenter {
     return this.model.getState();
   }
 
-  public setState(state: IState): void {
+  public setState(state: Partial<IState>): void {
     this.model.setState(state);
-  }
-
-  public updateState(data: PanelTypes): void {
-    this.model.updateState(data);
   }
 
   public subscribe(cb: (data: ModelType) => void): void {
@@ -39,16 +35,16 @@ export default class Presenter {
   private init() {
     const cbView = (data: ViewTypes) => {
       switch (data.type) {
-        case ViewHandler.FROMCIRCLE:
+        case ViewHandler.HANDLECIRCLEFROMMOUSEDOWN:
           this.model.setStateFrom(data.value);
           break;
-        case ViewHandler.TOCIRCLE:
+        case ViewHandler.HANDLECIRCLETOMOUSEDOWN:
           this.model.setStateTo(data.value);
           break;
-        case ViewHandler.TRACK:
+        case ViewHandler.HANDLETRACKCLICK:
           this.model.setStateFromOrTo(data.value);
           break;
-        case ViewHandler.SCALE:
+        case ViewHandler.HANDLESCALECLICK:
           this.model.setStateFromOrTo(data.value);
           break;
         default:
@@ -59,7 +55,7 @@ export default class Presenter {
 
     const cbModel = (data: ModelType) => {
       switch (data.type) {
-        case ModelUpdate.UPDATE:
+        case ModelUpdate.UPDATEMODELSTATE:
           this.view.updateView(data.value);
           break;
         default:
