@@ -183,9 +183,15 @@ export default class View extends Observer<ViewTypes> {
           100;
 
       if (circleMin || circleVMin)
-        this.broadcast({ type: ViewHandler.FROMCIRCLE, value: corner });
+        this.broadcast({
+          type: ViewHandler.HANDLECIRCLEFROMMOUSEDOWN,
+          value: corner,
+        });
       if (circleMax || circleVMax)
-        this.broadcast({ type: ViewHandler.TOCIRCLE, value: corner });
+        this.broadcast({
+          type: ViewHandler.HANDLECIRCLETOMOUSEDOWN,
+          value: corner,
+        });
     };
 
     const onMouseUp = () => {
@@ -203,18 +209,23 @@ export default class View extends Observer<ViewTypes> {
 
   private handleTrackClick(evt: MouseEvent): void {
     let corner: number =
-      (evt.offsetX / this.track.getElement().clientWidth) * 100;
+      ((evt.pageX - this.slider.offsetLeft) /
+        this.track.getElement().clientWidth) *
+      100;
 
     if (this.state.view)
-      corner = (evt.offsetY / this.track.getElement().clientHeight) * 100;
+      corner =
+        ((evt.pageY - this.slider.offsetTop) /
+          this.track.getElement().clientHeight) *
+        100;
 
-    this.broadcast({ type: ViewHandler.TRACK, value: corner });
+    this.broadcast({ type: ViewHandler.HANDLETRACKCLICK, value: corner });
   }
 
   private handleScaleClick(evt: MouseEvent): void {
     const scale: HTMLElement = <HTMLElement>evt.currentTarget;
     const corner: number = parseFloat(scale.style.left);
-    this.broadcast({ type: ViewHandler.SCALE, value: corner });
+    this.broadcast({ type: ViewHandler.HANDLESCALECLICK, value: corner });
   }
 
   private createElement(className: string): HTMLElement {

@@ -11,7 +11,7 @@ export default class Model extends Observer<ModelType> {
   }
 
   public getState(): ModelType {
-    return { type: ModelUpdate.UPDATE, value: { ...this.state } };
+    return { type: ModelUpdate.UPDATEMODELSTATE, value: { ...this.state } };
   }
 
   public setStateFrom(valuePercent: number): void {
@@ -104,12 +104,6 @@ export default class Model extends Observer<ModelType> {
     this.validation();
   }
 
-  public updateState(data: PanelTypes): void {
-    const key = data.type;
-    const { value } = data;
-    this.setState({ [`${key}`]: value });
-  }
-
   private calculateValue(valuePercent: number): number {
     const { min, max, step } = this.state;
     const stepCount: number = (max - min) / step;
@@ -153,6 +147,9 @@ export default class Model extends Observer<ModelType> {
     this.state.toPercent =
       ((this.state.to - this.state.min) / this.state.step) * stepPercent;
 
-    this.broadcast({ type: ModelUpdate.UPDATE, value: { ...this.state } });
+    this.broadcast({
+      type: ModelUpdate.UPDATEMODELSTATE,
+      value: { ...this.state },
+    });
   }
 }
