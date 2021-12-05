@@ -18,17 +18,19 @@ export default class CircleView {
   }
 
   public updateElement(state: IState): HTMLElement {
-    const { range, view, fromPercent, toPercent } = state;
+    const { max, to, range, view, fromPercent, toPercent } = state;
 
     for (let index = 0; index < this.quantityCircle; index += 1) {
       this.circle[index].className = '';
       this.circle[index].style.left = '';
       this.circle[index].style.top = '';
+      this.circle[index].style.zIndex = '';
 
       const getCircleMin = () => {
         this.circle[index].className =
           'slider__circle slider__circle_position_minimum';
         this.circle[index].style.left = `${fromPercent}%`;
+        if (to === max) this.circle[index].style.zIndex = '1';
       };
 
       const getCircleMax = () => {
@@ -41,6 +43,7 @@ export default class CircleView {
         this.circle[index].className =
           'slider__circle slider__circle_position_vertical-minimum';
         this.circle[index].style.top = `${fromPercent}%`;
+        if (to === max) this.circle[index].style.zIndex = '1';
       };
 
       const getCircleVerticalMax = () => {
@@ -49,10 +52,10 @@ export default class CircleView {
         this.circle[index].style.top = `${toPercent}%`;
       };
 
-      const indexAndRangeBool = index && range;
+      const indexAndRangeBool = !index && !range;
 
-      if (!indexAndRangeBool && !view) getCircleMax();
-      if (!indexAndRangeBool && view) getCircleVerticalMax();
+      if (indexAndRangeBool && !view) getCircleMax();
+      if (indexAndRangeBool && view) getCircleVerticalMax();
       if (range && !view) {
         if (!index) {
           getCircleMin();
