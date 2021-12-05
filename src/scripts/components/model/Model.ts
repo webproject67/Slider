@@ -39,67 +39,48 @@ export default class Model extends Observer<ModelType> {
   }
 
   public setState(state: Partial<IState>): void {
-    if (!(typeof state.min === 'undefined')) {
-      if (!(typeof state.min === 'number')) throw new Error('invalid value');
+    if (typeof state.min !== 'undefined') {
       this.state.min = Number(state.min);
       this.state.from = this.state.min;
     }
 
-    if (!(typeof state.max === 'undefined')) {
-      if (!(typeof state.max === 'number')) throw new Error('invalid value');
+    if (typeof state.max !== 'undefined') {
       this.state.max = Number(state.max);
       this.state.to = this.state.max;
     }
 
-    if (!(typeof state.step === 'undefined')) {
-      if (!(typeof state.step === 'number')) throw new Error('invalid value');
+    if (typeof state.step !== 'undefined') {
       this.state.step = Number(state.step);
       this.state.from = this.state.min;
       this.state.to = this.state.max;
     }
 
-    if (!(typeof state.from === 'undefined')) {
-      if (!(typeof state.from === 'number')) throw new Error('invalid value');
-      this.state.from = Number(state.from);
-    }
+    if (typeof state.from !== 'undefined') this.state.from = Number(state.from);
 
-    if (!(typeof state.fromPercent === 'undefined'))
+    if (typeof state.fromPercent !== 'undefined')
       this.state.fromPercent = Number(state.fromPercent);
 
-    if (!(typeof state.to === 'undefined')) {
-      if (!(typeof state.to === 'number')) throw new Error('invalid value');
-      this.state.to = Number(state.to);
-    }
+    if (typeof state.to !== 'undefined') this.state.to = Number(state.to);
 
-    if (!(typeof state.toPercent === 'undefined'))
+    if (typeof state.toPercent !== 'undefined')
       this.state.toPercent = Number(state.toPercent);
 
-    if (!(typeof state.view === 'undefined')) {
-      if (!(typeof state.view === 'boolean')) throw new Error('invalid value');
+    if (typeof state.view !== 'undefined')
       this.state.view = Boolean(state.view);
-    }
 
-    if (!(typeof state.range === 'undefined')) {
-      if (!(typeof state.range === 'boolean')) throw new Error('invalid value');
+    if (typeof state.range !== 'undefined') {
       this.state.range = Boolean(state.range);
       this.state.from = this.state.min;
     }
 
-    if (!(typeof state.flag === 'undefined')) {
-      if (!(typeof state.flag === 'boolean')) throw new Error('invalid value');
+    if (typeof state.flag !== 'undefined')
       this.state.flag = Boolean(state.flag);
-    }
 
-    if (!(typeof state.progress === 'undefined')) {
-      if (!(typeof state.progress === 'boolean'))
-        throw new Error('invalid value');
+    if (typeof state.progress !== 'undefined')
       this.state.progress = Boolean(state.progress);
-    }
 
-    if (!(typeof state.scale === 'undefined')) {
-      if (!(typeof state.scale === 'boolean')) throw new Error('invalid value');
+    if (typeof state.scale !== 'undefined')
       this.state.scale = Boolean(state.scale);
-    }
 
     this.validation();
   }

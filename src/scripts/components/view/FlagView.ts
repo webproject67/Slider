@@ -52,10 +52,10 @@ export default class FlagView {
         this.pin[index].style.top = `${toPercent}%`;
       };
 
-      const indexAndRangeBool = index && range;
+      const indexAndRangeBool = !index && !range;
 
-      if (!indexAndRangeBool && !view) getPinMax();
-      if (!indexAndRangeBool && view) getPinVerticalMax();
+      if (indexAndRangeBool && !view) getPinMax();
+      if (indexAndRangeBool && view) getPinVerticalMax();
       if (range && !view) {
         if (!index) {
           getPinMin();
