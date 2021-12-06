@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`snapshot renders correctly element1 1`] = `
+<div
+  class="slider__track"
+/>
+`;
+
+exports[`snapshot renders correctly element2 1`] = `
+<div
+  class="slider__track slider__track_size_height"
+/>
+`;

@@ -1,0 +1,615 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`snapshot renders correctly element1 1`] = `
+<div>
+  <div
+    class="slider__wrapper"
+  >
+    <div
+      class="slider__inner"
+    >
+      <div
+        class="slider__track"
+      />
+      <div
+        class="slider__circles"
+      >
+        <div
+          class="slider__circle slider__circle_position_maximum"
+          style="left: 100%;"
+        />
+        <div
+          class=""
+        />
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`snapshot renders correctly element2 1`] = `
+<div>
+  <div
+    class="slider__wrapper"
+  >
+    <div
+      class="slider__inner"
+    >
+      <div
+        class="slider__track"
+      >
+        <div
+          class="slider__bar"
+          style="margin-left: 0%; margin-right: 0%;"
+        />
+      </div>
+      <div
+        class="slider__circles"
+      >
+        <div
+          class="slider__circle slider__circle_position_maximum"
+          style="left: 100%;"
+        />
+        <div
+          class=""
+        />
+      </div>
+      <div
+        class="slider__pins"
+      >
+        <div
+          class="slider__pin slider__pin_position_maximum"
+          style="left: 100%;"
+        >
+          100
+        </div>
+        <div
+          class=""
+        />
+      </div>
+      <div
+        class="slider__list"
+      >
+        <div
+          class="slider__item"
+          style="left: 0%;"
+        >
+          |
+          <div
+            class="slider__quantity"
+          >
+            0
+          </div>
+        </div>
+        <div
+          class="slider__item"
+          style="left: 5%;"
+        >
+          |
+          <div
+            class="slider__quantity"
+          >
+            5
+          </div>
+        </div>
+        <div
+          class="slider__item"
+          style="left: 10%;"
+        >
+          |
+          <div
+            class="slider__quantity"
+          >
+            10
+          </div>
+        </div>
+        <div
+          class="slider__item"
+          style="left: 15%;"
+        >
+          |
+          <div
+            class="slider__quantity"
+          >
+            15
+          </div>
+        </div>
+        <div
+          class="slider__item"
+          style="left: 20%;"
+        >
+          |
+          <div
+            class="slider__quantity"
+          >
+            20
+          </div>
+        </div>
+        <div
+          class="slider__item"
+          style="left: 25%;"
+        >
+          |
+          <div
+            class="slider__quantity"
+          >
+            25
+          </div>
+        </div>
+        <div
+          class="slider__item"
+          style="left: 30%;"
+        >
+          |
+          <div
+            class="slider__quantity"
+          >
+            30
+          </div>
+        </div>
+        <div
+          class="slider__item"
+          style="left: 35%;"
+        >
+          |
+          <div
+            class="slider__quantity"
+          >
+            35
+          </div>
+        </div>
+        <div
+          class="slider__item"
+          style="left: 40%;"
+        >
+          |
+          <div
+            class="slider__quantity"
+          >
+            40
+          </div>
+        </div>
+        <div
+          class="slider__item"
+          style="left: 45%;"
+        >
+          |
+          <div
+            class="slider__quantity"
+          >
+            45
+          </div>
+        </div>
+        <div
+          class="slider__item"
+          style="left: 50%;"
+        >
+          |
+          <div
+            class="slider__quantity"
+          >
+            50
+          </div>
+        </div>
+        <div
+          class="slider__item"
+          style="left: 55%;"
+        >
+          |
+          <div
+            class="slider__quantity"
+          >
+            55
+          </div>
+        </div>
+        <div
+          class="slider__item"
+          style="left: 60%;"
+        >
+          |
+          <div
+            class="slider__quantity"
+          >
+            60
+          </div>
+        </div>
+        <div
+          class="slider__item"
+          style="left: 65%;"
+        >
+          |
+          <div
+            class="slider__quantity"
+          >
+            65
+          </div>
+        </div>
+        <div
+          class="slider__item"
+          style="left: 70%;"
+        >
+          |
+          <div
+            class="slider__quantity"
+          >
+            70
+          </div>
+        </div>
+        <div
+          class="slider__item"
+          style="left: 75%;"
+        >
+          |
+          <div
+            class="slider__quantity"
+          >
+            75
+          </div>
+        </div>
+        <div
+          class="slider__item"
+          style="left: 80%;"
+        >
+          |
+          <div
+            class="slider__quantity"
+          >
+            80
+          </div>
+        </div>
+        <div
+          class="slider__item"
+          style="left: 85%;"
+        >
+          |
+          <div
+            class="slider__quantity"
+          >
+            85
+          </div>
+        </div>
+        <div
+          class="slider__item"
+          style="left: 90%;"
+        >
+          |
+          <div
+            class="slider__quantity"
+          >
+            90
+          </div>
+        </div>
+        <div
+          class="slider__item"
+          style="left: 95%;"
+        >
+          |
+          <div
+            class="slider__quantity"
+          >
+            95
+          </div>
+        </div>
+        <div
+          class="slider__item"
+          style="left: 100%;"
+        >
+          |
+          <div
+            class="slider__quantity"
+          >
+            100
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`snapshot updated correctly element1 1`] = `
+<div>
+  <div
+    class="slider__wrapper"
+  >
+    <div
+      class="slider__inner"
+    >
+      <div
+        class="slider__track"
+      />
+      <div
+        class="slider__circles"
+      >
+        <div
+          class="slider__circle slider__circle_position_maximum"
+          style="left: 100%;"
+        />
+        <div
+          class=""
+        />
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`snapshot updated correctly element2 1`] = `
+<div>
+  <div
+    class="slider__wrapper"
+  >
+    <div
+      class="slider__inner slider__inner_size_height"
+    >
+      <div
+        class="slider__track slider__track_size_height"
+      >
+        <div
+          class="slider__bar slider__bar_size_width"
+          style="margin-left: 0%; margin-right: 0%; top: 0%; height: 100%;"
+        />
+      </div>
+      <div
+        class="slider__circles"
+      >
+        <div
+          class="slider__circle slider__circle_position_vertical-maximum"
+          style="top: 100%;"
+        />
+        <div
+          class=""
+        />
+      </div>
+      <div
+        class="slider__pins"
+      >
+        <div
+          class="slider__pin-vertical slider__pin-vertical_position_maximum"
+          style="top: 100%;"
+        >
+          100
+        </div>
+        <div
+          class=""
+        />
+      </div>
+      <div
+        class="slider__list slider__list_state_transformed"
+      >
+        <div
+          class="slider__item"
+          style="left: 0%;"
+        >
+          |
+          <div
+            class="slider__quantity slider__quantity_state_transformed"
+          >
+            0
+          </div>
+        </div>
+        <div
+          class="slider__item"
+          style="left: 5%;"
+        >
+          |
+          <div
+            class="slider__quantity slider__quantity_state_transformed"
+          >
+            5
+          </div>
+        </div>
+        <div
+          class="slider__item"
+          style="left: 10%;"
+        >
+          |
+          <div
+            class="slider__quantity slider__quantity_state_transformed"
+          >
+            10
+          </div>
+        </div>
+        <div
+          class="slider__item"
+          style="left: 15%;"
+        >
+          |
+          <div
+            class="slider__quantity slider__quantity_state_transformed"
+          >
+            15
+          </div>
+        </div>
+        <div
+          class="slider__item"
+          style="left: 20%;"
+        >
+          |
+          <div
+            class="slider__quantity slider__quantity_state_transformed"
+          >
+            20
+          </div>
+        </div>
+        <div
+          class="slider__item"
+          style="left: 25%;"
+        >
+          |
+          <div
+            class="slider__quantity slider__quantity_state_transformed"
+          >
+            25
+          </div>
+        </div>
+        <div
+          class="slider__item"
+          style="left: 30%;"
+        >
+          |
+          <div
+            class="slider__quantity slider__quantity_state_transformed"
+          >
+            30
+          </div>
+        </div>
+        <div
+          class="slider__item"
+          style="left: 35%;"
+        >
+          |
+          <div
+            class="slider__quantity slider__quantity_state_transformed"
+          >
+            35
+          </div>
+        </div>
+        <div
+          class="slider__item"
+          style="left: 40%;"
+        >
+          |
+          <div
+            class="slider__quantity slider__quantity_state_transformed"
+          >
+            40
+          </div>
+        </div>
+        <div
+          class="slider__item"
+          style="left: 45%;"
+        >
+          |
+          <div
+            class="slider__quantity slider__quantity_state_transformed"
+          >
+            45
+          </div>
+        </div>
+        <div
+          class="slider__item"
+          style="left: 50%;"
+        >
+          |
+          <div
+            class="slider__quantity slider__quantity_state_transformed"
+          >
+            50
+          </div>
+        </div>
+        <div
+          class="slider__item"
+          style="left: 55%;"
+        >
+          |
+          <div
+            class="slider__quantity slider__quantity_state_transformed"
+          >
+            55
+          </div>
+        </div>
+        <div
+          class="slider__item"
+          style="left: 60%;"
+        >
+          |
+          <div
+            class="slider__quantity slider__quantity_state_transformed"
+          >
+            60
+          </div>
+        </div>
+        <div
+          class="slider__item"
+          style="left: 65%;"
+        >
+          |
+          <div
+            class="slider__quantity slider__quantity_state_transformed"
+          >
+            65
+          </div>
+        </div>
+        <div
+          class="slider__item"
+          style="left: 70%;"
+        >
+          |
+          <div
+            class="slider__quantity slider__quantity_state_transformed"
+          >
+            70
+          </div>
+        </div>
+        <div
+          class="slider__item"
+          style="left: 75%;"
+        >
+          |
+          <div
+            class="slider__quantity slider__quantity_state_transformed"
+          >
+            75
+          </div>
+        </div>
+        <div
+          class="slider__item"
+          style="left: 80%;"
+        >
+          |
+          <div
+            class="slider__quantity slider__quantity_state_transformed"
+          >
+            80
+          </div>
+        </div>
+        <div
+          class="slider__item"
+          style="left: 85%;"
+        >
+          |
+          <div
+            class="slider__quantity slider__quantity_state_transformed"
+          >
+            85
+          </div>
+        </div>
+        <div
+          class="slider__item"
+          style="left: 90%;"
+        >
+          |
+          <div
+            class="slider__quantity slider__quantity_state_transformed"
+          >
+            90
+          </div>
+        </div>
+        <div
+          class="slider__item"
+          style="left: 95%;"
+        >
+          |
+          <div
+            class="slider__quantity slider__quantity_state_transformed"
+          >
+            95
+          </div>
+        </div>
+        <div
+          class="slider__item"
+          style="left: 100%;"
+        >
+          |
+          <div
+            class="slider__quantity slider__quantity_state_transformed"
+          >
+            100
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

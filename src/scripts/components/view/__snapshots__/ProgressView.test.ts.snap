@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`snapshot renders correctly element1 1`] = `
+<div
+  class="slider__bar"
+  style="margin-left: 0%; margin-right: 0%;"
+/>
+`;
+
+exports[`snapshot renders correctly element2 1`] = `
+<div
+  class="slider__bar slider__bar_size_width"
+  style="top: 0%; height: 100%;"
+/>
+`;

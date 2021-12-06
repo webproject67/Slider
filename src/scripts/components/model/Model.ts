@@ -1,5 +1,5 @@
 import Observer from '../observer/Observer';
-import { IState, ModelType, ModelUpdate, PanelTypes } from '../../types';
+import { IState, ModelType, ModelUpdate } from '../../types';
 
 export default class Model extends Observer<ModelType> {
   private state: IState;
@@ -121,8 +121,7 @@ export default class Model extends Observer<ModelType> {
 
     const toMaxBool = this.state.to > this.state.max;
     const toMinBool = this.state.to < this.state.min;
-    const toFromBool = this.state.to < this.state.from;
-    const generalTo = toMinBool || toMaxBool || toFromBool;
+    const generalTo = toMinBool || toMaxBool;
 
     if (generalTo) this.state.to = this.state.max;
     this.state.toPercent =

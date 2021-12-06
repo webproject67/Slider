@@ -33,6 +33,10 @@ export default class View extends Observer<ViewTypes> {
     this.start = true;
   }
 
+  public getElement(): HTMLElement {
+    return this.main;
+  }
+
   public updateView(state: IState): void {
     this.state = state;
 
@@ -125,9 +129,11 @@ export default class View extends Observer<ViewTypes> {
 
   private handlePinMouseDown(evt: Event): void {
     const pin: HTMLElement = <HTMLElement>evt.currentTarget;
-
-    const classNameBoolHMax = pin.classList.contains(
-      'slider__pin_position_maximum'
+    const classNameBoolHMin = pin.classList.contains(
+      'slider__pin_position_minimum'
+    );
+    const classNameBoolVMin = pin.classList.contains(
+      'slider__pin-vertical_position_minimum'
     );
     const classNameBoolVMax = pin.classList.contains(
       'slider__pin-vertical_position_maximum'
@@ -135,12 +141,20 @@ export default class View extends Observer<ViewTypes> {
 
     let circle: HTMLElement | null = this.circle
       .getElement()
-      .querySelector('div:first-child');
+      .querySelector('.slider__circle_position_maximum');
 
-    if (classNameBoolHMax || classNameBoolVMax)
-      circle = this.state.range
-        ? this.circle.getElement().querySelector('div:last-child')
-        : this.circle.getElement().querySelector('div:first-child');
+    if (classNameBoolHMin)
+      circle = this.circle
+        .getElement()
+        .querySelector('.slider__circle_position_minimum');
+    if (classNameBoolVMin)
+      circle = this.circle
+        .getElement()
+        .querySelector('.slider__circle_position_vertical-minimum');
+    if (classNameBoolVMax)
+      circle = this.circle
+        .getElement()
+        .querySelector('.slider__circle_position_vertical-maximum');
 
     if (circle !== null) this.replaceCircle(evt, circle);
   }

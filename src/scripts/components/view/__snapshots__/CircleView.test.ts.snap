@@ -1,0 +1,59 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`snapshot renders correctly element1 1`] = `
+<div
+  class="slider__circles"
+>
+  <div
+    class="slider__circle slider__circle_position_maximum"
+    style="left: 100%;"
+  />
+  <div
+    class=""
+  />
+</div>
+`;
+
+exports[`snapshot renders correctly element2 1`] = `
+<div
+  class="slider__circles"
+>
+  <div
+    class="slider__circle slider__circle_position_vertical-maximum"
+    style="top: 100%;"
+  />
+  <div
+    class=""
+  />
+</div>
+`;
+
+exports[`snapshot renders correctly element3 1`] = `
+<div
+  class="slider__circles"
+>
+  <div
+    class="slider__circle slider__circle_position_vertical-minimum"
+    style="top: 0%;"
+  />
+  <div
+    class="slider__circle slider__circle_position_vertical-maximum"
+    style="top: 100%;"
+  />
+</div>
+`;
+
+exports[`snapshot renders correctly element4 1`] = `
+<div
+  class="slider__circles"
+>
+  <div
+    class="slider__circle slider__circle_position_minimum"
+    style="left: 0%;"
+  />
+  <div
+    class="slider__circle slider__circle_position_maximum"
+    style="left: 100%;"
+  />
+</div>
+`;

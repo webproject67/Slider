@@ -1,9 +1,7 @@
 import Presenter from './components/presenter/Presenter';
-import { IState, ModelType, PanelTypes } from './types';
+import { IState, ModelType } from './types';
 
 export default class Slider {
-  private state!: IState;
-
   private presenter!: Presenter;
 
   constructor(main: HTMLElement, options: IState) {
@@ -22,8 +20,8 @@ export default class Slider {
     this.presenter.subscribe(cb);
   }
 
-  private init(main: HTMLElement, options: IState): Presenter {
-    this.state = $.extend(
+  private init(main: HTMLElement, options: IState): void {
+    const state = $.extend(
       {
         min: 0,
         max: 100,
@@ -41,7 +39,6 @@ export default class Slider {
       options
     );
 
-    this.presenter = new Presenter(main, this.state);
-    return this.presenter;
+    this.presenter = new Presenter(main, state);
   }
 }

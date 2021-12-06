@@ -159,15 +159,11 @@
     }
   }
 
-  &__radio {
-    display: flex;
-  }
-
-  &__view,
-  &__range,
-  &__flag,
-  &__scale,
-  &__progress {
+  &__handleInputViewChange,
+  &__handleInputRangeChange,
+  &__handleInputFlagChange,
+  &__handleInputScaleChange,
+  &__handleInputProgressChange {
     cursor: pointer;
   }
 }
