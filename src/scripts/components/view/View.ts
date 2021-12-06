@@ -156,7 +156,7 @@ export default class View extends Observer<ViewTypes> {
         .getElement()
         .querySelector('.slider__circle_position_vertical-maximum');
 
-    if (circle !== null) this.replaceCircle(evt, circle);
+    if (circle) this.replaceCircle(evt, circle);
   }
 
   private handleCircleMouseDown(evt: Event): void {

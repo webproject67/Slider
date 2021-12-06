@@ -20,7 +20,7 @@ export default class Panel {
 
     const main: HTMLElement | null =
       this.main.querySelector('.slider__wrapper');
-    if (main !== null) main.appendChild(this.configuringPanel.getElement());
+    if (main) main.appendChild(this.configuringPanel.getElement());
 
     this.subscribe();
   }

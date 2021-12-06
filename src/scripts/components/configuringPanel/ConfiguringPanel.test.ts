@@ -34,7 +34,7 @@ describe('handleInputChange', () => {
       '.slider__handleInputMinChange'
     );
     const change = new MouseEvent('change');
-    if (input !== null) input.dispatchEvent(change);
+    if (input) input.dispatchEvent(change);
   });
 
   test('event input max', () => {
@@ -42,7 +42,7 @@ describe('handleInputChange', () => {
       '.slider__handleInputMaxChange'
     );
     const change = new MouseEvent('change');
-    if (input !== null) input.dispatchEvent(change);
+    if (input) input.dispatchEvent(change);
   });
 
   test('event input from', () => {
@@ -50,7 +50,7 @@ describe('handleInputChange', () => {
       '.slider__handleInputFromChange'
     );
     const change = new MouseEvent('change');
-    if (input !== null) input.dispatchEvent(change);
+    if (input) input.dispatchEvent(change);
   });
 
   test('event input to', () => {
@@ -58,7 +58,7 @@ describe('handleInputChange', () => {
       '.slider__handleInputToChange'
     );
     const change = new MouseEvent('change');
-    if (input !== null) input.dispatchEvent(change);
+    if (input) input.dispatchEvent(change);
   });
 
   test('event input step', () => {
@@ -66,7 +66,7 @@ describe('handleInputChange', () => {
       '.slider__handleInputStepChange'
     );
     const change = new MouseEvent('change');
-    if (input !== null) input.dispatchEvent(change);
+    if (input) input.dispatchEvent(change);
   });
 
   test('event input view', () => {
@@ -74,7 +74,7 @@ describe('handleInputChange', () => {
       '.slider__handleInputViewChange'
     );
     const change = new MouseEvent('change');
-    if (input !== null) input.dispatchEvent(change);
+    if (input) input.dispatchEvent(change);
   });
 
   test('event input range', () => {
@@ -82,7 +82,7 @@ describe('handleInputChange', () => {
       '.slider__handleInputRangeChange'
     );
     const change = new MouseEvent('change');
-    if (input !== null) input.dispatchEvent(change);
+    if (input) input.dispatchEvent(change);
   });
 
   test('event input flag', () => {
@@ -90,7 +90,7 @@ describe('handleInputChange', () => {
       '.slider__handleInputFlagChange'
     );
     const change = new MouseEvent('change');
-    if (input !== null) input.dispatchEvent(change);
+    if (input) input.dispatchEvent(change);
   });
 
   test('event input progress', () => {
@@ -98,7 +98,7 @@ describe('handleInputChange', () => {
       '.slider__handleInputProgressChange'
     );
     const change = new MouseEvent('change');
-    if (input !== null) input.dispatchEvent(change);
+    if (input) input.dispatchEvent(change);
   });
 
   test('event input scale', () => {
@@ -106,6 +106,6 @@ describe('handleInputChange', () => {
       '.slider__handleInputScaleChange'
     );
     const change = new MouseEvent('change');
-    if (input !== null) input.dispatchEvent(change);
+    if (input) input.dispatchEvent(change);
   });
 });
