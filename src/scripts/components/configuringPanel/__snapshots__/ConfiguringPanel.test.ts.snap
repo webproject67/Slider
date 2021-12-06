@@ -1,0 +1,216 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`snapshot renders correctly element1 1`] = `
+<div
+  class="slider__labels"
+>
+  <label
+    class="slider__label slider__label_state_displayed"
+  >
+    Минимальное значение
+    <input
+      class="slider__handleInputMinChange"
+      data-name="handleInputMinChange"
+      type="number"
+    />
+  </label>
+  <label
+    class="slider__label slider__label_state_displayed"
+  >
+    Максимальное значение
+    <input
+      class="slider__handleInputMaxChange"
+      data-name="handleInputMaxChange"
+      type="number"
+    />
+  </label>
+  <label
+    class="slider__label slider__label_state_displayed"
+    style="display: none;"
+  >
+    От
+    <input
+      class="slider__handleInputFromChange"
+      data-name="handleInputFromChange"
+      type="number"
+    />
+  </label>
+  <label
+    class="slider__label slider__label_state_displayed"
+  >
+    Текущее значение
+    <input
+      class="slider__handleInputToChange"
+      data-name="handleInputToChange"
+      type="number"
+    />
+  </label>
+  <label
+    class="slider__label slider__label_state_displayed"
+  >
+    Шаг
+    <input
+      class="slider__handleInputStepChange"
+      data-name="handleInputStepChange"
+      type="number"
+    />
+  </label>
+  <label
+    class="slider__label"
+  >
+    Вертикальный
+    <input
+      class="slider__handleInputViewChange"
+      data-name="handleInputViewChange"
+      type="checkbox"
+    />
+  </label>
+  <label
+    class="slider__label"
+  >
+    Интервал
+    <input
+      class="slider__handleInputRangeChange"
+      data-name="handleInputRangeChange"
+      type="checkbox"
+    />
+  </label>
+  <label
+    class="slider__label"
+  >
+    Значение
+    <input
+      class="slider__handleInputFlagChange"
+      data-name="handleInputFlagChange"
+      type="checkbox"
+    />
+  </label>
+  <label
+    class="slider__label"
+  >
+    Шкала
+    <input
+      class="slider__handleInputScaleChange"
+      data-name="handleInputScaleChange"
+      type="checkbox"
+    />
+  </label>
+  <label
+    class="slider__label"
+  >
+    Прогресс
+    <input
+      class="slider__handleInputProgressChange"
+      data-name="handleInputProgressChange"
+      type="checkbox"
+    />
+  </label>
+</div>
+`;
+
+exports[`snapshot renders correctly element2 1`] = `
+<div
+  class="slider__labels"
+>
+  <label
+    class="slider__label slider__label_state_displayed"
+  >
+    Минимальное значение
+    <input
+      class="slider__handleInputMinChange"
+      data-name="handleInputMinChange"
+      type="number"
+    />
+  </label>
+  <label
+    class="slider__label slider__label_state_displayed"
+  >
+    Максимальное значение
+    <input
+      class="slider__handleInputMaxChange"
+      data-name="handleInputMaxChange"
+      type="number"
+    />
+  </label>
+  <label
+    class="slider__label slider__label_state_displayed"
+  >
+    От
+    <input
+      class="slider__handleInputFromChange"
+      data-name="handleInputFromChange"
+      type="number"
+    />
+  </label>
+  <label
+    class="slider__label slider__label_state_displayed"
+  >
+    До
+    <input
+      class="slider__handleInputToChange"
+      data-name="handleInputToChange"
+      type="number"
+    />
+  </label>
+  <label
+    class="slider__label slider__label_state_displayed"
+  >
+    Шаг
+    <input
+      class="slider__handleInputStepChange"
+      data-name="handleInputStepChange"
+      type="number"
+    />
+  </label>
+  <label
+    class="slider__label"
+  >
+    Вертикальный
+    <input
+      class="slider__handleInputViewChange"
+      data-name="handleInputViewChange"
+      type="checkbox"
+    />
+  </label>
+  <label
+    class="slider__label"
+  >
+    Интервал
+    <input
+      class="slider__handleInputRangeChange"
+      data-name="handleInputRangeChange"
+      type="checkbox"
+    />
+  </label>
+  <label
+    class="slider__label"
+  >
+    Значение
+    <input
+      class="slider__handleInputFlagChange"
+      data-name="handleInputFlagChange"
+      type="checkbox"
+    />
+  </label>
+  <label
+    class="slider__label"
+  >
+    Шкала
+    <input
+      class="slider__handleInputScaleChange"
+      data-name="handleInputScaleChange"
+      type="checkbox"
+    />
+  </label>
+  <label
+    class="slider__label"
+  >
+    Прогресс
+    <input
+      class="slider__handleInputProgressChange"
+      data-name="handleInputProgressChange"
+      type="checkbox"
+    />
+  </label>
+</div>
+`;

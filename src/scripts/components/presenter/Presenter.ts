@@ -4,7 +4,6 @@ import {
   IState,
   ModelType,
   ModelUpdate,
-  PanelTypes,
   ViewHandler,
   ViewTypes,
 } from '../../types';
@@ -32,7 +31,7 @@ export default class Presenter {
     this.model.subscribe(cb);
   }
 
-  private init() {
+  private init(): void {
     const cbView = (data: ViewTypes) => {
       switch (data.type) {
         case ViewHandler.HANDLECIRCLEFROMMOUSEDOWN:

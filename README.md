@@ -33,27 +33,29 @@ $('#block').slider({
 ## Получить состояние
 ```typescript
 const slider1 = $('#block').slider();
-slider1.slider('getState');
+slider1.getState();
 ```
 
 ## Обновить состояние
 ```typescript
 const slider1 = $('#block').slider();
-slider1.slider('setState', {range: 'range'});
+slider1.setState({range: 'range'});
 ```
 
 ## Показать панель конфигурирования
 ```typescript
 const slider1 = $('#block').slider();
-slider1.slider('getConfiguring');
+$('#block').panel(slider1);
 ```
 
 ## Настройки по умолчанию
-- max: 100, максимальное значение,
 - min: 0, минимальное значение,
+- max: 100, максимальное значение,
+- from: 0, от,
+- to: 100, до,
 - step: 1, минимальное расстояния, на которое может быть перетащен ползунок,
-- range: 'one' | 'range', один ползунок или два,
-- view: 'horizontal' | 'vertical', горизонтальный или вертикальный вид,
+- range: true | false, один ползунок или два,
+- view: true | false, горизонтальный или вертикальный вид,
 - flag: true | false, показать или скрыть значения,
 - progress: true | false, показать или скрыть прогресс бар,
 - scale: true | false, показать или скрыть шкалу
@@ -63,5 +65,5 @@ slider1.slider('getConfiguring');
 
 ## Приложение написано с использованием паттерна MVP (Model-View-Presenter).
 - Model — содержит бизнес-логика, хранит данные для отображения. 
-- View — реализует отображение данных (из Модели), принимает ввод пользователя. Абстрактный класс не создает экземпляр, реализован потомкам track, progress, flag, scale, configuring, содержит структура всех представлений: форматирование разметки, отрисовка разметки, навешивание обработчиков.
+- View — реализует отображение данных (из Модели), принимает ввод пользователя.
 - Presenter — реализует взаимодействие между Моделью и Видом.
