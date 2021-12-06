@@ -67,7 +67,7 @@ describe('handleTrackClick', () => {
       '.slider__track_size_height'
     );
     const click = new MouseEvent('click');
-    if (track !== null) track.dispatchEvent(click);
+    if (track) track.dispatchEvent(click);
   });
 
   test('event track horizontal', () => {
@@ -76,7 +76,7 @@ describe('handleTrackClick', () => {
     const track: HTMLInputElement | null =
       mainLast.querySelector('.slider__track');
     const click = new MouseEvent('click');
-    if (track !== null) track.dispatchEvent(click);
+    if (track) track.dispatchEvent(click);
   });
 });
 
@@ -85,7 +85,7 @@ describe('handleScaleClick', () => {
     const scale: HTMLInputElement | null =
       mainLast.querySelector('.slider__item');
     const click = new MouseEvent('click');
-    if (scale !== null) scale.dispatchEvent(click);
+    if (scale) scale.dispatchEvent(click);
   });
 });
 
@@ -95,7 +95,7 @@ describe('handlePinMouseDown', () => {
       '.slider__pin_position_maximum'
     );
     const mousedown = new MouseEvent('mousedown');
-    if (pin !== null) pin.dispatchEvent(mousedown);
+    if (pin) pin.dispatchEvent(mousedown);
   });
 
   test('event pin max vertical', () => {
@@ -105,7 +105,7 @@ describe('handlePinMouseDown', () => {
       '.slider__pin-vertical_position_maximum'
     );
     const mousedown = new MouseEvent('mousedown');
-    if (pin !== null) pin.dispatchEvent(mousedown);
+    if (pin) pin.dispatchEvent(mousedown);
   });
 
   test('event pin min vertical', () => {
@@ -115,7 +115,7 @@ describe('handlePinMouseDown', () => {
       '.slider__pin-vertical_position_minimum'
     );
     const mousedown = new MouseEvent('mousedown');
-    if (pin !== null) pin.dispatchEvent(mousedown);
+    if (pin) pin.dispatchEvent(mousedown);
   });
 
   test('event pin min horizontal', () => {
@@ -125,7 +125,7 @@ describe('handlePinMouseDown', () => {
       '.slider__pin_position_minimum'
     );
     const mousedown = new MouseEvent('mousedown');
-    if (pin !== null) pin.dispatchEvent(mousedown);
+    if (pin) pin.dispatchEvent(mousedown);
   });
 });
 
@@ -147,7 +147,7 @@ describe('handleCircleMouseDown', () => {
     const circle: HTMLElement | null = mainLast.querySelector(
       '.slider__circle_position_maximum'
     );
-    if (circle !== null) events(circle);
+    if (circle) events(circle);
   });
 
   test('event circle max vertical', () => {
@@ -156,6 +156,6 @@ describe('handleCircleMouseDown', () => {
     const circle: HTMLElement | null = mainLast.querySelector(
       '.slider__circle_position_vertical-maximum'
     );
-    if (circle !== null) events(circle);
+    if (circle) events(circle);
   });
 });
