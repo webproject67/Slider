@@ -1,5 +1,5 @@
-import Slider from './Slider';
-import Panel from './Panel';
+import Slider from './components/slider/Slider';
+import Panel from './components/panel/Panel';
 
 declare global {
   interface JQuery {

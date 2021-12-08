@@ -1,16 +1,14 @@
 <mxfile host="65bd71144e">
     <diagram id="OUbmnmgiFA35l-AEfBl3" name="Страница 1">
-        <mxGraphModel dx="1022" dy="305" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+        <mxGraphModel dx="2555" dy="763" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
-                <mxCell id="650" style="edgeStyle=none;html=1;" parent="1" source="3" edge="1">
-                    <mxGeometry relative="1" as="geometry">
-                        <mxPoint x="1320" y="995" as="targetPoint"/>
-                    </mxGeometry>
+                <mxCell id="700" style="edgeStyle=none;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="3" target="363">
+                    <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
                 <mxCell id="3" value="Presenter" style="swimlane;startSize=23;swimlaneFillColor=#333333;" parent="1" vertex="1">
-                    <mxGeometry x="921" y="910" width="320" height="170" as="geometry">
+                    <mxGeometry x="921" y="910" width="320" height="190" as="geometry">
                         <mxRectangle x="314" y="80" width="100" height="23" as="alternateBounds"/>
                     </mxGeometry>
                 </mxCell>
@@ -18,7 +16,7 @@
                     <mxGeometry y="70" width="320" height="10" as="geometry"/>
                 </mxCell>
                 <mxCell id="9" value="&lt;div style=&quot;line-height: 19px&quot;&gt;&lt;font style=&quot;font-size: 12px&quot; color=&quot;#ffffff&quot;&gt;- init():void&lt;/font&gt;&lt;/div&gt;" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;" parent="3" vertex="1">
-                    <mxGeometry x="10" y="140" width="70" height="20" as="geometry"/>
+                    <mxGeometry x="10" y="160" width="70" height="20" as="geometry"/>
                 </mxCell>
                 <mxCell id="373" value="&lt;font color=&quot;#ffffff&quot;&gt;- view: View&lt;/font&gt;" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;" parent="3" vertex="1">
                     <mxGeometry x="10" y="50" width="80" height="20" as="geometry"/>
@@ -27,13 +25,16 @@
                     <mxGeometry x="10" y="30" width="90" height="20" as="geometry"/>
                 </mxCell>
                 <mxCell id="603" value="&lt;div style=&quot;line-height: 19px&quot;&gt;&lt;font style=&quot;font-size: 12px&quot; color=&quot;#ffffff&quot;&gt;+ getState():ModelType&lt;/font&gt;&lt;/div&gt;" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;" parent="3" vertex="1">
-                    <mxGeometry x="10" y="80" width="140" height="20" as="geometry"/>
+                    <mxGeometry x="10" y="100" width="140" height="20" as="geometry"/>
                 </mxCell>
                 <mxCell id="604" value="&lt;div style=&quot;line-height: 19px&quot;&gt;&lt;font style=&quot;font-size: 12px&quot; color=&quot;#ffffff&quot;&gt;+ setState(state: Pertial&amp;lt;IState&amp;gt;):void&lt;/font&gt;&lt;/div&gt;" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;" parent="3" vertex="1">
-                    <mxGeometry x="10" y="100" width="220" height="20" as="geometry"/>
+                    <mxGeometry x="10" y="120" width="220" height="20" as="geometry"/>
                 </mxCell>
                 <mxCell id="605" value="&lt;div style=&quot;line-height: 19px&quot;&gt;&lt;font style=&quot;font-size: 12px&quot; color=&quot;#ffffff&quot;&gt;+ subscribe(cb: (data: ModelType) =&amp;gt; void):void&lt;/font&gt;&lt;/div&gt;" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;" parent="3" vertex="1">
-                    <mxGeometry x="10" y="120" width="270" height="20" as="geometry"/>
+                    <mxGeometry x="10" y="140" width="270" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="696" value="&lt;div style=&quot;line-height: 19px&quot;&gt;&lt;font style=&quot;font-size: 12px&quot; color=&quot;#ffffff&quot;&gt;+ getElement(): HTMLElement&lt;/font&gt;&lt;/div&gt;" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;" vertex="1" parent="3">
+                    <mxGeometry x="10" y="80" width="180" height="20" as="geometry"/>
                 </mxCell>
                 <mxCell id="596" style="edgeStyle=none;html=1;" parent="1" source="65" edge="1">
                     <mxGeometry relative="1" as="geometry">
@@ -140,11 +141,13 @@
                         <mxPoint x="1760" y="840" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="673" style="edgeStyle=none;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="363" target="660" edge="1">
-                    <mxGeometry relative="1" as="geometry"/>
+                <mxCell id="699" style="edgeStyle=none;html=1;" edge="1" parent="1" source="363">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="1720" y="1005" as="targetPoint"/>
+                    </mxGeometry>
                 </mxCell>
                 <mxCell id="363" value="Slider" style="swimlane;swimlaneFillColor=#333333;" parent="1" vertex="1">
-                    <mxGeometry x="1320" y="910" width="320" height="170" as="geometry"/>
+                    <mxGeometry x="1320" y="910" width="320" height="190" as="geometry"/>
                 </mxCell>
                 <mxCell id="639" value="&lt;font color=&quot;#ffffff&quot;&gt;- presenter: Presenter&lt;/font&gt;" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;" parent="363" vertex="1">
                     <mxGeometry x="8" y="30" width="130" height="20" as="geometry"/>
@@ -153,16 +156,19 @@
                     <mxGeometry y="50" width="320" height="10" as="geometry"/>
                 </mxCell>
                 <mxCell id="642" value="&lt;div style=&quot;line-height: 19px&quot;&gt;&lt;font style=&quot;font-size: 12px&quot; color=&quot;#ffffff&quot;&gt;- init(main: HTMLElement, options: IState):void&lt;/font&gt;&lt;/div&gt;" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;" parent="363" vertex="1">
-                    <mxGeometry x="8" y="120" width="260" height="20" as="geometry"/>
+                    <mxGeometry x="8" y="140" width="260" height="20" as="geometry"/>
                 </mxCell>
                 <mxCell id="643" value="&lt;div style=&quot;line-height: 19px&quot;&gt;&lt;font style=&quot;font-size: 12px&quot; color=&quot;#ffffff&quot;&gt;+ getState():IState&lt;/font&gt;&lt;/div&gt;" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;" parent="363" vertex="1">
-                    <mxGeometry x="8" y="60" width="110" height="20" as="geometry"/>
+                    <mxGeometry x="8" y="80" width="110" height="20" as="geometry"/>
                 </mxCell>
                 <mxCell id="644" value="&lt;div style=&quot;line-height: 19px&quot;&gt;&lt;font style=&quot;font-size: 12px&quot; color=&quot;#ffffff&quot;&gt;+ setState(state: Pertial&amp;lt;IState&amp;gt;):void&lt;/font&gt;&lt;/div&gt;" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;" parent="363" vertex="1">
-                    <mxGeometry x="8" y="80" width="220" height="20" as="geometry"/>
+                    <mxGeometry x="8" y="100" width="220" height="20" as="geometry"/>
                 </mxCell>
                 <mxCell id="645" value="&lt;div style=&quot;line-height: 19px&quot;&gt;&lt;font style=&quot;font-size: 12px&quot; color=&quot;#ffffff&quot;&gt;+ subscribe(cb: (data: ModelType) =&amp;gt; void):void&lt;/font&gt;&lt;/div&gt;" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;" parent="363" vertex="1">
-                    <mxGeometry x="8" y="100" width="270" height="20" as="geometry"/>
+                    <mxGeometry x="8" y="120" width="270" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="701" value="&lt;div style=&quot;line-height: 19px&quot;&gt;&lt;font style=&quot;font-size: 12px&quot; color=&quot;#ffffff&quot;&gt;+ getElement(): HTMLElement&lt;/font&gt;&lt;/div&gt;" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;" vertex="1" parent="363">
+                    <mxGeometry x="8" y="60" width="180" height="20" as="geometry"/>
                 </mxCell>
                 <mxCell id="636" style="edgeStyle=none;html=1;entryX=0.091;entryY=0.002;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="435" target="72" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
@@ -366,7 +372,7 @@
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
                 <mxCell id="660" value="Panel" style="swimlane;swimlaneFillColor=#333333;startSize=23;" parent="1" vertex="1">
-                    <mxGeometry x="1720" y="920" width="320" height="160" as="geometry"/>
+                    <mxGeometry x="1720" y="910" width="320" height="190" as="geometry"/>
                 </mxCell>
                 <mxCell id="661" value="&lt;font color=&quot;#ffffff&quot;&gt;- configuringPanel: ConfiguringPanel&lt;/font&gt;" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;" parent="660" vertex="1">
                     <mxGeometry x="8" y="30" width="210" height="20" as="geometry"/>
@@ -375,10 +381,10 @@
                     <mxGeometry x="1" y="90" width="320" height="10" as="geometry"/>
                 </mxCell>
                 <mxCell id="663" value="&lt;div style=&quot;line-height: 19px&quot;&gt;&lt;font style=&quot;font-size: 12px&quot; color=&quot;#ffffff&quot;&gt;- subscribe():void&lt;/font&gt;&lt;/div&gt;" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;" parent="660" vertex="1">
-                    <mxGeometry x="8" y="120" width="110" height="20" as="geometry"/>
+                    <mxGeometry x="8" y="140" width="110" height="20" as="geometry"/>
                 </mxCell>
                 <mxCell id="664" value="&lt;div style=&quot;line-height: 19px&quot;&gt;&lt;font style=&quot;font-size: 12px&quot; color=&quot;#ffffff&quot;&gt;- init():void&lt;/font&gt;&lt;/div&gt;" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;" parent="660" vertex="1">
-                    <mxGeometry x="8" y="100" width="70" height="20" as="geometry"/>
+                    <mxGeometry x="8" y="120" width="70" height="20" as="geometry"/>
                 </mxCell>
                 <mxCell id="669" value="&lt;font color=&quot;#ffffff&quot;&gt;- main: HTMLElement&lt;/font&gt;" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;" parent="660" vertex="1">
                     <mxGeometry x="8" y="50" width="130" height="20" as="geometry"/>
@@ -386,9 +392,12 @@
                 <mxCell id="670" value="&lt;font color=&quot;#ffffff&quot;&gt;- slider: Slider&lt;/font&gt;" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;" parent="660" vertex="1">
                     <mxGeometry x="8" y="70" width="90" height="20" as="geometry"/>
                 </mxCell>
+                <mxCell id="695" value="&lt;div style=&quot;line-height: 19px&quot;&gt;&lt;font style=&quot;font-size: 12px&quot; color=&quot;#ffffff&quot;&gt;+ getElement(): HTMLElement&lt;/font&gt;&lt;/div&gt;" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;" vertex="1" parent="660">
+                    <mxGeometry x="8" y="100" width="180" height="20" as="geometry"/>
+                </mxCell>
                 <mxCell id="692" style="edgeStyle=none;html=1;" parent="1" source="674" edge="1">
                     <mxGeometry relative="1" as="geometry">
-                        <mxPoint x="1905" y="1080" as="targetPoint"/>
+                        <mxPoint x="1905" y="1100" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
                 <mxCell id="674" value="ConfiguringPanel" style="swimlane;swimlaneFillColor=#333333;" parent="1" vertex="1">
