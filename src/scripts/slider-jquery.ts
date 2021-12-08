@@ -1,4 +1,4 @@
-import Slider from './Slider';
+import Slider from './components/slider/Slider';
 import { IState } from './types';
 
 declare global {

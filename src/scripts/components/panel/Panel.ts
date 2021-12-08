@@ -1,6 +1,6 @@
-import Slider from './Slider';
-import ConfiguringPanel from './components/configuringPanel/ConfiguringPanel';
-import { ModelType, ModelUpdate, PanelHandler, PanelTypes } from './types';
+import Slider from '../slider/Slider';
+import ConfiguringPanel from '../configuringPanel/ConfiguringPanel';
+import { ModelType, ModelUpdate, PanelHandler, PanelTypes } from '../../types';
 
 export default class Panel {
   private configuringPanel!: ConfiguringPanel;
@@ -15,12 +15,16 @@ export default class Panel {
     this.init();
   }
 
+  public getElement(): HTMLElement {
+    return this.configuringPanel.getElement();
+  }
+
   private init(): void {
     this.configuringPanel = new ConfiguringPanel(this.slider.getState());
 
     const main: HTMLElement | null =
       this.main.querySelector('.slider__wrapper');
-    if (main) main.appendChild(this.configuringPanel.getElement());
+    if (main) main.appendChild(this.getElement());
 
     this.subscribe();
   }

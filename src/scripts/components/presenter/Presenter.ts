@@ -19,6 +19,10 @@ export default class Presenter {
     this.init();
   }
 
+  public getElement(): HTMLElement {
+    return this.view.getElement();
+  }
+
   public getState(): ModelType {
     return this.model.getState();
   }

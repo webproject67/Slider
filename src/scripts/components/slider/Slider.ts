@@ -1,11 +1,15 @@
-import Presenter from './components/presenter/Presenter';
-import { IState, ModelType } from './types';
+import Presenter from '../presenter/Presenter';
+import { IState, ModelType } from '../../types';
 
 export default class Slider {
   private presenter!: Presenter;
 
   constructor(main: HTMLElement, options: IState) {
     this.init(main, options);
+  }
+
+  public getElement(): HTMLElement {
+    return this.presenter.getElement();
   }
 
   public getState(): IState {
