@@ -18,52 +18,52 @@ export default class ConfiguringPanel extends Observer<PanelTypes> {
     this.data = [
       {
         label: 'Минимальное значение',
-        dataset: PanelHandler.HANDLEINPUTMINCHANGE,
+        dataset: PanelHandler.HANDLE_INPUT_MIN_CHANGE,
         type: 'number',
       },
       {
         label: 'Максимальное значение',
-        dataset: PanelHandler.HANDLEINPUTMAXCHANGE,
+        dataset: PanelHandler.HANDLE_INPUT_MAX_CHANGE,
         type: 'number',
       },
       {
         label: 'От',
-        dataset: PanelHandler.HANDLEINPUTFROMCHANGE,
+        dataset: PanelHandler.HANDLE_INPUT_FROM_CHANGE,
         type: 'number',
       },
       {
         label: 'До',
-        dataset: PanelHandler.HANDLEINPUTTOCHANGE,
+        dataset: PanelHandler.HANDLE_INPUT_TO_CHANGE,
         type: 'number',
       },
       {
         label: 'Шаг',
-        dataset: PanelHandler.HANDLEINPUTSTEPCHANGE,
+        dataset: PanelHandler.HANDLE_INPUT_STEP_CHANGE,
         type: 'number',
       },
       {
         label: 'Вертикальный',
-        dataset: PanelHandler.HANDLEINPUTVIEWCHANGE,
+        dataset: PanelHandler.HANDLE_INPUT_VIEW_CHANGE,
         type: 'checkbox',
       },
       {
         label: 'Интервал',
-        dataset: PanelHandler.HANDLEINPUTRANGECHANGE,
+        dataset: PanelHandler.HANDLE_INPUT_RANGE_CHANGE,
         type: 'checkbox',
       },
       {
         label: 'Значение',
-        dataset: PanelHandler.HANDLEINPUTFLAGCHANGE,
+        dataset: PanelHandler.HANDLE_INPUT_FLAG_CHANGE,
         type: 'checkbox',
       },
       {
         label: 'Шкала',
-        dataset: PanelHandler.HANDLEINPUTSCALECHANGE,
+        dataset: PanelHandler.HANDLE_INPUT_SCALE_CHANGE,
         type: 'checkbox',
       },
       {
         label: 'Прогресс',
-        dataset: PanelHandler.HANDLEINPUTPROGRESSCHANGE,
+        dataset: PanelHandler.HANDLE_INPUT_PROGRESS_CHANGE,
         type: 'checkbox',
       },
     ];
@@ -82,18 +82,20 @@ export default class ConfiguringPanel extends Observer<PanelTypes> {
     const { range, from, to, min, max, step } = this.state;
 
     this.data.forEach((elem, i) => {
-      if (this.input[i].dataset.name === PanelHandler.HANDLEINPUTMINCHANGE)
+      if (this.input[i].dataset.name === PanelHandler.HANDLE_INPUT_MIN_CHANGE)
         this.input[i].value = String(min);
-      if (this.input[i].dataset.name === PanelHandler.HANDLEINPUTMAXCHANGE)
+      if (this.input[i].dataset.name === PanelHandler.HANDLE_INPUT_MAX_CHANGE)
         this.input[i].value = String(max);
-      if (this.input[i].dataset.name === PanelHandler.HANDLEINPUTSTEPCHANGE)
+      if (this.input[i].dataset.name === PanelHandler.HANDLE_INPUT_STEP_CHANGE)
         this.input[i].value = String(step);
-      if (this.input[i].dataset.name === PanelHandler.HANDLEINPUTFROMCHANGE) {
+      if (
+        this.input[i].dataset.name === PanelHandler.HANDLE_INPUT_FROM_CHANGE
+      ) {
         this.label[i].style.display = range ? '' : 'none';
         this.input[i].value = String(from);
       }
 
-      if (this.input[i].dataset.name === PanelHandler.HANDLEINPUTTOCHANGE) {
+      if (this.input[i].dataset.name === PanelHandler.HANDLE_INPUT_TO_CHANGE) {
         this.label[i].textContent = range ? 'До' : 'Текущее значение';
         this.input[i] = this.createElementInput(this.data[3]);
         this.input[i].value = String(to);
@@ -129,11 +131,11 @@ export default class ConfiguringPanel extends Observer<PanelTypes> {
     const labelElement = this.createElement('label', 'slider__label');
     labelElement.textContent = data.label;
 
-    const inputMin = data.dataset === PanelHandler.HANDLEINPUTMINCHANGE;
-    const inputMax = data.dataset === PanelHandler.HANDLEINPUTMAXCHANGE;
-    const inputFrom = data.dataset === PanelHandler.HANDLEINPUTFROMCHANGE;
-    const inputTo = data.dataset === PanelHandler.HANDLEINPUTTOCHANGE;
-    const inputStep = data.dataset === PanelHandler.HANDLEINPUTSTEPCHANGE;
+    const inputMin = data.dataset === PanelHandler.HANDLE_INPUT_MIN_CHANGE;
+    const inputMax = data.dataset === PanelHandler.HANDLE_INPUT_MAX_CHANGE;
+    const inputFrom = data.dataset === PanelHandler.HANDLE_INPUT_FROM_CHANGE;
+    const inputTo = data.dataset === PanelHandler.HANDLE_INPUT_TO_CHANGE;
+    const inputStep = data.dataset === PanelHandler.HANDLE_INPUT_STEP_CHANGE;
     const generalInput =
       inputMin || inputMax || inputFrom || inputTo || inputStep;
 
@@ -158,15 +160,15 @@ export default class ConfiguringPanel extends Observer<PanelTypes> {
     inputElement.dataset.name = data.dataset;
     inputElement.type = data.type;
 
-    if (data.dataset === PanelHandler.HANDLEINPUTVIEWCHANGE)
+    if (data.dataset === PanelHandler.HANDLE_INPUT_VIEW_CHANGE)
       inputElement.checked = view;
-    if (data.dataset === PanelHandler.HANDLEINPUTRANGECHANGE)
+    if (data.dataset === PanelHandler.HANDLE_INPUT_RANGE_CHANGE)
       inputElement.checked = range;
-    if (data.dataset === PanelHandler.HANDLEINPUTFLAGCHANGE)
+    if (data.dataset === PanelHandler.HANDLE_INPUT_FLAG_CHANGE)
       inputElement.checked = flag;
-    if (data.dataset === PanelHandler.HANDLEINPUTSCALECHANGE)
+    if (data.dataset === PanelHandler.HANDLE_INPUT_SCALE_CHANGE)
       inputElement.checked = scale;
-    if (data.dataset === PanelHandler.HANDLEINPUTPROGRESSCHANGE)
+    if (data.dataset === PanelHandler.HANDLE_INPUT_PROGRESS_CHANGE)
       inputElement.checked = progress;
 
     return inputElement;
@@ -176,63 +178,63 @@ export default class ConfiguringPanel extends Observer<PanelTypes> {
     const input = <HTMLInputElement>evt.currentTarget;
 
     switch (input.dataset.name) {
-      case PanelHandler.HANDLEINPUTMINCHANGE:
+      case PanelHandler.HANDLE_INPUT_MIN_CHANGE:
         this.broadcast({
-          type: PanelHandler.HANDLEINPUTMINCHANGE,
+          type: PanelHandler.HANDLE_INPUT_MIN_CHANGE,
           value: Number(input.value),
         });
         break;
-      case PanelHandler.HANDLEINPUTMAXCHANGE:
+      case PanelHandler.HANDLE_INPUT_MAX_CHANGE:
         this.broadcast({
-          type: PanelHandler.HANDLEINPUTMAXCHANGE,
+          type: PanelHandler.HANDLE_INPUT_MAX_CHANGE,
           value: Number(input.value),
         });
         break;
-      case PanelHandler.HANDLEINPUTFROMCHANGE:
+      case PanelHandler.HANDLE_INPUT_FROM_CHANGE:
         this.broadcast({
-          type: PanelHandler.HANDLEINPUTFROMCHANGE,
+          type: PanelHandler.HANDLE_INPUT_FROM_CHANGE,
           value: Number(input.value),
         });
         break;
-      case PanelHandler.HANDLEINPUTTOCHANGE:
+      case PanelHandler.HANDLE_INPUT_TO_CHANGE:
         this.broadcast({
-          type: PanelHandler.HANDLEINPUTTOCHANGE,
+          type: PanelHandler.HANDLE_INPUT_TO_CHANGE,
           value: Number(input.value),
         });
         break;
-      case PanelHandler.HANDLEINPUTSTEPCHANGE:
+      case PanelHandler.HANDLE_INPUT_STEP_CHANGE:
         this.broadcast({
-          type: PanelHandler.HANDLEINPUTSTEPCHANGE,
+          type: PanelHandler.HANDLE_INPUT_STEP_CHANGE,
           value: Number(input.value),
         });
         break;
-      case PanelHandler.HANDLEINPUTVIEWCHANGE:
+      case PanelHandler.HANDLE_INPUT_VIEW_CHANGE:
         this.broadcast({
-          type: PanelHandler.HANDLEINPUTVIEWCHANGE,
+          type: PanelHandler.HANDLE_INPUT_VIEW_CHANGE,
           value: input.checked,
         });
         break;
-      case PanelHandler.HANDLEINPUTRANGECHANGE:
+      case PanelHandler.HANDLE_INPUT_RANGE_CHANGE:
         this.broadcast({
-          type: PanelHandler.HANDLEINPUTRANGECHANGE,
+          type: PanelHandler.HANDLE_INPUT_RANGE_CHANGE,
           value: input.checked,
         });
         break;
-      case PanelHandler.HANDLEINPUTFLAGCHANGE:
+      case PanelHandler.HANDLE_INPUT_FLAG_CHANGE:
         this.broadcast({
-          type: PanelHandler.HANDLEINPUTFLAGCHANGE,
+          type: PanelHandler.HANDLE_INPUT_FLAG_CHANGE,
           value: input.checked,
         });
         break;
-      case PanelHandler.HANDLEINPUTPROGRESSCHANGE:
+      case PanelHandler.HANDLE_INPUT_PROGRESS_CHANGE:
         this.broadcast({
-          type: PanelHandler.HANDLEINPUTPROGRESSCHANGE,
+          type: PanelHandler.HANDLE_INPUT_PROGRESS_CHANGE,
           value: input.checked,
         });
         break;
-      case PanelHandler.HANDLEINPUTSCALECHANGE:
+      case PanelHandler.HANDLE_INPUT_SCALE_CHANGE:
         this.broadcast({
-          type: PanelHandler.HANDLEINPUTSCALECHANGE,
+          type: PanelHandler.HANDLE_INPUT_SCALE_CHANGE,
           value: input.checked,
         });
         break;

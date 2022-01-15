@@ -20,103 +20,103 @@ interface IData {
 }
 
 enum ModelUpdate {
-  UPDATEMODELSTATE = 'updateModelState',
+  UPDATE_MODEL_STATE = 'updateModelState',
 }
 
 type ModelType = {
-  type: ModelUpdate.UPDATEMODELSTATE;
+  type: ModelUpdate.UPDATE_MODEL_STATE;
   value: IState;
 };
 
 enum ViewHandler {
-  HANDLECIRCLEFROMMOUSEDOWN = 'handleCircleFromMouseDown',
-  HANDLECIRCLETOMOUSEDOWN = 'handleCircleToMouseDown',
-  HANDLETRACKCLICK = 'handleTrackClick',
-  HANDLESCALECLICK = 'handleScaleClick',
+  HANDLE_CIRCLE_FROM_MOUSE_DOWN = 'handleCircleFromMouseDown',
+  HANDLE_CIRCLE_TO_MOUSE_DOWN = 'handleCircleToMouseDown',
+  HANDLE_TRACK_CLICK = 'handleTrackClick',
+  HANDLE_SCALE_CLICK = 'handleScaleClick',
 }
 
 type FromCircle = {
-  type: ViewHandler.HANDLECIRCLEFROMMOUSEDOWN;
+  type: ViewHandler.HANDLE_CIRCLE_FROM_MOUSE_DOWN;
   value: number;
 };
 
 type ToCircle = {
-  type: ViewHandler.HANDLECIRCLETOMOUSEDOWN;
+  type: ViewHandler.HANDLE_CIRCLE_TO_MOUSE_DOWN;
   value: number;
 };
 
 type Track = {
-  type: ViewHandler.HANDLETRACKCLICK;
+  type: ViewHandler.HANDLE_TRACK_CLICK;
   value: number;
 };
 
 type Circle = {
-  type: ViewHandler.HANDLESCALECLICK;
+  type: ViewHandler.HANDLE_SCALE_CLICK;
   value: number;
 };
 
 type ViewTypes = FromCircle | ToCircle | Track | Circle;
 
 enum PanelHandler {
-  HANDLEINPUTMINCHANGE = 'handleInputMinChange',
-  HANDLEINPUTMAXCHANGE = 'handleInputMaxChange',
-  HANDLEINPUTFROMCHANGE = 'handleInputFromChange',
-  HANDLEINPUTTOCHANGE = 'handleInputToChange',
-  HANDLEINPUTSTEPCHANGE = 'handleInputStepChange',
-  HANDLEINPUTVIEWCHANGE = 'handleInputViewChange',
-  HANDLEINPUTRANGECHANGE = 'handleInputRangeChange',
-  HANDLEINPUTFLAGCHANGE = 'handleInputFlagChange',
-  HANDLEINPUTSCALECHANGE = 'handleInputScaleChange',
-  HANDLEINPUTPROGRESSCHANGE = 'handleInputProgressChange',
+  HANDLE_INPUT_MIN_CHANGE = 'handleInputMinChange',
+  HANDLE_INPUT_MAX_CHANGE = 'handleInputMaxChange',
+  HANDLE_INPUT_FROM_CHANGE = 'handleInputFromChange',
+  HANDLE_INPUT_TO_CHANGE = 'handleInputToChange',
+  HANDLE_INPUT_STEP_CHANGE = 'handleInputStepChange',
+  HANDLE_INPUT_VIEW_CHANGE = 'handleInputViewChange',
+  HANDLE_INPUT_RANGE_CHANGE = 'handleInputRangeChange',
+  HANDLE_INPUT_FLAG_CHANGE = 'handleInputFlagChange',
+  HANDLE_INPUT_SCALE_CHANGE = 'handleInputScaleChange',
+  HANDLE_INPUT_PROGRESS_CHANGE = 'handleInputProgressChange',
 }
 
 type Min = {
-  type: PanelHandler.HANDLEINPUTMINCHANGE;
+  type: PanelHandler.HANDLE_INPUT_MIN_CHANGE;
   value: number;
 };
 
 type Max = {
-  type: PanelHandler.HANDLEINPUTMAXCHANGE;
+  type: PanelHandler.HANDLE_INPUT_MAX_CHANGE;
   value: number;
 };
 
 type From = {
-  type: PanelHandler.HANDLEINPUTFROMCHANGE;
+  type: PanelHandler.HANDLE_INPUT_FROM_CHANGE;
   value: number;
 };
 
 type To = {
-  type: PanelHandler.HANDLEINPUTTOCHANGE;
+  type: PanelHandler.HANDLE_INPUT_TO_CHANGE;
   value: number;
 };
 
 type Step = {
-  type: PanelHandler.HANDLEINPUTSTEPCHANGE;
+  type: PanelHandler.HANDLE_INPUT_STEP_CHANGE;
   value: number;
 };
 
 type View = {
-  type: PanelHandler.HANDLEINPUTVIEWCHANGE;
+  type: PanelHandler.HANDLE_INPUT_VIEW_CHANGE;
   value: boolean;
 };
 
 type Range = {
-  type: PanelHandler.HANDLEINPUTRANGECHANGE;
+  type: PanelHandler.HANDLE_INPUT_RANGE_CHANGE;
   value: boolean;
 };
 
 type Flag = {
-  type: PanelHandler.HANDLEINPUTFLAGCHANGE;
+  type: PanelHandler.HANDLE_INPUT_FLAG_CHANGE;
   value: boolean;
 };
 
 type Progress = {
-  type: PanelHandler.HANDLEINPUTPROGRESSCHANGE;
+  type: PanelHandler.HANDLE_INPUT_PROGRESS_CHANGE;
   value: boolean;
 };
 
 type Scale = {
-  type: PanelHandler.HANDLEINPUTSCALECHANGE;
+  type: PanelHandler.HANDLE_INPUT_SCALE_CHANGE;
   value: boolean;
 };
 

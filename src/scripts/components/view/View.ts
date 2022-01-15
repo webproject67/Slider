@@ -198,12 +198,12 @@ export default class View extends Observer<ViewTypes> {
 
       if (circleMin || circleVMin)
         this.broadcast({
-          type: ViewHandler.HANDLECIRCLEFROMMOUSEDOWN,
+          type: ViewHandler.HANDLE_CIRCLE_FROM_MOUSE_DOWN,
           value: corner,
         });
       if (circleMax || circleVMax)
         this.broadcast({
-          type: ViewHandler.HANDLECIRCLETOMOUSEDOWN,
+          type: ViewHandler.HANDLE_CIRCLE_TO_MOUSE_DOWN,
           value: corner,
         });
     };
@@ -233,13 +233,13 @@ export default class View extends Observer<ViewTypes> {
           this.track.getElement().clientHeight) *
         100;
 
-    this.broadcast({ type: ViewHandler.HANDLETRACKCLICK, value: corner });
+    this.broadcast({ type: ViewHandler.HANDLE_TRACK_CLICK, value: corner });
   }
 
   private handleScaleClick(evt: MouseEvent): void {
     const scale: HTMLElement = <HTMLElement>evt.currentTarget;
     const corner: number = parseFloat(scale.style.left);
-    this.broadcast({ type: ViewHandler.HANDLESCALECLICK, value: corner });
+    this.broadcast({ type: ViewHandler.HANDLE_SCALE_CLICK, value: corner });
   }
 
   private createElement(className: string): HTMLElement {
