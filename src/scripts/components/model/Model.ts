@@ -11,7 +11,7 @@ export default class Model extends Observer<ModelType> {
   }
 
   public getState(): ModelType {
-    return { type: ModelUpdate.UPDATEMODELSTATE, value: { ...this.state } };
+    return { type: ModelUpdate.UPDATE_MODEL_STATE, value: { ...this.state } };
   }
 
   public setStateFrom(valuePercent: number): void {
@@ -128,7 +128,7 @@ export default class Model extends Observer<ModelType> {
       ((this.state.to - this.state.min) / this.state.step) * stepPercent;
 
     this.broadcast({
-      type: ModelUpdate.UPDATEMODELSTATE,
+      type: ModelUpdate.UPDATE_MODEL_STATE,
       value: { ...this.state },
     });
   }

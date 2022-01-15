@@ -38,16 +38,16 @@ export default class Presenter {
   private init(): void {
     const cbView = (data: ViewTypes) => {
       switch (data.type) {
-        case ViewHandler.HANDLECIRCLEFROMMOUSEDOWN:
+        case ViewHandler.HANDLE_CIRCLE_FROM_MOUSE_DOWN:
           this.model.setStateFrom(data.value);
           break;
-        case ViewHandler.HANDLECIRCLETOMOUSEDOWN:
+        case ViewHandler.HANDLE_CIRCLE_TO_MOUSE_DOWN:
           this.model.setStateTo(data.value);
           break;
-        case ViewHandler.HANDLETRACKCLICK:
+        case ViewHandler.HANDLE_TRACK_CLICK:
           this.model.setStateFromOrTo(data.value);
           break;
-        case ViewHandler.HANDLESCALECLICK:
+        case ViewHandler.HANDLE_SCALE_CLICK:
           this.model.setStateFromOrTo(data.value);
           break;
         default:
@@ -58,7 +58,7 @@ export default class Presenter {
 
     const cbModel = (data: ModelType) => {
       switch (data.type) {
-        case ModelUpdate.UPDATEMODELSTATE:
+        case ModelUpdate.UPDATE_MODEL_STATE:
           this.view.updateView(data.value);
           break;
         default:

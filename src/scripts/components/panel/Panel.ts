@@ -32,34 +32,34 @@ export default class Panel {
   private subscribe(): void {
     const cbPanel = (data: PanelTypes) => {
       switch (data.type) {
-        case PanelHandler.HANDLEINPUTMINCHANGE:
+        case PanelHandler.HANDLE_INPUT_MIN_CHANGE:
           this.slider.setState({ min: data.value });
           break;
-        case PanelHandler.HANDLEINPUTMAXCHANGE:
+        case PanelHandler.HANDLE_INPUT_MAX_CHANGE:
           this.slider.setState({ max: data.value });
           break;
-        case PanelHandler.HANDLEINPUTFROMCHANGE:
+        case PanelHandler.HANDLE_INPUT_FROM_CHANGE:
           this.slider.setState({ from: data.value });
           break;
-        case PanelHandler.HANDLEINPUTTOCHANGE:
+        case PanelHandler.HANDLE_INPUT_TO_CHANGE:
           this.slider.setState({ to: data.value });
           break;
-        case PanelHandler.HANDLEINPUTSTEPCHANGE:
+        case PanelHandler.HANDLE_INPUT_STEP_CHANGE:
           this.slider.setState({ step: data.value });
           break;
-        case PanelHandler.HANDLEINPUTVIEWCHANGE:
+        case PanelHandler.HANDLE_INPUT_VIEW_CHANGE:
           this.slider.setState({ view: data.value });
           break;
-        case PanelHandler.HANDLEINPUTRANGECHANGE:
+        case PanelHandler.HANDLE_INPUT_RANGE_CHANGE:
           this.slider.setState({ range: data.value });
           break;
-        case PanelHandler.HANDLEINPUTFLAGCHANGE:
+        case PanelHandler.HANDLE_INPUT_FLAG_CHANGE:
           this.slider.setState({ flag: data.value });
           break;
-        case PanelHandler.HANDLEINPUTPROGRESSCHANGE:
+        case PanelHandler.HANDLE_INPUT_PROGRESS_CHANGE:
           this.slider.setState({ progress: data.value });
           break;
-        case PanelHandler.HANDLEINPUTSCALECHANGE:
+        case PanelHandler.HANDLE_INPUT_SCALE_CHANGE:
           this.slider.setState({ scale: data.value });
           break;
         default:
@@ -70,7 +70,7 @@ export default class Panel {
 
     const cbModel = (data: ModelType) => {
       switch (data.type) {
-        case ModelUpdate.UPDATEMODELSTATE:
+        case ModelUpdate.UPDATE_MODEL_STATE:
           this.configuringPanel.updateElement(data.value);
           break;
         default:
