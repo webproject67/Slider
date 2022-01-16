@@ -22,9 +22,9 @@ exports[`snapshot renders correctly element2 1`] = `
 >
   <div
     class="slider__pin-vertical slider__pin-vertical_position_maximum"
-    style="top: 100%;"
+    style="top: 99%;"
   >
-    100
+    99
   </div>
   <div
     class=""
@@ -38,15 +38,15 @@ exports[`snapshot renders correctly element3 1`] = `
 >
   <div
     class="slider__pin-vertical slider__pin-vertical_position_minimum"
-    style="top: 0%;"
+    style="top: 1%;"
   >
-    0
+    1
   </div>
   <div
     class="slider__pin-vertical slider__pin-vertical_position_maximum"
-    style="top: 100%;"
+    style="top: 99%;"
   >
-    100
+    99
   </div>
 </div>
 `;
@@ -57,15 +57,15 @@ exports[`snapshot renders correctly element4 1`] = `
 >
   <div
     class="slider__pin slider__pin_position_minimum"
-    style="left: 0%;"
+    style="left: 1%;"
   >
-    0
+    1
   </div>
   <div
     class="slider__pin slider__pin_position_maximum"
-    style="left: 100%;"
+    style="left: 99%;"
   >
-    100
+    99
   </div>
 </div>
 `;

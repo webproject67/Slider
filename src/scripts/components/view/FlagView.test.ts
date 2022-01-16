@@ -22,6 +22,10 @@ describe('snapshot', () => {
 
   test('renders correctly element2', () => {
     state.view = true;
+    state.from = 1;
+    state.fromPercent = 1;
+    state.to = 99;
+    state.toPercent = 99;
     expect(new FlagView(state).getElement()).toMatchSnapshot();
   });
 

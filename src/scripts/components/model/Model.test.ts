@@ -60,6 +60,14 @@ describe('setStateTo', () => {
   test('passed unknown, returned state to 95', () => {
     expect(model.getState().value.to).toBe(95);
   });
+
+  test('passed to 100 more from, returned void', () => {
+    expect(model.setStateTo(100)).toBeUndefined();
+  });
+
+  test('passed unknown, returned state to 100', () => {
+    expect(model.getState().value.to).toBe(100);
+  });
 });
 
 describe('setStateFromOrTo', () => {
@@ -91,6 +99,10 @@ describe('setState', () => {
 
   test('passed step 0, returned void', () => {
     expect(model.setState({ step: 0 })).toBeUndefined();
+  });
+
+  test('passed step 10.5, returned void', () => {
+    expect(model.setState({ step: 10.5 })).toBeUndefined();
   });
 
   test('passed unknown, returned state step 1', () => {

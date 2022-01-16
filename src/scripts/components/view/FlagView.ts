@@ -18,18 +18,20 @@ export default class FlagView {
   }
 
   public updateElement(state: IState): HTMLElement {
-    const { range, view, fromPercent, toPercent, from, to } = state;
+    const { range, view, fromPercent, toPercent, from, to, max } = state;
 
     for (let index = 0; index < this.quantityPin; index += 1) {
       this.pin[index].className = '';
       this.pin[index].textContent = '';
       this.pin[index].style.left = '';
       this.pin[index].style.top = '';
+      this.pin[index].style.zIndex = '';
 
       const getPinMin = () => {
         this.pin[index].className = 'slider__pin slider__pin_position_minimum';
         this.pin[index].textContent = String(from);
         this.pin[index].style.left = `${fromPercent}%`;
+        if (to === max) this.pin[index].style.zIndex = '1';
       };
 
       const getPinMax = () => {
@@ -43,6 +45,7 @@ export default class FlagView {
           'slider__pin-vertical slider__pin-vertical_position_minimum';
         this.pin[index].textContent = String(from);
         this.pin[index].style.top = `${fromPercent}%`;
+        if (to === max) this.pin[index].style.zIndex = '1';
       };
 
       const getPinVerticalMax = () => {
