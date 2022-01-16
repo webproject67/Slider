@@ -18,7 +18,8 @@ export default class Model extends Observer<ModelType> {
     let cloneValuePercent = valuePercent;
     if (valuePercent > this.state.toPercent)
       cloneValuePercent = this.state.toPercent;
-    const value = this.calculateValue(cloneValuePercent);
+    const value =
+      valuePercent >= 100 ? 100 : this.calculateValue(cloneValuePercent);
     this.setState({ fromPercent: cloneValuePercent, from: value });
   }
 
@@ -26,7 +27,8 @@ export default class Model extends Observer<ModelType> {
     let cloneValuePercent = valuePercent;
     if (valuePercent < this.state.fromPercent)
       cloneValuePercent = this.state.fromPercent;
-    const value = this.calculateValue(cloneValuePercent);
+    const value =
+      valuePercent >= 100 ? 100 : this.calculateValue(cloneValuePercent);
     this.setState({ toPercent: cloneValuePercent, to: value });
   }
 
@@ -102,6 +104,8 @@ export default class Model extends Observer<ModelType> {
 
     const generalValue = this.state.max - this.state.min;
 
+    if (!Number.isInteger(this.state.step))
+      this.state.step = Math.round(this.state.step);
     if (this.state.step === 0) this.state.step = 1;
     if (this.state.step < 0) this.state.step = Math.abs(this.state.step);
     if (this.state.step > generalValue || this.state.step > generalValue)
